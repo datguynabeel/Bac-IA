@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr" dir="ltr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+    <title>Bac IA - Onboarding 2/5 (Mobile)</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#80d5cb",
+                        "primary-container": "#0f766e",
+                        "background": "#131314",
+                        "on-surface": "#e5e2e3",
+                        "on-surface-variant": "#bdc9c6"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        body { background-color: #131314; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .selected-card { border-color: #80d5cb !important; background: rgba(128, 213, 203, 0.05) !important; }
+        .premium-gradient { background: linear-gradient(135deg, #0f766e 0%, #80d5cb 100%); }
+    </style>
+</head>
+<body class="text-on-surface font-body selection:bg-primary/30 min-h-screen flex flex-col">
+    <!-- Mobile Header -->
+    <header class="p-6 pt-12 flex justify-between items-start">
+        <div class="flex items-center gap-4">
+            <a href="onboarding_1_role_mobile.html" class="p-2 -ms-2 hover:bg-white/5 rounded-full transition-colors">
+                <span class="material-symbols-outlined text-on-surface-variant">arrow_back</span>
+            </a>
+            <h1 class="font-headline font-bold text-lg tracking-tight text-primary">Bac IA</h1>
+        </div>
+        <div class="flex flex-col items-end">
+            <span class="text-[9px] font-bold uppercase tracking-[0.2em] text-on-surface-variant/40 mb-1">Étape 2 sur 5</span>
+            <div class="w-24 h-1 bg-white/5 rounded-full overflow-hidden">
+                <div class="w-2/5 h-full bg-primary rounded-full"></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow px-6 py-8">
+        <h1 class="text-3xl font-headline font-bold mb-8">Tu es en quelle classe ?</h1>
+        
+        <div class="space-y-4">
+            <!-- Option 1 Mobile -->
+            <div onclick="select(this)" class="glass p-6 rounded-[24px] flex justify-between items-center active:scale-[0.98] transition-all border border-white/5">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center">
+                        <span class="material-symbols-outlined text-sm">filter_1</span>
+                    </div>
+                    <div>
+                        <h2 class="font-bold">Tronc Commun</h2>
+                        <p class="text-xs text-on-surface-variant">1ère année du lycée</p>
+                    </div>
+                </div>
+                <span class="material-symbols-outlined text-primary opacity-0 check-icon">check_circle</span>
+            </div>
+
+            <!-- Option 2 Mobile -->
+            <div onclick="select(this)" class="glass p-6 rounded-[24px] flex justify-between items-center active:scale-[0.98] transition-all border border-white/5">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center">
+                        <span class="material-symbols-outlined text-sm">filter_2</span>
+                    </div>
+                    <div>
+                        <h2 class="font-bold">1ère année Bac</h2>
+                        <p class="text-xs text-on-surface-variant">Avant l'année du Bac</p>
+                    </div>
+                </div>
+                <span class="material-symbols-outlined text-primary opacity-0 check-icon">check_circle</span>
+            </div>
+
+            <!-- Option 3 Mobile -->
+            <div onclick="select(this)" class="glass p-6 rounded-[24px] flex justify-between items-center active:scale-[0.98] transition-all border border-white/5">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center">
+                        <span class="material-symbols-outlined text-sm text-primary">school</span>
+                    </div>
+                    <div>
+                        <h2 class="font-bold">2ème année Bac</h2>
+                        <p class="text-xs text-on-surface-variant">L'année du Bac National</p>
+                    </div>
+                </div>
+                <span class="material-symbols-outlined text-primary opacity-0 check-icon">check_circle</span>
+            </div>
+        </div>
+    </main>
+
+    <footer class="p-6 pb-12">
+        <a id="btn-continue" href="onboarding_3_filiere_mobile.html" class="opacity-30 pointer-events-none premium-gradient text-[#003733] w-full py-4 rounded-2xl font-bold text-lg text-center block shadow-lg shadow-primary/20 transition-all">
+            Continuer
+        </a>
+    </footer>
+
+    <script>
+        function select(el) {
+            document.querySelectorAll('.glass').forEach(card => {
+                card.classList.remove('selected-card');
+                card.querySelector('.check-icon').classList.add('opacity-0');
+            });
+            el.classList.add('selected-card');
+            el.querySelector('.check-icon').classList.remove('opacity-0');
+            
+            const btn = document.getElementById('btn-continue');
+            btn.classList.remove('opacity-30', 'pointer-events-none');
+        }
+    </script>
+</body>
+</html>

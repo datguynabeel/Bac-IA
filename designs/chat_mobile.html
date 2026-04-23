@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr" dir="ltr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+    <title>Bac IA - Chat Tuteur (Mobile)</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, { delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+        ]});"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#80d5cb",
+                        "primary-container": "#0f766e",
+                        "background": "#131314",
+                        "surface": "#131314",
+                        "on-surface": "#e5e2e3",
+                        "on-surface-variant": "#bdc9c6",
+                        "surface-container-lowest": "#0e0e0f",
+                        "surface-container-high": "#2a2a2b",
+                        "outline-variant": "#3e4947",
+                        "secondary-container": "#304e4b"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "arabic": ["IBM Plex Sans Arabic"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        body { background-color: #131314; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .safe-bottom { padding-bottom: calc(2rem + env(safe-area-inset-bottom)); }
+        .chat-container { height: calc(100dvh - 140px); }
+    </style>
+</head>
+<body class="text-on-surface font-body selection:bg-primary/30 overflow-hidden">
+    <!-- TopAppBar Mobile -->
+    <header class="bg-[#131314]/80 backdrop-blur-lg fixed top-0 w-full z-50 px-4 py-3 flex justify-between items-center border-b border-white/5">
+        <div class="flex items-center gap-3">
+            <button class="p-2 -ms-2 hover:bg-white/5 rounded-full transition-colors">
+                <span class="material-symbols-outlined text-[#80d5cb]">menu</span>
+            </button>
+            <h1 class="font-headline font-bold tracking-tight text-xl text-[#80d5cb]">Bac IA</h1>
+        </div>
+        <div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center border border-outline-variant/30">
+            <span class="font-headline font-bold text-white text-[10px]">YA</span>
+        </div>
+    </header>
+
+    <!-- Breadcrumb Sub-header -->
+    <div class="fixed top-[52px] w-full z-40 bg-[#131314]/80 backdrop-blur-md px-4 py-2 border-b border-white/5">
+        <div class="flex items-center gap-1">
+            <span class="text-[10px] text-on-surface-variant font-medium tracking-tight">PC • 2Bac PC • Oscillateurs</span>
+            <span class="material-symbols-outlined text-on-surface-variant text-[12px]">expand_more</span>
+        </div>
+    </div>
+
+    <!-- Mobile Chat Content -->
+    <main class="pt-24 pb-40 overflow-y-auto h-screen no-scrollbar px-4">
+        <!-- Message: User -->
+        <div class="mb-8 flex flex-col items-end">
+            <div class="max-w-[90%] text-right">
+                <p class="text-[10px] text-on-surface-variant mb-1 font-medium uppercase tracking-widest">Moi</p>
+                <div class="bg-primary/10 rounded-2xl p-4 rounded-tr-none">
+                    <p class="text-lg leading-relaxed text-on-surface">Explique-moi la période propre $T_0$ d'un oscillateur élastique.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Message: AI -->
+        <div class="mb-8">
+            <div class="flex items-center gap-2 mb-4">
+                <div class="w-6 h-6 bg-primary-container rounded flex items-center justify-center">
+                    <span class="material-symbols-outlined text-primary text-[14px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                </div>
+                <span class="font-headline font-bold text-primary text-sm">IA Tuteur</span>
+            </div>
+            <div class="space-y-6 text-on-surface leading-relaxed text-lg border-s-2 border-primary/20 ps-4">
+                <p>Pour un oscillateur élastique, la période propre $T_0$ est la durée d'une oscillation complète.</p>
+                
+                <!-- KaTeX Formula -->
+                <div class="bg-surface-container-lowest rounded-xl p-6 my-4 flex flex-col items-center justify-center border border-white/5">
+                    <span class="text-[10px] text-on-surface-variant mb-3 font-mono uppercase tracking-[0.2em]">Formule</span>
+                    <div class="text-2xl text-primary">
+                        $$T_0 = 2\pi\sqrt{\dfrac{m}{K}}$$
+                    </div>
+                </div>
+
+                <p>Si la masse $m$ augmente, l'inertie augmente et $T_0$ s'allonge. Si la raideur $K$ augmente, le ressort est plus ferme et $T_0$ diminue.</p>
+
+                <!-- Coach Tip Darija -->
+                <div class="bg-secondary-container/10 rounded-xl p-4 border-s-4 border-primary">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="material-symbols-outlined text-primary text-xs">lightbulb</span>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-primary">Coach Tip • Darija</span>
+                    </div>
+                    <p class="font-arabic text-lg leading-loose text-on-surface">
+                        Fhemti kifach khdemna b l'énergie ? Takhayel m3aya l'mass $m$ hya l't9ol dyal l'objet. Koulma kan t9il, l'ressort tayl9a s3ouba bach yjerrou.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Mobile Input Fixed at Bottom -->
+    <div class="fixed bottom-[72px] left-0 w-full bg-background/95 backdrop-blur-xl px-4 py-3 z-50">
+        <div class="relative bg-surface-container-lowest border border-outline-variant/30 rounded-2xl p-2 flex items-end gap-2">
+            <button class="p-2 hover:bg-white/5 rounded-xl text-on-surface-variant">
+                <span class="material-symbols-outlined">add_circle</span>
+            </button>
+            <textarea class="w-full bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-on-surface-variant/50 py-2 resize-none font-body text-base" placeholder="Pose ta question..." rows="1"></textarea>
+            <button class="bg-primary text-[#003733] p-3 rounded-xl shadow-lg shadow-primary/20">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-[#131314] border-t border-white/5 z-50">
+        <div class="flex flex-col items-center justify-center text-primary">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">chat_bubble</span>
+            <span class="text-[9px] font-bold mt-1 uppercase tracking-tighter">Chat</span>
+        </div>
+        <div class="flex flex-col items-center justify-center text-on-surface-variant/60">
+            <span class="material-symbols-outlined">fitness_center</span>
+            <span class="text-[9px] font-bold mt-1 uppercase tracking-tighter">Exercices</span>
+        </div>
+        <div class="flex flex-col items-center justify-center text-on-surface-variant/60">
+            <span class="material-symbols-outlined">leaderboard</span>
+            <span class="text-[9px] font-bold mt-1 uppercase tracking-tighter">Progrès</span>
+        </div>
+        <div class="flex flex-col items-center justify-center text-on-surface-variant/60">
+            <span class="material-symbols-outlined">person</span>
+            <span class="text-[9px] font-bold mt-1 uppercase tracking-tighter">Profil</span>
+        </div>
+    </nav>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr" dir="ltr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bac IA - Chat Tuteur</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, { delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+    ]});"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#3e4947",
+                        "on-secondary-fixed-variant": "#2e4c48",
+                        "secondary-fixed-dim": "#accdc8",
+                        "secondary-container": "#304e4b",
+                        "inverse-on-surface": "#313031",
+                        "surface-container-highest": "#353436",
+                        "surface-variant": "#353436",
+                        "on-tertiary-container": "#ffe5db",
+                        "on-tertiary-fixed-variant": "#72361b",
+                        "secondary": "#accdc8",
+                        "on-secondary": "#173532",
+                        "primary": "#80d5cb",
+                        "on-error": "#690005",
+                        "tertiary": "#ffb598",
+                        "primary-fixed-dim": "#80d5cb",
+                        "on-primary-container": "#a3faef",
+                        "tertiary-fixed": "#ffdbce",
+                        "on-primary-fixed-variant": "#00504a",
+                        "on-primary-fixed": "#00201d",
+                        "outline": "#889391",
+                        "on-tertiary-fixed": "#370e00",
+                        "on-surface": "#e5e2e3",
+                        "surface-container": "#201f20",
+                        "on-surface-variant": "#bdc9c6",
+                        "tertiary-container": "#9c573a",
+                        "surface-tint": "#80d5cb",
+                        "tertiary-fixed-dim": "#ffb598",
+                        "on-tertiary": "#552007",
+                        "on-primary": "#003733",
+                        "background": "#131314",
+                        "surface-container-lowest": "#0e0e0f",
+                        "secondary-fixed": "#c8e9e4",
+                        "surface-container-high": "#2a2a2b",
+                        "surface": "#131314",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-low": "#1c1b1c",
+                        "surface-dim": "#131314",
+                        "surface-bright": "#3a393a",
+                        "on-secondary-container": "#9ebfba",
+                        "error-container": "#93000a",
+                        "primary-fixed": "#9cf2e8",
+                        "on-background": "#e5e2e3",
+                        "error": "#ffb4ab",
+                        "inverse-surface": "#e5e2e3",
+                        "on-secondary-fixed": "#00201d",
+                        "inverse-primary": "#006a63",
+                        "primary-container": "#0f766e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "display": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"],
+                        "mono": ["JetBrains Mono"],
+                        "arabic": ["IBM Plex Sans Arabic"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #131314;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface font-body selection:bg-primary/30">
+<!-- TopAppBar -->
+<header class="bg-[#131314]/80 backdrop-blur-lg fixed top-0 w-full z-50 flex justify-between items-center w-full px-6 py-4">
+<div class="flex items-center gap-4">
+<button class="hover:bg-white/5 transition-colors p-2 rounded-lg lg:hidden">
+<span class="material-symbols-outlined text-[#80d5cb]">menu</span>
+</button>
+<div class="flex flex-col">
+<span class="font-headline font-bold tracking-tight text-2xl text-[#80d5cb]">Bac IA</span>
+<div class="flex items-center gap-1 group cursor-pointer">
+<span class="text-[11px] text-on-surface-variant font-medium tracking-wide">Physique-Chimie • 2ème Bac PC • Unité 4 : Oscillateurs</span>
+<span class="material-symbols-outlined text-on-surface-variant text-sm">expand_more</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex gap-8 me-6">
+<a class="text-[#80d5cb] font-bold border-b-2 border-primary pb-1" href="#">Chat</a>
+<a class="text-[#aeb0b3] hover:text-[#80d5cb] transition-colors" href="#">Exercices</a>
+<a class="text-[#aeb0b3] hover:text-[#80d5cb] transition-colors" href="#">Progression</a>
+</div>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center border border-outline-variant/30">
+<span class="font-headline font-bold text-white text-sm">YA</span>
+</div>
+</div>
+</header>
+<main class="pt-28 pb-32 max-w-4xl mx-auto px-6">
+<!-- Message Cluster: User -->
+<div class="mb-12 flex flex-col items-end">
+<div class="max-w-[85%] text-right">
+<p class="text-on-surface-variant text-sm mb-2 font-medium">Moi</p>
+<p class="text-lg leading-relaxed text-on-surface">Peux-tu m'expliquer la période propre d'un oscillateur élastique ? J'ai du mal avec la formule de la masse et de la raideur.</p>
+</div>
+</div>
+<!-- Message Cluster: AI -->
+<div class="mb-12">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-8 h-8 bg-primary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary scale-75" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<span class="font-headline font-bold text-primary">IA Tuteur</span>
+</div>
+<div class="space-y-8 text-on-surface leading-relaxed text-lg border-s border-outline-variant/20 ps-8">
+<p>Bien sûr. Pour un système solide-ressort (oscillateur élastique), la période propre $T_0$ représente la durée d'une oscillation complète. Elle ne dépend que des caractéristiques intrinsèques du système : la masse $m$ de l'objet et la raideur $K$ du ressort.</p>
+<!-- Formula Component Rendered via KaTeX -->
+<div class="bg-surface-container-lowest rounded-xl p-8 my-8 flex flex-col items-center justify-center border border-outline-variant/10">
+<span class="text-sm text-on-surface-variant mb-4 font-mono">FORMULE FONDAMENTALE</span>
+<div class="text-3xl text-primary">
+        $$T_0 = 2\pi\sqrt{\dfrac{m}{K}}$$
+    </div>
+</div>
+<p>Plus la masse $m$ est grande, plus l'inertie est forte, donc l'oscillation est plus lente ($T$ augmente). À l'inverse, si le ressort est plus "dur" ($K$ élevé), la force de rappel est plus intense, ce qui accélère le mouvement ($T$ diminue).</p>
+<!-- Coach Tip / Darija Card -->
+<div class="bg-secondary-container/20 rounded-xl p-6 border-s-4 border-primary">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary text-sm">lightbulb</span>
+<span class="text-xs font-bold uppercase tracking-widest text-primary">Coach Tip • Darija</span>
+</div>
+<p class="font-arabic text-xl leading-loose text-on-secondary-container">
+                        Fhemti kifach khdemna b l'énergie ? Takhayel m3aya l'mass $m$ hya l't9ol dyal l'objet. Koulma kan t9il, l'ressort tayl9a s3ouba bach yjerrou, dakchi 3lach l'moda $T_0$ tatkber.
+                    </p>
+</div>
+</div>
+</div>
+<!-- User Follow-up Input Context -->
+<div class="mt-12 flex gap-4 overflow-x-auto pb-4 no-scrollbar">
+<button class="whitespace-nowrap bg-surface-container-high hover:bg-surface-bright transition-all px-4 py-2 rounded-lg text-sm border border-outline-variant/15 text-on-surface-variant">
+                Comment calculer K ?
+            </button>
+<button class="whitespace-nowrap bg-surface-container-high hover:bg-surface-bright transition-all px-4 py-2 rounded-lg text-sm border border-outline-variant/15 text-on-surface-variant">
+                L'influence de l'amortissement
+            </button>
+<button class="whitespace-nowrap bg-surface-container-high hover:bg-surface-bright transition-all px-4 py-2 rounded-lg text-sm border border-outline-variant/15 text-on-surface-variant">
+                Énergie potentielle élastique
+            </button>
+</div>
+</main>
+<!-- Bottom Input Container -->
+<div class="fixed bottom-0 left-0 w-full bg-background/95 backdrop-blur-xl px-6 pb-8 pt-4">
+<div class="max-w-4xl mx-auto">
+<div class="relative group">
+<div class="absolute inset-0 bg-primary/5 blur-xl rounded-2xl opacity-0 group-focus-within:opacity-100 transition-opacity"></div>
+<div class="relative bg-surface-container-lowest border border-outline-variant/20 rounded-2xl p-2 flex items-end gap-2">
+<div class="flex gap-1 pb-1 ps-1">
+<button class="p-3 hover:bg-white/5 rounded-xl transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">photo_camera</span>
+</button>
+<button class="p-3 hover:bg-white/5 rounded-xl transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">mic</span>
+</button>
+</div>
+<textarea class="w-full bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-on-surface-variant/50 py-3 resize-none font-body text-lg" placeholder="Pose ta question sur les oscillateurs..." rows="1"></textarea>
+<button class="bg-primary-container text-white p-4 rounded-xl hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-primary-container/20">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span>
+</button>
+</div>
+</div>
+<p class="text-center text-[10px] text-on-surface-variant/40 mt-3 uppercase tracking-[0.2em] font-medium">
+                IA peut faire des erreurs. Vérifiez les informations importantes.
+            </p>
+</div>
+</div>
+<!-- Navigation Drawer (Official Moroccan Curriculum) -->
+<aside class="hidden lg:flex fixed start-0 top-24 h-[calc(100vh-6rem)] w-72 flex-col p-6 space-y-4 bg-surface-container-lowest/50 border-e border-outline-variant/10">
+<span class="font-headline font-bold text-[#80d5cb] text-xs uppercase tracking-widest mb-4">Chapitres</span>
+<nav class="space-y-1 overflow-y-auto no-scrollbar">
+<a class="flex items-center gap-3 p-3 rounded-xl text-[#aeb0b3] hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined text-sm">waves</span>
+<span class="font-body text-sm">Ondes mécaniques progressives</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-xl text-[#aeb0b3] hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined text-sm">light_mode</span>
+<span class="font-body text-sm">Ondes lumineuses</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-xl text-[#aeb0b3] hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined text-sm">radioactive</span>
+<span class="font-body text-sm">Transformations nucléaires</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-xl text-[#80d5cb] bg-white/5 font-semibold transition-all" href="#">
+<span class="material-symbols-outlined text-sm">science</span>
+<span class="font-body text-sm">Oscillateurs mécaniques</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-xl text-[#aeb0b3] hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined text-sm">bolt</span>
+<span class="font-body text-sm">Dipôle RC</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-xl text-[#aeb0b3] hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined text-sm">bolt</span>
+<span class="font-body text-sm">Dipôle RL</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-xl text-[#aeb0b3] hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined text-sm">bolt</span>
+<span class="font-body text-sm">Circuit RLC</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-xl text-[#aeb0b3] hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined text-sm">rocket_launch</span>
+<span class="font-body text-sm">Lois de Newton</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-xl text-[#aeb0b3] hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined text-sm">gps_fixed</span>
+<span class="font-body text-sm">Mouvements dans un champ</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-outline-variant/10">
+<div class="bg-surface-container-high rounded-xl p-4">
+<div class="flex justify-between items-center mb-2">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Progression de la session</span>
+<span class="text-xs text-primary font-bold">65%</span>
+</div>
+<div class="h-1 bg-surface-container-lowest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[65%]"></div>
+</div>
+</div>
+</div>
+</aside>
+<!-- BottomNavBar for Mobile View (Hidden on Tablet/Desktop) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-[#131314]/90 backdrop-blur-2xl z-50">
+<div class="flex flex-col items-center justify-center bg-[#0F766E] text-white rounded-xl p-3">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">chat_bubble</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#aeb0b3] p-3 hover:text-[#80d5cb] transition-all">
+<span class="material-symbols-outlined">fitness_center</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#aeb0b3] p-3 hover:text-[#80d5cb] transition-all">
+<span class="material-symbols-outlined">leaderboard</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#aeb0b3] p-3 hover:text-[#80d5cb] transition-all">
+<span class="material-symbols-outlined">person</span>
+</div>
+</nav>
+</body></html>

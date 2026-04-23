@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr" dir="ltr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Bac IA - Onboarding 3/5</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#80d5cb",
+                        "primary-container": "#0f766e",
+                        "background": "#131314",
+                        "on-surface": "#e5e2e3",
+                        "on-surface-variant": "#bdc9c6"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        body { background-color: #131314; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .selected-card { border-color: #80d5cb !important; background: rgba(128, 213, 203, 0.05) !important; }
+        .premium-gradient { background: linear-gradient(135deg, #0f766e 0%, #80d5cb 100%); }
+    </style>
+</head>
+<body class="text-on-surface font-body selection:bg-primary/30 min-h-screen flex flex-col">
+    <header class="p-8 flex justify-between items-center">
+        <div class="flex items-center gap-6">
+            <a href="onboarding_2_niveau.html" class="p-2 hover:bg-white/5 rounded-full transition-colors">
+                <span class="material-symbols-outlined text-on-surface-variant">arrow_back</span>
+            </a>
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">auto_awesome</span>
+                <span class="font-headline font-bold text-xl tracking-tight text-primary">Bac IA</span>
+            </div>
+        </div>
+        <div class="flex flex-col items-end">
+            <span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant/40 mb-1">Étape 3 sur 5</span>
+            <div class="w-32 h-1.5 bg-white/5 rounded-full overflow-hidden">
+                <div class="w-3/5 h-full bg-primary rounded-full"></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow flex flex-col items-center justify-center px-8 py-12">
+        <div class="max-w-4xl w-full">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-headline font-bold mb-4">Quelle filière ?</h1>
+                <p class="text-on-surface-variant">On adaptera ton tuteur à ton programme.</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mb-12">
+                <!-- SM -->
+                <div onclick="select(this)" class="glass p-8 rounded-[32px] cursor-pointer group hover:border-white/20 transition-all border border-white/5 text-center">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/10 transition-colors">
+                        <span class="material-symbols-outlined text-3xl">functions</span>
+                    </div>
+                    <h2 class="text-xl font-bold mb-1">SM</h2>
+                    <p class="text-xs text-on-surface-variant">Sciences Mathématiques</p>
+                </div>
+
+                <!-- PC -->
+                <div onclick="select(this)" class="glass p-8 rounded-[32px] cursor-pointer group hover:border-white/20 transition-all border border-white/5 text-center">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/10 transition-colors">
+                        <span class="material-symbols-outlined text-3xl">science</span>
+                    </div>
+                    <h2 class="text-xl font-bold mb-1">PC</h2>
+                    <p class="text-xs text-on-surface-variant">Sciences Physiques</p>
+                </div>
+
+                <!-- SVT -->
+                <div onclick="select(this)" class="glass p-8 rounded-[32px] cursor-pointer group hover:border-white/20 transition-all border border-white/5 text-center">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/10 transition-colors">
+                        <span class="material-symbols-outlined text-3xl">biotech</span>
+                    </div>
+                    <h2 class="text-xl font-bold mb-1">SVT</h2>
+                    <p class="text-xs text-on-surface-variant">Sciences de la Vie et de la Terre</p>
+                </div>
+
+                <!-- SE -->
+                <div onclick="select(this)" class="glass p-8 rounded-[32px] cursor-pointer group hover:border-white/20 transition-all border border-white/5 text-center">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/10 transition-colors">
+                        <span class="material-symbols-outlined text-3xl">trending_up</span>
+                    </div>
+                    <h2 class="text-xl font-bold mb-1">SE</h2>
+                    <p class="text-xs text-on-surface-variant">Sciences Économiques</p>
+                </div>
+
+                <!-- Lettres -->
+                <div onclick="select(this)" class="glass p-8 rounded-[32px] cursor-pointer group hover:border-white/20 transition-all border border-white/5 text-center">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/10 transition-colors">
+                        <span class="material-symbols-outlined text-3xl">history_edu</span>
+                    </div>
+                    <h2 class="text-xl font-bold mb-1">Lettres</h2>
+                    <p class="text-xs text-on-surface-variant">Lettres et Sciences Humaines</p>
+                </div>
+
+                <!-- SH -->
+                <div onclick="select(this)" class="glass p-8 rounded-[32px] cursor-pointer group hover:border-white/20 transition-all border border-white/5 text-center">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/10 transition-colors">
+                        <span class="material-symbols-outlined text-3xl">public</span>
+                    </div>
+                    <h2 class="text-xl font-bold mb-1">SH</h2>
+                    <p class="text-xs text-on-surface-variant">Sciences Humaines</p>
+                </div>
+            </div>
+
+            <div class="max-w-md mx-auto">
+                <a id="btn-continue" href="onboarding_4_langue.html" class="opacity-30 pointer-events-none premium-gradient text-[#003733] w-full py-5 rounded-2xl font-bold text-xl text-center block shadow-xl shadow-primary/20 transition-all">
+                    Continuer
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function select(el) {
+            document.querySelectorAll('.glass').forEach(card => card.classList.remove('selected-card'));
+            el.classList.add('selected-card');
+            const btn = document.getElementById('btn-continue');
+            btn.classList.remove('opacity-30', 'pointer-events-none');
+        }
+    </script>
+</body>
+</html>

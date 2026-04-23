@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr" dir="ltr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+    <title>Bac IA - Onboarding 1/5 (Mobile)</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#80d5cb",
+                        "primary-container": "#0f766e",
+                        "background": "#131314",
+                        "on-surface": "#e5e2e3",
+                        "on-surface-variant": "#bdc9c6"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        body { background-color: #131314; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
+    </style>
+</head>
+<body class="text-on-surface font-body selection:bg-primary/30 min-h-screen flex flex-col">
+    <!-- Mobile Header -->
+    <header class="p-6 pt-12 flex justify-between items-start">
+        <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-2xl">auto_awesome</span>
+            <span class="font-headline font-bold text-lg tracking-tight text-primary">Bac IA</span>
+        </div>
+        <div class="flex flex-col items-end">
+            <span class="text-[9px] font-bold uppercase tracking-[0.2em] text-on-surface-variant/40 mb-1">Étape 1 sur 5</span>
+            <div class="w-24 h-1 bg-white/5 rounded-full overflow-hidden">
+                <div class="w-1/5 h-full bg-primary rounded-full"></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow flex flex-col justify-center px-6 py-8">
+        <h1 class="text-4xl font-headline font-bold mb-10 text-center">Tu es...</h1>
+        
+        <div class="space-y-4">
+            <!-- Card Élève Mobile -->
+            <a href="onboarding_2_niveau_mobile.html" class="glass p-8 rounded-[32px] flex items-center gap-6 active:scale-[0.98] active:bg-white/5 transition-all">
+                <div class="w-16 h-16 shrink-0 bg-primary-container rounded-2xl flex items-center justify-center">
+                    <span class="material-symbols-outlined text-primary text-3xl">school</span>
+                </div>
+                <div>
+                    <h2 class="text-xl font-bold mb-1">Un élève</h2>
+                    <p class="text-sm text-on-surface-variant">Je révise pour le Bac</p>
+                </div>
+            </a>
+
+            <!-- Card Parent Mobile -->
+            <a href="#" class="glass p-8 rounded-[32px] flex items-center gap-6 active:scale-[0.98] active:bg-white/5 transition-all">
+                <div class="w-16 h-16 shrink-0 bg-primary-container rounded-2xl flex items-center justify-center">
+                    <span class="material-symbols-outlined text-primary text-3xl">family_restroom</span>
+                </div>
+                <div>
+                    <h2 class="text-xl font-bold mb-1">Un parent</h2>
+                    <p class="text-sm text-on-surface-variant">J'inscris mon enfant</p>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <footer class="p-8 text-center">
+        <a href="landing_mobile.html" class="text-xs font-medium text-on-surface-variant">Retour à l'accueil</a>
+    </footer>
+</body>
+</html>

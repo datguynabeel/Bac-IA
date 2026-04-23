@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr" dir="ltr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+    <title>Bac IA - Onboarding 4/5 (Mobile)</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#80d5cb",
+                        "primary-container": "#0f766e",
+                        "background": "#131314",
+                        "on-surface": "#e5e2e3",
+                        "on-surface-variant": "#bdc9c6"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "arabic": ["IBM Plex Sans Arabic"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        body { background-color: #131314; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .selected-card { border-color: #80d5cb !important; background: rgba(128, 213, 203, 0.05) !important; }
+        .premium-gradient { background: linear-gradient(135deg, #0f766e 0%, #80d5cb 100%); }
+    </style>
+</head>
+<body class="text-on-surface font-body selection:bg-primary/30 min-h-screen flex flex-col">
+    <!-- Mobile Header -->
+    <header class="p-6 pt-12 flex justify-between items-start">
+        <div class="flex items-center gap-4">
+            <a href="onboarding_3_filiere_mobile.html" class="p-2 -ms-2 hover:bg-white/5 rounded-full transition-colors">
+                <span class="material-symbols-outlined text-on-surface-variant">arrow_back</span>
+            </a>
+            <h1 class="font-headline font-bold text-lg tracking-tight text-primary">Bac IA</h1>
+        </div>
+        <div class="flex flex-col items-end">
+            <span class="text-[9px] font-bold uppercase tracking-[0.2em] text-on-surface-variant/40 mb-1">Étape 4 sur 5</span>
+            <div class="w-24 h-1 bg-white/5 rounded-full overflow-hidden">
+                <div class="w-4/5 h-full bg-primary rounded-full"></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow px-6 py-8">
+        <div class="mb-8">
+            <h1 class="text-3xl font-headline font-bold mb-2 leading-tight">Comment tu veux qu'on te parle ?</h1>
+            <p class="text-sm text-on-surface-variant">Tu pourras changer à tout moment.</p>
+        </div>
+        
+        <div class="space-y-3">
+            <!-- Mix Recommandé Mobile -->
+            <div onclick="select(this)" class="glass p-5 rounded-[24px] cursor-pointer active:scale-95 transition-all border border-primary/30 relative">
+                <div class="absolute top-4 right-4 bg-primary px-2 py-0.5 rounded-full text-[#003733] font-bold text-[8px] uppercase tracking-widest">Recommandé</div>
+                <h2 class="font-bold text-sm mb-1">Mix darija + français</h2>
+                <p class="text-[11px] text-on-surface-variant italic leading-relaxed">"Fhemti la période propre ? C'est le temps d'une oscillation."</p>
+                <span class="material-symbols-outlined text-primary opacity-0 check-icon absolute bottom-4 right-4">check_circle</span>
+            </div>
+
+            <!-- Français Mobile -->
+            <div onclick="select(this)" class="glass p-5 rounded-[24px] cursor-pointer active:scale-95 transition-all border border-white/5 relative">
+                <h2 class="font-bold text-sm mb-1">Français</h2>
+                <p class="text-[11px] text-on-surface-variant italic leading-relaxed">"Explique-moi la période propre d'un oscillateur."</p>
+                <span class="material-symbols-outlined text-primary opacity-0 check-icon absolute bottom-4 right-4">check_circle</span>
+            </div>
+
+            <!-- Darija Mobile -->
+            <div onclick="select(this)" class="glass p-5 rounded-[24px] cursor-pointer active:scale-95 transition-all border border-white/5 relative">
+                <h2 class="font-bold text-sm mb-1">Darija (latins)</h2>
+                <p class="text-[11px] text-on-surface-variant italic leading-relaxed">"Wach fhemti chno hia la période propre dyal l'oscillateur ?"</p>
+                <span class="material-symbols-outlined text-primary opacity-0 check-icon absolute bottom-4 right-4">check_circle</span>
+            </div>
+
+            <!-- Arabe Mobile -->
+            <div onclick="select(this)" class="glass p-5 rounded-[24px] cursor-pointer active:scale-95 transition-all border border-white/5 relative">
+                <h2 class="font-bold text-sm mb-1">العربية الفصحى</h2>
+                <p class="font-arabic text-sm text-on-surface-variant leading-relaxed mt-1" dir="rtl">"اشرح لي الدور الخاص للمتذبذب."</p>
+                <span class="material-symbols-outlined text-primary opacity-0 check-icon absolute bottom-4 right-4 text-xs">check_circle</span>
+            </div>
+        </div>
+    </main>
+
+    <footer class="p-6 pb-12">
+        <a id="btn-continue" href="onboarding_5_matieres_mobile.html" class="opacity-30 pointer-events-none premium-gradient text-[#003733] w-full py-4 rounded-2xl font-bold text-lg text-center block shadow-lg shadow-primary/20 transition-all">
+            Continuer
+        </a>
+    </footer>
+
+    <script>
+        function select(el) {
+            document.querySelectorAll('.glass').forEach(card => {
+                card.classList.remove('selected-card');
+                card.querySelector('.check-icon').classList.add('opacity-0');
+            });
+            el.classList.add('selected-card');
+            el.querySelector('.check-icon').classList.remove('opacity-0');
+            const btn = document.getElementById('btn-continue');
+            btn.classList.remove('opacity-30', 'pointer-events-none');
+        }
+    </script>
+</body>
+</html>

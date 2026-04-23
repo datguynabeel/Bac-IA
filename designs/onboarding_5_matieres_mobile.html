@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr" dir="ltr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+    <title>Bac IA - Onboarding 5/5 (Mobile)</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#80d5cb",
+                        "primary-container": "#0f766e",
+                        "background": "#131314",
+                        "on-surface": "#e5e2e3",
+                        "on-surface-variant": "#bdc9c6"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        body { background-color: #131314; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .selected-card { border-color: #80d5cb !important; background: rgba(128, 213, 203, 0.1) !important; }
+        .premium-gradient { background: linear-gradient(135deg, #0f766e 0%, #80d5cb 100%); }
+    </style>
+</head>
+<body class="text-on-surface font-body selection:bg-primary/30 min-h-screen flex flex-col">
+    <!-- Mobile Header -->
+    <header class="p-6 pt-12 flex justify-between items-start">
+        <div class="flex items-center gap-4">
+            <a href="onboarding_4_langue_mobile.html" class="p-2 -ms-2 hover:bg-white/5 rounded-full transition-colors">
+                <span class="material-symbols-outlined text-on-surface-variant">arrow_back</span>
+            </a>
+            <h1 class="font-headline font-bold text-lg tracking-tight text-primary">Bac IA</h1>
+        </div>
+        <div class="flex flex-col items-end">
+            <span class="text-[9px] font-bold uppercase tracking-[0.2em] text-on-surface-variant/40 mb-1">Étape 5 sur 5</span>
+            <div class="w-24 h-1 bg-white/5 rounded-full overflow-hidden">
+                <div class="w-full h-full bg-primary rounded-full"></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow px-6 py-8">
+        <div class="mb-8">
+            <h1 class="text-3xl font-headline font-bold mb-2">Sur quoi on travaille ?</h1>
+            <p class="text-sm text-on-surface-variant">Choisis au moins une matière.</p>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-3 mb-32">
+            <!-- Math -->
+            <div onclick="toggle(this)" class="glass p-5 rounded-[24px] cursor-pointer active:scale-95 transition-all border border-white/5 flex flex-col items-center gap-2">
+                <span class="material-symbols-outlined text-2xl text-on-surface-variant">functions</span>
+                <span class="font-bold text-xs">Mathématiques</span>
+                <div class="w-4 h-4 rounded border border-white/20 flex items-center justify-center check-box">
+                    <span class="material-symbols-outlined text-[10px] text-[#003733] hidden">check</span>
+                </div>
+            </div>
+
+            <!-- Physique -->
+            <div onclick="toggle(this)" class="glass p-5 rounded-[24px] cursor-pointer active:scale-95 transition-all border border-white/5 flex flex-col items-center gap-2">
+                <span class="material-symbols-outlined text-2xl text-on-surface-variant">science</span>
+                <span class="font-bold text-xs">Physique-Chimie</span>
+                <div class="w-4 h-4 rounded border border-white/20 flex items-center justify-center check-box">
+                    <span class="material-symbols-outlined text-[10px] text-[#003733] hidden">check</span>
+                </div>
+            </div>
+
+            <!-- SVT -->
+            <div onclick="toggle(this)" class="glass p-5 rounded-[24px] cursor-pointer active:scale-95 transition-all border border-white/5 flex flex-col items-center gap-2">
+                <span class="material-symbols-outlined text-2xl text-on-surface-variant">biotech</span>
+                <span class="font-bold text-xs">SVT</span>
+                <div class="w-4 h-4 rounded border border-white/20 flex items-center justify-center check-box">
+                    <span class="material-symbols-outlined text-[10px] text-[#003733] hidden">check</span>
+                </div>
+            </div>
+
+            <!-- Info -->
+            <div onclick="toggle(this)" class="glass p-5 rounded-[24px] cursor-pointer active:scale-95 transition-all border border-white/5 flex flex-col items-center gap-2">
+                <span class="material-symbols-outlined text-2xl text-on-surface-variant">terminal</span>
+                <span class="font-bold text-xs">Informatique</span>
+                <div class="w-4 h-4 rounded border border-white/20 flex items-center justify-center check-box">
+                    <span class="material-symbols-outlined text-[10px] text-[#003733] hidden">check</span>
+                </div>
+            </div>
+
+            <!-- Philo -->
+            <div onclick="toggle(this)" class="glass p-5 rounded-[24px] cursor-pointer active:scale-95 transition-all border border-white/5 flex flex-col items-center gap-2">
+                <span class="material-symbols-outlined text-2xl text-on-surface-variant">psychology</span>
+                <span class="font-bold text-xs">Philosophie</span>
+                <div class="w-4 h-4 rounded border border-white/20 flex items-center justify-center check-box">
+                    <span class="material-symbols-outlined text-[10px] text-[#003733] hidden">check</span>
+                </div>
+            </div>
+
+            <!-- Français -->
+            <div onclick="toggle(this)" class="glass p-5 rounded-[24px] cursor-pointer active:scale-95 transition-all border border-white/5 flex flex-col items-center gap-2">
+                <span class="material-symbols-outlined text-2xl text-on-surface-variant">menu_book</span>
+                <span class="font-bold text-xs">Français</span>
+                <div class="w-4 h-4 rounded border border-white/20 flex items-center justify-center check-box">
+                    <span class="material-symbols-outlined text-[10px] text-[#003733] hidden">check</span>
+                </div>
+            </div>
+
+            <!-- Anglais -->
+            <div onclick="toggle(this)" class="glass p-5 rounded-[24px] cursor-pointer active:scale-95 transition-all border border-white/5 flex flex-col items-center gap-2">
+                <span class="material-symbols-outlined text-2xl text-on-surface-variant">language</span>
+                <span class="font-bold text-xs">Anglais</span>
+                <div class="w-4 h-4 rounded border border-white/20 flex items-center justify-center check-box">
+                    <span class="material-symbols-outlined text-[10px] text-[#003733] hidden">check</span>
+                </div>
+            </div>
+
+            <!-- Arabe -->
+            <div onclick="toggle(this)" class="glass p-5 rounded-[24px] cursor-pointer active:scale-95 transition-all border border-white/5 flex flex-col items-center gap-2">
+                <span class="material-symbols-outlined text-2xl text-on-surface-variant">translate</span>
+                <span class="font-bold text-xs">Arabe</span>
+                <div class="w-4 h-4 rounded border border-white/20 flex items-center justify-center check-box">
+                    <span class="material-symbols-outlined text-[10px] text-[#003733] hidden">check</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="p-6 pb-12 fixed bottom-0 left-0 w-full bg-background/80 backdrop-blur-xl border-t border-white/5">
+        <p id="counter" class="text-center text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-3">0 matières choisies</p>
+        <a id="btn-continue" href="diagnostic_placeholder_mobile.html" class="opacity-30 pointer-events-none premium-gradient text-[#003733] w-full py-4 rounded-2xl font-bold text-lg text-center block shadow-lg shadow-primary/20 transition-all">
+            Commencer mon diagnostic
+        </a>
+    </footer>
+
+    <script>
+        let selectedCount = 0;
+        function toggle(el) {
+            const isSelected = el.classList.toggle('selected-card');
+            const checkBox = el.querySelector('.check-box');
+            const checkIcon = checkBox.querySelector('span');
+            
+            if (isSelected) {
+                selectedCount++;
+                checkBox.classList.add('bg-primary', 'border-primary');
+                checkIcon.classList.remove('hidden');
+            } else {
+                selectedCount--;
+                checkBox.classList.remove('bg-primary', 'border-primary');
+                checkIcon.classList.add('hidden');
+            }
+            
+            document.getElementById('counter').innerText = `${selectedCount} matière${selectedCount > 1 ? 's' : ''} choisie${selectedCount > 1 ? 's' : ''}`;
+            
+            const btn = document.getElementById('btn-continue');
+            if (selectedCount > 0) {
+                btn.classList.remove('opacity-30', 'pointer-events-none');
+            } else {
+                btn.classList.add('opacity-30', 'pointer-events-none');
+            }
+        }
+    </script>
+</body>
+</html>

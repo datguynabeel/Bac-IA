@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;family=Inter:wght@100..900&amp;family=IBM+Plex+Sans+Arabic:wght@100..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "outline-variant": "#3e4947",
+                      "surface-variant": "#353436",
+                      "secondary-container": "#304e4b",
+                      "on-tertiary-fixed": "#370e00",
+                      "on-secondary-fixed": "#00201d",
+                      "on-error": "#690005",
+                      "surface-container-lowest": "#0e0e0f",
+                      "surface-container": "#201f20",
+                      "on-primary-fixed-variant": "#00504a",
+                      "on-background": "#e5e2e3",
+                      "surface-tint": "#80d5cb",
+                      "surface-container-high": "#2a2a2b",
+                      "secondary": "#accdc8",
+                      "on-secondary": "#173532",
+                      "on-secondary-fixed-variant": "#2e4c48",
+                      "outline": "#889391",
+                      "on-error-container": "#ffdad6",
+                      "error": "#ffb4ab",
+                      "on-primary-fixed": "#00201d",
+                      "tertiary-container": "#9c573a",
+                      "secondary-fixed-dim": "#accdc8",
+                      "on-surface-variant": "#bdc9c6",
+                      "on-surface": "#e5e2e3",
+                      "primary-container": "#0f766e",
+                      "error-container": "#93000a",
+                      "background": "#131314",
+                      "on-secondary-container": "#9ebfba",
+                      "primary-fixed-dim": "#80d5cb",
+                      "on-primary-container": "#a3faef",
+                      "inverse-primary": "#006a63",
+                      "tertiary": "#ffb598",
+                      "surface-bright": "#3a393a",
+                      "surface-dim": "#131314",
+                      "inverse-on-surface": "#313031",
+                      "surface-container-highest": "#353436",
+                      "on-tertiary-fixed-variant": "#72361b",
+                      "primary": "#80d5cb",
+                      "surface-container-low": "#1c1b1c",
+                      "tertiary-fixed": "#ffdbce",
+                      "secondary-fixed": "#c8e9e4",
+                      "on-primary": "#003733",
+                      "surface": "#131314",
+                      "on-tertiary": "#552007",
+                      "tertiary-fixed-dim": "#ffb598",
+                      "inverse-surface": "#e5e2e3",
+                      "primary-fixed": "#9cf2e8",
+                      "on-tertiary-container": "#ffe5db"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Manrope"],
+                      "display": ["Manrope"],
+                      "body": ["Inter"],
+                      "label": ["Inter"]
+              }
+            },
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="bg-[#131314]/80 backdrop-blur-xl fixed top-0 w-full z-50 flex justify-between items-center px-6 py-4 max-w-full">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant">
+<img alt="Parent Profile" class="w-full h-full object-cover" data-alt="Portrait of a professional middle-aged woman with a kind expression, soft studio lighting, neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPDd6c2CpH_Wr8F5sMQ5W_SBgOuKRogEDXXjWqmuz7IRoWe69QT149w7A4Jiu4aVzfu6zERPymzqkd9oVgmpp9BzrtazQcriPBpvznhTHhcwGJIpPBn3OX3fOdX4_Ox7gqpKMG13isYJRK-0O-3Qp9FZdjGNkqJkD-hAk7yyp5TCcBYrb9ZnKL3WIJNVg81nMllZcxZowdHdySs1zNXW9SvwX7vQ1TSYYv88Nob1kG9kGxXVP9uvH269DgBVFHPTuKkLER2dWac7lI"/>
+</div>
+<span class="font-['Manrope'] tracking-tight font-bold text-2xl text-teal-500 dark:text-teal-400">Bac IA Parent</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-slate-400 hover:bg-white/5 transition-colors rounded-lg">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</header>
+<div class="flex pt-20 pb-24 md:pb-0">
+<!-- NavigationDrawer (Desktop Only) -->
+<aside class="hidden md:flex flex-col h-screen fixed left-0 w-72 bg-[#0e0e0f] border-r border-outline-variant/10">
+<div class="p-8">
+<h2 class="font-['Manrope'] text-teal-500 font-bold text-lg">Parent Dashboard</h2>
+<p class="text-slate-400 text-sm">Bac IA Premium</p>
+</div>
+<nav class="flex-1 px-4 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-teal-400 bg-teal-900/10 border-r-2 border-teal-500 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-['Manrope']">Overview</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Manrope']">Yasmine</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="person_2">person_2</span>
+<span class="font-['Manrope']">Mehdi</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-['Manrope']">Analytics</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-72 p-6 md:p-12 max-w-7xl mx-auto w-full">
+<!-- Header Section -->
+<div class="mb-12">
+<h1 class="font-display text-4xl md:text-6xl font-extrabold tracking-tight mb-4">
+                    Vue d'ensemble
+                </h1>
+<p class="text-on-surface-variant text-lg max-w-2xl">
+                    Suivez les progrès académiques et recevez des insights personnalisés pour la réussite de vos enfants.
+                </p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Recommendation Section (Overlapping Glass Effect) -->
+<div class="md:col-span-12 glass-card rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary-container/20 blur-[100px] -mr-32 -mt-32"></div>
+<div class="relative z-10 flex items-center gap-6">
+<div class="w-16 h-16 rounded-2xl bg-primary-container flex items-center justify-center text-on-primary-container shadow-lg shadow-primary-container/20">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+</div>
+<div>
+<h3 class="font-headline text-xl font-bold text-primary mb-1">Insight IA Prioritaire</h3>
+<p class="font-body text-on-surface text-lg">"Yasmine a besoin de réviser la physique."</p>
+</div>
+</div>
+<button class="relative z-10 px-8 py-3 bg-primary-container text-on-primary-container font-bold rounded-xl hover:brightness-110 transition-all duration-300">
+                        Voir les exercices
+                    </button>
+</div>
+<!-- Yasmine's Card -->
+<div class="md:col-span-7 bg-surface-container-low rounded-2xl p-8 border border-outline-variant/10 hover:bg-surface-container transition-all duration-300">
+<div class="flex justify-between items-start mb-8">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-full overflow-hidden border-2 border-primary-container">
+<img alt="Yasmine profile" class="w-full h-full object-cover" data-alt="Close-up of a smiling young Moroccan student girl in a modern library setting, soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4KKMDQGJ37tv9xuDBaAZoCCbUSz4rDL8b7cQgwU-9X5a2uwplVUDhldQBUtm6Ao0fG__4ha_423NcqTdXZTqwmfNAghtjishPuDQnSpCjzW24G7_LI6c3Rcy2NPBH7tn-BH3jblqIYAC_7N_EzZ85I6ujz4VfjluOanq-owhVVMoQUMYVIYGuIEGGyQVG9FSiL5_NXcVZR4F9q48Z3dDqcmpPDvFyy4ZGCqPIGjNFTrxAzyuotVJFhrAXLA1VFCRb5IP818IHtzby"/>
+</div>
+<div>
+<h2 class="text-2xl font-headline font-bold">Yasmine</h2>
+<span class="text-primary text-sm font-semibold tracking-wider uppercase">2ème Bac SM</span>
+</div>
+</div>
+<div class="text-right">
+<span class="text-4xl font-display font-black text-primary">75%</span>
+<p class="text-on-surface-variant text-xs uppercase tracking-widest font-bold">Progression</p>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-3 bg-surface-container-highest rounded-full mb-8 overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary-container to-primary rounded-full" style="width: 75%"></div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-lowest p-4 rounded-xl">
+<p class="text-on-surface-variant text-xs uppercase font-bold mb-1">Matière forte</p>
+<p class="text-on-surface font-headline font-bold">Mathématiques</p>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl">
+<p class="text-on-surface-variant text-xs uppercase font-bold mb-1">Temps d'étude</p>
+<p class="text-on-surface font-headline font-bold">14h / Semaine</p>
+</div>
+</div>
+</div>
+<!-- Mehdi's Card -->
+<div class="md:col-span-5 bg-surface-container-low rounded-2xl p-8 border border-outline-variant/10 hover:bg-surface-container transition-all duration-300">
+<div class="flex justify-between items-start mb-8">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-full overflow-hidden border-2 border-outline-variant">
+<img alt="Mehdi profile" class="w-full h-full object-cover" data-alt="Young high school boy with short hair, casual outfit, urban studio background with cool blue lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCm-Ybf7JOiRxyuwu-KPj1YmUPpp_o4kpR1ixMtJlaGwS0kafBPvN4fpzk6BxCsiZFC8ruiI2tBO0grAIkTanDE_l3RvEkRzjVjGJbUCWEiasg4VzI32wHlAhyRTURsU-VPoJqetDdLIc8Bd56CU2GPdj5ACvQdg91r49Mg9YlZid3PwGnP0L7tkTI909KgYCeI_D7y0EdE7vRutXx7SN22N-lvW8unFbnZcWCL8_x7ZFq9-bO29I77-newNi6coStWlIwHpMUjn50W"/>
+</div>
+<div>
+<h2 class="text-2xl font-headline font-bold">Mehdi</h2>
+<span class="text-on-surface-variant text-sm font-semibold tracking-wider uppercase">1ère Bac</span>
+</div>
+</div>
+<div class="text-right">
+<span class="text-4xl font-display font-black text-on-surface-variant">40%</span>
+<p class="text-on-surface-variant text-xs uppercase tracking-widest font-bold">Progression</p>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-3 bg-surface-container-highest rounded-full mb-8 overflow-hidden">
+<div class="h-full bg-outline-variant rounded-full" style="width: 40%"></div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center py-2 border-b border-outline-variant/5">
+<span class="text-on-surface-variant font-medium">Prochaine étape</span>
+<span class="text-on-surface font-bold">Français - Module 2</span>
+</div>
+<div class="flex justify-between items-center py-2">
+<span class="text-on-surface-variant font-medium">Assiduité</span>
+<span class="text-on-surface font-bold text-error">À surveiller</span>
+</div>
+</div>
+</div>
+<!-- Stats/Activity Chart (Vercel Style) -->
+<div class="md:col-span-8 bg-surface-container-low rounded-2xl p-8 border border-outline-variant/10">
+<div class="flex items-center justify-between mb-8">
+<h3 class="font-headline text-xl font-bold">Activité Hebdomadaire</h3>
+<div class="flex gap-2">
+<span class="flex items-center gap-2 text-xs font-bold text-primary">
+<span class="w-2 h-2 rounded-full bg-primary"></span> Yasmine
+                            </span>
+<span class="flex items-center gap-2 text-xs font-bold text-slate-500">
+<span class="w-2 h-2 rounded-full bg-slate-500"></span> Mehdi
+                            </span>
+</div>
+</div>
+<div class="flex items-end justify-between h-48 gap-2 px-2">
+<!-- Mock Bars -->
+<div class="flex-1 flex flex-col items-center gap-1 group">
+<div class="w-full flex gap-1 items-end h-full">
+<div class="flex-1 bg-primary/20 rounded-t-sm h-[60%] group-hover:bg-primary/40 transition-all"></div>
+<div class="flex-1 bg-slate-700/20 rounded-t-sm h-[30%]"></div>
+</div>
+<span class="text-[10px] uppercase font-bold text-on-surface-variant mt-2">Lun</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1 group">
+<div class="w-full flex gap-1 items-end h-full">
+<div class="flex-1 bg-primary/20 rounded-t-sm h-[80%] group-hover:bg-primary/40 transition-all"></div>
+<div class="flex-1 bg-slate-700/20 rounded-t-sm h-[45%]"></div>
+</div>
+<span class="text-[10px] uppercase font-bold text-on-surface-variant mt-2">Mar</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1 group">
+<div class="w-full flex gap-1 items-end h-full">
+<div class="flex-1 bg-primary rounded-t-sm h-[95%]"></div>
+<div class="flex-1 bg-slate-700/20 rounded-t-sm h-[20%]"></div>
+</div>
+<span class="text-[10px] uppercase font-bold text-on-surface-variant mt-2">Mer</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1 group">
+<div class="w-full flex gap-1 items-end h-full">
+<div class="flex-1 bg-primary/20 rounded-t-sm h-[70%] group-hover:bg-primary/40 transition-all"></div>
+<div class="flex-1 bg-slate-700/20 rounded-t-sm h-[60%]"></div>
+</div>
+<span class="text-[10px] uppercase font-bold text-on-surface-variant mt-2">Jeu</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1 group">
+<div class="w-full flex gap-1 items-end h-full">
+<div class="flex-1 bg-primary/20 rounded-t-sm h-[50%] group-hover:bg-primary/40 transition-all"></div>
+<div class="flex-1 bg-slate-700/20 rounded-t-sm h-[40%]"></div>
+</div>
+<span class="text-[10px] uppercase font-bold text-on-surface-variant mt-2">Ven</span>
+</div>
+</div>
+</div>
+<!-- Quick Actions / Sidebar Bento -->
+<div class="md:col-span-4 flex flex-col gap-6">
+<div class="bg-primary-container/10 border border-primary/20 p-6 rounded-2xl">
+<h4 class="font-headline font-bold text-primary mb-2">Support Premium</h4>
+<p class="text-sm text-on-surface-variant mb-4">Accès illimité aux tuteurs IA 24/7 pour vos enfants.</p>
+<button class="w-full py-2 bg-primary/10 text-primary border border-primary/30 rounded-lg font-bold text-sm">Gérer l'abonnement</button>
+</div>
+<div class="bg-surface-container-low border border-outline-variant/10 p-6 rounded-2xl flex-1">
+<h4 class="font-headline font-bold mb-4">Dernières Alertes</h4>
+<div class="space-y-4">
+<div class="flex gap-3">
+<div class="mt-1 w-2 h-2 rounded-full bg-error shrink-0"></div>
+<p class="text-xs leading-relaxed"><span class="font-bold">Mehdi</span> n'a pas terminé son quiz de Physique hier.</p>
+</div>
+<div class="flex gap-3">
+<div class="mt-1 w-2 h-2 rounded-full bg-primary shrink-0"></div>
+<p class="text-xs leading-relaxed"><span class="font-bold">Yasmine</span> a obtenu 18/20 en Mathématiques.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-[#131314]/50 backdrop-blur-2xl z-50 rounded-t-xl shadow-[0_-8px_30px_rgb(0,0,0,0.12)]">
+<a class="flex flex-col items-center justify-center bg-teal-900/30 text-teal-400 rounded-xl px-5 py-2 scale-95 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-['Inter'] text-[11px] uppercase tracking-widest font-semibold">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 px-5 py-2 hover:text-teal-200 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="family_restroom">family_restroom</span>
+<span class="font-['Inter'] text-[11px] uppercase tracking-widest font-semibold">Children</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 px-5 py-2 hover:text-teal-200 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="font-['Inter'] text-[11px] uppercase tracking-widest font-semibold">Alerts</span>
+</a>
+</nav>
+</body></html>
