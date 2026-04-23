@@ -2,7 +2,15 @@
 <html>
 <head>
     <title>Bac IA - Chargement...</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#80d5cb">
+    <link rel="apple-touch-icon" href="bacia_app_icon.png">
     <script>
+        // Enregistrement du Service Worker pour la PWA
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js');
+        }
+
         // Détection mobile simple pour rediriger vers la bonne version
         function redirect() {
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768;
