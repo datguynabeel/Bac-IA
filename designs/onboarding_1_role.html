@@ -56,16 +56,16 @@
             
             <div class="grid md:grid-cols-2 gap-8">
                 <!-- Card Élève -->
-                <a href="onboarding_2_niveau.html" class="glass p-10 rounded-[40px] text-center group hover:border-primary/50 hover:bg-white/5 transition-all cursor-pointer">
+                <div onclick="BacIA.save(BacIA.KEYS.ROLE, 'student'); BacIA.navigate('onboarding_2_niveau.html')" class="glass p-10 rounded-[40px] text-center group hover:border-primary/50 hover:bg-white/5 transition-all cursor-pointer flex flex-col items-center">
                     <div class="w-24 h-24 bg-primary-container rounded-3xl flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform">
                         <span class="material-symbols-outlined text-primary text-5xl">school</span>
                     </div>
                     <h2 class="text-3xl font-bold mb-3">Un élève</h2>
                     <p class="text-on-surface-variant text-lg">Je révise pour le Bac</p>
-                </a>
+                </div>
 
                 <!-- Card Parent -->
-                <div onclick="BacIA.save(BacIA.KEYS.ROLE, 'student'); BacIA.navigate('onboarding_2_niveau.html')" class="glass p-8 rounded-[32px] cursor-pointer hover:bg-white/5 active:scale-95 transition-all border border-white/5 flex flex-col items-center gap-4 group">
+                <div onclick="BacIA.save(BacIA.KEYS.ROLE, 'parent'); BacIA.navigate('dashboard_parent.html')" class="glass p-10 rounded-[40px] text-center group hover:border-primary/50 hover:bg-white/5 transition-all cursor-pointer flex flex-col items-center">
                     <div class="w-24 h-24 bg-primary-container rounded-3xl flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform">
                         <span class="material-symbols-outlined text-primary text-5xl">family_restroom</span>
                     </div>
