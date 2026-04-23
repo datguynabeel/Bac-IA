@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr" dir="ltr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+    <title>Bac IA - Dashboard Mobile</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#80d5cb",
+                        "primary-container": "#0f766e",
+                        "background": "#131314",
+                        "surface": "#1c1b1c",
+                        "on-surface": "#e5e2e3",
+                        "on-surface-variant": "#bdc9c6"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        body { background-color: #131314; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .premium-gradient { background: linear-gradient(135deg, #0f766e 0%, #80d5cb 100%); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .safe-bottom { padding-bottom: calc(theme('spacing.24') + env(safe-area-inset-bottom, 20px)); }
+    </style>
+</head>
+<body class="text-on-surface font-body selection:bg-primary/30 min-h-screen flex flex-col bg-[#131314]">
+    <!-- Mobile Header -->
+    <header class="p-6 pt-12 flex justify-between items-center sticky top-0 bg-[#131314]/80 backdrop-blur-xl z-50 border-b border-white/5">
+        <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">auto_awesome</span>
+            <h1 class="font-headline font-bold text-lg tracking-tight text-primary">Bac IA</h1>
+        </div>
+        <div class="flex items-center gap-3">
+            <button class="w-10 h-10 rounded-full glass flex items-center justify-center">
+                <span class="material-symbols-outlined text-on-surface-variant text-xl">notifications</span>
+            </button>
+            <div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center border border-primary/20">
+                <span class="font-headline font-bold text-white text-xs">YA</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow px-6 py-6 safe-bottom overflow-y-auto no-scrollbar">
+        <!-- Greeting -->
+        <div class="mb-8">
+            <p class="text-on-surface-variant text-sm mb-1 uppercase tracking-widest font-bold">Mar7ba, Yasmine</p>
+            <h2 class="text-3xl font-headline font-black">Tableau de bord</h2>
+        </div>
+
+        <!-- Quick Stats Cards -->
+        <div class="flex gap-4 overflow-x-auto no-scrollbar mb-8 -mx-6 px-6">
+            <div class="flex-shrink-0 w-40 glass p-5 rounded-[28px] border-b-4 border-primary">
+                <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Score IA</p>
+                <p class="text-3xl font-headline font-black text-primary">1650</p>
+            </div>
+            <div class="flex-shrink-0 w-40 glass p-5 rounded-[28px] border-b-4 border-white/10">
+                <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Progression</p>
+                <p class="text-3xl font-headline font-black text-on-surface">42%</p>
+            </div>
+            <div class="flex-shrink-0 w-40 glass p-5 rounded-[28px] border-b-4 border-white/10">
+                <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Badge</p>
+                <p class="text-3xl font-headline font-black text-on-surface">🥇</p>
+            </div>
+        </div>
+
+        <!-- Hero Card Mobile -->
+        <section class="premium-gradient rounded-[32px] p-6 mb-8 relative overflow-hidden shadow-xl shadow-primary/20">
+            <div class="relative z-10">
+                <h3 class="text-xl font-headline font-black text-[#003733] mb-2">Physique-Chimie</h3>
+                <p class="text-sm text-[#003733]/80 mb-6">Tu es à mi-chemin du chapitre sur les oscillateurs élastiques.</p>
+                <a href="chat_mobile.html" class="bg-background text-primary px-6 py-3 rounded-xl font-bold text-sm inline-block shadow-lg">
+                    Reprendre le Chat
+                </a>
+            </div>
+            <span class="material-symbols-outlined absolute -bottom-4 -right-4 text-white/10 text-9xl">science</span>
+        </section>
+
+        <!-- Activities -->
+        <div class="space-y-6">
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-bold">Dernières activités</h3>
+                <span class="material-symbols-outlined text-on-surface-variant">tune</span>
+            </div>
+            
+            <div class="space-y-3">
+                <div class="glass p-5 rounded-[24px] flex items-center gap-4">
+                    <div class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined text-xl">psychology</span>
+                    </div>
+                    <div class="flex-grow">
+                        <h4 class="font-bold text-sm">Philosophie : La Liberté</h4>
+                        <p class="text-[10px] text-on-surface-variant">Question posée il y a 3h</p>
+                    </div>
+                    <span class="material-symbols-outlined text-on-surface-variant text-sm">chevron_right</span>
+                </div>
+                
+                <div class="glass p-5 rounded-[24px] flex items-center gap-4">
+                    <div class="w-10 h-10 bg-surface-container-highest rounded-xl flex items-center justify-center text-on-surface-variant">
+                        <span class="material-symbols-outlined text-xl">functions</span>
+                    </div>
+                    <div class="flex-grow">
+                        <h4 class="font-bold text-sm">Maths : Exo 3.4</h4>
+                        <p class="text-[10px] text-on-surface-variant">Corrigé hier</p>
+                    </div>
+                    <span class="material-symbols-outlined text-on-surface-variant text-sm">chevron_right</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="fixed bottom-0 left-0 w-full bg-background/80 backdrop-blur-xl border-t border-white/5 px-6 pb-6 pt-3 flex justify-between items-center z-50">
+        <a href="#" class="flex flex-col items-center gap-1 text-primary">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+            <span class="text-[10px] font-bold">Home</span>
+        </a>
+        <a href="chat_mobile.html" class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary transition-colors">
+            <span class="material-symbols-outlined">chat_bubble</span>
+            <span class="text-[10px] font-bold">Tuteur</span>
+        </a>
+        <div class="relative -top-8">
+            <button class="w-16 h-16 premium-gradient rounded-2xl flex items-center justify-center shadow-xl shadow-primary/30 border-4 border-background active:scale-95 transition-all">
+                <span class="material-symbols-outlined text-background font-bold text-3xl">add</span>
+            </button>
+        </div>
+        <a href="#" class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary transition-colors">
+            <span class="material-symbols-outlined">fitness_center</span>
+            <span class="text-[10px] font-bold">Exos</span>
+        </a>
+        <a href="#" class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary transition-colors">
+            <span class="material-symbols-outlined">leaderboard</span>
+            <span class="text-[10px] font-bold">Score</span>
+        </a>
+    </nav>
+</body>
+</html>
