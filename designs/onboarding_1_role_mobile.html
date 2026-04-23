@@ -32,6 +32,7 @@
         body { background-color: #131314; }
         .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
     </style>
+        <script src="app.js"></script>
 </head>
 <body class="text-on-surface font-body selection:bg-primary/30 min-h-screen flex flex-col">
     <!-- Mobile Header -->
@@ -53,7 +54,7 @@
         
         <div class="space-y-4">
             <!-- Card Élève Mobile -->
-            <a href="onboarding_2_niveau_mobile.html" class="glass p-8 rounded-[32px] flex items-center gap-6 active:scale-[0.98] active:bg-white/5 transition-all">
+            <div onclick="BacIA.save(BacIA.KEYS.ROLE, 'student'); BacIA.navigate('onboarding_2_niveau_mobile.html')" class="glass p-8 rounded-[32px] flex items-center gap-6 active:scale-[0.98] active:bg-white/5 transition-all cursor-pointer">
                 <div class="w-16 h-16 shrink-0 bg-primary-container rounded-2xl flex items-center justify-center">
                     <span class="material-symbols-outlined text-primary text-3xl">school</span>
                 </div>
@@ -61,10 +62,10 @@
                     <h2 class="text-xl font-bold mb-1">Un élève</h2>
                     <p class="text-sm text-on-surface-variant">Je révise pour le Bac</p>
                 </div>
-            </a>
+            </div>
 
             <!-- Card Parent Mobile -->
-            <a href="#" class="glass p-8 rounded-[32px] flex items-center gap-6 active:scale-[0.98] active:bg-white/5 transition-all">
+            <div onclick="BacIA.save(BacIA.KEYS.ROLE, 'parent'); BacIA.navigate('dashboard_parent.html')" class="glass p-8 rounded-[32px] flex items-center gap-6 active:scale-[0.98] active:bg-white/5 transition-all cursor-pointer">
                 <div class="w-16 h-16 shrink-0 bg-primary-container rounded-2xl flex items-center justify-center">
                     <span class="material-symbols-outlined text-primary text-3xl">family_restroom</span>
                 </div>
@@ -72,7 +73,7 @@
                     <h2 class="text-xl font-bold mb-1">Un parent</h2>
                     <p class="text-sm text-on-surface-variant">J'inscris mon enfant</p>
                 </div>
-            </a>
+            </div>
         </div>
     </main>
 
@@ -81,3 +82,5 @@
     </footer>
 </body>
 </html>
+
+

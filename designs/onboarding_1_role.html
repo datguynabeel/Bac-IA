@@ -33,6 +33,7 @@
         body { background-color: #131314; }
         .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
     </style>
+    <script src="app.js"></script>
 </head>
 <body class="text-on-surface font-body selection:bg-primary/30 min-h-screen flex flex-col">
     <!-- Header Onboarding -->
@@ -64,13 +65,13 @@
                 </a>
 
                 <!-- Card Parent -->
-                <a href="#" class="glass p-10 rounded-[40px] text-center group hover:border-primary/50 hover:bg-white/5 transition-all cursor-pointer">
+                <div onclick="BacIA.save(BacIA.KEYS.ROLE, 'student'); BacIA.navigate('onboarding_2_niveau.html')" class="glass p-8 rounded-[32px] cursor-pointer hover:bg-white/5 active:scale-95 transition-all border border-white/5 flex flex-col items-center gap-4 group">
                     <div class="w-24 h-24 bg-primary-container rounded-3xl flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform">
                         <span class="material-symbols-outlined text-primary text-5xl">family_restroom</span>
                     </div>
                     <h2 class="text-3xl font-bold mb-3">Un parent</h2>
                     <p class="text-on-surface-variant text-lg">J'inscris mon enfant</p>
-                </a>
+                </div>
             </div>
         </div>
     </main>
@@ -80,3 +81,4 @@
     </footer>
 </body>
 </html>
+
