@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr" dir="ltr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport"/>
+<title>Bac IA — Générer un exercice (Mobile)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "primary": "#80d5cb",
+                "primary-container": "#0f766e",
+                "background": "#131314",
+                "on-surface": "#e5e2e3",
+                "on-surface-variant": "#bdc9c6",
+                "surface-container-high": "#2a2a2b",
+                "outline-variant": "#3e4947",
+            },
+            fontFamily: { "headline": ["Manrope"], "body": ["Inter"] }
+        }
+    }
+}
+</script>
+<style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    body { background-color: #131314; }
+    .glass { background: rgba(255,255,255,0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.05); }
+    .selector-card { transition: background 0.15s, border-color 0.15s; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+    .selector-card:active { transform: scale(0.97); }
+    .selector-card.selected { background: rgba(128,213,203,0.08); border-color: rgba(128,213,203,0.4); }
+    .selector-card.selected .card-label { color: #80d5cb; }
+    .cta-gradient { background: linear-gradient(135deg, #0f766e 0%, #80d5cb 100%); color: #003733; }
+    select option { background: #201f20; color: #e5e2e3; }
+</style>
+</head>
+<body class="text-on-surface font-body flex justify-center items-start min-h-screen bg-[#0a0a0b]">
+<div class="w-[390px] min-h-screen bg-background relative flex flex-col overflow-hidden">
+
+    <!-- Header -->
+    <header class="px-5 pt-12 pb-4 flex items-center gap-3 bg-background/90 backdrop-blur-lg border-b border-outline-variant/10">
+        <a href="home_eleve_mobile.html" class="p-2 rounded-xl hover:bg-white/5 text-on-surface-variant">
+            <span class="material-symbols-outlined">arrow_back</span>
+        </a>
+        <span class="font-headline font-bold tracking-tight text-lg text-primary">Générer un exercice</span>
+    </header>
+
+    <!-- Contenu scrollable -->
+    <main class="flex-grow overflow-y-auto px-5 pb-36 pt-5">
+
+        <p class="text-sm text-on-surface-variant mb-7">Choisis le chapitre, la difficulté et le type d'exercice.</p>
+
+        <!-- Chapitre -->
+        <div class="mb-6">
+            <label class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant/60 mb-3">Chapitre</label>
+            <div class="relative">
+                <select id="chapitre-select" onchange="updateCTA()" class="w-full glass rounded-xl px-4 py-4 text-on-surface appearance-none bg-transparent focus:outline-none cursor-pointer font-body text-sm border border-outline-variant/20 pr-10">
+                    <option value="" disabled>Sélectionner un chapitre…</option>
+                    <option value="ondes">Ondes mécaniques progressives</option>
+                    <option value="lumiere">Ondes lumineuses</option>
+                    <option value="nucleaire">Transformations nucléaires</option>
+                    <option value="oscillateurs" selected>Oscillateurs mécaniques</option>
+                    <option value="rc">Dipôle RC</option>
+                    <option value="rl">Dipôle RL</option>
+                    <option value="rlc">Circuit RLC</option>
+                    <option value="newton">Lois de Newton</option>
+                    <option value="champ">Mouvements dans un champ</option>
+                </select>
+                <span class="absolute end-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant pointer-events-none text-base">expand_more</span>
+            </div>
+        </div>
+
+        <!-- Difficulté -->
+        <div class="mb-6">
+            <label class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant/60 mb-3">Difficulté</label>
+            <div class="grid grid-cols-3 gap-2" id="difficulte-group">
+                <div class="selector-card glass rounded-xl p-4 flex flex-col items-center gap-1.5 text-center" onclick="selectInGroup('difficulte-group', this)">
+                    <span class="material-symbols-outlined card-icon text-on-surface-variant text-xl" style="font-variation-settings:'FILL' 1;">sentiment_satisfied</span>
+                    <span class="card-label font-headline font-bold text-on-surface text-xs">Facile</span>
+                </div>
+                <div class="selector-card glass rounded-xl p-4 flex flex-col items-center gap-1.5 text-center selected" onclick="selectInGroup('difficulte-group', this)">
+                    <span class="material-symbols-outlined card-icon text-primary text-xl" style="font-variation-settings:'FILL' 1;">sentiment_neutral</span>
+                    <span class="card-label font-headline font-bold text-primary text-xs">Moyen</span>
+                </div>
+                <div class="selector-card glass rounded-xl p-4 flex flex-col items-center gap-1.5 text-center" onclick="selectInGroup('difficulte-group', this)">
+                    <span class="material-symbols-outlined card-icon text-on-surface-variant text-xl" style="font-variation-settings:'FILL' 1;">sentiment_very_dissatisfied</span>
+                    <span class="card-label font-headline font-bold text-on-surface text-xs">Difficile</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Type -->
+        <div class="mb-8">
+            <label class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant/60 mb-3">Type d'exercice</label>
+            <div class="grid grid-cols-3 gap-2" id="type-group">
+                <div class="selector-card glass rounded-xl p-4 flex flex-col items-center gap-1.5 text-center" onclick="selectInGroup('type-group', this)">
+                    <span class="material-symbols-outlined card-icon text-on-surface-variant text-xl">quiz</span>
+                    <span class="card-label font-headline font-bold text-on-surface text-xs">QCM</span>
+                </div>
+                <div class="selector-card glass rounded-xl p-4 flex flex-col items-center gap-1.5 text-center selected" onclick="selectInGroup('type-group', this)">
+                    <span class="material-symbols-outlined card-icon text-primary text-xl">calculate</span>
+                    <span class="card-label font-headline font-bold text-primary text-xs">Calcul</span>
+                </div>
+                <div class="selector-card glass rounded-xl p-4 flex flex-col items-center gap-1.5 text-center" onclick="selectInGroup('type-group', this)">
+                    <span class="material-symbols-outlined card-icon text-on-surface-variant text-xl">edit_note</span>
+                    <span class="card-label font-headline font-bold text-on-surface text-xs">Rédaction</span>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer fixe -->
+    <div class="absolute bottom-0 start-0 end-0 px-5 pb-[env(safe-area-inset-bottom,20px)] pt-4 bg-background/95 backdrop-blur-xl border-t border-outline-variant/10">
+        <button id="generate-btn" class="w-full py-4 rounded-2xl font-headline font-bold text-base cta-gradient transition-all active:scale-[0.97] flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">auto_awesome</span>
+            Générer mon exercice
+        </button>
+        <button class="w-full py-2 mt-2 text-xs text-on-surface-variant/50 hover:text-primary transition-colors font-medium flex items-center justify-center gap-1">
+            <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1;">casino</span>
+            Laisser l'IA choisir pour moi
+        </button>
+    </div>
+
+</div>
+</body>
+
+<script>
+function selectInGroup(groupId, el) {
+    document.getElementById(groupId).querySelectorAll('.selector-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    updateCTA();
+}
+function updateCTA() {
+    const chapitre = document.getElementById('chapitre-select').value;
+    const btn = document.getElementById('generate-btn');
+    if (!chapitre) { btn.classList.add('opacity-30', 'pointer-events-none'); }
+    else { btn.classList.remove('opacity-30', 'pointer-events-none'); }
+}
+</script>
+</html>
