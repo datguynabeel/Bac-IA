@@ -3,176 +3,248 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bac IA - Design Gallery</title>
+    <title>Bac IA — Galerie Design</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background-color: #0A0A0B; color: #FAFAF9; font-family: 'Inter', sans-serif; }
-        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .glass { background: rgba(255,255,255,0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); }
         .screenshot-card { overflow: hidden; transition: transform 0.3s ease; }
         .screenshot-card:hover { transform: translateY(-5px); }
-        .screenshot-card img { width: 100%; height: 200px; object-fit: cover; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
     </style>
 </head>
 <body class="p-8 lg:p-16">
+
     <header class="mb-16">
         <div class="flex items-center gap-4 mb-4">
             <span class="text-teal-500 text-3xl">✦</span>
             <h1 class="text-5xl font-black tracking-tight">Bac IA V2</h1>
         </div>
         <p class="text-xl text-gray-400 max-w-2xl">Galerie des écrans haute fidélité pour le tutorat IA premium au Maroc.</p>
-        <div class="mt-8 flex gap-4">
+        <div class="mt-8 flex flex-wrap gap-4">
             <span class="px-4 py-2 bg-teal-500/10 text-teal-500 rounded-full text-sm font-bold border border-teal-500/20">Lot 1 : Onboarding Validé</span>
-            <span class="px-4 py-2 bg-white/5 text-gray-500 rounded-full text-sm font-bold border border-white/5">Lot 2 : Exercices (En cours)</span>
+            <span class="px-4 py-2 bg-amber-500/10 text-amber-400 rounded-full text-sm font-bold border border-amber-500/20">Lot 2 : Parcours Exercice (En cours)</span>
         </div>
     </header>
-    
-    <!-- SECTION : LOT 1 - ONBOARDING -->
-    <div class="col-span-full mb-8 mt-12">
+
+    <!-- LOT 1 : ONBOARDING -->
+    <div class="mb-8">
         <h2 class="text-3xl font-black tracking-tight text-teal-500">Lot 1 : Parcours Onboarding</h2>
         <p class="text-gray-500 mt-2">Le tunnel d'entrée complet, optimisé pour la conversion et l'identité marocaine.</p>
     </div>
 
-    <!-- 1. Landing -->
-    <div class="glass screenshot-card rounded-2xl">
-        <div class="h-[200px] bg-gradient-to-br from-teal-900 to-black flex items-center justify-center p-8">
-            <h4 class="text-2xl font-black text-center">LANDING PAGE</h4>
-        </div>
-        <div class="p-6">
-            <h3 class="text-lg font-bold mb-1">Landing Page</h3>
-            <p class="text-sm text-gray-500 mb-4">Première impression et conversion.</p>
-            <div class="flex flex-col gap-2">
-                <a href="designs/landing.html" class="text-teal-400 hover:underline text-sm flex justify-between">Desktop <span>→</span></a>
-                <a href="designs/landing_mobile.html" class="text-teal-400 hover:underline text-sm flex justify-between">Mobile <span>→</span></a>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16">
+
+        <!-- Landing -->
+        <div class="glass screenshot-card rounded-2xl">
+            <div class="h-[180px] bg-gradient-to-br from-teal-900 to-black flex items-center justify-center p-8">
+                <h4 class="text-xl font-black text-center uppercase">Landing Page</h4>
+            </div>
+            <div class="p-6">
+                <h3 class="text-lg font-bold mb-1">Landing Page</h3>
+                <p class="text-sm text-gray-500 mb-4">Première impression et conversion.</p>
+                <div class="flex flex-col gap-2">
+                    <a href="landing.html" class="text-teal-400 hover:underline text-sm flex justify-between">Desktop <span>→</span></a>
+                    <a href="landing_mobile.html" class="text-teal-400 hover:underline text-sm flex justify-between">Mobile <span>→</span></a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- 2. Role -->
-    <div class="glass screenshot-card rounded-2xl">
-        <div class="h-[200px] bg-gradient-to-br from-teal-900 to-black flex items-center justify-center p-8">
-            <h4 class="text-2xl font-black text-center">Étape 1 : Rôle</h4>
-        </div>
-        <div class="p-6">
-            <h3 class="text-lg font-bold mb-1">Onboarding 1/5</h3>
-            <p class="text-sm text-gray-500 mb-4">Bifurcation Élève / Parent.</p>
-            <div class="flex flex-col gap-2">
-                <a href="designs/onboarding_1_role.html" class="text-teal-400 hover:underline text-sm flex justify-between">Desktop <span>→</span></a>
-                <a href="designs/onboarding_1_role_mobile.html" class="text-teal-400 hover:underline text-sm flex justify-between">Mobile <span>→</span></a>
+        <!-- Onboarding 1 : Rôle -->
+        <div class="glass screenshot-card rounded-2xl">
+            <div class="h-[180px] bg-gradient-to-br from-teal-900 to-black flex items-center justify-center p-8">
+                <h4 class="text-xl font-black text-center">Étape 1 : Rôle</h4>
+            </div>
+            <div class="p-6">
+                <h3 class="text-lg font-bold mb-1">Onboarding 1/5</h3>
+                <p class="text-sm text-gray-500 mb-4">Bifurcation Élève / Parent.</p>
+                <div class="flex flex-col gap-2">
+                    <a href="onboarding_1_role.html" class="text-teal-400 hover:underline text-sm flex justify-between">Desktop <span>→</span></a>
+                    <a href="onboarding_1_role_mobile.html" class="text-teal-400 hover:underline text-sm flex justify-between">Mobile <span>→</span></a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- 3. Niveau -->
-    <div class="glass screenshot-card rounded-2xl">
-        <div class="h-[200px] bg-gradient-to-br from-teal-900 to-black flex items-center justify-center p-8">
-            <h4 class="text-2xl font-black text-center">Étape 2 : Niveau</h4>
-        </div>
-        <div class="p-6">
-            <h3 class="text-lg font-bold mb-1">Onboarding 2/5</h3>
-            <p class="text-sm text-gray-500 mb-4">Choix de la classe scolaire.</p>
-            <div class="flex flex-col gap-2">
-                <a href="designs/onboarding_2_niveau.html" class="text-teal-400 hover:underline text-sm flex justify-between">Desktop <span>→</span></a>
-                <a href="designs/onboarding_2_niveau_mobile.html" class="text-teal-400 hover:underline text-sm flex justify-between">Mobile <span>→</span></a>
+        <!-- Onboarding 2 : Niveau -->
+        <div class="glass screenshot-card rounded-2xl">
+            <div class="h-[180px] bg-gradient-to-br from-teal-900 to-black flex items-center justify-center p-8">
+                <h4 class="text-xl font-black text-center">Étape 2 : Niveau</h4>
+            </div>
+            <div class="p-6">
+                <h3 class="text-lg font-bold mb-1">Onboarding 2/5</h3>
+                <p class="text-sm text-gray-500 mb-4">Choix de la classe scolaire.</p>
+                <div class="flex flex-col gap-2">
+                    <a href="onboarding_2_niveau.html" class="text-teal-400 hover:underline text-sm flex justify-between">Desktop <span>→</span></a>
+                    <a href="onboarding_2_niveau_mobile.html" class="text-teal-400 hover:underline text-sm flex justify-between">Mobile <span>→</span></a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- 4. Filière -->
-    <div class="glass screenshot-card rounded-2xl">
-        <div class="h-[200px] bg-gradient-to-br from-teal-900 to-black flex items-center justify-center p-8">
-            <h4 class="text-2xl font-black text-center">Étape 3 : Filière</h4>
-        </div>
-        <div class="p-6">
-            <h3 class="text-lg font-bold mb-1">Onboarding 3/5</h3>
-            <p class="text-sm text-gray-500 mb-4">SM, PC, SVT, ÉCO, Lettres.</p>
-            <div class="flex flex-col gap-2">
-                <a href="designs/onboarding_3_filiere.html" class="text-teal-400 hover:underline text-sm flex justify-between">Desktop <span>→</span></a>
-                <a href="designs/onboarding_3_filiere_mobile.html" class="text-teal-400 hover:underline text-sm flex justify-between">Mobile <span>→</span></a>
+        <!-- Onboarding 3 : Filière -->
+        <div class="glass screenshot-card rounded-2xl">
+            <div class="h-[180px] bg-gradient-to-br from-teal-900 to-black flex items-center justify-center p-8">
+                <h4 class="text-xl font-black text-center">Étape 3 : Filière</h4>
+            </div>
+            <div class="p-6">
+                <h3 class="text-lg font-bold mb-1">Onboarding 3/5</h3>
+                <p class="text-sm text-gray-500 mb-4">SM, PC, SVT, ÉCO, Lettres.</p>
+                <div class="flex flex-col gap-2">
+                    <a href="onboarding_3_filiere.html" class="text-teal-400 hover:underline text-sm flex justify-between">Desktop <span>→</span></a>
+                    <a href="onboarding_3_filiere_mobile.html" class="text-teal-400 hover:underline text-sm flex justify-between">Mobile <span>→</span></a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- 5. Langue -->
-    <div class="glass screenshot-card rounded-2xl">
-        <div class="h-[200px] bg-gradient-to-br from-teal-900 to-black flex items-center justify-center p-8">
-            <h4 class="text-2xl font-black text-center">Étape 4 : Langue</h4>
-        </div>
-        <div class="p-6">
-            <h3 class="text-lg font-bold mb-1">Onboarding 4/5</h3>
-            <p class="text-sm text-gray-500 mb-4">Français, Arabe, Darija.</p>
-            <div class="flex flex-col gap-2">
-                <a href="designs/onboarding_4_langue.html" class="text-teal-400 hover:underline text-sm flex justify-between">Desktop <span>→</span></a>
-                <a href="designs/onboarding_4_langue_mobile.html" class="text-teal-400 hover:underline text-sm flex justify-between">Mobile <span>→</span></a>
+        <!-- Onboarding 4 : Langue -->
+        <div class="glass screenshot-card rounded-2xl">
+            <div class="h-[180px] bg-gradient-to-br from-teal-900 to-black flex items-center justify-center p-8">
+                <h4 class="text-xl font-black text-center">Étape 4 : Langue</h4>
+            </div>
+            <div class="p-6">
+                <h3 class="text-lg font-bold mb-1">Onboarding 4/5</h3>
+                <p class="text-sm text-gray-500 mb-4">Français, Arabe, Darija.</p>
+                <div class="flex flex-col gap-2">
+                    <a href="onboarding_4_langue.html" class="text-teal-400 hover:underline text-sm flex justify-between">Desktop <span>→</span></a>
+                    <a href="onboarding_4_langue_mobile.html" class="text-teal-400 hover:underline text-sm flex justify-between">Mobile <span>→</span></a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- 6. Matières -->
-    <div class="glass screenshot-card rounded-2xl">
-        <div class="h-[200px] bg-gradient-to-br from-teal-900 to-black flex items-center justify-center p-8">
-            <h4 class="text-2xl font-black text-center">Étape 5 : Matières</h4>
-        </div>
-        <div class="p-6">
-            <h3 class="text-lg font-bold mb-1">Onboarding 5/5</h3>
-            <p class="text-sm text-gray-500 mb-4">Matières prioritaires.</p>
-            <div class="flex flex-col gap-2">
-                <a href="designs/onboarding_5_matieres.html" class="text-teal-400 hover:underline text-sm flex justify-between">Desktop <span>→</span></a>
-                <a href="designs/onboarding_5_matieres_mobile.html" class="text-teal-400 hover:underline text-sm flex justify-between">Mobile <span>→</span></a>
+        <!-- Onboarding 5 : Matières -->
+        <div class="glass screenshot-card rounded-2xl">
+            <div class="h-[180px] bg-gradient-to-br from-teal-900 to-black flex items-center justify-center p-8">
+                <h4 class="text-xl font-black text-center">Étape 5 : Matières</h4>
+            </div>
+            <div class="p-6">
+                <h3 class="text-lg font-bold mb-1">Onboarding 5/5</h3>
+                <p class="text-sm text-gray-500 mb-4">Matières prioritaires.</p>
+                <div class="flex flex-col gap-2">
+                    <a href="onboarding_5_matieres.html" class="text-teal-400 hover:underline text-sm flex justify-between">Desktop <span>→</span></a>
+                    <a href="onboarding_5_matieres_mobile.html" class="text-teal-400 hover:underline text-sm flex justify-between">Mobile <span>→</span></a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- 7. Diagnostic (Placeholder) -->
-    <div class="glass screenshot-card rounded-2xl">
-        <div class="h-[200px] bg-gradient-to-br from-teal-900 to-black flex items-center justify-center p-8">
-            <h4 class="text-2xl font-black text-center uppercase">Diagnostic</h4>
-        </div>
-        <div class="p-6">
-            <h3 class="text-lg font-bold mb-1">Placeholder Diagnostic</h3>
-            <p class="text-sm text-gray-500 mb-4">Écran de transition (Lot 2).</p>
-            <div class="flex flex-col gap-2">
-                <a href="designs/diagnostic_placeholder.html" class="text-teal-400 hover:underline text-sm flex justify-between">Desktop <span>→</span></a>
-                <a href="designs/diagnostic_placeholder_mobile.html" class="text-teal-400 hover:underline text-sm flex justify-between">Mobile <span>→</span></a>
+        <!-- Chat Tuteur IA -->
+        <div class="glass screenshot-card rounded-2xl">
+            <div class="h-[180px] bg-gradient-to-br from-teal-900 to-black flex items-center justify-center p-8">
+                <h4 class="text-xl font-black text-center uppercase">Chat Tuteur IA</h4>
+            </div>
+            <div class="p-6">
+                <h3 class="text-lg font-bold mb-1">Interface de Chat</h3>
+                <p class="text-sm text-gray-500 mb-4">La référence de qualité visuelle.</p>
+                <div class="flex flex-col gap-2">
+                    <a href="chat.html" class="text-teal-400 hover:underline text-sm flex justify-between">Desktop <span>→</span></a>
+                    <a href="chat_mobile.html" class="text-teal-400 hover:underline text-sm flex justify-between">Mobile <span>→</span></a>
+                </div>
             </div>
         </div>
+
     </div>
 
-    <div class="col-span-full mb-8 mt-12">
-        <h2 class="text-3xl font-black tracking-tight text-gray-500">Autres Écrans de Référence</h2>
+    <!-- LOT 2 : PARCOURS EXERCICE -->
+    <div class="mb-8">
+        <h2 class="text-3xl font-black tracking-tight text-amber-400">Lot 2 : Parcours Exercice</h2>
+        <p class="text-gray-500 mt-2">Diagnostic, dashboard élève, génération et correction d'exercices — PC Oscillateurs mécaniques.</p>
     </div>
 
-    <!-- 8. Skeleton Dashboard Élève -->
-    <div class="glass screenshot-card rounded-2xl">
-        <div class="h-[200px] bg-gradient-to-br from-teal-900 to-black flex items-center justify-center p-8">
-            <h4 class="text-2xl font-black text-center uppercase">Dashboard Élève</h4>
-        </div>
-        <div class="p-6">
-            <h3 class="text-lg font-bold mb-1">Skeleton Dashboard</h3>
-            <p class="text-sm text-gray-500 mb-4">Accueil après onboarding.</p>
-            <div class="flex flex-col gap-2">
-                <a href="designs/skeleton_dashboard.html" class="text-teal-400 hover:underline text-sm flex justify-between">Desktop <span>→</span></a>
-                <a href="designs/skeleton_dashboard_mobile.html" class="text-teal-400 hover:underline text-sm flex justify-between">Mobile <span>→</span></a>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16">
+
+        <!-- Diagnostic Question -->
+        <div class="glass screenshot-card rounded-2xl">
+            <div class="h-[180px] bg-gradient-to-br from-amber-900/40 to-black flex items-center justify-center p-8">
+                <h4 class="text-xl font-black text-center uppercase">Diagnostic<br>Question</h4>
+            </div>
+            <div class="p-6">
+                <h3 class="text-lg font-bold mb-1">Diagnostic — Question</h3>
+                <p class="text-sm text-gray-500 mb-4">MCQ, barre de progression, oscillateurs.</p>
+                <div class="flex flex-col gap-2">
+                    <a href="diagnostic_question.html" class="text-amber-400 hover:underline text-sm flex justify-between">Desktop <span>→</span></a>
+                    <a href="diagnostic_question_mobile.html" class="text-amber-400 hover:underline text-sm flex justify-between">Mobile <span>→</span></a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Reference : Chat -->
-    <div class="glass screenshot-card rounded-2xl">
-        <img src="designs/assets/chat.png" alt="Chat Tuteur">
-        <div class="p-6">
-            <h3 class="text-lg font-bold mb-1">Interface de Chat</h3>
-            <p class="text-sm text-gray-500 mb-4">La référence de qualité visuelle.</p>
-            <div class="flex flex-col gap-2">
-                <a href="designs/chat.html" class="text-teal-400 hover:underline text-sm flex justify-between">Desktop <span>→</span></a>
-                <a href="designs/chat_mobile.html" class="text-teal-400 hover:underline text-sm flex justify-between">Mobile <span>→</span></a>
+        <!-- Diagnostic Résultats -->
+        <div class="glass screenshot-card rounded-2xl">
+            <div class="h-[180px] bg-gradient-to-br from-amber-900/40 to-black flex items-center justify-center p-8">
+                <h4 class="text-xl font-black text-center uppercase">Diagnostic<br>Résultats</h4>
+            </div>
+            <div class="p-6">
+                <h3 class="text-lg font-bold mb-1">Diagnostic — Résultats</h3>
+                <p class="text-sm text-gray-500 mb-4">Points forts / lacunes de Yasmine.</p>
+                <div class="flex flex-col gap-2">
+                    <a href="diagnostic_resultats.html" class="text-amber-400 hover:underline text-sm flex justify-between">Desktop <span>→</span></a>
+                    <a href="diagnostic_resultats_mobile.html" class="text-amber-400 hover:underline text-sm flex justify-between">Mobile <span>→</span></a>
+                </div>
             </div>
         </div>
-    </div>
+
+        <!-- Home Élève -->
+        <div class="glass screenshot-card rounded-2xl">
+            <div class="h-[180px] bg-gradient-to-br from-amber-900/40 to-black flex items-center justify-center p-8">
+                <h4 class="text-xl font-black text-center uppercase">Dashboard<br>Élève</h4>
+            </div>
+            <div class="p-6">
+                <h3 class="text-lg font-bold mb-1">Home Élève</h3>
+                <p class="text-sm text-gray-500 mb-4">Accueil post-onboarding de Yasmine.</p>
+                <div class="flex flex-col gap-2">
+                    <a href="home_eleve.html" class="text-amber-400 hover:underline text-sm flex justify-between">Desktop <span>→</span></a>
+                    <a href="home_eleve_mobile.html" class="text-amber-400 hover:underline text-sm flex justify-between">Mobile <span>→</span></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercice Génération -->
+        <div class="glass screenshot-card rounded-2xl">
+            <div class="h-[180px] bg-gradient-to-br from-amber-900/40 to-black flex items-center justify-center p-8">
+                <h4 class="text-xl font-black text-center uppercase">Exercice<br>Génération</h4>
+            </div>
+            <div class="p-6">
+                <h3 class="text-lg font-bold mb-1">Générer un Exercice</h3>
+                <p class="text-sm text-gray-500 mb-4">Chapitre + difficulté + type.</p>
+                <div class="flex flex-col gap-2">
+                    <a href="exercice_generation.html" class="text-amber-400 hover:underline text-sm flex justify-between">Desktop <span>→</span></a>
+                    <a href="exercice_generation_mobile.html" class="text-amber-400 hover:underline text-sm flex justify-between">Mobile <span>→</span></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercice En Cours -->
+        <div class="glass screenshot-card rounded-2xl">
+            <div class="h-[180px] bg-gradient-to-br from-amber-900/40 to-black flex items-center justify-center p-8">
+                <h4 class="text-xl font-black text-center uppercase">Exercice<br>En Cours</h4>
+            </div>
+            <div class="p-6">
+                <h3 class="text-lg font-bold mb-1">Exercice En Cours</h3>
+                <p class="text-sm text-gray-500 mb-4">Énoncé KaTeX + zone de réponse.</p>
+                <div class="flex flex-col gap-2">
+                    <a href="exercice_en_cours.html" class="text-amber-400 hover:underline text-sm flex justify-between">Desktop <span>→</span></a>
+                    <a href="exercice_en_cours_mobile.html" class="text-amber-400 hover:underline text-sm flex justify-between">Mobile <span>→</span></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercice Correction -->
+        <div class="glass screenshot-card rounded-2xl">
+            <div class="h-[180px] bg-gradient-to-br from-amber-900/40 to-black flex items-center justify-center p-8">
+                <h4 class="text-xl font-black text-center uppercase">Exercice<br>Correction</h4>
+            </div>
+            <div class="p-6">
+                <h3 class="text-lg font-bold mb-1">Correction Détaillée</h3>
+                <p class="text-sm text-gray-500 mb-4">Score + étapes KaTeX + Coach darija.</p>
+                <div class="flex flex-col gap-2">
+                    <a href="exercice_correction.html" class="text-amber-400 hover:underline text-sm flex justify-between">Desktop <span>→</span></a>
+                    <a href="exercice_correction_mobile.html" class="text-amber-400 hover:underline text-sm flex justify-between">Mobile <span>→</span></a>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <footer class="mt-24 pt-8 border-t border-gray-800 text-gray-500 text-sm flex justify-between">
-        <p>© 2026 Bac IA V2 - Projet Stitch</p>
+    <footer class="mt-8 pt-8 border-t border-gray-800 text-gray-500 text-sm flex justify-between">
+        <p>© 2026 Bac IA V2 — Projet Stitch</p>
         <p>Design System : Premium Dark Glass</p>
     </footer>
+
 </body>
 </html>
