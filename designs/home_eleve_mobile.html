@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr" dir="ltr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport"/>
+<title>Bac IA — Accueil Élève (Mobile)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "primary": "#80d5cb",
+                "primary-container": "#0f766e",
+                "on-primary": "#003733",
+                "background": "#131314",
+                "on-surface": "#e5e2e3",
+                "on-surface-variant": "#bdc9c6",
+                "surface-container-high": "#2a2a2b",
+                "outline-variant": "#3e4947",
+            },
+            fontFamily: { "headline": ["Manrope"], "body": ["Inter"] }
+        }
+    }
+}
+</script>
+<style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    body { background-color: #131314; }
+    .glass { background: rgba(255,255,255,0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.05); }
+    .cta-gradient { background: linear-gradient(135deg, #0f766e 0%, #80d5cb 100%); color: #003733; }
+</style>
+</head>
+<body class="text-on-surface font-body flex justify-center items-start min-h-screen bg-[#0a0a0b]">
+<div class="w-[390px] min-h-screen bg-background relative flex flex-col overflow-hidden">
+
+    <!-- Top bar mobile -->
+    <header class="px-5 pt-12 pb-4 flex items-center justify-between bg-background/90 backdrop-blur-lg border-b border-outline-variant/10">
+        <div class="flex items-center gap-3">
+            <button class="p-2 rounded-xl hover:bg-white/5 transition-colors">
+                <span class="material-symbols-outlined text-on-surface-variant">menu</span>
+            </button>
+            <span class="font-headline font-bold tracking-tight text-lg text-primary">Bac IA</span>
+        </div>
+        <div class="w-9 h-9 rounded-full bg-primary-container flex items-center justify-center border border-outline-variant/30">
+            <span class="font-headline font-bold text-white text-xs">YA</span>
+        </div>
+    </header>
+
+    <!-- Contenu scrollable -->
+    <main class="flex-grow overflow-y-auto px-5 pb-24">
+
+        <!-- Greeting -->
+        <section class="pt-6 mb-7">
+            <h1 class="text-2xl font-headline font-bold text-on-surface mb-1">Bon retour, Yasmine 👋</h1>
+            <p class="text-sm text-on-surface-variant">Jeudi 24 avril 2026</p>
+        </section>
+
+        <!-- Card Reprendre -->
+        <section class="mb-7">
+            <div class="glass rounded-2xl p-5">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-12 h-12 bg-primary-container rounded-xl flex items-center justify-center flex-shrink-0">
+                        <span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings:'FILL' 1;">play_circle</span>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-primary mb-0.5">Reprendre</p>
+                        <h2 class="text-base font-headline font-bold text-on-surface">Oscillateurs mécaniques</h2>
+                        <p class="text-xs text-on-surface-variant">Chapitre 4.2 — Énergie d'un oscillateur</p>
+                    </div>
+                </div>
+                <a href="chat.html" class="cta-gradient py-3 rounded-xl font-headline font-bold text-sm text-center flex items-center justify-center gap-2 active:scale-[0.97] transition-all">
+                    <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1;">arrow_forward</span>
+                    Continuer
+                </a>
+            </div>
+        </section>
+
+        <!-- Tes matières -->
+        <section class="mb-7">
+            <h2 class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant/60 mb-4">Tes matières</h2>
+            <div class="grid grid-cols-2 gap-3">
+
+                <div class="glass rounded-2xl p-4 flex flex-col items-center gap-2 text-center">
+                    <div class="w-10 h-10 bg-primary-container/40 rounded-xl flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-xl">science</span>
+                    </div>
+                    <p class="font-headline font-bold text-on-surface text-sm">Physique-Chimie</p>
+                    <p class="text-[10px] text-primary font-medium">En cours</p>
+                </div>
+
+                <div class="glass rounded-2xl p-4 flex flex-col items-center gap-2 text-center">
+                    <div class="w-10 h-10 bg-surface-container-high rounded-xl flex items-center justify-center">
+                        <span class="material-symbols-outlined text-on-surface-variant text-xl">calculate</span>
+                    </div>
+                    <p class="font-headline font-bold text-on-surface text-sm">Mathématiques</p>
+                    <p class="text-[10px] text-on-surface-variant/50 font-medium">Non démarré</p>
+                </div>
+
+                <div class="glass rounded-2xl p-4 flex flex-col items-center gap-2 text-center">
+                    <div class="w-10 h-10 bg-surface-container-high rounded-xl flex items-center justify-center">
+                        <span class="material-symbols-outlined text-on-surface-variant text-xl">biotech</span>
+                    </div>
+                    <p class="font-headline font-bold text-on-surface text-sm">SVT</p>
+                    <p class="text-[10px] text-on-surface-variant/50 font-medium">Non démarré</p>
+                </div>
+
+                <div class="glass rounded-2xl p-4 flex flex-col items-center gap-2 text-center">
+                    <div class="w-10 h-10 bg-surface-container-high rounded-xl flex items-center justify-center">
+                        <span class="material-symbols-outlined text-on-surface-variant text-xl">menu_book</span>
+                    </div>
+                    <p class="font-headline font-bold text-on-surface text-sm">Philosophie</p>
+                    <p class="text-[10px] text-on-surface-variant/50 font-medium">Non démarré</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Exercice du jour -->
+        <section class="mb-6">
+            <h2 class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant/60 mb-4">Exercice du jour</h2>
+            <div class="glass rounded-2xl p-5">
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant/60">Oscillateurs mécaniques</span>
+                    <span class="px-2 py-0.5 bg-surface-container-high rounded-full text-[10px] font-bold text-[#fb923c] border border-[#fb923c]/20">Moyen</span>
+                </div>
+                <h3 class="text-sm font-headline font-bold text-on-surface mb-1">Calcul de la période propre d'un système masse-ressort</h3>
+                <p class="text-xs text-on-surface-variant mb-4">Calcul • 2 questions</p>
+                <a href="exercice_en_cours.html" class="w-full py-3 rounded-xl font-headline font-bold text-sm text-primary text-center flex items-center justify-center gap-2 border border-outline-variant/20 hover:bg-white/5 transition-all">
+                    Démarrer <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom nav -->
+    <nav class="absolute bottom-0 start-0 end-0 flex justify-around items-center px-4 pb-[env(safe-area-inset-bottom,16px)] pt-3 bg-background/95 backdrop-blur-2xl border-t border-outline-variant/10">
+        <a href="chat.html" class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary transition-colors">
+            <span class="material-symbols-outlined">chat_bubble</span>
+            <span class="text-[10px] font-medium">Chat</span>
+        </a>
+        <a href="exercice_generation.html" class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary transition-colors">
+            <span class="material-symbols-outlined">assignment</span>
+            <span class="text-[10px] font-medium">Exercices</span>
+        </a>
+        <div class="flex flex-col items-center gap-1 text-[#80d5cb]">
+            <div class="p-2 bg-primary-container rounded-xl">
+                <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">home</span>
+            </div>
+        </div>
+        <a href="#" class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary transition-colors">
+            <span class="material-symbols-outlined">trending_up</span>
+            <span class="text-[10px] font-medium">Progression</span>
+        </a>
+        <a href="#" class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary transition-colors">
+            <span class="material-symbols-outlined">person</span>
+            <span class="text-[10px] font-medium">Profil</span>
+        </a>
+    </nav>
+
+</div>
+</body>
+</html>

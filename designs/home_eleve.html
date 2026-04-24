@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr" dir="ltr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bac IA — Accueil Élève</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "primary": "#80d5cb",
+                "primary-container": "#0f766e",
+                "on-primary": "#003733",
+                "background": "#131314",
+                "surface": "#131314",
+                "on-surface": "#e5e2e3",
+                "on-surface-variant": "#bdc9c6",
+                "surface-container-lowest": "#0e0e0f",
+                "surface-container-low": "#1c1b1c",
+                "surface-container": "#201f20",
+                "surface-container-high": "#2a2a2b",
+                "surface-container-highest": "#353436",
+                "outline-variant": "#3e4947",
+                "outline": "#889391",
+            },
+            fontFamily: {
+                "headline": ["Manrope"],
+                "body": ["Inter"],
+            }
+        }
+    }
+}
+</script>
+<style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    body { background-color: #131314; }
+    .glass { background: rgba(255,255,255,0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.05); }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .cta-gradient { background: linear-gradient(135deg, #0f766e 0%, #80d5cb 100%); color: #003733; }
+    .matiere-card { transition: background 0.2s, transform 0.2s; }
+    .matiere-card:hover { background: rgba(255,255,255,0.06); transform: translateY(-2px); }
+</style>
+</head>
+<body class="text-on-surface font-body min-h-screen">
+
+<!-- TopAppBar -->
+<header class="bg-background/80 backdrop-blur-lg fixed top-0 w-full z-50 flex justify-between items-center px-6 py-4 border-b border-outline-variant/10">
+    <div class="flex items-center gap-4">
+        <div class="flex flex-col">
+            <span class="font-headline font-bold tracking-tight text-2xl text-primary">Bac IA</span>
+            <span class="text-[11px] text-on-surface-variant font-medium tracking-wide">2ème Bac PC • Physique-Chimie</span>
+        </div>
+    </div>
+    <div class="flex items-center gap-8">
+        <nav class="hidden md:flex gap-8">
+            <a class="text-on-surface-variant hover:text-primary transition-colors font-medium" href="chat.html">Chat</a>
+            <a class="text-on-surface-variant hover:text-primary transition-colors font-medium" href="#">Exercices</a>
+            <a class="text-on-surface-variant hover:text-primary transition-colors font-medium" href="#">Progression</a>
+        </nav>
+        <div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center border border-outline-variant/30">
+            <span class="font-headline font-bold text-white text-sm">YA</span>
+        </div>
+    </div>
+</header>
+
+<!-- Sidebar chapitres PC -->
+<aside class="hidden lg:flex fixed start-0 top-[73px] h-[calc(100vh-73px)] w-64 flex-col p-6 space-y-2 bg-surface-container-lowest/50 border-e border-outline-variant/10">
+    <span class="font-headline font-bold text-primary text-xs uppercase tracking-widest mb-3">Chapitres PC</span>
+    <nav class="space-y-1 overflow-y-auto no-scrollbar flex-1">
+        <a class="flex items-center gap-3 p-3 rounded-xl text-on-surface-variant hover:bg-white/5 transition-all text-sm" href="chat.html">
+            <span class="material-symbols-outlined text-sm">waves</span>Ondes mécaniques progressives
+        </a>
+        <a class="flex items-center gap-3 p-3 rounded-xl text-on-surface-variant hover:bg-white/5 transition-all text-sm" href="chat.html">
+            <span class="material-symbols-outlined text-sm">light_mode</span>Ondes lumineuses
+        </a>
+        <a class="flex items-center gap-3 p-3 rounded-xl text-on-surface-variant hover:bg-white/5 transition-all text-sm" href="chat.html">
+            <span class="material-symbols-outlined text-sm">radioactive</span>Transformations nucléaires
+        </a>
+        <a class="flex items-center gap-3 p-3 rounded-xl text-primary bg-white/5 font-semibold transition-all text-sm" href="chat.html">
+            <span class="material-symbols-outlined text-sm">science</span>Oscillateurs mécaniques
+        </a>
+        <a class="flex items-center gap-3 p-3 rounded-xl text-on-surface-variant hover:bg-white/5 transition-all text-sm" href="chat.html">
+            <span class="material-symbols-outlined text-sm">bolt</span>Dipôle RC
+        </a>
+        <a class="flex items-center gap-3 p-3 rounded-xl text-on-surface-variant hover:bg-white/5 transition-all text-sm" href="chat.html">
+            <span class="material-symbols-outlined text-sm">bolt</span>Dipôle RL
+        </a>
+        <a class="flex items-center gap-3 p-3 rounded-xl text-on-surface-variant hover:bg-white/5 transition-all text-sm" href="chat.html">
+            <span class="material-symbols-outlined text-sm">bolt</span>Circuit RLC
+        </a>
+        <a class="flex items-center gap-3 p-3 rounded-xl text-on-surface-variant hover:bg-white/5 transition-all text-sm" href="chat.html">
+            <span class="material-symbols-outlined text-sm">rocket_launch</span>Lois de Newton
+        </a>
+        <a class="flex items-center gap-3 p-3 rounded-xl text-on-surface-variant hover:bg-white/5 transition-all text-sm" href="chat.html">
+            <span class="material-symbols-outlined text-sm">gps_fixed</span>Mouvements dans un champ
+        </a>
+    </nav>
+</aside>
+
+<!-- Contenu principal -->
+<main class="lg:ms-64 pt-20 pb-12 px-6 lg:px-10 max-w-5xl">
+
+    <!-- Greeting -->
+    <section class="mb-10 pt-6">
+        <h1 class="text-3xl font-headline font-bold text-on-surface mb-1">Bon retour, Yasmine 👋</h1>
+        <p class="text-on-surface-variant">Jeudi 24 avril 2026 — continuons là où tu t'es arrêtée.</p>
+    </section>
+
+    <!-- Card Reprendre -->
+    <section class="mb-10">
+        <div class="glass rounded-3xl p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+            <div class="flex items-start gap-5">
+                <div class="w-14 h-14 bg-primary-container rounded-2xl flex items-center justify-center flex-shrink-0">
+                    <span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings:'FILL' 1;">play_circle</span>
+                </div>
+                <div>
+                    <p class="text-xs font-bold uppercase tracking-widest text-primary mb-1">Reprendre</p>
+                    <h2 class="text-xl font-headline font-bold text-on-surface mb-1">Oscillateurs mécaniques</h2>
+                    <p class="text-sm text-on-surface-variant">Tu t'es arrêtée au chapitre 4.2 — Énergie d'un oscillateur.</p>
+                </div>
+            </div>
+            <a href="chat.html" class="cta-gradient py-3 px-7 rounded-xl font-headline font-bold text-base whitespace-nowrap transition-all hover:brightness-110 active:scale-[0.98] flex items-center gap-2">
+                <span class="material-symbols-outlined text-base" style="font-variation-settings:'FILL' 1;">arrow_forward</span>
+                Continuer
+            </a>
+        </div>
+    </section>
+
+    <!-- Tes matières -->
+    <section class="mb-10">
+        <h2 class="text-sm font-bold uppercase tracking-widest text-on-surface-variant/60 mb-5">Tes matières</h2>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+
+            <div class="matiere-card glass rounded-2xl p-6 cursor-pointer flex flex-col items-center gap-3 text-center">
+                <div class="w-12 h-12 bg-primary-container/40 rounded-xl flex items-center justify-center">
+                    <span class="material-symbols-outlined text-primary">science</span>
+                </div>
+                <div>
+                    <p class="font-headline font-bold text-on-surface text-sm">Physique-Chimie</p>
+                    <p class="text-[11px] text-primary mt-0.5 font-medium">En cours</p>
+                </div>
+            </div>
+
+            <div class="matiere-card glass rounded-2xl p-6 cursor-pointer flex flex-col items-center gap-3 text-center">
+                <div class="w-12 h-12 bg-surface-container-high rounded-xl flex items-center justify-center">
+                    <span class="material-symbols-outlined text-on-surface-variant">calculate</span>
+                </div>
+                <div>
+                    <p class="font-headline font-bold text-on-surface text-sm">Mathématiques</p>
+                    <p class="text-[11px] text-on-surface-variant/60 mt-0.5 font-medium">Non démarré</p>
+                </div>
+            </div>
+
+            <div class="matiere-card glass rounded-2xl p-6 cursor-pointer flex flex-col items-center gap-3 text-center">
+                <div class="w-12 h-12 bg-surface-container-high rounded-xl flex items-center justify-center">
+                    <span class="material-symbols-outlined text-on-surface-variant">biotech</span>
+                </div>
+                <div>
+                    <p class="font-headline font-bold text-on-surface text-sm">SVT</p>
+                    <p class="text-[11px] text-on-surface-variant/60 mt-0.5 font-medium">Non démarré</p>
+                </div>
+            </div>
+
+            <div class="matiere-card glass rounded-2xl p-6 cursor-pointer flex flex-col items-center gap-3 text-center">
+                <div class="w-12 h-12 bg-surface-container-high rounded-xl flex items-center justify-center">
+                    <span class="material-symbols-outlined text-on-surface-variant">menu_book</span>
+                </div>
+                <div>
+                    <p class="font-headline font-bold text-on-surface text-sm">Philosophie</p>
+                    <p class="text-[11px] text-on-surface-variant/60 mt-0.5 font-medium">Non démarré</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Exercice du jour -->
+    <section class="mb-10">
+        <h2 class="text-sm font-bold uppercase tracking-widest text-on-surface-variant/60 mb-5">Exercice du jour</h2>
+        <div class="glass rounded-2xl p-6 flex items-center justify-between gap-6">
+            <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-surface-container-high rounded-xl flex items-center justify-center flex-shrink-0">
+                    <span class="material-symbols-outlined text-on-surface-variant">assignment</span>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant/60">Oscillateurs mécaniques</span>
+                        <span class="px-2 py-0.5 bg-surface-container-high rounded-full text-[10px] font-bold text-[#fb923c] border border-[#fb923c]/20">Moyen</span>
+                    </div>
+                    <h3 class="text-base font-headline font-bold text-on-surface">Calcul de la période propre d'un système masse-ressort</h3>
+                    <p class="text-sm text-on-surface-variant mt-1">Calcul • 2 questions</p>
+                </div>
+            </div>
+            <a href="exercice_en_cours.html" class="glass hover:bg-white/8 py-3 px-5 rounded-xl font-headline font-bold text-sm text-primary whitespace-nowrap transition-all flex items-center gap-2">
+                Démarrer <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </a>
+        </div>
+    </section>
+
+    <footer class="pt-6 border-t border-outline-variant/10">
+        <p class="text-[10px] text-on-surface-variant/40 uppercase tracking-[0.2em] font-medium text-center">
+            IA peut faire des erreurs. Vérifiez les informations importantes.
+        </p>
+    </footer>
+</main>
+
+</body>
+</html>
