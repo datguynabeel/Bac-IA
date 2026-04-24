@@ -1,8 +1,18 @@
 {
+  "version": 2,
+  "public": true,
+  "cleanUrls": true,
+  "trailingSlash": false,
   "rewrites": [
     { "source": "/", "destination": "/designs/landing.html" },
+    { "source": "/landing", "destination": "/designs/landing.html" },
     { "source": "/chat", "destination": "/designs/chat.html" },
-    { "source": "/onboarding", "destination": "/designs/onboarding_1_role.html" }
+    { "source": "/onboarding", "destination": "/designs/onboarding_1_role.html" },
+    { "source": "/gallery", "destination": "/designs/gallery.html" },
+    { "source": "/diagnostic", "destination": "/designs/diagnostic_question.html" },
+    { "source": "/resultats", "destination": "/designs/diagnostic_resultats.html" },
+    { "source": "/accueil-eleve", "destination": "/designs/home_eleve.html" },
+    { "source": "/exercice", "destination": "/designs/exercice_generation.html" }
   ],
   "headers": [
     {
