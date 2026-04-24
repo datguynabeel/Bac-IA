@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr" dir="ltr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, interactive-widget=resizes-content" name="viewport"/>
+<title>Bac IA — Exercice en cours (Mobile)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, { delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+    ]});"></script>
+<script id="tailwind-config">
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "primary": "#80d5cb",
+                "primary-container": "#0f766e",
+                "background": "#131314",
+                "on-surface": "#e5e2e3",
+                "on-surface-variant": "#bdc9c6",
+                "surface-container-lowest": "#0e0e0f",
+                "surface-container-high": "#2a2a2b",
+                "outline-variant": "#3e4947",
+                "error": "#ffb4ab",
+            },
+            fontFamily: { "headline": ["Manrope"], "body": ["Inter"], "mono": ["JetBrains Mono"] }
+        }
+    }
+}
+</script>
+<style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    body { background-color: #131314; }
+    .glass { background: rgba(255,255,255,0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.05); }
+    .cta-gradient { background: linear-gradient(135deg, #0f766e 0%, #80d5cb 100%); color: #003733; }
+    #reponse-panel { display: none; }
+    #reponse-panel.visible { display: flex; }
+    .indice-content { display: none; }
+    .indice-content.visible { display: block; }
+    /* Le footer fixe remonte avec le clavier grâce à interactive-widget=resizes-content */
+</style>
+</head>
+<body class="text-on-surface font-body flex justify-center items-start min-h-screen bg-[#0a0a0b]">
+<div class="w-[390px] min-h-[100dvh] bg-background relative flex flex-col overflow-hidden">
+
+    <!-- Header -->
+    <header class="px-4 pt-12 pb-3 flex items-center gap-3 border-b border-outline-variant/10 bg-background">
+        <a href="exercice_generation_mobile.html" class="p-2 rounded-xl text-on-surface-variant">
+            <span class="material-symbols-outlined">arrow_back</span>
+        </a>
+        <div class="flex-1 min-w-0">
+            <p class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant/60">Exercice</p>
+            <p class="text-sm font-headline font-bold text-on-surface truncate">Oscillateurs mécaniques</p>
+        </div>
+        <span class="px-2.5 py-1 bg-surface-container-high rounded-full text-[10px] font-bold text-[#fb923c] border border-[#fb923c]/20 flex-shrink-0">Moyen</span>
+    </header>
+
+    <!-- Vue principale : Énoncé -->
+    <div id="enonce-view" class="flex-grow overflow-y-auto px-4 pb-32">
+
+        <div class="pt-5 pb-3">
+            <span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant/60">Énoncé</span>
+        </div>
+
+        <div class="glass rounded-2xl p-5 mb-4">
+            <div class="text-on-surface leading-relaxed space-y-4 text-sm">
+                <p>Un ressort de raideur $K = 40 \text{ N/m}$ supporte une masse $m = 250 \text{ g}$.</p>
+                <div class="space-y-2">
+                    <div class="flex gap-3">
+                        <span class="font-headline font-bold text-primary flex-shrink-0">1.</span>
+                        <span>Calculer la période propre $T_0$ de ce système.</span>
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="font-headline font-bold text-primary flex-shrink-0">2.</span>
+                        <span>En déduire la fréquence propre $f_0$.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formule KaTeX -->
+            <div class="bg-surface-container-lowest rounded-xl p-5 mt-5 flex flex-col items-center border border-outline-variant/10">
+                <span class="text-[9px] font-mono font-bold uppercase tracking-widest text-on-surface-variant/60 mb-3">Rappel</span>
+                <div class="text-xl text-primary">
+                    $$T_0 = 2\pi\sqrt{\dfrac{m}{K}}$$
+                </div>
+            </div>
+        </div>
+
+        <!-- Indice -->
+        <div class="glass rounded-xl p-4 mb-4">
+            <button onclick="toggleIndice()" class="w-full flex items-center justify-between text-on-surface-variant">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-base" style="font-variation-settings:'FILL' 1;">lightbulb</span>
+                    <span class="text-sm font-medium">Afficher un indice</span>
+                </div>
+                <span class="material-symbols-outlined text-base" id="indice-chevron">expand_more</span>
+            </button>
+            <div class="indice-content mt-3 pt-3 border-t border-outline-variant/10" id="indice-content">
+                <p class="text-xs text-on-surface-variant leading-relaxed">
+                    Pense à convertir les grammes en kilogrammes avant de calculer.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Vue réponse (activée par le bouton du bas) -->
+    <div id="reponse-panel" class="absolute inset-0 bg-background flex-col pt-14">
+        <div class="px-4 py-3 flex items-center gap-3 border-b border-outline-variant/10">
+            <button onclick="closeReponse()" class="p-2 rounded-xl text-on-surface-variant">
+                <span class="material-symbols-outlined">arrow_back</span>
+            </button>
+            <span class="text-sm font-headline font-bold text-on-surface">Ta réponse</span>
+        </div>
+        <div class="flex-grow p-4 flex flex-col gap-4">
+            <textarea
+                id="reponse-textarea"
+                class="flex-grow w-full bg-surface-container-lowest border border-outline-variant/20 rounded-2xl p-4 text-on-surface font-mono text-sm resize-none placeholder:text-on-surface-variant/40 leading-relaxed focus:outline-none focus:ring-2 focus:ring-primary/30"
+                placeholder="Écris ta solution ici…&#10;&#10;Ex : m = 0,250 kg&#10;T₀ = …"
+                rows="8"
+            ></textarea>
+            <a href="exercice_correction.html" class="cta-gradient py-4 rounded-2xl font-headline font-bold text-base text-center flex items-center justify-center gap-2 active:scale-[0.97] transition-all">
+                <span class="material-symbols-outlined text-base" style="font-variation-settings:'FILL' 1;">check_circle</span>
+                Vérifier ma réponse
+            </a>
+            <button class="text-xs text-error/60 font-medium text-center py-1">
+                Abandonner cet exercice
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer fixe bas (vue énoncé) -->
+    <div id="footer-enonce" class="absolute bottom-0 start-0 end-0 px-4 pb-[env(safe-area-inset-bottom,16px)] pt-3 bg-background/95 backdrop-blur-xl border-t border-outline-variant/10">
+        <button onclick="openReponse()" class="cta-gradient w-full py-4 rounded-2xl font-headline font-bold text-base flex items-center justify-center gap-2 active:scale-[0.97] transition-all">
+            <span class="material-symbols-outlined text-base">edit</span>
+            Répondre
+        </button>
+    </div>
+
+</div>
+</body>
+
+<script>
+function openReponse() {
+    document.getElementById('reponse-panel').classList.add('visible');
+    document.getElementById('footer-enonce').style.display = 'none';
+    setTimeout(() => document.getElementById('reponse-textarea').focus(), 100);
+}
+function closeReponse() {
+    document.getElementById('reponse-panel').classList.remove('visible');
+    document.getElementById('footer-enonce').style.display = 'block';
+}
+function toggleIndice() {
+    const content = document.getElementById('indice-content');
+    const chevron = document.getElementById('indice-chevron');
+    content.classList.toggle('visible');
+    chevron.textContent = content.classList.contains('visible') ? 'expand_less' : 'expand_more';
+}
+</script>
+</html>
