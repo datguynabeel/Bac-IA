@@ -3,23 +3,35 @@
   "public": true,
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/landing", "destination": "/designs/landing", "statusCode": 308 },
+    { "source": "/chat", "destination": "/designs/chat", "statusCode": 308 },
+    { "source": "/onboarding", "destination": "/designs/onboarding_1_role", "statusCode": 308 },
+    { "source": "/onboarding/role", "destination": "/designs/onboarding_1_role", "statusCode": 308 },
+    { "source": "/onboarding/niveau", "destination": "/designs/onboarding_2_niveau", "statusCode": 308 },
+    { "source": "/onboarding/filiere", "destination": "/designs/onboarding_3_filiere", "statusCode": 308 },
+    { "source": "/onboarding/langue", "destination": "/designs/onboarding_4_langue", "statusCode": 308 },
+    { "source": "/onboarding/matieres", "destination": "/designs/onboarding_5_matieres", "statusCode": 308 },
+    { "source": "/gallery", "destination": "/designs/gallery", "statusCode": 308 },
+    { "source": "/diagnostic", "destination": "/designs/diagnostic_question", "statusCode": 308 },
+    { "source": "/resultats", "destination": "/designs/diagnostic_resultats", "statusCode": 308 },
+    { "source": "/accueil-eleve", "destination": "/designs/home_eleve", "statusCode": 308 },
+    { "source": "/accueil", "destination": "/designs/home_eleve", "statusCode": 308 },
+    { "source": "/exercice", "destination": "/designs/exercice_generation", "statusCode": 308 },
+    { "source": "/exercice/en-cours", "destination": "/designs/exercice_en_cours", "statusCode": 308 },
+    { "source": "/exercice/correction", "destination": "/designs/exercice_correction", "statusCode": 308 },
+    { "source": "/parent", "destination": "/designs/dashboard_parent", "statusCode": 308 }
+  ],
   "rewrites": [
-    { "source": "/", "destination": "/designs/landing.html" },
-    { "source": "/landing", "destination": "/designs/landing.html" },
-    { "source": "/chat", "destination": "/designs/chat.html" },
-    { "source": "/onboarding", "destination": "/designs/onboarding_1_role.html" },
-    { "source": "/gallery", "destination": "/designs/gallery.html" },
-    { "source": "/diagnostic", "destination": "/designs/diagnostic_question.html" },
-    { "source": "/resultats", "destination": "/designs/diagnostic_resultats.html" },
-    { "source": "/accueil-eleve", "destination": "/designs/home_eleve.html" },
-    { "source": "/exercice", "destination": "/designs/exercice_generation.html" }
+    { "source": "/", "destination": "/designs/landing.html" }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
         { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "X-Content-Type-Options", "value": "nosniff" }
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" }
       ]
     }
   ]
