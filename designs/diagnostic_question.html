@@ -133,7 +133,7 @@ tailwind.config = {
         </div>
 
         <!-- Bouton Valider -->
-        <button id="validate-btn" class="w-full py-4 rounded-2xl font-headline font-bold text-lg opacity-30 pointer-events-none cta-gradient transition-all duration-200 active:scale-[0.98]">
+        <button id="validate-btn" onclick="validateAnswer()" class="w-full py-4 rounded-2xl font-headline font-bold text-lg opacity-30 pointer-events-none cta-gradient transition-all duration-200 active:scale-[0.98]">
             Valider
         </button>
 
@@ -150,6 +150,15 @@ function selectOption(el, letter) {
     const btn = document.getElementById('validate-btn');
     btn.classList.remove('opacity-30', 'pointer-events-none');
     btn.setAttribute('data-selected', letter);
+}
+
+function validateAnswer() {
+    const btn = document.getElementById('validate-btn');
+    btn.textContent = 'Bonne réponse ✓';
+    btn.classList.add('pointer-events-none');
+    setTimeout(() => {
+        window.location.href = 'diagnostic_resultats.html';
+    }, 800);
 }
 </script>
 </body>
