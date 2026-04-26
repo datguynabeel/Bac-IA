@@ -7,7 +7,7 @@
 > Sources possibles : `Claude Desktop` | `Antigravity` | `Fondateur`
 > Catégories possibles : `Code` | `Design` | `Stratégie` | `Culturel`
 >
-> Référence canonique : section 14.2.5 du document maître `Bac_IA_Projet_Complet_v1.3.md`.
+> Référence canonique : section 14.2.5 du document maître `Bac_IA_Projet_Complet_v1.4.md`.
 
 ---
 
