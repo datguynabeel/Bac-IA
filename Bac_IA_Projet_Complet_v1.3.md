@@ -1,7 +1,7 @@
 # Bac IA — Document de Référence Projet
 
-**Version :** 1.2
-**Date :** Avril 2026 — v1.2 acte le cadre de travail fondateur, le choix exclusif Antigravity/Stitch comme stack design, et l'identification d'un Design Partner Pilote (école privée Casablanca).
+**Version :** 1.3
+**Date :** Avril 2026 — v1.3 acte le workflow conception à deux têtes (Claude Desktop + Antigravity), la stratégie de sélection modèle dans Antigravity (Gemini 3.1 Pro vs Claude 4.6 Opus), la convention de transmission `🎯 POUR ANTIGRAVITY`, le système de mémoire d'apprentissage `lessons.md`, et le garde-fou session de conversation.
 **Auteur :** [Fondateur] + Claude (Co-Fondateur IA, Chef de Projet & Delivery Manager)
 **Statut :** Document maître — à charger dans Claude Projects comme connaissance permanente
 **Langue :** Français (avec extraits darija/arabe selon contexte)
@@ -10,6 +10,7 @@
 - v1.0 (avril 2026) — Version initiale
 - v1.1 (avril 2026) — Ajout section 2.5 : règles culturelles permanentes (souveraineté territoriale, vocabulaire produit, typographie, identité utilisateur) suite à la validation du design chat tuteur V1 via Antigravity/Stitch
 - v1.2 (avril 2026) — Ajout Partie 14 (Cadre de travail fondateur), section 11.4 (Design Partner Pilote — école privée Casablanca), section 1.4.4 (Persona élève via école pilote), arbitrage design tooling (Stitch exclusif MVP, Figma écarté), mise à jour méta-instructions Claude (point 6 reformulé)
+- v1.3 (avril 2026) — Ajout sections 14.2.3 (workflow conception à deux têtes), 14.2.4 (stratégie de sélection modèle dans Antigravity), 14.2.5 (système de mémoire d'apprentissage `lessons.md`), 14.2.6 (garde-fou session de conversation), convention de transmission `🎯 POUR ANTIGRAVITY`, mise à jour stack technique consolidée 14.3, note de distinction runtime/conception en section 3.3, méta-instructions points 8 à 11 (renumérotés 11 à 14)
 
 ---
 
@@ -520,6 +521,12 @@ Pour si tu lèves des fonds ou recrutes un dev senior :
 - Utilisateur Premium (usage intensif) : ~$2-5/mois
 
 À 99 DH = ~10$ revenu, marge brute LLM > 80%. Sain.
+
+> **⚠️ Distinction stricte runtime / conception (acté v1.3)**
+>
+> Cette section concerne **uniquement le runtime production** (le tuteur élève payé par l'utilisateur). Le modèle Sonnet 4.6 est non négociable ici pour préserver la marge brute LLM.
+>
+> Les modèles utilisés en **conception** par le fondateur (Claude Opus 4.7 sur Claude Desktop, Gemini 3.1 Pro et Claude 4.6 Opus dans Antigravity) sont décrits en sections **14.2.3 et 14.2.4**. Ne jamais confondre les deux : Opus 4.7 ne doit **jamais** servir en runtime utilisateur final, sous peine de tuer l'unit economics.
 
 ## 3.4 Architecture RAG (Retrieval Augmented Generation)
 
@@ -1465,15 +1472,191 @@ Cette partie acte les principes opérationnels et tooling validés en avril 2026
 
 Claude est le **Co-Fondateur IA, Chef de Projet et Delivery Manager** sur l'ensemble du projet. Ses responsabilités opérationnelles sont définies en section 11.1. Sa posture est définie dans les méta-instructions en fin de document.
 
+### 14.2.3 Workflow conception à deux têtes (acté v1.3)
+
+Le fondateur travaille en bootstrap solo avec une architecture cognitive à deux têtes, validée après plusieurs semaines d'usage en avril 2026.
+
+**Tête stratégique : Claude Desktop (abonnement Pro 200 DH/mois) avec Claude Opus 4.7**
+
+Usages exclusifs sur cette tête :
+- Audit de cohérence (code, design, doc maître)
+- Cadrage stratégique et roadmap
+- Mise à jour du document de référence
+- Rédaction de prompts produit (system prompts pour le tuteur élève — section 5.1)
+- Lignes directrices à transmettre à Antigravity
+- Revue d'écran ou de feature avant validation
+- Réflexion sur pricing, persona, concurrence
+- One-pagers, scripts d'interview, contenu marketing
+
+Règle d'économie tokens : **ne jamais demander à Opus 4.7 de générer du code volumineux** (300+ lignes) destiné à être copié-collé brutalement. Pour ces cas, demander uniquement le **prompt parfait** à transmettre à Antigravity.
+
+**Tête exécutante : Antigravity (forfait Google AI Plus 59,99 MAD/mois)**
+
+Antigravity est utilisé pour toute la production effective — code, scripts, refactoring, intégration. Le forfait Google AI Plus donne accès à Gemini 3.1 Pro illimité (dans les quotas hebdomadaires) et à Claude 4.6 Opus thinking via Vertex Model Garden.
+
+La sélection du modèle dans Antigravity est **manuelle** (sélecteur en haut de l'interface) et obéit à la règle d'arbitrage définie en section 14.2.4.
+
+**Convention de transmission `🎯 POUR ANTIGRAVITY`**
+
+Chaque livrable produit par Claude Desktop (Opus 4.7) destiné à être collé dans Antigravity doit comporter en en-tête le bloc suivant :
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 POUR ANTIGRAVITY
+Modèle recommandé : [Gemini 3.1 Pro low | Gemini 3.1 Pro high | Claude 4.6 Opus thinking]
+Justification : [1 ligne max]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+Cette convention permet au fondateur de basculer manuellement le modèle Antigravity en une seule action avant d'envoyer la requête, sans avoir à raisonner à chaque fois sur le bon choix.
+
+**Garde-fou économique**
+
+Tant que la phase Public Preview d'Antigravity dure (quotas hebdomadaires gratuits via Google AI Plus), l'arbitrage qualité/coût ne se pose pas frontalement. Mais le fondateur conserve la discipline d'utiliser Gemini 3.1 Pro low par défaut pour préserver le réflexe d'optimisation, en vue du basculement vers une tarification standard (probablement S2 2026).
+
+### 14.2.4 Stratégie de sélection modèle dans Antigravity (acté v1.3)
+
+Antigravity est model-agnostic : Gemini 3.1 Pro (natif Google) et Claude 4.6 Opus thinking (via Vertex Model Garden) sont disponibles dans le sélecteur. La règle d'arbitrage est la suivante.
+
+**Tableau de décision**
+
+| Type de tâche | Modèle Antigravity |
+|---|---|
+| Génération de code React depuis Stitch (skill `react:components`) | **Claude 4.6 Opus thinking** — non négociable, le skill est calibré Anthropic |
+| Édition / refactoring de composants Bac IA existants | **Claude 4.6 Opus thinking** — précision logique, moins d'over-engineering |
+| Audit ou recherche cross-fichiers sur l'ensemble du repo (≥ 50 fichiers) | **Gemini 3.1 Pro high** — contexte 2M tokens |
+| Script utilitaire, parsing PDF de manuel, format conversion, migration SQL | **Gemini 3.1 Pro low** — rapide, suffisant |
+| Système prompt élève en darija/arabe à tester | **Claude 4.6 Opus thinking** — meilleur ancrage culturel multilingue |
+| Génération de QCM ou exercices de math depuis programme officiel | **Claude 4.6 Opus thinking** — qualité pédagogique |
+| Configuration Vercel / Supabase / GitHub Actions / DevOps standard | **Gemini 3.1 Pro low** — rapidité |
+| Application mécanique de patches sur le doc maître | **Gemini 3.1 Pro low** — travail textuel sans création |
+| Tâche jugée non critique en qualité | **Gemini 3.1 Pro low** — économise les quotas Opus |
+
+**Règle de pouce**
+
+Par défaut, **Gemini 3.1 Pro low**. Bascule vers Claude 4.6 Opus thinking uniquement si la tâche touche directement le cœur produit : code React généré via Stitch, prompts pédagogiques, qualité culturelle marocaine.
+
+**Modèles écartés**
+
+- **GPT-OSS-120B** : aucun avantage différenciant pour Bac IA. La discipline est de rester à deux fournisseurs maximum (Anthropic + Google) pour limiter la fragmentation cognitive.
+- **Gemini 2.5 Pro / Gemini 2.5 Flash Lite** : sous-agents automatiques d'Antigravity (UI Checkpoint, indexation sémantique). Aucune sélection manuelle requise.
+
+**Distinction runtime vs conception**
+
+Cette stratégie concerne **exclusivement la phase de conception** par le fondateur. Le runtime élève en production reste **Claude Sonnet 4.6** (section 3.3) via API Anthropic directe, sans passer par Antigravity.
+
+### 14.2.5 Système de mémoire d'apprentissage `lessons.md` (acté v1.3)
+
+Inspiré du workflow `CLAUDE.md` de Boris Cherny (auteur de Claude Code), adapté au contexte bootstrap solo et au workflow à deux têtes Bac IA.
+
+**Principe**
+
+Maintenir un fichier `tasks/lessons.md` à la racine du repo Bac-IA qui capture, en une ligne par leçon, toutes les corrections récurrentes faites au cours du projet. Ce fichier devient une mémoire partagée entre Claude Desktop (stratégie) et Antigravity (exécution), évitant la répétition des mêmes erreurs entre sessions et entre modèles.
+
+**Format de chaque leçon**
+
+```
+[YYYY-MM-DD] [Source : Claude Desktop | Antigravity | Fondateur] [Catégorie : Code | Design | Stratégie | Culturel] — Description de la leçon en une phrase.
+```
+
+**Exemples**
+
+- `[2026-04-26] [Antigravity] [Code] — Toujours préfixer les livrables Claude Desktop → Antigravity du header 🎯 POUR ANTIGRAVITY (cf. section 14.2.3).`
+- `[2026-04-26] [Claude Desktop] [Stratégie] — Ne jamais générer 300+ lignes de code en Opus 4.7 Desktop ; livrer le prompt à exécuter dans Antigravity.`
+- `[2026-04-26] [Fondateur] [Culturel] — Toujours afficher la carte du Maroc avec frontières incluant le Sahara (cf. section 2.5).`
+
+**Règle d'utilisation**
+
+1. **Capture** : à chaque correction du fondateur, une ligne est ajoutée dans `tasks/lessons.md`.
+2. **Rechargement Claude Desktop** : à chaque nouvelle session, le fondateur recharge le fichier en pièce jointe ou via la knowledge base Claude Projects.
+3. **Transmission Antigravity** : le fichier étant versionné dans le repo, il est automatiquement disponible à Antigravity à chaque session.
+4. **Revue mensuelle** : le fondateur passe en revue `lessons.md` une fois par mois, fusionne les doublons, archive les leçons obsolètes dans `tasks/lessons-archive.md`.
+
+**Definition of Done partagée**
+
+Avant de marquer une tâche comme terminée (qu'elle soit faite par Claude Desktop, Antigravity, ou le fondateur lui-même) :
+
+- [ ] La modification respecte les règles culturelles section 2.5 (souveraineté territoriale, vocabulaire produit, typographie)
+- [ ] La modification ne contredit pas une leçon déjà loggée dans `lessons.md`
+- [ ] Le résultat est démontrable (écran fonctionnel, code qui compile, prompt testé sur 1 cas réel)
+- [ ] La modification reste dans le périmètre MVP (Maths 2Bac SM)
+
+**Concepts du workflow Boris Cherny non adoptés au stade MVP**
+
+- **Sub-agents en parallèle** : non disponibles dans Antigravity et hors scope MVP. À réévaluer post-MVP.
+- **Plan mode forcé** : Antigravity dispose déjà de son propre Manager. Pas de doublon nécessaire.
+- **Autonomous bug fixing** : pas encore de CI tests sur Bac-IA. Prématuré.
+
+Ces concepts seront réévalués si le repo dépasse 100 fichiers ou si le fondateur bascule vers Claude Code en complément d'Antigravity.
+
+### 14.2.6 Garde-fou session de conversation (acté v1.3)
+
+Le contexte d'une conversation Claude Desktop est re-traité à chaque message, ce qui crée un coût input quasi-quadratique au fil des échanges. Pour préserver l'abonnement Pro du fondateur (200 DH/mois) et la qualité des réponses, Claude active un garde-fou session.
+
+**Critères d'évaluation silencieuse à chaque message**
+
+Claude évalue silencieusement quatre signaux à chaque tour de conversation :
+
+| Critère | Seuil de déclenchement |
+|---|---|
+| Nombre d'échanges | ≥ 15 messages dans la conv |
+| Cohérence thématique | Changement de sujet (ex : pricing → design → recrutement) |
+| Volume de contexte cumulé | Plusieurs fichiers volumineux ou artifacts longs produits |
+| Signal de clôture naturel | Finalisation d'un livrable autonome (patch, doc, prompt, décision) |
+
+**Bloc standardisé `🔄 GARDE-FOU SESSION`**
+
+Si un seul critère est franchi, Claude termine sa réponse par :
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔄 GARDE-FOU SESSION
+Recommandation : [Continuer | Fermer et rouvrir]
+Raison : [1 ligne max]
+Si fermeture → Synthèse de fin proposée : [Oui / Non]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+**Trois niveaux d'alerte**
+
+- 🟢 **Vert (Continuer)** : conversation productive, pas de signal. Aucun bloc affiché.
+- 🟡 **Jaune (Suggestion)** : approche du seuil mais bloc encore cohérent. Bloc affiché, fondateur décide.
+- 🔴 **Rouge (Fermer)** : seuil clairement dépassé. Bloc affiché avec synthèse de fin proposée.
+
+**Règles de retenue**
+
+Claude ne déclenche pas le garde-fou :
+- À chaque message (ce serait contre-productif)
+- En plein flow productif sur un sujet
+- Au démarrage d'une conversation (coût input encore bas)
+- Comme une injonction (toujours comme une proposition que le fondateur valide)
+
+**Synthèse de fin standardisée**
+
+Si fermeture recommandée, Claude propose un bloc markdown structuré :
+- Décisions actées dans la session
+- Statut des livrables (✅ produit / ⏳ en attente)
+- Prochaine action de cadence (options A/B/C)
+- Leçons à logger dans `lessons.md`
+
+Ce bloc est destiné à être collé au début de la conversation suivante pour rétablir le contexte sans perte.
+
+**Le fondateur reste seul juge** : Claude propose, ne décide pas. Le fondateur peut toujours choisir de continuer si le bloc cohérent en cours le justifie.
+
+
 ## 14.3 Stack technique consolidée (rappel synthétique)
 
 | Couche | Outil | Statut |
 |---|---|---|
+| **Conception stratégique (fondateur)** | Claude Desktop Pro + Opus 4.7 | ✅ Acté v1.3 |
+| **Conception exécutante (fondateur)** | Antigravity (Gemini 3.1 Pro + Claude 4.6 Opus) via Google AI Plus 59,99 MAD/mois | ✅ Acté v1.3 |
+| **Mémoire d'apprentissage** | `tasks/lessons.md` versionné dans le repo | ✅ Acté v1.3 |
+| **Garde-fou session conversation** | Bloc `🔄 GARDE-FOU SESSION` automatique en fin de réponse Claude Desktop | ✅ Acté v1.3 |
 | **Design** | Antigravity + Stitch | ✅ Acté v1.2 |
 | **Frontend code** | Lovable.dev ou Bolt.new | ✅ Acté |
 | **Hébergement** | Vercel | ✅ Acté |
 | **Backend & DB** | Supabase | ✅ Acté |
-| **LLM principal** | Claude Sonnet 4.6 (API Anthropic) | ✅ Acté |
+| **LLM runtime production (élève)** | Claude Sonnet 4.6 (API Anthropic) | ✅ Acté |
 | **RAG** | Supabase pgvector | ✅ Acté MVP |
 | **Paiement** | Stripe (puis CMI) | ✅ Acté |
 | **Repo** | GitHub (`datguynabeel/Bac-IA`) | ✅ Configuré |
@@ -1620,6 +1803,19 @@ Synthèse des décisions clés enregistrées dans cette version :
 | Design Partner | École privée Casablanca (maternelle → Bac) | 11.4 |
 | Méta-instruction Claude | Point 6 reformulé (cadence vs over-planning) | Méta-instructions |
 
+## Annexe G.bis — Décisions actées en v1.3 (avril 2026)
+
+| Décision | Détail | Section concernée |
+|---|---|---|
+| Workflow à deux têtes | Claude Desktop Pro (Opus 4.7) pour stratégie + Antigravity pour exécution | 14.2.3 |
+| Sélection modèle Antigravity | Gemini 3.1 Pro low par défaut, Claude 4.6 Opus thinking pour code Stitch et prompts pédagogiques | 14.2.4 |
+| Convention de transmission | Header `🎯 POUR ANTIGRAVITY — Modèle recommandé : [...]` sur tout livrable Claude Desktop → Antigravity | 14.2.3 |
+| Système `lessons.md` | Mémoire partagée des corrections récurrentes, versionnée dans le repo | 14.2.5 |
+| Garde-fou session conversation | Bloc `🔄 GARDE-FOU SESSION` automatique pour optimiser coûts et qualité | 14.2.6 |
+| Distinction runtime/conception | Sonnet 4.6 réservé au runtime élève. Opus 4.7 jamais en production utilisateur. | 3.3, 14.2.3, 14.2.4 |
+| Modèles écartés | GPT-OSS et autres : non utilisés. Discipline à 2 fournisseurs (Anthropic + Google). | 14.2.4 |
+| Concepts Boris Cherny non adoptés | Sub-agents parallèles, plan mode forcé, autonomous bug fixing — hors scope MVP | 14.2.5 |
+
 ---
 
 # CONTEXT FOR CLAUDE (méta-instruction)
@@ -1648,8 +1844,19 @@ Quand l'utilisateur (le fondateur) me parle dans le cadre de ce projet, je dois 
 
 10. **Respecter le cadre de travail fondateur (Partie 14).** Pas de migration tooling sans décision documentée. Pas de pivot stratégique sans mise à jour formelle.
 
+11. **Respecter le workflow à deux têtes (ajouté v1.3).** Lorsque Claude (Opus 4.7 sur Claude Desktop) produit un livrable destiné à être exécuté dans Antigravity, il doit systématiquement :
+    - Préfixer le livrable du header `🎯 POUR ANTIGRAVITY` avec le modèle recommandé (Gemini 3.1 Pro low/high ou Claude 4.6 Opus thinking) et une justification d'une ligne
+    - Refuser de générer du code volumineux (300+ lignes) destiné à être copié-collé brutalement — fournir à la place le **prompt parfait** à coller dans Antigravity
+    - Distinguer strictement les modèles de conception (Opus 4.7, Gemini 3.1 Pro, Claude 4.6 Opus dans Antigravity) du modèle runtime production (Sonnet 4.6 via API directe) — voir sections 3.3, 14.2.3 et 14.2.4
+
+12. **Privilégier les patches ciblés à la régénération (ajouté v1.3).** Lorsqu'une mise à jour du document maître est requise, Claude livre un patch structuré (localisations, AVANT/APRÈS) plutôt qu'une régénération complète. Cela protège la cohérence du document, économise les tokens, et permet une revue humaine fine.
+
+13. **Capitaliser via `tasks/lessons.md` (ajouté v1.3).** À chaque correction faite par le fondateur, Claude propose spontanément une ligne formatée à ajouter dans `tasks/lessons.md` (cf. section 14.2.5). Au démarrage de chaque session Claude Desktop, Claude doit consulter le fichier `lessons.md` (s'il est joint ou présent en knowledge) avant de proposer toute action structurelle. Les leçons capitalisées priment sur les conventions générales si conflit.
+
+14. **Activer le garde-fou session de conversation (ajouté v1.3).** Claude évalue silencieusement à chaque message quatre critères : nombre d'échanges (≥ 15), cohérence thématique, volume de contexte cumulé, signal de clôture naturel. Si un seuil est franchi, Claude termine sa réponse par un bloc standardisé `🔄 GARDE-FOU SESSION` proposant fermeture de la conversation et synthèse de fin pour économiser les tokens lors du basculement vers la session suivante. Le fondateur reste seul juge — Claude propose, ne décide pas. Voir section 14.2.6 pour le détail des trois niveaux d'alerte (vert/jaune/rouge) et la structure de la synthèse de fin.
+
 ---
 
-**Fin du document — Version 1.2**
+**Fin du document — Version 1.3**
 
 *Document à mettre à jour à chaque jalon majeur. Versionner via Git ou Notion. Ne jamais avoir deux versions divergentes en circulation.*
