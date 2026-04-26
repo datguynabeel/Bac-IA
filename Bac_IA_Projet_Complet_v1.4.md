@@ -1,7 +1,7 @@
 # Bac IA — Document de Référence Projet
 
-**Version :** 1.3
-**Date :** Avril 2026 — v1.3 acte le workflow conception à deux têtes (Claude Desktop + Antigravity), la stratégie de sélection modèle dans Antigravity (Gemini 3.1 Pro vs Claude 4.6 Opus), la convention de transmission `🎯 POUR ANTIGRAVITY`, le système de mémoire d'apprentissage `lessons.md`, et le garde-fou session de conversation.
+**Version :** 1.4
+**Date :** Avril 2026 — v1.4 acte le pricing définitif Bac IA (100/200/300 DH), le discount annuel calibré à -15%, le remplacement du pack pré-Bac par l'offre saisonnière "Sprint Bac" sans discount prix, la refonte du freemium "Découverte enrichi V2", et le passage Google AI Plus → Pro.
 **Auteur :** [Fondateur] + Claude (Co-Fondateur IA, Chef de Projet & Delivery Manager)
 **Statut :** Document maître — à charger dans Claude Projects comme connaissance permanente
 **Langue :** Français (avec extraits darija/arabe selon contexte)
@@ -11,6 +11,7 @@
 - v1.1 (avril 2026) — Ajout section 2.5 : règles culturelles permanentes (souveraineté territoriale, vocabulaire produit, typographie, identité utilisateur) suite à la validation du design chat tuteur V1 via Antigravity/Stitch
 - v1.2 (avril 2026) — Ajout Partie 14 (Cadre de travail fondateur), section 11.4 (Design Partner Pilote — école privée Casablanca), section 1.4.4 (Persona élève via école pilote), arbitrage design tooling (Stitch exclusif MVP, Figma écarté), mise à jour méta-instructions Claude (point 6 reformulé)
 - v1.3 (avril 2026) — Ajout sections 14.2.3 (workflow conception à deux têtes), 14.2.4 (stratégie de sélection modèle dans Antigravity), 14.2.5 (système de mémoire d'apprentissage `lessons.md`), 14.2.6 (garde-fou session de conversation), convention de transmission `🎯 POUR ANTIGRAVITY`, mise à jour stack technique consolidée 14.3, note de distinction runtime/conception en section 3.3, méta-instructions points 8 à 11 (renumérotés 11 à 14)
+- v1.4 (avril 2026) — Pricing définitif acté à 100/200/300 DH, discount annuel calibré à -15%, refonte freemium "Découverte enrichi V2" (5 questions/jour + diagnostic + 1 chapitre/mois + 1 PDF/mois + aperçu parent hebdo), remplacement du pack pré-Bac discount par offre saisonnière "Sprint Bac" prix plein + bonus valeur, passage Google AI Plus → Pro, ajout sections 6.5 et 14.2.7 (traçabilité décisions), mise à jour sections 1.1 / 2.3 / 6.1 / 6.2 / 6.3 / 11.5 / 14.2.3 / 14.3
 
 ---
 
@@ -38,7 +39,7 @@ Chaque section est autonome et peut être consultée indépendamment.
 
 **Marché.** ~2 millions d'élèves marocains au lycée. ~400 000 candidats au Bac chaque année. Marché du soutien scolaire estimé à plusieurs milliards de DH/an au Maroc, dont la quasi-totalité informelle.
 
-**Modèle économique.** Freemium SaaS B2C. Free : 10 questions/jour. Premium 99 DH/mois (1 matière). Famille 199 DH/mois (toutes matières, 1 enfant). Pack famille 299 DH/mois (jusqu'à 3 enfants). Cible 12 mois : 5 000 abonnés payants × 150 DH moyen = 750 000 DH MRR (~9M DH ARR).
+**Modèle économique.** Freemium SaaS B2C. Découverte (gratuit) : 5 questions/jour + diagnostic initial + 1 chapitre offert/mois + aperçu hebdo parent. Premium 100 DH/mois (1 matière). Famille 200 DH/mois (toutes matières, 1 enfant, dashboard parent complet). Pack Famille 300 DH/mois (jusqu'à 3 enfants). Annuel à -15%. Cible 12 mois : 5 000 abonnés payants × 190 DH ARPU = 950 000 DH MRR (~11,4M DH ARR).
 
 **Investissement initial.** 30 000 à 60 000 DH pour le MVP et les 6 premiers mois (outils, API, marketing, légal). Bootstrappable en solo.
 
@@ -276,7 +277,7 @@ Strict minimum pour valider le marché payant.
 1. Élève hits le plafond de 10 questions/jour gratuit
 2. Message bienveillant : "Tu as atteint ta limite quotidienne
    gratuite. Pour continuer à progresser, voici nos formules :"
-3. Affichage des plans (Premium 99, Famille 199, Pack 299)
+3. Affichage des plans (Premium 100, Famille 200, Pack Famille 300)
 4. Highlight du plan le plus pertinent selon usage
 5. Période d'essai 7 jours sans CB pour le plan Premium
 6. Si pas de conversion à J+5, email parent (si lié) :
@@ -994,17 +995,33 @@ Réponds en JSON :
 
 ## 6.1 Plans d'abonnement
 
-| Plan | Prix mensuel | Prix annuel (-20%) | Inclus |
-|---|---|---|---|
-| **Découverte** | 0 DH | 0 DH | 10 questions/jour, 1 matière, pas d'historique long, pas de PDF |
-| **Premium** | 99 DH | 950 DH | Illimité, 1 matière, historique complet, exercices illimités, suivi |
-| **Famille** | 199 DH | 1 900 DH | Illimité, **toutes** matières, 1 enfant, dashboard parent |
-| **Pack Famille** | 299 DH | 2 870 DH | Idem Famille, jusqu'à 3 enfants |
+**Grille définitive actée v1.4 [2026-04-26 GMT+1].** Référence : section 6.5 pour la traçabilité des arbitrages.
 
-**Promotions tactiques :**
+| Plan | Prix mensuel | Prix annuel (-15%) | Économie annuelle | Inclus |
+|---|---|---|---|---|
+| **Découverte** | 0 DH | — | — | 5 questions/jour (toutes matières), diagnostic initial complet, 1 chapitre complet offert/mois, 1 PDF de fiche révision/mois, aperçu hebdomadaire pour le parent (email statique) |
+| **Premium** | 100 DH | 1 020 DH | 180 DH (1,8 mois offerts) | Questions illimitées (1 matière), historique complet, exercices illimités, génération PDF illimitée, suivi de progression personnel |
+| **Famille** | 200 DH | 2 040 DH | 360 DH (1,8 mois offerts) | Tout Premium en **toutes matières**, dashboard parent complet (rapports hebdo, alertes blocages, recommandations), simulations d'examens blancs illimitées, 1 profil enfant |
+| **Pack Famille** | 300 DH | 3 060 DH | 540 DH (1,8 mois offerts) | Identique Famille, jusqu'à **3 profils enfants** indépendants, dashboard parent multi-profils consolidé |
+
+**Logique d'ancrage psychologique.** Prix ronds (100/200/300) choisis pour signaler un service sérieux et premium dans le contexte culturel marocain, où les prix en .99 sont associés à l'import discount. Lecture mentale instantanée pour le bouche-à-oreille parental ("c'est 200 dirhams par mois pour tout").
+
+**Discount annuel.** Calibré à -15% en MVP. **Clause de révision obligatoire à 12 mois** sur la base du churn réel mesuré. Le -20% initialement envisagé subventionnait trop fortement la fidélité sur un segment dont le LTV n'est pas encore prouvé.
+
+**Promotions tactiques permanentes :**
 - Essai 7 jours gratuit du plan Famille (sans CB) au moment du diagnostic initial
 - -50% premier mois sur recommandation parent (parrainage)
-- Pack pré-Bac : 3 mois Famille à 449 DH (mars-mai)
+
+**Offre saisonnière "Sprint Bac" (mars-mai uniquement).** Remplace l'ancien pack pré-Bac discount (449 DH).
+
+| Variante | Prix | Composition supplémentaire vs plan standard |
+|---|---|---|
+| **Sprint Bac Famille** | 600 DH / 3 mois (= prix plein, pas de discount) | Accès prioritaire annales Bac année en cours avec corrigés détaillés + examens blancs illimités avec correction IA par compétence + 1 session visio 30 min avec prof partenaire humain + garantie satisfait/remboursé étendue à 30 jours |
+| **Sprint Bac Premium** | 300 DH / 3 mois (= prix plein) | Idem hors session visio prof |
+
+⚠️ **Lancement Sprint Bac conditionné** à la validation opérationnelle du dispositif "prof visio" via le Design Partner Pilote (cf. section 11.4). Sans cette validation, l'offre n'est pas activable.
+
+**Logique stratégique du Sprint Bac.** Période mars-mai = pic d'urgence parentale = moment de pricing power maximum. Discounter à -25% (comme prévu initialement) revenait à laisser de l'argent sur la table sur le segment le plus motivé. La différenciation se fait par **valeur ajoutée** (garantie étendue, prof humain, examens blancs), pas par baisse de prix. Cohérent avec section 1.2 : "Pédagogie d'abord" et l'identité de service éducatif sérieux (section 2.5).
 
 **Paiement :**
 - CB internationale (Stripe)
@@ -1012,23 +1029,30 @@ Réponds en JSON :
 - Inwi Money / Orange Money / cash voucher (mois 6+)
 - Espèces via partenaires (librairies, photocopies) — V2
 
+**Garde-fous freemium acté v1.4 :**
+- Coût LLM moyen par utilisateur freemium actif à monitorer mensuellement (cible : < 5 DH/mois)
+- Ratio freemium/payant à plafonner à **20:1 maximum** (au-delà, on subventionne trop d'utilisateurs gratuits)
+- Révision obligatoire des paramètres freemium à 6 mois sur la base des données réelles
+
 ## 6.2 Unit Economics
 
-**Hypothèses pour utilisateur Premium moyen (99 DH/mois) :**
+**Hypothèses pour utilisateur Premium moyen (100 DH/mois) — recalcul v1.4 :**
 
 | Poste | Coût/mois |
 |---|---|
-| Revenu brut | 99 DH |
-| Frais paiement (Stripe ~2.9% + 0.3$) | -6 DH |
-| **Revenu net** | **93 DH** |
-| Coût LLM (estimation usage moyen) | -25 DH (~$2.5) |
+| Revenu brut | 100 DH |
+| Frais paiement (Stripe ~2,9% + 0,3$) | -6 DH |
+| **Revenu net** | **94 DH** |
+| Coût LLM (estimation usage moyen) | -25 DH (~$2,5) |
 | Coût infra (proportionnel) | -3 DH |
 | Coût support (proportionnel) | -5 DH |
-| **Marge contributive** | **60 DH (60%)** |
+| **Marge contributive** | **61 DH (61%)** |
 
 **Customer Acquisition Cost (CAC) cible :** < 200 DH
-**Lifetime Value (LTV) hypothèse (8 mois rétention moyenne) :** 480 DH
-**Ratio LTV/CAC :** 2.4 — sain mais à améliorer
+**Lifetime Value (LTV) hypothèse (8 mois rétention moyenne) :** 488 DH
+**Ratio LTV/CAC :** 2.44 — sain mais à améliorer
+
+**Note v1.4 :** ces hypothèses restent à valider avec les vraies données d'usage après 1-3 mois de production. Le coût LLM estimé à 25 DH/mois est volontairement conservateur ; un usage sous-moyen le ramènerait à 15-20 DH, ce qui élèverait la marge contributive à 65-70%.
 
 ## 6.3 Projections financières (12 mois)
 
@@ -1036,8 +1060,10 @@ Réponds en JSON :
 
 - Lancement payant : mois 4
 - Croissance abonnés payants : 50/mois (mois 4) → 100/mois (mois 6) → 300/mois (mois 12)
-- ARPU moyen : 130 DH (mix Premium/Famille)
+- ARPU moyen : 130 DH (mix Premium/Famille) — **hypothèse v1.0 conservée pour les projections**
 - Churn mensuel : 8% (élevé au début, à améliorer)
+
+**Note v1.4.** Avec la nouvelle grille 100/200/300 et un mix abonnés cible 30% Premium / 50% Famille / 20% Pack Famille, l'ARPU théorique remonte à **190 DH/mois** (vs 130 DH initialement). Les projections financières du tableau ci-dessous **ne sont volontairement PAS révisées dans ce patch** : elles restent calibrées sur l'hypothèse conservatrice 130 DH tant que les données d'usage réelles n'ont pas confirmé le mix produit. Recalibrage prévu après 6 mois de données de production.
 
 ### Tableau
 
@@ -1073,6 +1099,45 @@ Ces chiffres sont prudents et ne supposent pas de levée de fonds.
 | Validation marché (interviews, voucher) | 2 000 |
 | Réserve imprévus | 9 000 |
 | **TOTAL** | **50 000 DH** |
+
+## 6.5 Traçabilité des décisions pricing actées v1.4
+
+Cette section consigne les arbitrages structurants ayant conduit à la grille définitive 100/200/300 DH, pour mémoire institutionnelle.
+
+**Date de la session de décision :** [2026-04-26 GMT+1] — session Claude Desktop (Opus 4.7)
+
+**Arbitrage 1 — Ancrage prix d'entrée Premium**
+- Options évaluées : 89 DH (signal accessibilité) / 99 DH (ancrage classique) / 100 DH (prix rond, signal qualité)
+- **Décision actée [2026-04-26 ~17:50 GMT+1] :** 100 DH
+- Justification : positionnement contre cours particuliers (200 DH/h) et non contre apps mobiles. Prix ronds adaptés au contexte culturel marocain. Ratio 16× moins cher qu'un prof particulier, cohérent avec promesse section 1.1.
+- Challenge ultérieur (proposition baisse à 50 DH) : rejeté après analyse — destruction unit economics (24% marge), destruction positionnement (signal low-cost), destruction capacité d'acquisition payante (LTV/CAC tombant à 1,2).
+
+**Arbitrage 2 — Discount annuel**
+- Options évaluées : -10% conservateur / -15% standard SaaS / -20% agressif (statu quo doc v1.3) / pas d'annuel V1
+- **Décision actée [2026-04-26 ~17:55 GMT+1] :** -15%
+- Justification : -20% subventionne trop fortement un segment dont le churn n'est pas mesuré. -15% = standard SaaS B2C (Spotify/Netflix). Révision obligatoire à 12 mois sur churn réel.
+
+**Arbitrage 3 — Pack pré-Bac (mars-mai)**
+- Options évaluées : pas de pack / pack prix plein + bonus valeur / promo modérée -17% / statu quo doc -25%
+- **Décision actée [2026-04-26 ~18:00 GMT+1] :** Pack "Sprint Bac" prix plein + bonus valeur
+- Justification : période mars-mai = pricing power maximum. Discounter à -25% sur le segment le plus motivé = laisser de l'argent sur la table. Différenciation par valeur ajoutée (annales prioritaires, examens blancs, prof visio, garantie 30j) plutôt que par baisse de prix. Cohérent avec section 1.2 "Pédagogie d'abord" et identité de service éducatif sérieux (section 2.5).
+
+**Arbitrage 4 — Calibrage freemium "Découverte"**
+- Options évaluées : 3 questions/jour très restrictif / 5 questions/jour + 1 chapitre offert / 10 questions/jour statu quo / illimité avec features bloquées
+- **Décision actée [2026-04-26 ~18:05 GMT+1] :** Freemium "Découverte enrichi V2"
+- Composition : 5 questions/jour (toutes matières) + diagnostic initial complet + 1 chapitre complet offert/mois + 1 PDF fiche révision/mois + aperçu hebdomadaire parent (email statique). Dashboard parent complet, simulations d'examens, historique long terme, génération PDF illimitée et toutes matières simultanées restent payants.
+- Justification : 10 questions/jour = 300/mois = couverture complète du programme en gratuit, donc absence de mécanisme de conversion. Le V2 enrichi crée le manque structurel (visibilité parent, profondeur multi-chapitres) qui force la conversion vers Famille (200 DH).
+- Dashboard parent NON inclus en gratuit délibérément : c'est l'arme de conversion principale identifiée via persona Rachid (section 1.4.2 — pain point n°1 et bénéfice n°1 recherché).
+
+**Garde-fous économiques actés v1.4 :**
+- Coût LLM moyen freemium actif à monitorer mensuellement, cible < 5 DH/mois
+- Ratio freemium/payant plafonné à 20:1 (au-delà, révision restrictive du gratuit)
+- Marge contributive minimale à préserver : 60% sur Premium
+- Lancement Sprint Bac conditionné à validation opérationnelle dispositif prof visio (cf. 11.4)
+
+**Prochaines révisions planifiées :**
+- À 6 mois : recalibrage freemium sur données réelles + recalibrage ARPU section 6.3
+- À 12 mois : révision discount annuel sur churn mesuré
 
 ---
 
@@ -1437,7 +1502,7 @@ Liste des décisions clés à acter avant de lancer :
 - [ ] **Modèle LLM** principal (recommandé : Claude Sonnet 4.6)
 - [x] **Stack technique** définitif : Lovable/Bolt + Supabase + Anthropic API ✅ (acté v1.2)
 - [x] **Stack design** : Antigravity + Stitch (exclusif MVP) ✅ (acté v1.2 — cf. Partie 14)
-- [ ] **Pricing** définitif (recommandé : 99 / 199 / 299 DH)
+- [x] **Pricing** définitif acté v1.4 : **100 / 200 / 300 DH** mensuel, annuel -15%, freemium "Découverte enrichi V2", offre saisonnière "Sprint Bac" sans discount (cf. sections 6.1 et 6.5)
 - [ ] **Politique de remboursement** (recommandé : 14 jours satisfait/remboursé)
 - [ ] **Stratégie d'acquisition de contenus** (achat éditeurs vs création originale)
 - [ ] **Formalisation Design Partner Pilote** : one-pager + RDV directeur école
