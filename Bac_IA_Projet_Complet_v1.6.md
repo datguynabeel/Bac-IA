@@ -1,7 +1,7 @@
 # Bac IA — Document de Référence Projet
 
-**Version :** 1.5
-**Date :** Avril 2026 — v1.5 formalise l'architecture knowledge Claude Projects à 2 niveaux (upload manuel pour les 2 fichiers stratégiques, connexion GitHub repo pour le reste) afin d'éviter la dilution d'index causée par les 180+ fichiers du repo.
+**Version :** 1.6
+**Date :** Avril 2026 — v1.6 recalibre le garde-fou session (section 14.2.6) suite au diagnostic du 26/04/2026 : Claude Desktop n'a pas accès à la métrique UI "% session utilisée", l'estimation horodatage interne est non fiable, et le format synthèse de fin doit être un bloc autonome copy-paste sans imbrication de code fence.
 **Auteur :** [Fondateur] + Claude (Co-Fondateur IA, Chef de Projet & Delivery Manager)
 **Statut :** Document maître — à charger dans Claude Projects comme connaissance permanente
 **Langue :** Français (avec extraits darija/arabe selon contexte)
@@ -13,6 +13,7 @@
 - v1.3 (avril 2026) — Ajout sections 14.2.3 (workflow conception à deux têtes), 14.2.4 (stratégie de sélection modèle dans Antigravity), 14.2.5 (système de mémoire d'apprentissage `lessons.md`), 14.2.6 (garde-fou session de conversation), convention de transmission `🎯 POUR ANTIGRAVITY`, mise à jour stack technique consolidée 14.3, note de distinction runtime/conception en section 3.3, méta-instructions points 8 à 11 (renumérotés 11 à 14)
 - v1.4 (avril 2026) — Pricing définitif acté à 100/200/300 DH, discount annuel calibré à -15%, refonte freemium "Découverte enrichi V2" (5 questions/jour + diagnostic + 1 chapitre/mois + 1 PDF/mois + aperçu parent hebdo), remplacement du pack pré-Bac discount par offre saisonnière "Sprint Bac" prix plein + bonus valeur, passage Google AI Plus → Pro, ajout sections 6.5 et 14.2.7 (traçabilité décisions), mise à jour sections 1.1 / 2.3 / 6.1 / 6.2 / 6.3 / 11.5 / 14.2.3 / 14.3
 - v1.5 (avril 2026) — Ajout section 14.2.8 (architecture knowledge Claude Projects à 2 niveaux : upload manuel pour fichiers stratégiques + connexion repo pour contexte exécution), mise à jour section 14.3 (stack consolidée) avec ligne dédiée
+- v1.6 (avril 2026) — Recalibrage section 14.2.6 (garde-fou session) : ajout sous-sections 14.2.6.4 (angle mort métrique UI), 14.2.6.5 (heuristique de remplacement par proxies de cumul mental, seuil 60% jaune→rouge), 14.2.6.6 (demande explicite de la métrique UI au fondateur après livrable lourd), 14.2.6.7 (format synthèse de fin obligatoire en bloc autonome sans imbrication code fence). Suite à diagnostic défaillance garde-fou du 26/04/2026.
 
 ---
 
@@ -1717,6 +1718,79 @@ Ce bloc est destiné à être collé au début de la conversation suivante pour 
 
 **Le fondateur reste seul juge** : Claude propose, ne décide pas. Le fondateur peut toujours choisir de continuer si le bloc cohérent en cours le justifie.
 
+### 14.2.6.4 Angle mort métrique UI (acté v1.6)
+
+**Constat empirique du 26/04/2026.** Lors de la session ~19h00-20h30 GMT+1 (puis confirmé en session suivante ~17h30-19h45), Claude Desktop a recommandé "Continuer la session" alors que la métrique UI Claude Desktop affichait 90% de consommation. Diagnostic : Claude Desktop n'a aucun accès programmatique à la métrique UI "% session utilisée" affichée dans l'interface du fondateur. Toute estimation de Claude sur le niveau de saturation est nécessairement aveugle à cette donnée critique. L'estimation horodatage interne de Claude est également non fiable (erreur de ~3h constatée le 26/04).
+
+**Conséquence opérationnelle.** Le garde-fou des sous-sections 14.2.6.1 à 14.2.6.3 (3 niveaux vert/jaune/rouge basés sur "volume de contexte cumulé") n'est pas auto-suffisant. Il doit être augmenté par :
+- Une heuristique de remplacement (sous-section 14.2.6.5)
+- Une demande explicite au fondateur (sous-section 14.2.6.6)
+
+**Engagement de transparence.** Claude Desktop doit, lors de toute évaluation de saturation, expliciter à minima une fois par session : "Je n'ai pas accès à la métrique UI réelle. Mon évaluation repose sur des proxies internes et peut être erronée — confirme-moi le % UI affiché chez toi."
+
+### 14.2.6.5 Heuristique de remplacement par proxies de cumul mental (acté v1.6)
+
+**Principe.** En l'absence d'accès à la métrique UI, Claude Desktop maintient un compteur mental cumulatif depuis le début de la session, alimenté par des proxies pondérés correspondant aux opérations coûteuses en contexte.
+
+**Table des proxies (acté v1.6) :**
+
+| Opération | Coût mental |
+|---|---|
+| Patch documentaire livré (bloc 🎯 POUR ANTIGRAVITY) | +20% |
+| Répétition de contenu déjà présent dans la session | +15% |
+| Synthèse de fin / récapitulatif multi-sections | +15% |
+| Recherche project_knowledge_search lourde (>5 résultats longs) | +10% |
+| Réponse longue >800 mots (hors patch/synthèse) | +10% |
+
+**Seuils de bascule :**
+- 0-40% cumul mental → niveau VERT (silence garde-fou)
+- 40-60% cumul mental → niveau JAUNE (mention discrète en fin de réponse, format 🟡)
+- ≥60% cumul mental → niveau ROUGE (bloc complet 🔄 GARDE-FOU SESSION + recommandation explicite de clôture)
+
+**Précautions d'usage.**
+- Le compteur est réinitialisé à 0 à chaque nouvelle session (premier message de l'utilisateur dans une conversation Claude Desktop fraîche)
+- Les proxies sont des estimations indicatives, pas des mesures exactes — la métrique UI demandée au fondateur (sous-section 14.2.6.6) prime toujours sur ce calcul
+- Si le fondateur remonte un % UI très divergent du cumul mental (>20 points d'écart), Claude doit logger une leçon dans tasks/lessons.md pour recalibrer les pondérations
+
+**Engagement.** Aucune décision "Continuer la session" ne doit être recommandée par Claude Desktop si le cumul mental dépasse 60% sans confirmation explicite par la métrique UI du fondateur.
+
+### 14.2.6.6 Demande explicite de la métrique UI après livrable lourd (acté v1.6)
+
+**Règle opérationnelle.** Après tout livrable qualifié de "lourd" (patch documentaire, synthèse de fin, audit cross-fichiers, génération de plan détaillé multi-sections), Claude Desktop doit systématiquement demander en fin de réponse :
+
+"📊 Métrique UI : peux-tu me confirmer le % de session utilisée affiché dans Claude Desktop ? Cela me permet de calibrer la suite (continuer / clôturer / mode minimal)."
+
+**Logique de réaction selon la réponse fondateur :**
+
+| % UI déclaré | Action Claude Desktop |
+|---|---|
+| < 60% | Continuer normalement |
+| 60-80% | Mention 🟡 en fin de prochaine réponse, anticiper synthèse de fin dans 3-5 échanges |
+| 80-95% | Bloc 🔄 GARDE-FOU SESSION immédiat, proposer clôture |
+| > 95% | Mode réponse minimale (1-2 paragraphes max), uniquement l'action critique immédiate, livrer la synthèse de fin si pas encore faite |
+
+**Justification.** Cette règle transforme l'angle mort métrique (sous-section 14.2.6.4) d'un défaut systémique en une routine de calibration explicite. Le coût conversationnel est minime (1 question de fin de réponse) et le bénéfice est l'élimination du risque de blocage quota inattendu.
+
+### 14.2.6.7 Format obligatoire de la synthèse de fin et des patches Antigravity (acté v1.6)
+
+**Constat de récidive multiple.** La leçon 3.3 du patch v1.5 documentait déjà l'obligation de livrer toute synthèse de fin en bloc autonome copy-paste. Le 26/04/2026, cette règle a été enfreinte à plusieurs reprises (synthèse incrustée dans réponse longue, puis première version du patch v1.6 cassée par tentative d'imbrication code fence multi-niveaux). v1.6 formalise les règles techniques exactes pour éliminer toute ambiguïté.
+
+**Règle technique n°1 — Fence simple sans imbrication.** Tout bloc copy-paste destiné à Antigravity ou tout bloc synthèse de fin doit utiliser un fence triple backtick simple SANS langage déclaré (pas de markdown, pas de bash). Le contenu interne est en TEXTE BRUT. Toute imbrication (ex : bloc markdown contenant lui-même des blocs bash) casse le rendu Claude Desktop et invalide le copy-paste en un seul geste.
+
+**Règle technique n°2 — Mention obligatoire du modèle Antigravity.** Tout patch 🎯 POUR ANTIGRAVITY doit commencer par une ligne explicite "MODÈLE RECOMMANDÉ : [Claude Opus 4.6 Thinking | Claude Sonnet 4.6 Thinking | Gemini 3.1 Pro High | Gemini 3.1 Pro Low | Gemini 3 Flash | GPT-OSS 120B Medium]" avec justification courte (1-2 lignes). Conformément à la section 14.2.4. La liste des modèles disponibles dans Antigravity au 26/04/2026 est documentée en section 14.2.4.
+
+**Règle technique n°3 — Vérification visuelle mentale.** Avant toute livraison de patch ou synthèse, Claude Desktop doit simuler mentalement le rendu output et vérifier qu'aucune imbrication de fence ne risque de casser le bloc copy-paste. En cas de doute, basculer systématiquement sur fence simple texte brut.
+
+**Règles strictes de format synthèse de fin :**
+- Un seul bloc, jamais fragmenté
+- Pas de réponse longue avant : la synthèse de fin est livrée en réponse autonome ou en toute fin de message court (≤3 phrases d'introduction)
+- Pas de commentaire après le bloc de synthèse — le bloc se termine, la réponse Claude se termine
+- Toujours horodaté dans le titre et dans les décisions actées
+- Toujours formaté 📋 SYNTHÈSE DE FIN en pré-titre pour identification visuelle immédiate
+
+**Justification.** Le fondateur doit pouvoir copier-coller la synthèse ou le patch en un seul geste pour exécution. Toute fragmentation, incrustation, ou imbrication de fence compromet ce workflow et fait perdre du temps en édition manuelle.
+
+---
 
 ### 14.2.7 Traçabilité décision Google AI Pro (acté v1.4)
 
