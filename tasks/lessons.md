@@ -7,7 +7,7 @@
 > Sources possibles : `Claude Desktop` | `Antigravity` | `Fondateur`
 > Catégories possibles : `Code` | `Design` | `Stratégie` | `Culturel`
 >
-> Référence canonique : section 14.2.5 du document maître `Bac_IA_Projet_Complet_v1.4.md`.
+> Référence canonique : section 14.2.5 du document maître `Bac_IA_Projet_Complet_v1.5.md`.
 
 ---
 
@@ -28,6 +28,8 @@
 - [2026-04-26 18:35 GMT+1] [Fondateur] [Stratégie] — Triggers de gouvernance : éviter les définitions trop étroites. Quand on définit un trigger de report d'achat outil ou de décision, lister les 3-4 dimensions de valeur potentielle, pas seulement la dimension qui a saturé en premier dans la conversation. Le bon trigger est multidimensionnel.
 - [2026-04-26 18:40 GMT+1] [Claude Desktop] [Stratégie] — Garde-fou session : Claude doit l'émettre activement toutes les 5-7 réponses ET en fin de session systématiquement, sans attendre saturation contextuelle perçue. C'est un rituel de discipline, pas un mécanisme d'urgence (révision section 14.2.6).
 - [2026-04-26 18:55 GMT+1] [Fondateur] [Stratégie] — Tooling de questions interactives (boutons à choix) interfère avec l'évaluation autonome du garde-fou session par Claude. Préférer le format texte avec questions numérotées (1/2/3 ou A/B/C) auquel le fondateur répond en clair. Hypothèse à valider sur les prochaines sessions.
+- [2026-04-26] [Fondateur] [Stratégie] — Architecture knowledge Claude Projects à 2 niveaux : upload manuel obligatoire pour les 2 fichiers stratégiques (`Bac_IA_Projet_Complet_vX.X.md` + `tasks/lessons.md`), connexion repo `datguynabeel/Bac-IA` pour tout le reste. Re-upload manuel obligatoire à chaque nouvelle version sous peine de dilution d'index et d'incohérence de raisonnement (cf. section 14.2.8).
+- [2026-04-26] [Fondateur] [Stratégie] — Tout patch destiné à Antigravity doit être livré par Claude Desktop comme un bloc unique copy-paste exécutable, jamais fragmenté en sections séparées dans la conversation. Le format `🎯 POUR ANTIGRAVITY` doit englober l'intégralité des opérations (renommages, modifications multi-fichiers, commits) dans un seul livrable continu et autonome.
 
 ---
 

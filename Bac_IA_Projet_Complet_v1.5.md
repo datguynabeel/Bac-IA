@@ -1,7 +1,7 @@
 # Bac IA — Document de Référence Projet
 
-**Version :** 1.4
-**Date :** Avril 2026 — v1.4 acte le pricing définitif Bac IA (100/200/300 DH), le discount annuel calibré à -15%, le remplacement du pack pré-Bac par l'offre saisonnière "Sprint Bac" sans discount prix, la refonte du freemium "Découverte enrichi V2", et le passage Google AI Plus → Pro.
+**Version :** 1.5
+**Date :** Avril 2026 — v1.5 formalise l'architecture knowledge Claude Projects à 2 niveaux (upload manuel pour les 2 fichiers stratégiques, connexion GitHub repo pour le reste) afin d'éviter la dilution d'index causée par les 180+ fichiers du repo.
 **Auteur :** [Fondateur] + Claude (Co-Fondateur IA, Chef de Projet & Delivery Manager)
 **Statut :** Document maître — à charger dans Claude Projects comme connaissance permanente
 **Langue :** Français (avec extraits darija/arabe selon contexte)
@@ -12,6 +12,7 @@
 - v1.2 (avril 2026) — Ajout Partie 14 (Cadre de travail fondateur), section 11.4 (Design Partner Pilote — école privée Casablanca), section 1.4.4 (Persona élève via école pilote), arbitrage design tooling (Stitch exclusif MVP, Figma écarté), mise à jour méta-instructions Claude (point 6 reformulé)
 - v1.3 (avril 2026) — Ajout sections 14.2.3 (workflow conception à deux têtes), 14.2.4 (stratégie de sélection modèle dans Antigravity), 14.2.5 (système de mémoire d'apprentissage `lessons.md`), 14.2.6 (garde-fou session de conversation), convention de transmission `🎯 POUR ANTIGRAVITY`, mise à jour stack technique consolidée 14.3, note de distinction runtime/conception en section 3.3, méta-instructions points 8 à 11 (renumérotés 11 à 14)
 - v1.4 (avril 2026) — Pricing définitif acté à 100/200/300 DH, discount annuel calibré à -15%, refonte freemium "Découverte enrichi V2" (5 questions/jour + diagnostic + 1 chapitre/mois + 1 PDF/mois + aperçu parent hebdo), remplacement du pack pré-Bac discount par offre saisonnière "Sprint Bac" prix plein + bonus valeur, passage Google AI Plus → Pro, ajout sections 6.5 et 14.2.7 (traçabilité décisions), mise à jour sections 1.1 / 2.3 / 6.1 / 6.2 / 6.3 / 11.5 / 14.2.3 / 14.3
+- v1.5 (avril 2026) — Ajout section 14.2.8 (architecture knowledge Claude Projects à 2 niveaux : upload manuel pour fichiers stratégiques + connexion repo pour contexte exécution), mise à jour section 14.3 (stack consolidée) avec ligne dédiée
 
 ---
 
@@ -1734,6 +1735,31 @@ Ce bloc est destiné à être collé au début de la conversation suivante pour 
 
 **Engagement de gouvernance.** Si après 6 mois aucun des 4 cas d'usage NotebookLM Pro / Deep Research / Veo 3.1 / quotas Gemini élargis n'est devenu structurel dans le workflow, **rétrogradation obligatoire** vers Google AI Plus. Évaluation à dater pour [2026-10-26].
 
+### 14.2.8 Architecture knowledge Claude Projects (acté v1.5)
+
+**Contexte du problème.** Le projet Claude (`Bac IA`) ingère deux sources de contenu en parallèle :
+- Des fichiers uploadés manuellement (drag & drop)
+- Un repo GitHub connecté (`datguynabeel/Bac-IA`) synchronisé automatiquement
+
+Au 26 avril 2026, le repo contient 182 fichiers (code, designs, configs, skills Antigravity) qui occupent **39% de la capacité knowledge** du projet. Cette densité crée un risque de dilution dans le ranking du tool `project_knowledge_search` : les fichiers maîtres (document de référence + lessons.md) peuvent être concurrencés par des fichiers secondaires lors d'une recherche, dégradant la qualité contextuelle des réponses Claude Desktop.
+
+**Architecture actée — 2 niveaux distincts :**
+
+| Niveau | Mécanisme | Fichiers concernés | Justification |
+|---|---|---|---|
+| **Niveau 1** | Upload manuel (drag & drop dans Claude Projects) | `Bac_IA_Projet_Complet_vX.X.md`<br>`tasks/lessons.md` | Priorité d'index garantie. Ces fichiers sont consultés à CHAQUE session — leur visibilité prime. |
+| **Niveau 2** | Connexion GitHub repo `datguynabeel/Bac-IA` | Tout le reste (code, designs, configs, skills Antigravity, README, etc.) | Contexte exécution disponible à la demande, sans concurrencer les fichiers maîtres. |
+
+**Règle de mise à jour critique.** À chaque nouvelle version du document maître ou de `lessons.md` :
+1. Commit dans le repo GitHub (workflow normal)
+2. **Re-upload manuel obligatoire** dans la knowledge du projet Claude Desktop, en remplacement de la version précédente
+
+Sans re-upload manuel, Claude Desktop continuera de raisonner sur la version uploadée précédemment (priorité d'index) tout en voyant la nouvelle version dans le repo synchronisé. Incohérence garantie — exactement le risque de "raisonnement sur v1.3 alors que v1.4 commitée" identifié dans la synthèse de session du 26 avril 2026.
+
+**Test de vérification empirique.** En cas de doute sur la version active dans Claude Desktop, demander : *"Quelle est la version actuelle du document maître Bac IA ?"*. Si la réponse hésite, cite une version obsolète, ou nécessite plusieurs recherches → la dilution est confirmée et le re-upload manuel doit être effectué immédiatement.
+
+**Engagement de gouvernance.** Cette architecture à 2 niveaux est non négociable tant que le repo dépasse 100 fichiers. À réévaluer si le repo est restructuré (extraction des designs/skills dans un repo séparé par exemple).
+
 ---
 
 ## 14.3 Stack technique consolidée (rappel synthétique)
@@ -1745,6 +1771,7 @@ Ce bloc est destiné à être collé au début de la conversation suivante pour 
 | **Production de contenu (RAG + marketing)** | NotebookLM Pro + Deep Research + Veo 3.1 (inclus dans Google AI Pro) | ✅ Acté v1.4 |
 | **Mémoire d'apprentissage** | `tasks/lessons.md` versionné dans le repo | ✅ Acté v1.3 |
 | **Garde-fou session conversation** | Bloc `🔄 GARDE-FOU SESSION` automatique en fin de réponse Claude Desktop | ✅ Acté v1.3 |
+| **Knowledge Claude Projects** | Architecture 2 niveaux : upload manuel (doc maître + lessons.md) + connexion repo `datguynabeel/Bac-IA` pour le reste | ✅ Acté v1.5 |
 | **Design** | Antigravity + Stitch | ✅ Acté v1.2 |
 | **Frontend code** | Lovable.dev ou Bolt.new | ✅ Acté |
 | **Hébergement** | Vercel | ✅ Acté |
