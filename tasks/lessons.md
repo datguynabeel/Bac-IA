@@ -24,6 +24,10 @@
 - [2026-04-26] [Antigravity] [Code] — Pour toute génération React via Stitch (skill `react:components`), bascule sur Claude 4.6 Opus thinking. Non négociable (cf. section 14.2.4).
 - [2026-04-26] [Fondateur] [Stratégie] — Une conversation Claude Desktop = un sujet cohérent. Fermer dès 15+ échanges ou changement de sujet pour économiser tokens (coût input quasi-quadratique du re-traitement historique).
 - [2026-04-26] [Claude Desktop] [Stratégie] — Garde-fou session activé : Claude évalue silencieusement chaque message et propose fermeture via bloc `🔄 GARDE-FOU SESSION` quand pertinent (cf. section 14.2.6, méta-instruction 11).
+- [2026-04-26 18:35 GMT+1] [Fondateur] [Stratégie] — Pricing : ne JAMAIS partir du ressenti du fondateur. Le pricing se décide depuis le marché documenté (section 1.3.2), pas depuis le rapport personnel à l'argent. Si l'intuition dit "trop cher", la vraie question est "est-ce que mon produit délivre cette valeur ?". Règle SaaS : il est 10× plus facile de baisser un prix que de le monter — donc lancer haut par défaut.
+- [2026-04-26 18:35 GMT+1] [Fondateur] [Stratégie] — Triggers de gouvernance : éviter les définitions trop étroites. Quand on définit un trigger de report d'achat outil ou de décision, lister les 3-4 dimensions de valeur potentielle, pas seulement la dimension qui a saturé en premier dans la conversation. Le bon trigger est multidimensionnel.
+- [2026-04-26 18:40 GMT+1] [Claude Desktop] [Stratégie] — Garde-fou session : Claude doit l'émettre activement toutes les 5-7 réponses ET en fin de session systématiquement, sans attendre saturation contextuelle perçue. C'est un rituel de discipline, pas un mécanisme d'urgence (révision section 14.2.6).
+- [2026-04-26 18:55 GMT+1] [Fondateur] [Stratégie] — Tooling de questions interactives (boutons à choix) interfère avec l'évaluation autonome du garde-fou session par Claude. Préférer le format texte avec questions numérotées (1/2/3 ou A/B/C) auquel le fondateur répond en clair. Hypothèse à valider sur les prochaines sessions.
 
 ---
 
