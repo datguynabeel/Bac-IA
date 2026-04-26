@@ -1555,9 +1555,17 @@ Usages exclusifs sur cette tête :
 
 Règle d'économie tokens : **ne jamais demander à Opus 4.7 de générer du code volumineux** (300+ lignes) destiné à être copié-collé brutalement. Pour ces cas, demander uniquement le **prompt parfait** à transmettre à Antigravity.
 
-**Tête exécutante : Antigravity (forfait Google AI Plus 59,99 MAD/mois)**
+**Tête exécutante : Antigravity (forfait Google AI Pro — acté v1.4)**
 
-Antigravity est utilisé pour toute la production effective — code, scripts, refactoring, intégration. Le forfait Google AI Plus donne accès à Gemini 3.1 Pro illimité (dans les quotas hebdomadaires) et à Claude 4.6 Opus thinking via Vertex Model Garden.
+Antigravity est utilisé pour toute la production effective — code, scripts, refactoring, intégration. Le forfait Google AI Pro donne accès à Gemini 3.1 Pro avec quotas mensuels élargis (vs hebdomadaires sur Plus), à Claude 4.6 Opus thinking via Vertex Model Garden, à NotebookLM Pro (5× sources), à Deep Research illimité, et à Veo 3.1 pour la génération vidéo marketing.
+
+**Tarification Maroc actée [2026-04-26 ~18:30 GMT+1] :** 119 MAD/mois sur les 6 premiers mois (tarif promotionnel), puis 239 MAD/mois (tarif standard). Surcoût année 1 vs Plus : ~1 428 MAD soit ~2,9% du budget de lancement (50 000 DH section 6.4).
+
+**Justification multi-besoins du passage Plus → Pro (cf. section 14.2.7 traçabilité) :**
+1. Quotas Gemini 3.1 Pro élargis pour usage Antigravity intensif (cf. 14.2.4)
+2. NotebookLM Pro pour ingestion accélérée des manuels marocains (cf. 3.5 RAG, 9.4 contenus)
+3. Deep Research illimité pour veille concurrentielle (cf. 1.3.3) et audit pédagogique (cf. 10.4)
+4. Veo 3.1 pour production interne de vidéos marketing TikTok/Reels (cf. 7.2 canal n°1)
 
 La sélection du modèle dans Antigravity est **manuelle** (sélecteur en haut de l'interface) et obéit à la règle d'arbitrage définie en section 14.2.4.
 
@@ -1709,12 +1717,32 @@ Ce bloc est destiné à être collé au début de la conversation suivante pour 
 **Le fondateur reste seul juge** : Claude propose, ne décide pas. Le fondateur peut toujours choisir de continuer si le bloc cohérent en cours le justifie.
 
 
+### 14.2.7 Traçabilité décision Google AI Pro (acté v1.4)
+
+**Date de la décision :** [2026-04-26 ~18:30 GMT+1]
+**Décision actée :** passage de Google AI Plus (60 MAD/mois) à Google AI Pro (119 MAD promo 6 mois → 239 MAD standard).
+
+**Contexte de la décision.** La synthèse de session du matin (~17:00 GMT+1) avait reporté la décision à un trigger "saturation confirmée Gemini 3.1 Pro post-30/04 sur tâches MVP réelles". Ce trigger s'est révélé **trop étroit** : il ne couvrait que la dimension quotas Gemini, alors que les vrais bénéfices de Pro sont multidimensionnels (NotebookLM Pro, Deep Research, Veo 3.1).
+
+**Bénéfices alignés avec sections existantes du doc :**
+- **NotebookLM Pro** → ingestion manuels marocains (sections 3.5 RAG, 9.4 acquisition contenus). Infrastructure produit, pas confort.
+- **Deep Research illimité** → veille concurrentielle (1.3.3) + audit pédagogique récurrent (10.4)
+- **Veo 3.1** → production vidéos TikTok/Reels en interne, canal d'acquisition n°1 (7.2). ROI sur 1 vidéo/mois économisée vs prestataire externe.
+- **Quotas Gemini 3.1 Pro élargis** → usage Antigravity intensif sur audit cross-fichiers (14.2.4)
+
+**Cadrage économique.** Surcoût année 1 : ~1 428 MAD (= +119 MAD/mois moyenne sur 12 mois). Représente 2,9% du budget de lancement. Surcoût année 2+ : ~2 148 MAD/an. Ratio coût/bénéfice considéré favorable au regard des 4 cas d'usage produit alignés.
+
+**Engagement de gouvernance.** Si après 6 mois aucun des 4 cas d'usage NotebookLM Pro / Deep Research / Veo 3.1 / quotas Gemini élargis n'est devenu structurel dans le workflow, **rétrogradation obligatoire** vers Google AI Plus. Évaluation à dater pour [2026-10-26].
+
+---
+
 ## 14.3 Stack technique consolidée (rappel synthétique)
 
 | Couche | Outil | Statut |
 |---|---|---|
 | **Conception stratégique (fondateur)** | Claude Desktop Pro + Opus 4.7 | ✅ Acté v1.3 |
-| **Conception exécutante (fondateur)** | Antigravity (Gemini 3.1 Pro + Claude 4.6 Opus) via Google AI Plus 59,99 MAD/mois | ✅ Acté v1.3 |
+| **Conception exécutante (fondateur)** | Antigravity (Gemini 3.1 Pro + Claude 4.6 Opus) via Google AI Pro — 119 MAD/mois (mois 1-6) puis 239 MAD/mois | ✅ Acté v1.4 |
+| **Production de contenu (RAG + marketing)** | NotebookLM Pro + Deep Research + Veo 3.1 (inclus dans Google AI Pro) | ✅ Acté v1.4 |
 | **Mémoire d'apprentissage** | `tasks/lessons.md` versionné dans le repo | ✅ Acté v1.3 |
 | **Garde-fou session conversation** | Bloc `🔄 GARDE-FOU SESSION` automatique en fin de réponse Claude Desktop | ✅ Acté v1.3 |
 | **Design** | Antigravity + Stitch | ✅ Acté v1.2 |
