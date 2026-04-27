@@ -8,40 +8,40 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --bg-deep: #0a0e1a;
-      --bg-mid: #0f1424;
-      --glass-bg: rgba(255,255,255,0.04);
-      --glass-border: rgba(255,255,255,0.08);
-      --glass-border-strong: rgba(255,255,255,0.14);
-      --text-primary: #f5f7fa;
-      --text-secondary: #a8b1c2;
-      --text-muted: #6b7488;
-      --accent-green: #10b981;
-      --accent-amber: #f59e0b;
-      --accent-red: #ef4444;
-      --accent-blue: #3b82f6;
-      --accent-purple: #a855f7;
-      --radius-card: 16px;
-      --radius-pill: 999px;
-    }
+    :root{--bg-deep:#0a0e1a;--bg-mid:#0f1424;--glass-bg:rgba(255,255,255,0.04);--glass-border:rgba(255,255,255,0.08);--glass-border-strong:rgba(255,255,255,0.14);--text-primary:#f5f7fa;--text-secondary:#a8b1c2;--text-muted:#6b7488;--accent-green:#10b981;--accent-amber:#f59e0b;--accent-red:#ef4444;--accent-blue:#3b82f6;--accent-purple:#a855f7;--radius-card:16px;--radius-pill:999px}
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:radial-gradient(ellipse at top left,#1a1f3a 0%,var(--bg-deep) 60%);color:var(--text-primary);min-height:100vh;padding:32px 24px 80px;line-height:1.5;-webkit-font-smoothing:antialiased}
     .container{max-width:1280px;margin:0 auto}
-    header{margin-bottom:32px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px}
+    header{margin-bottom:24px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px}
     h1{font-size:28px;font-weight:800;letter-spacing:-0.02em}
     h1 .accent{background:linear-gradient(135deg,var(--accent-blue),var(--accent-purple));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-    .meta-info{font-size:13px;color:var(--text-muted);text-align:right}
-    .meta-info span{display:block}
+    .meta-info{font-size:13px;color:var(--text-muted);text-align:right;display:flex;flex-direction:column;gap:4px;align-items:flex-end}
+    .meta-info .freshness{font-size:11px;color:var(--text-muted)}
+    .refresh-btn{margin-top:6px;padding:6px 12px;background:rgba(255,255,255,0.04);border:1px solid var(--glass-border);border-radius:var(--radius-pill);color:var(--text-secondary);font-size:11px;cursor:pointer;font-family:inherit;transition:all .2s}
+    .refresh-btn:hover{border-color:var(--glass-border-strong);color:var(--text-primary)}
+    .refresh-btn.spinning{opacity:.5;pointer-events:none}
+    .nsm-banner{background:linear-gradient(135deg,rgba(16,185,129,.10),rgba(59,130,246,.05));border:1px solid rgba(16,185,129,.25);border-radius:12px;padding:12px 18px;margin-bottom:20px;display:flex;align-items:center;gap:12px;font-size:13px}
+    .nsm-banner .nsm-label{color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;font-size:10px;font-weight:600}
+    .nsm-banner .nsm-value{font-weight:600;color:var(--text-primary);font-size:14px}
+    .raccourcis{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+    .raccourci{padding:6px 12px;background:rgba(255,255,255,.03);border:1px solid var(--glass-border);border-radius:var(--radius-pill);color:var(--text-secondary);font-size:12px;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:6px}
+    .raccourci:hover{border-color:var(--glass-border-strong);color:var(--text-primary);background:rgba(255,255,255,.06)}
+    .tabs{display:flex;gap:4px;margin-bottom:24px;border-bottom:1px solid var(--glass-border);overflow-x:auto}
+    .tab{padding:12px 20px;background:transparent;border:none;color:var(--text-muted);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;display:inline-flex;align-items:center;gap:8px}
+    .tab:hover{color:var(--text-secondary)}
+    .tab.active{color:var(--text-primary);border-bottom-color:var(--accent-blue)}
+    .tab-content{display:none;animation:fadeIn .25s ease}
+    .tab-content.active{display:block}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
     .grid{display:grid;gap:20px;grid-template-columns:repeat(12,1fr)}
     .card{background:var(--glass-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:var(--radius-card);padding:24px;transition:border-color .2s ease}
     .card:hover{border-color:var(--glass-border-strong)}
     .card-title{font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px;display:flex;align-items:center;gap:8px}
     .card-title .icon{font-size:16px}
-    .col-12{grid-column:span 12}.col-8{grid-column:span 8}.col-6{grid-column:span 6}.col-4{grid-column:span 4}
-    @media(max-width:900px){.col-8,.col-6,.col-4{grid-column:span 12}}
+    .col-12{grid-column:span 12}.col-8{grid-column:span 8}.col-6{grid-column:span 6}.col-4{grid-column:span 4}.col-3{grid-column:span 3}
+    @media(max-width:900px){.col-8,.col-6,.col-4,.col-3{grid-column:span 12}}
     .pulse-content{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
-    .pulse-dot{width:14px;height:14px;border-radius:50%;background:var(--accent-green);box-shadow:0 0 12px var(--accent-green);animation:pulse 2s ease-in-out infinite}
+    .pulse-dot{width:14px;height:14px;border-radius:50%;background:var(--accent-green);box-shadow:0 0 12px var(--accent-green);animation:pulse 2s ease-in-out infinite;flex-shrink:0}
     .pulse-dot.amber{background:var(--accent-amber);box-shadow:0 0 12px var(--accent-amber)}
     .pulse-dot.red{background:var(--accent-red);box-shadow:0 0 12px var(--accent-red)}
     @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
@@ -51,6 +51,7 @@
     .jalon{padding:16px 0;border-bottom:1px solid var(--glass-border)}.jalon:last-child{border-bottom:none}
     .jalon-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px}
     .jalon-label{font-weight:600;font-size:14px}
+    .jalon-deadline{font-size:11px;color:var(--text-muted);font-variant-numeric:tabular-nums;margin-left:8px}
     .jalon-statut{font-size:11px;padding:3px 10px;border-radius:var(--radius-pill);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
     .statut-en_cours{background:rgba(245,158,11,.15);color:var(--accent-amber)}
     .statut-a_venir{background:rgba(168,85,247,.12);color:#c4b5fd}
@@ -64,7 +65,7 @@
     .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px}
     .kpi{padding:14px;background:rgba(255,255,255,.02);border:1px solid var(--glass-border);border-radius:12px}
     .kpi-label{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
-    .kpi-value{font-size:24px;font-weight:700}
+    .kpi-value{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}
     .kpi-cible{font-size:12px;color:var(--text-muted);margin-top:2px}
     .kpi-cible .sep{opacity:.5;margin:0 4px}
     .timeline{display:flex;flex-direction:column;gap:10px;max-height:320px;overflow-y:auto;padding-right:4px}
@@ -83,6 +84,30 @@
     .cadence-label{color:var(--text-secondary)}.cadence-value{font-weight:600;font-variant-numeric:tabular-nums}
     .cadence-pct{font-size:32px;font-weight:800;text-align:center;padding:12px 0}
     .cadence-pct.green{color:var(--accent-green)}.cadence-pct.amber{color:var(--accent-amber)}.cadence-pct.red{color:var(--accent-red)}
+    .gng{padding:18px;background:linear-gradient(135deg,rgba(245,158,11,.12),rgba(239,68,68,.06));border:1px solid rgba(245,158,11,.3);border-radius:12px}
+    .gng-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px}
+    .gng-id{font-size:12px;font-weight:700;color:var(--accent-amber);background:rgba(245,158,11,.15);padding:3px 10px;border-radius:var(--radius-pill)}
+    .gng-label{font-size:16px;font-weight:700}
+    .gng-echeance{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em}
+    .gng-row{margin-bottom:10px;font-size:13px}.gng-row:last-child{margin-bottom:0}
+    .gng-row-label{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+    .gng-row-value{color:var(--text-primary);line-height:1.5}
+    .risk-table{width:100%;border-collapse:collapse;font-size:13px}
+    .risk-table th{text-align:left;padding:10px 8px;font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;font-weight:600;border-bottom:1px solid var(--glass-border)}
+    .risk-table td{padding:12px 8px;border-bottom:1px solid var(--glass-border);vertical-align:top}
+    .risk-table tr:last-child td{border-bottom:none}
+    .risk-id{font-weight:700;font-size:11px;color:var(--text-muted);font-variant-numeric:tabular-nums}
+    .risk-tag{font-size:10px;padding:2px 8px;border-radius:var(--radius-pill);font-weight:600;text-transform:uppercase;letter-spacing:.04em;display:inline-block}
+    .risk-low{background:rgba(168,85,247,.12);color:#c4b5fd}
+    .risk-med{background:rgba(245,158,11,.15);color:var(--accent-amber)}
+    .risk-high{background:rgba(239,68,68,.15);color:var(--accent-red)}
+    .risk-crit{background:rgba(239,68,68,.25);color:#fca5a5;font-weight:700}
+    .risk-mitigation{color:var(--text-secondary);font-size:12px;line-height:1.4}
+    .lessons-list{display:flex;flex-direction:column;gap:10px}
+    .lesson{padding:10px 12px;background:rgba(255,255,255,.02);border-left:2px solid var(--accent-purple);border-radius:6px}
+    .lesson-meta{display:flex;gap:8px;font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.04em;font-weight:600;margin-bottom:6px;flex-wrap:wrap}
+    .lesson-source{color:#c4b5fd}
+    .lesson-resume{font-size:13px;color:var(--text-secondary);line-height:1.5}
     .error{color:var(--accent-red);padding:24px;text-align:center;font-size:14px}
   </style>
 </head>
@@ -92,60 +117,57 @@
       <h1><span class="accent">Bac IA</span> — Dashboard Fondateur</h1>
       <div class="meta-info" id="meta-info"></div>
     </header>
-    <div id="dashboard-root">
-      <div class="card"><div class="card-title">Chargement…</div></div>
-    </div>
+    <div id="nsm-banner-root"></div>
+    <div id="raccourcis-root"></div>
+    <div class="tabs" id="tabs-root"></div>
+    <div id="tab-cockpit" class="tab-content active"></div>
+    <div id="tab-jalons" class="tab-content"></div>
+    <div id="tab-risques" class="tab-content"></div>
   </div>
   <script>
-async function loadDashboard(){
+const FR=n=>(typeof n==='number'?n.toLocaleString('fr-FR'):n);
+function fresh(iso){const h=Math.floor((Date.now()-new Date(iso).getTime())/36e5);if(h<1)return'il y a < 1h';if(h<24)return'il y a '+h+'h';return'il y a '+Math.floor(h/24)+'j'}
+async function load(){
+  const btn=document.getElementById('refresh-btn');if(btn)btn.classList.add('spinning');
   try{
-    const res=await fetch('/dashboard/status.json?t='+Date.now());
-    if(!res.ok)throw new Error('status.json introuvable');
-    const data=await res.json();
-    renderMeta(data.meta);
-    renderDashboard(data);
-  }catch(e){
-    document.getElementById('dashboard-root').innerHTML='<div class="card error">Erreur de chargement : '+e.message+'</div>';
-  }
+    const r=await fetch('/dashboard/status.json?t='+Date.now());if(!r.ok)throw new Error('status.json introuvable');
+    const d=await r.json();
+    rMeta(d.meta);rNSM(d.meta);rRac(d.raccourcis||[]);rTabs();rCockpit(d);rJalons(d);rRisques(d);
+  }catch(e){document.getElementById('tab-cockpit').innerHTML='<div class="card error">Erreur : '+e.message+'</div>'}
+  finally{if(btn)btn.classList.remove('spinning')}
 }
-function renderMeta(meta){
-  const date=new Date(meta.last_updated).toLocaleString('fr-FR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
-  document.getElementById('meta-info').innerHTML=`<span>Dernière MAJ : <strong>${date}</strong></span><span>Doc maître v${meta.doc_master_version} · ${meta.lessons_count} leçons</span>`;
+function rMeta(m){
+  const dt=new Date(m.last_updated).toLocaleString('fr-FR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
+  document.getElementById('meta-info').innerHTML='<span>Dernière MAJ : <strong>'+dt+'</strong></span><span class="freshness">'+fresh(m.last_updated)+' · Doc maître v'+m.doc_master_version+' · '+m.lessons_count+' leçons</span><button class="refresh-btn" id="refresh-btn" onclick="load()">↻ Actualiser</button>';
 }
-function renderDashboard(d){
-  document.getElementById('dashboard-root').innerHTML=`<div class="grid">${renderPulse(d.pulse)}${renderJalons(d.jalons)}${renderKpis(d.kpis)}${renderNextAction(d.prochaine_action)}${renderDecisions(d.decisions_actees)}${renderBloquants(d.bloquants)}${renderCadence(d.cadence)}</div>`;
+function rNSM(m){if(!m.north_star_metric)return;document.getElementById('nsm-banner-root').innerHTML='<div class="nsm-banner"><span style="font-size:18px">⭐</span><div><div class="nsm-label">North Star Metric</div><div class="nsm-value">'+m.north_star_metric+'</div></div></div>'}
+function rRac(rs){if(!rs.length)return;document.getElementById('raccourcis-root').innerHTML='<div class="raccourcis">'+rs.map(r=>'<a class="raccourci" href="'+r.url+'" target="_blank" rel="noopener">'+r.icon+' '+r.label+'</a>').join('')+'</div>'}
+function rTabs(){
+  document.getElementById('tabs-root').innerHTML='<button class="tab active" data-tab="cockpit"><span style="font-size:15px">🎯</span>Cockpit</button><button class="tab" data-tab="jalons"><span style="font-size:15px">🏁</span>Jalons Go/No-Go</button><button class="tab" data-tab="risques"><span style="font-size:15px">⚠️</span>Risques</button>';
+  document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('active'));t.classList.add('active');document.getElementById('tab-'+t.dataset.tab).classList.add('active')}));
 }
-function renderPulse(p){
-  const cls=p.sante_globale==='vert'?'':(p.sante_globale==='amber'?'amber':'red');
-  return `<div class="card col-12"><div class="card-title"><span class="icon">🟢</span>Pulse global</div><div class="pulse-content"><div class="pulse-dot ${cls}"></div><div><div class="pulse-phase">${p.phase_actuelle}</div><div class="pulse-label">${p.sante_label}</div></div><div class="pulse-target">🎯 ${p.time_to_first_revenue_target}</div></div></div>`;
+function rCockpit(d){document.getElementById('tab-cockpit').innerHTML='<div class="grid">'+rPulse(d.pulse)+rJB(d.jalons)+rKpis(d.kpis)+rNA(d.prochaine_action)+rDec(d.decisions_actees)+rBloq(d.bloquants)+rCad(d.cadence)+rLess(d.lessons_recentes||[])+'</div>'}
+function rPulse(p){
+  const c=p.sante_globale==='vert'?'':(p.sante_globale==='amber'?'amber':'red'),ic=p.sante_globale==='vert'?'🟢':(p.sante_globale==='amber'?'🟡':'🔴');
+  return '<div class="card col-12"><div class="card-title"><span class="icon">'+ic+'</span>Pulse global</div><div class="pulse-content"><div class="pulse-dot '+c+'"></div><div><div class="pulse-phase">'+p.phase_actuelle+'</div><div class="pulse-label">'+p.sante_label+'</div></div><div class="pulse-target">🎯 '+p.time_to_first_revenue_target+'</div></div></div>';
 }
-function renderJalons(jalons){
-  const items=jalons.map(j=>`<div class="jalon"><div class="jalon-header"><div class="jalon-label">${j.label}</div><div class="jalon-statut statut-${j.statut}">${j.statut.replace('_',' ')}</div></div><div class="progress-bar"><div class="progress-fill" style="width:${j.progression_pct}%"></div></div><div class="jalon-items">${j.items.map(it=>`<div class="jalon-item ${it.fait?'fait':''}"><span class="${it.fait?'check':'pending'}">${it.fait?'✓':'○'}</span><span>${it.label}</span></div>`).join('')}</div></div>`).join('');
-  return `<div class="card col-8"><div class="card-title"><span class="icon">🎯</span>Avancement par jalon</div>${items}</div>`;
+function jalonHTML(j){return '<div class="jalon"><div class="jalon-header"><div class="jalon-label">'+j.label+(j.deadline?'<span class="jalon-deadline">· cible '+j.deadline+'</span>':'')+'</div><div class="jalon-statut statut-'+j.statut+'">'+j.statut.replace('_',' ')+'</div></div><div class="progress-bar"><div class="progress-fill" style="width:'+j.progression_pct+'%"></div></div><div class="jalon-items">'+j.items.map(i=>'<div class="jalon-item '+(i.fait?'fait':'')+'"><span class="'+(i.fait?'check':'pending')+'">'+(i.fait?'✓':'○')+'</span><span>'+i.label+'</span></div>').join('')+'</div></div>'}
+function rJB(js){return '<div class="card col-8"><div class="card-title"><span class="icon">🎯</span>Avancement par jalon Phase 0</div>'+js.map(jalonHTML).join('')+'</div>'}
+function rKpis(ks){return '<div class="card col-4"><div class="card-title"><span class="icon">📊</span>KPIs vivants</div><div class="kpi-grid">'+ks.map(k=>'<div class="kpi"><div class="kpi-label">'+k.label+'</div><div class="kpi-value">'+FR(k.valeur)+(k.unite?' '+k.unite:'')+'</div>'+(k.cible!==null?'<div class="kpi-cible">cible<span class="sep">·</span><strong>'+FR(k.cible)+(k.unite?' '+k.unite:'')+'</strong></div>':'<div class="kpi-cible">&nbsp;</div>')+'</div>').join('')+'</div></div>'}
+function rNA(a){return '<div class="card col-6"><div class="card-title"><span class="icon">⚡</span>Prochaine action immédiate</div><div class="next-action"><div class="next-action-label">'+a.label+'</div><div class="next-action-meta"><span>Deadline <strong>'+a.deadline+'</strong></span><span>Owner <strong>'+a.owner+'</strong></span></div></div></div>'}
+function rDec(ds){return '<div class="card col-6"><div class="card-title"><span class="icon">🧭</span>Décisions clés actées</div><div class="timeline">'+ds.slice().reverse().map(d=>'<div class="decision"><div class="decision-date">'+d.date+'</div><div class="decision-label">'+d.label+'</div></div>').join('')+'</div></div>'}
+function rBloq(bs){return '<div class="card col-3"><div class="card-title"><span class="icon">🚧</span>Bloquants</div>'+(bs.length?bs.map(b=>'<div class="bloquant">'+b+'</div>').join(''):'<div class="empty">Aucun bloquant identifié.</div>')+'</div>'}
+function rCad(c){const cls=c.respect_pct>=80?'green':(c.respect_pct>=60?'amber':'red');return '<div class="card col-3"><div class="card-title"><span class="icon">📅</span>Cadence respectée</div><div class="cadence-pct '+cls+'">'+c.respect_pct+'%</div><div class="cadence-row"><span class="cadence-label">Sessions tenues / planifiées</span><span class="cadence-value">'+c.sessions_tenues_semaine+' / '+c.sessions_planifiees_semaine+'</span></div><div class="cadence-row"><span class="cadence-label">Patches Antigravity (semaine)</span><span class="cadence-value">'+c.patches_antigravity_semaine+'</span></div></div>'}
+function rLess(ls){if(!ls.length)return '';return '<div class="card col-6"><div class="card-title"><span class="icon">🧠</span>Leçons récentes (5 dernières)</div><div class="lessons-list">'+ls.map(l=>'<div class="lesson"><div class="lesson-meta"><span>'+l.date+'</span><span class="lesson-source">'+l.source+'</span><span>'+l.categorie+'</span></div><div class="lesson-resume">'+l.resume+'</div></div>').join('')+'</div></div>'}
+function rJalons(d){
+  const g=d.go_no_go_prochain,gb=g?'<div class="card col-12"><div class="card-title"><span class="icon">🚦</span>Prochain Go/No-Go</div><div class="gng"><div class="gng-header"><div><span class="gng-id">'+g.id+'</span><span class="gng-label" style="margin-left:10px">'+g.label+'</span></div><div class="gng-echeance">'+g.echeance+'</div></div><div class="gng-row"><div class="gng-row-label">Critère Go (mesurable)</div><div class="gng-row-value">'+g.critere_go+'</div></div><div class="gng-row"><div class="gng-row-label">Action si No-Go</div><div class="gng-row-value">'+g.action_no_go+'</div></div></div></div>':'';
+  document.getElementById('tab-jalons').innerHTML='<div class="grid">'+gb+'<div class="card col-12"><div class="card-title"><span class="icon">🏁</span>Tous les jalons Phase 0 → Phase 3</div>'+d.jalons.map(jalonHTML).join('')+'</div></div>';
 }
-function renderKpis(kpis){
-  const items=kpis.map(k=>{
-    const cible=k.cible!==null?`<div class="kpi-cible">cible<span class="sep">·</span><strong>${k.cible}${k.unite?' '+k.unite:''}</strong></div>`:'<div class="kpi-cible">&nbsp;</div>';
-    return `<div class="kpi"><div class="kpi-label">${k.label}</div><div class="kpi-value">${k.valeur}${k.unite?' '+k.unite:''}</div>${cible}</div>`;
-  }).join('');
-  return `<div class="card col-4"><div class="card-title"><span class="icon">📊</span>KPIs vivants</div><div class="kpi-grid">${items}</div></div>`;
+function rRisques(d){
+  const rs=d.risques||[],tc=l=>{const v=(l||'').toLowerCase();if(v.includes('existentiel'))return'risk-crit';if(v.includes('élevé')||v.includes('eleve'))return'risk-high';if(v.includes('moyen'))return'risk-med';return'risk-low'};
+  document.getElementById('tab-risques').innerHTML='<div class="grid"><div class="card col-12"><div class="card-title"><span class="icon">⚠️</span>Registre des risques ('+rs.length+' risques actifs · triés par criticité)</div><table class="risk-table"><thead><tr><th>ID</th><th>Risque</th><th>Probabilité</th><th>Impact</th><th>Mitigation</th><th>Owner</th></tr></thead><tbody>'+rs.map(r=>'<tr><td><span class="risk-id">'+r.id+'</span></td><td>'+r.risque+'</td><td><span class="risk-tag '+tc(r.probabilite)+'">'+r.probabilite+'</span></td><td><span class="risk-tag '+tc(r.impact)+'">'+r.impact+'</span></td><td class="risk-mitigation">'+r.mitigation+'</td><td>'+r.owner+'</td></tr>').join('')+'</tbody></table></div></div>';
 }
-function renderNextAction(a){
-  return `<div class="card col-6"><div class="card-title"><span class="icon">⚡</span>Prochaine action immédiate</div><div class="next-action"><div class="next-action-label">${a.label}</div><div class="next-action-meta"><span>Deadline <strong>${a.deadline}</strong></span><span>Owner <strong>${a.owner}</strong></span></div></div></div>`;
-}
-function renderDecisions(decisions){
-  const items=decisions.slice().reverse().map(d=>`<div class="decision"><div class="decision-date">${d.date}</div><div class="decision-label">${d.label}</div></div>`).join('');
-  return `<div class="card col-6"><div class="card-title"><span class="icon">🧭</span>Décisions clés actées</div><div class="timeline">${items}</div></div>`;
-}
-function renderBloquants(bloquants){
-  const content=bloquants.length?bloquants.map(b=>`<div class="bloquant">${b}</div>`).join(''):'<div class="empty">Aucun bloquant identifié.</div>';
-  return `<div class="card col-6"><div class="card-title"><span class="icon">🚧</span>Bloquants</div>${content}</div>`;
-}
-function renderCadence(c){
-  const cls=c.respect_pct>=80?'green':(c.respect_pct>=60?'amber':'red');
-  return `<div class="card col-6"><div class="card-title"><span class="icon">📅</span>Cadence respectée</div><div class="cadence-pct ${cls}">${c.respect_pct}%</div><div class="cadence-row"><span class="cadence-label">Sessions tenues / planifiées</span><span class="cadence-value">${c.sessions_tenues_semaine} / ${c.sessions_planifiees_semaine}</span></div><div class="cadence-row"><span class="cadence-label">Patches Antigravity (semaine)</span><span class="cadence-value">${c.patches_antigravity_semaine}</span></div></div>`;
-}
-loadDashboard();
+load();
   </script>
 </body>
 </html>
