@@ -1,7 +1,7 @@
 # Bac IA — Document de Référence Projet
 
-**Version :** 1.6
-**Date :** Avril 2026 — v1.6 recalibre le garde-fou session (section 14.2.6) suite au diagnostic du 26/04/2026 : Claude Desktop n'a pas accès à la métrique UI "% session utilisée", l'estimation horodatage interne est non fiable, et le format synthèse de fin doit être un bloc autonome copy-paste sans imbrication de code fence.
+**Version :** 1.7
+**Date :** Mai 2026 — v1.7 ajoute la section 1.3.5 (Argumentaire anti-ChatGPT, FAQ commerciale) pour usage opérationnel en démo école et pré-vente.
 **Auteur :** [Fondateur] + Claude (Co-Fondateur IA, Chef de Projet & Delivery Manager)
 **Statut :** Document maître — à charger dans Claude Projects comme connaissance permanente
 **Langue :** Français (avec extraits darija/arabe selon contexte)
@@ -14,6 +14,8 @@
 - v1.4 (avril 2026) — Pricing définitif acté à 100/200/300 DH, discount annuel calibré à -15%, refonte freemium "Découverte enrichi V2" (5 questions/jour + diagnostic + 1 chapitre/mois + 1 PDF/mois + aperçu parent hebdo), remplacement du pack pré-Bac discount par offre saisonnière "Sprint Bac" prix plein + bonus valeur, passage Google AI Plus → Pro, ajout sections 6.5 et 14.2.7 (traçabilité décisions), mise à jour sections 1.1 / 2.3 / 6.1 / 6.2 / 6.3 / 11.5 / 14.2.3 / 14.3
 - v1.5 (avril 2026) — Ajout section 14.2.8 (architecture knowledge Claude Projects à 2 niveaux : upload manuel pour fichiers stratégiques + connexion repo pour contexte exécution), mise à jour section 14.3 (stack consolidée) avec ligne dédiée
 - v1.6 (avril 2026) — Recalibrage section 14.2.6 (garde-fou session) : ajout sous-sections 14.2.6.4 (angle mort métrique UI), 14.2.6.5 (heuristique de remplacement par proxies de cumul mental, seuil 60% jaune→rouge), 14.2.6.6 (demande explicite de la métrique UI au fondateur après livrable lourd), 14.2.6.7 (format synthèse de fin obligatoire en bloc autonome sans imbrication code fence). Suite à diagnostic défaillance garde-fou du 26/04/2026.
+
+- v1.7 (mai 2026) — Ajout section 1.3.5 (Argumentaire anti-ChatGPT, FAQ commerciale) : pitch d'une phrase, cadrage prix vs ChatGPT Plus, formalisation des 5 moats non-réplicables, résumé tactique 30s pour démo école, limites assumées. Section destinée à un usage opérationnel direct (démo pilote, one-pager pré-vente, FAQ site, formation commerciaux futurs).
 
 ---
 
@@ -114,6 +116,56 @@ Selon les enquêtes informelles auprès de parents :
 - **Démocratisation paiement digital :** CMI Pay, Inwi Money, Orange Money se généralisent
 - **Stratégie Maroc Digital 2030 :** soutien gouvernemental à la transformation numérique éducative
 - **Échec relatif de l'enseignement public :** classement PISA, taux d'échec au Bac qui poussent les familles vers le privé/soutien
+
+### 1.3.5 Argumentaire anti-ChatGPT (FAQ commerciale)
+
+**Objection commerciale n°1.** "Pourquoi payer Bac IA alors que ChatGPT est gratuit ?"
+
+Cette objection est **la** question centrale en démo et pré-vente. Cette sous-section formalise la réponse pour usage opérationnel (scripts de démo en école, argumentaires de pré-vente, FAQ site, formation commerciaux futurs).
+
+**Pitch d'une phrase.**
+
+> "ChatGPT est un couteau suisse. Bac IA est un scalpel pour le Bac marocain. On ne fait pas une opération chirurgicale avec un couteau suisse — même s'il est gratuit."
+
+**Cadrage de prix (réfutation du "gratuit").**
+
+ChatGPT n'est pas gratuit pour la cible Bac.
+- **ChatGPT Plus** = 20 USD/mois ≈ 200 DH/mois → exactement le prix de notre pack Famille (cf. arbitrages économiques v1.4).
+- Le tier gratuit est plafonné en messages, sans mémoire fiable, vision limitée.
+- À 100 DH/mois (Découverte+) ou 200 DH/mois (Famille), Bac IA est **moins cher que ChatGPT Plus** ET fait ce que ChatGPT ne sait pas faire.
+
+**Les 5 moats non-réplicables par ChatGPT.**
+
+| # | Moat | Section doc | Ce que ChatGPT ne fait pas |
+|---|---|---|---|
+| 1 | **Spécialisation programme officiel marocain** | 3.4 (RAG sur manuels CNDP, annales Bac National) | Ne connaît ni le découpage CNDP, ni les coefficients par filière, ni le format exact des épreuves marocaines |
+| 2 | **Darija fluide + ancrage culturel local** | 2.5 (souveraineté culturelle) | Parle un arabe littéraire scolaire, ne maîtrise pas la darija, n'utilise pas de références locales (barrage Al Massira, Tahar Ben Jelloun) |
+| 3 | **Pédagogie anti-triche, pas distributeur de réponses** | 1.2, 3.6 (garde-fous) | Donne la réponse directement. Bac IA fait comprendre par questions socratiques — c'est ce que paient les parents |
+| 4 | **Suivi parent + écosystème famille** | 2.3.3, 1.4.2 (persona Rachid) | Aucun dashboard parent, aucun suivi temps d'étude ni lacunes. Arme de conversion principale vers le pack Famille |
+| 5 | **Format Bac, exercices type, examens blancs** | 1.3.3, offre Sprint Bac | Ne sait pas générer un exercice calibré sur le barème Bac SM. Bac IA produit des sujets indistinguables des annales |
+
+**Résumé tactique pour démo en école.**
+
+En 30 secondes, devant un parent ou un directeur d'école :
+
+1. *"ChatGPT ne connaît pas le programme CNDP."* (moat technique RAG)
+2. *"ChatGPT ne parle pas darija comme un grand frère casablancais."* (moat culturel)
+3. *"ChatGPT donne les réponses, on apprend à comprendre."* (moat pédagogique — argument parent)
+4. *"ChatGPT n'a pas de tableau de bord parent."* (moat famille — argument conversion)
+5. *"ChatGPT ne génère pas d'examens blancs type Bac SM."* (moat format Bac)
+
+**Limites assumées de l'argumentaire.**
+
+- ChatGPT reste supérieur sur les tâches généralistes hors-scolaire (rédaction libre, traduction grand public, code). Bac IA n'est **pas** un concurrent généraliste et ne le sera jamais (cf. discipline scope MVP, Partie 14).
+- L'écart de moats 1, 2 et 5 dépend directement de la qualité d'ingestion RAG (Section 3.4) : tant que le pipeline manuels CNDP n'est pas opérationnel à 100%, l'argument est partiellement déclaratif. **Priorité absolue Phase 1 : sécuriser le RAG marocain comme actif différenciant.**
+
+**Usage opérationnel de cette section.**
+
+- Script de démo pilote école (cf. Section 11.4)
+- One-pager de pré-vente
+- FAQ du site marketing (page "Pourquoi Bac IA et pas ChatGPT ?")
+- Formation des futurs commerciaux / partenaires écoles
+- Réponses standardisées sur réseaux sociaux et WhatsApp
 
 ---
 
