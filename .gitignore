@@ -1,3 +1,6 @@
 dist
 node_modules
 gen
+Bac_IA_Roadmap.xlsx
+apply_patch.py
+read_xlsx.js
