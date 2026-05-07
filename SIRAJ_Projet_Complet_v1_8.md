@@ -1,7 +1,7 @@
-# Bac IA — Document de Référence Projet
+﻿# SIRAJ — Document de Référence Projet
 
-**Version :** 1.7
-**Date :** Mai 2026 — v1.7 ajoute la section 1.3.5 (Argumentaire anti-ChatGPT, FAQ commerciale) pour usage opérationnel en démo école et pré-vente.
+**Version :** 1.8
+**Date :** Mai 2026 — v1.8 acte le renommage produit “Bac IA” → “SIRAJ” (04/05/2026), intègre l'identité de marque complète (Section 13.2) et met à jour la Partie 13 (décisions cochées identité + statut marque).
 **Auteur :** [Fondateur] + Claude (Co-Fondateur IA, Chef de Projet & Delivery Manager)
 **Statut :** Document maître — à charger dans Claude Projects comme connaissance permanente
 **Langue :** Français (avec extraits darija/arabe selon contexte)
@@ -17,11 +17,13 @@
 
 - v1.7 (mai 2026) — Ajout section 1.3.5 (Argumentaire anti-ChatGPT, FAQ commerciale) : pitch d'une phrase, cadrage prix vs ChatGPT Plus, formalisation des 5 moats non-réplicables, résumé tactique 30s pour démo école, limites assumées. Section destinée à un usage opérationnel direct (démo pilote, one-pager pré-vente, FAQ site, formation commerciaux futurs).
 
+- v1.8 (mai 2026) — Renommage produit “Bac IA” → “SIRAJ” acté le 04/05/2026 suite à validation de l'identité de marque complète. Mise à jour de toutes les mentions produit dans le doc maître (mentions historiques préservées en Section 13). Intégration de la Section 13.2 “Identité de marque SIRAJ” (architecture, palette, 8 variantes officielles, slogans). Décisions Section 13 cochées : identité visuelle + statut marque OMPIC. Repo GitHub `datguynabeel/Bac-IA` et URL `https://bac-ia.vercel.app` conservés temporairement (renommage opérationnel séparé, hors scope patch documentaire).
+
 ---
 
 ## Comment utiliser ce document
 
-Ce document est la source unique de vérité du projet **Bac IA**. Il est conçu pour être :
+Ce document est la source unique de vérité du projet **SIRAJ** (anciennement Bac IA, renommé le 04/05/2026 — cf. Section 13.2). Il est conçu pour être :
 
 1. **Chargé dans Claude Projects** comme connaissance permanente afin que Claude puisse être un véritable copilote du projet à chaque conversation
 2. **Mis à jour à chaque étape clé** (validation marché, décisions produit, pivots)
@@ -35,7 +37,7 @@ Chaque section est autonome et peut être consultée indépendamment.
 
 ## 1.1 Résumé exécutif
 
-**Bac IA** est une plateforme de tutorat IA personnalisé pour les lycéens marocains préparant le Baccalauréat (Tronc Commun, 1ère et 2ème année Bac, toutes filières). L'élève dialogue avec un tuteur IA spécialisé dans le programme officiel marocain, en français, arabe ou darija, qui s'adapte à son niveau, identifie ses lacunes, et génère exercices, corrigés détaillés et simulations d'examens nationaux.
+**SIRAJ** est une plateforme de tutorat IA personnalisé pour les lycéens marocains préparant le Baccalauréat (Tronc Commun, 1ère et 2ème année Bac, toutes filières). L'élève dialogue avec un tuteur IA spécialisé dans le programme officiel marocain, en français, arabe ou darija, qui s'adapte à son niveau, identifie ses lacunes, et génère exercices, corrigés détaillés et simulations d'examens nationaux.
 
 **Le problème.** Les parents marocains dépensent en moyenne 200 à 1 500 DH par mois et par matière en cours particuliers, avec une qualité variable, sans suivi structuré, et une disponibilité limitée. Les plateformes existantes (Kezakoo, KoolSkools) proposent du contenu vidéo statique non personnalisé.
 
@@ -119,20 +121,22 @@ Selon les enquêtes informelles auprès de parents :
 
 ### 1.3.5 Argumentaire anti-ChatGPT (FAQ commerciale)
 
-**Objection commerciale n°1.** "Pourquoi payer Bac IA alors que ChatGPT est gratuit ?"
+**Objection commerciale n°1.** "Pourquoi payer SIRAJ alors que ChatGPT est gratuit ?"
 
 Cette objection est **la** question centrale en démo et pré-vente. Cette sous-section formalise la réponse pour usage opérationnel (scripts de démo en école, argumentaires de pré-vente, FAQ site, formation commerciaux futurs).
 
+- v1.8 (mai 2026) — Renommage produit “Bac IA” → “SIRAJ” acté le 04/05/2026 suite à validation de l'identité de marque complète. Mise à jour de toutes les mentions produit dans le doc maître (mentions historiques préservées en Section 13). Intégration de la Section 13.2 “Identité de marque SIRAJ” (architecture, palette, 8 variantes officielles, slogans). Décisions Section 13 cochées : identité visuelle + statut marque OMPIC. Repo GitHub `datguynabeel/Bac-IA` et URL `https://bac-ia.vercel.app` conservés temporairement (renommage opérationnel séparé, hors scope patch documentaire).
+
 **Pitch d'une phrase.**
 
-> "ChatGPT est un couteau suisse. Bac IA est un scalpel pour le Bac marocain. On ne fait pas une opération chirurgicale avec un couteau suisse — même s'il est gratuit."
+> "ChatGPT est un couteau suisse. SIRAJ est un scalpel pour le Bac marocain. On ne fait pas une opération chirurgicale avec un couteau suisse — même s'il est gratuit."
 
 **Cadrage de prix (réfutation du "gratuit").**
 
 ChatGPT n'est pas gratuit pour la cible Bac.
 - **ChatGPT Plus** = 20 USD/mois ≈ 200 DH/mois → exactement le prix de notre pack Famille (cf. arbitrages économiques v1.4).
 - Le tier gratuit est plafonné en messages, sans mémoire fiable, vision limitée.
-- À 100 DH/mois (Découverte+) ou 200 DH/mois (Famille), Bac IA est **moins cher que ChatGPT Plus** ET fait ce que ChatGPT ne sait pas faire.
+- À 100 DH/mois (Découverte+) ou 200 DH/mois (Famille), SIRAJ est **moins cher que ChatGPT Plus** ET fait ce que ChatGPT ne sait pas faire.
 
 **Les 5 moats non-réplicables par ChatGPT.**
 
@@ -140,9 +144,9 @@ ChatGPT n'est pas gratuit pour la cible Bac.
 |---|---|---|---|
 | 1 | **Spécialisation programme officiel marocain** | 3.4 (RAG sur manuels CNDP, annales Bac National) | Ne connaît ni le découpage CNDP, ni les coefficients par filière, ni le format exact des épreuves marocaines |
 | 2 | **Darija fluide + ancrage culturel local** | 2.5 (souveraineté culturelle) | Parle un arabe littéraire scolaire, ne maîtrise pas la darija, n'utilise pas de références locales (barrage Al Massira, Tahar Ben Jelloun) |
-| 3 | **Pédagogie anti-triche, pas distributeur de réponses** | 1.2, 3.6 (garde-fous) | Donne la réponse directement. Bac IA fait comprendre par questions socratiques — c'est ce que paient les parents |
+| 3 | **Pédagogie anti-triche, pas distributeur de réponses** | 1.2, 3.6 (garde-fous) | Donne la réponse directement. SIRAJ fait comprendre par questions socratiques — c'est ce que paient les parents |
 | 4 | **Suivi parent + écosystème famille** | 2.3.3, 1.4.2 (persona Rachid) | Aucun dashboard parent, aucun suivi temps d'étude ni lacunes. Arme de conversion principale vers le pack Famille |
-| 5 | **Format Bac, exercices type, examens blancs** | 1.3.3, offre Sprint Bac | Ne sait pas générer un exercice calibré sur le barème Bac SM. Bac IA produit des sujets indistinguables des annales |
+| 5 | **Format Bac, exercices type, examens blancs** | 1.3.3, offre Sprint Bac | Ne sait pas générer un exercice calibré sur le barème Bac SM. SIRAJ produit des sujets indistinguables des annales |
 
 **Résumé tactique pour démo en école.**
 
@@ -156,14 +160,14 @@ En 30 secondes, devant un parent ou un directeur d'école :
 
 **Limites assumées de l'argumentaire.**
 
-- ChatGPT reste supérieur sur les tâches généralistes hors-scolaire (rédaction libre, traduction grand public, code). Bac IA n'est **pas** un concurrent généraliste et ne le sera jamais (cf. discipline scope MVP, Partie 14).
+- ChatGPT reste supérieur sur les tâches généralistes hors-scolaire (rédaction libre, traduction grand public, code). SIRAJ n'est **pas** un concurrent généraliste et ne le sera jamais (cf. discipline scope MVP, Partie 14).
 - L'écart de moats 1, 2 et 5 dépend directement de la qualité d'ingestion RAG (Section 3.4) : tant que le pipeline manuels CNDP n'est pas opérationnel à 100%, l'argument est partiellement déclaratif. **Priorité absolue Phase 1 : sécuriser le RAG marocain comme actif différenciant.**
 
 **Usage opérationnel de cette section.**
 
 - Script de démo pilote école (cf. Section 11.4)
 - One-pager de pré-vente
-- FAQ du site marketing (page "Pourquoi Bac IA et pas ChatGPT ?")
+- FAQ du site marketing (page "Pourquoi SIRAJ et pas ChatGPT ?")
 - Formation des futurs commerciaux / partenaires écoles
 - Réponses standardisées sur réseaux sociaux et WhatsApp
 
@@ -222,7 +226,7 @@ Famille modeste, n'a jamais eu de cours particulier. A entendu parler de l'app p
 
 **Statut :** persona ajoutée en v1.2 suite à l'identification du Design Partner Pilote (cf. section 11.4).
 
-**Profil.** Scolarisée dans une école privée payante de Casablanca couvrant maternelle → Bac. Niveau scolaire moyen à bon. Famille classe moyenne supérieure, déjà sensibilisée au numérique éducatif. Accès à Bac IA via un programme pilote négocié entre l'école et le fondateur.
+**Profil.** Scolarisée dans une école privée payante de Casablanca couvrant maternelle → Bac. Niveau scolaire moyen à bon. Famille classe moyenne supérieure, déjà sensibilisée au numérique éducatif. Accès à SIRAJ via un programme pilote négocié entre l'école et le fondateur.
 
 **Différence avec Yasmine :**
 - Conditions matérielles plus favorables (lycée privé, encadrement)
@@ -335,7 +339,7 @@ Strict minimum pour valider le marché payant.
 4. Highlight du plan le plus pertinent selon usage
 5. Période d'essai 7 jours sans CB pour le plan Premium
 6. Si pas de conversion à J+5, email parent (si lié) :
-   "Yasmine est très active sur Bac IA, elle pourrait tirer
+   "Yasmine est très active sur SIRAJ, elle pourrait tirer
    plus de bénéfices avec un plan Premium..."
 ```
 
@@ -345,7 +349,7 @@ Strict minimum pour valider le marché payant.
 
 ```
 ┌──────────────────────────────────┐
-│ ☰  Bac IA  📊 Progression  👤   │ ← Header
+│ ☰  SIRAJ  📊 Progression  👤   │ ← Header
 ├──────────────────────────────────┤
 │ Matière actuelle : Maths    🔄   │ ← Sélecteur matière
 ├──────────────────────────────────┤
@@ -512,7 +516,7 @@ Ces règles sont inscrites dans :
                        ↓
 ┌─────────────────────────────────────────────────┐
 │  COUCHE 2 : ORCHESTRATION & SPÉCIALISATION      │
-│  (la "magie" Bac IA)                            │
+│  (la "magie" SIRAJ)                             │
 │  - System prompts par matière/niveau            │
 │  - RAG : recherche dans la base de contenus     │
 │  - Logique de diagnostic adaptatif              │
@@ -732,7 +736,7 @@ Idem 1ère Bac + matières spécialisées + matières communes (philo, langues, 
 
 ## 4.3 Méthodologie pédagogique du tuteur
 
-Le tuteur Bac IA suit une approche **socratique et constructiviste** :
+Le tuteur SIRAJ suit une approche **socratique et constructiviste** :
 
 1. **Diagnostic avant prescription.** Avant d'expliquer, l'IA pose une question pour évaluer le niveau de compréhension de l'élève.
 
@@ -775,7 +779,7 @@ Cette section contient les prompts opérationnels prêts à l'emploi. **C'est le
 ## 5.1 System prompt principal du tuteur
 
 ```
-Tu es Bac IA, un tuteur scolaire spécialisé dans le programme officiel
+Tu es SIRAJ, un tuteur scolaire spécialisé dans le programme officiel
 marocain du Baccalauréat. Tu accompagnes [PRENOM_ELEVE], en classe de
 [NIVEAU] filière [FILIERE], pour la matière [MATIERE].
 
@@ -1013,7 +1017,7 @@ Le plan doit être ambitieux mais réaliste. Inclure des jours de repos.
 ### 5.3.5 Modération / garde-fou
 
 ```
-Tu es un classifieur de sécurité pour Bac IA. Analyse ce message
+Tu es un classifieur de sécurité pour SIRAJ. Analyse ce message
 d'élève et catégorise-le :
 
 Message : [MESSAGE_ELEVE]
@@ -1221,7 +1225,7 @@ Critère de Go/No-Go : si moins de 50 personnes paient 499 DH en pré-vente sur 
 ### Phase 2 — Lancement public (mois 4)
 - Landing page définitive
 - 10 vidéos TikTok/Instagram Reels d'introduction
-- 1 article LinkedIn / Medium "Comment j'ai construit Bac IA"
+- 1 article LinkedIn / Medium "Comment j'ai construit SIRAJ"
 - Approche d'écoles privées sélectionnées pour partenariats
 - Code promo influenceurs micro (5K-50K followers, niches éducation)
 
@@ -1418,7 +1422,7 @@ Ce qui justifie le prix premium et construit la marque :
 - % d'élèves obtenant une mention
 - Témoignages qualitatifs
 
-À mesurer chaque trimestre, à publier annuellement comme "rapport pédagogique Bac IA".
+À mesurer chaque trimestre, à publier annuellement comme "rapport pédagogique SIRAJ".
 
 ## 10.5 Métriques techniques (qualité IA)
 
@@ -1493,7 +1497,7 @@ Tâches déléguées à Claude :
 
 ### 11.4.3 Proposition gagnant-gagnant à formaliser
 
-| Ce que Bac IA offre | Ce que Bac IA demande |
+| Ce que SIRAJ offre | Ce que SIRAJ demande |
 |---|---|
 | Accès gratuit pilote pour 20-30 élèves de 2ème Bac pendant 3 mois | 2 profs référents (Maths SM + 1 autre matière) pour 2h/semaine |
 | Mention "École partenaire pilote" (optionnel selon souhait du directeur) | 2 ateliers d'1h avec élèves volontaires pour feedback produit |
@@ -1512,14 +1516,14 @@ Tâches déléguées à Claude :
 ### 11.4.5 Risques à surveiller
 
 - **Biais de complaisance :** un directeur qui connaît le fondateur comme parent risque de formuler des retours trop positifs. Mitigation : grilles de feedback structurées et anonymes pour les élèves testeurs.
-- **Scope creep vers le primaire :** la tentation de créer une version "Bac IA primaire" pour faire plaisir doit être refusée. Le MVP reste centré sur Maths 2Bac SM.
+- **Scope creep vers le primaire :** la tentation de créer une version "SIRAJ primaire" pour faire plaisir doit être refusée. Le MVP reste centré sur Maths 2Bac SM.
 - **Dépendance affective :** ne pas laisser la relation parent-école polluer les décisions stratégiques.
 
 ### 11.4.6 Prochaine action concrète
 
 Rédiger un one-pager d'1 page max à remettre au directeur, structuré comme suit :
 1. Qui est le fondateur (parent d'élève + entrepreneur)
-2. Bac IA en 3 phrases (vision, cible, différenciation)
+2. SIRAJ en 3 phrases (vision, cible, différenciation)
 3. Proposition gagnant-gagnant (tableau ci-dessus)
 4. Demande concrète : réunion de 30 minutes
 
@@ -1544,14 +1548,93 @@ Rédiger un one-pager d'1 page max à remettre au directeur, structuré comme su
 
 ---
 
-# PARTIE 13 — DÉCISIONS À PRENDRE
+# PARTIE 13 — IDENTITÉ DE MARQUE & D
 
-Liste des décisions clés à acter avant de lancer :
+## 13.1 IdentitÉ de marque SIRAJ (actÉe v1.8 — 04/05/2026)
 
-- [ ] **Nom définitif** du produit (Bac IA est un nom de travail, à valider ou changer)
-- [ ] **Identité visuelle** (couleur, logo, ton)
+**DÉcision actÉe le 04/05/2026 :** le projet prÉcÉdemment connu sous le nom de travail “Bac IA” est officiellement renommÉ **SIRAJ** (سراج, “lampe / flambeau” en arabe). L'identitÉ visuelle complète a ÉtÉ validÉe et est opÉrationnelle.
+
+### 13.1.1 Architecture de marque
+
+- **Symbole :** lampe-arche orientale verticale stylisÉe (inspiration fanous/lanterne marocaine), contour fin dorÉ, flamme centrale visible
+- **Wordmark :** SIRAJ en sans-serif bold (Manrope ou Inter Bold), capitales uniformes
+- **Direction esthÉtique :** glassmorphism iOS dark premium, ancrage culturel marocain subtil
+
+### 13.1.2 Palette officielle
+
+| Rôle | Code HEX | Usage principal |
+|---|---|---|
+| DorÉ principal | `#E8B860` | Lampe, accents, wordmark Version A |
+| Sombre profond | `#0F1419` | Fonds premium, app icon variante 6b |
+| Blanc cassÉ | `#F5EDE0` | Wordmark Version B (S/R/J), flamme app icon 6a |
+| Noir pur | `#000000` | Variante monochrome administrative |
+| Blanc pur | `#FFFFFF` | Fonds neutres, monochrome blanche |
+
+### 13.1.3 Système des 8 variantes officielles
+
+| Variante | Description | Usage |
+|---|---|---|
+| **V1 — Logo officiel couleur** | Lampe dorÉe + wordmark dorÉ uniforme, fond sombre, halos | Charte, OMPIC, header web, prÉsentations |
+| **V2 — Marketing accent I+A** | S/R/J blanc cassÉ + I/A dorÉ | Hero web, posts Instagram/TikTok, pitch deck (grand format uniquement) |
+| **V3 — Monochrome noir** | Logo noir sur fond blanc, aplati | Factures, contrats, tampons, fax |
+| **V4 — Monochrome blanc** | Logo blanc sur fond noir, aplati | Merchandising sombre, t-shirts, vidÉos fond sombre |
+| **V5 — Variante arabe** سراج | Lampe à droite + wordmark arabe à gauche (RTL) | Communication arabophone, MENA |
+| **V6a — App icon dorÉ** | Fond dorÉ, lampe sombre pleine | App Store iOS (impact maximal) |
+| **V6b — App icon sombre** | Fond sombre, lampe dorÉe pleine | Thème dark, badges premium |
+| **V7 — Favicon simplifiÉ** | Lampe seule sans wordmark | Onglet navigateur 16×16 |
+
+### 13.1.4 Slogans validÉs
+
+- **FR principal :** *“Siraj — Éclaire ton parcours”*
+- **AR :** *سراج — يضيء طريقك*
+- **Darija :** *“Siraj — daw triq dyalk”*
+- **B2B École :** *“Siraj — l'IA pÉdagogique du Bac marocain”*
+
+### 13.1.5 CohÉrence avec le Document de RÉfÉrence
+
+| Section rÉfÉrence | VÉrification | Statut |
+|---|---|---|
+| 1.2 — L'IA est moyen, pas hÉros | V1 officielle ne crie pas l'IA | ✅ |
+| 2.5.1 — SouverainetÉ visuelle | Lampe orientale = neutre culturel | ✅ |
+| 2.5.4 — Typographies officielles | Wordmark Manrope/Inter conforme | ✅ |
+| 2.5.5 — IdentitÉ marocaine | Lampe = ancrage culturel arabo-marocain | ✅ |
+
+### 13.1.6 VÉrifications restantes avant figement dÉfinitif
+
+- 🟡 Variante arabe سراج à valider par 2-3 locuteurs natifs (limite rÉcurrente IA sur connexion)
+- 🟡 Test oeil neutre 3-5 personnes (dÉtection confusion avec restaurant/parfumerie/hôtel)
+- 🟡 VÉrification disponibilitÉ OMPIC “SIRAJ” classes 9 (logiciels) + 41 (services Éducatifs)
+- 🟡 Vectorisation pro SVG/AI par freelance Comeup (~400-600 DH, 48-72h)
+- 🟡 Charte graphique 1 page A4 pour accompagner dÉpôt OMPIC
+
+### 13.1.7 Document dÉtaillÉ de rÉfÉrence
+
+Le document complet `SIRAJ_Identite_Visuelle_v1_0.md` est conservÉ sÉparÉment dans le repo. Il contient :
+- Section 6 : Plan d'action 10 jours dÉtaillÉ
+- Section 9 : Brief freelance Comeup prêt à envoyer
+- Annexe A : Codes CSS prêts à l'usage
+- Annexe B : Structure de dossier brand assets
+- Annexe C : Slogans validÉs en FR/AR/darija/B2B
+
+### 13.1.8 Artefacts techniques temporaires
+
+Les artefacts opÉrationnels suivants conservent provisoirement le nom “Bac IA” / “Bac-IA” et seront renommÉs dans une opÉration sÉparÉe (post-pilote École) :
+- Repo GitHub : `datguynabeel/Bac-IA`
+- URL Vercel : `https://bac-ia.vercel.app`
+- Fichier dashboard et configurations CI/CD associÉes
+
+**Justification du report :** renommer ces artefacts implique des opÉrations à effets de bord (redirections URL, reconfiguration MCP connectors, mise à jour des liens externes Éventuels) qui mÉritent un patch dÉdiÉ, hors scope de la mise à jour documentaire.
+
+---
+
+## 13.2 DÉcisions à prendre
+
+Liste des dÉcisions clÉs à acter avant de lancer :
+
+- [x] **Nom définitif** du produit ✅ **SIRAJ** (acté v1.8 — 04/05/2026, anciennement “Bac IA”)
+- [x] **Identité visuelle** ✅ Lampe orientale dorée + wordmark SIRAJ (acté v1.8 — 04/05/2026, cf. Section 13.1)
 - [ ] **Choix entre auto-entrepreneur ou SARL** dès le départ
-- [ ] **Statut de la marque** : déposer à l'OMPIC ?
+- [x] **Statut de la marque** ✅ Dépôt OMPIC SIRAJ confirmé classes 9 + 41 (acté v1.8 — sous réserve vérification disponibilité OMPIC)
 - [ ] **Première matière** prioritaire pour le MVP (recommandé : Maths 2Bac SM)
 - [ ] **Modèle LLM** principal (recommandé : Claude Sonnet 4.6)
 - [x] **Stack technique** définitif : Lovable/Bolt + Supabase + Anthropic API ✅ (acté v1.2)
@@ -1650,7 +1733,7 @@ Antigravity est model-agnostic : Gemini 3.1 Pro (natif Google) et Claude 4.6 Opu
 | Type de tâche | Modèle Antigravity |
 |---|---|
 | Génération de code React depuis Stitch (skill `react:components`) | **Claude 4.6 Opus thinking** — non négociable, le skill est calibré Anthropic |
-| Édition / refactoring de composants Bac IA existants | **Claude 4.6 Opus thinking** — précision logique, moins d'over-engineering |
+| Édition / refactoring de composants SIRAJ existants | **Claude 4.6 Opus thinking** — précision logique, moins d'over-engineering |
 | Audit ou recherche cross-fichiers sur l'ensemble du repo (≥ 50 fichiers) | **Gemini 3.1 Pro high** — contexte 2M tokens |
 | Script utilitaire, parsing PDF de manuel, format conversion, migration SQL | **Gemini 3.1 Pro low** — rapide, suffisant |
 | Système prompt élève en darija/arabe à tester | **Claude 4.6 Opus thinking** — meilleur ancrage culturel multilingue |
@@ -1665,7 +1748,7 @@ Par défaut, **Gemini 3.1 Pro low**. Bascule vers Claude 4.6 Opus thinking uniqu
 
 **Modèles écartés**
 
-- **GPT-OSS-120B** : aucun avantage différenciant pour Bac IA. La discipline est de rester à deux fournisseurs maximum (Anthropic + Google) pour limiter la fragmentation cognitive.
+- **GPT-OSS-120B** : aucun avantage différenciant pour SIRAJ. La discipline est de rester à deux fournisseurs maximum (Anthropic + Google) pour limiter la fragmentation cognitive.
 - **Gemini 2.5 Pro / Gemini 2.5 Flash Lite** : sous-agents automatiques d'Antigravity (UI Checkpoint, indexation sémantique). Aucune sélection manuelle requise.
 
 **Distinction runtime vs conception**
@@ -1674,7 +1757,7 @@ Cette stratégie concerne **exclusivement la phase de conception** par le fondat
 
 ### 14.2.5 Système de mémoire d'apprentissage `lessons.md` (acté v1.3)
 
-Inspiré du workflow `CLAUDE.md` de Boris Cherny (auteur de Claude Code), adapté au contexte bootstrap solo et au workflow à deux têtes Bac IA.
+Inspiré du workflow `CLAUDE.md` de Boris Cherny (auteur de Claude Code), adapté au contexte bootstrap solo et au workflow à deux têtes SIRAJ.
 
 **Principe**
 
@@ -1863,7 +1946,7 @@ Ce bloc est destiné à être collé au début de la conversation suivante pour 
 
 ### 14.2.8 Architecture knowledge Claude Projects (acté v1.5)
 
-**Contexte du problème.** Le projet Claude (`Bac IA`) ingère deux sources de contenu en parallèle :
+**Contexte du problème.** Le projet Claude (`SIRAJ`) ingère deux sources de contenu en parallèle :
 - Des fichiers uploadés manuellement (drag & drop)
 - Un repo GitHub connecté (`datguynabeel/Bac-IA`) synchronisé automatiquement
 
@@ -1882,7 +1965,7 @@ Au 26 avril 2026, le repo contient 182 fichiers (code, designs, configs, skills 
 
 Sans re-upload manuel, Claude Desktop continuera de raisonner sur la version uploadée précédemment (priorité d'index) tout en voyant la nouvelle version dans le repo synchronisé. Incohérence garantie — exactement le risque de "raisonnement sur v1.3 alors que v1.4 commitée" identifié dans la synthèse de session du 26 avril 2026.
 
-**Test de vérification empirique.** En cas de doute sur la version active dans Claude Desktop, demander : *"Quelle est la version actuelle du document maître Bac IA ?"*. Si la réponse hésite, cite une version obsolète, ou nécessite plusieurs recherches → la dilution est confirmée et le re-upload manuel doit être effectué immédiatement.
+**Test de vérification empirique.** En cas de doute sur la version active dans Claude Desktop, demander : *"Quelle est la version actuelle du document maître SIRAJ ?"*. Si la réponse hésite, cite une version obsolète, ou nécessite plusieurs recherches → la dilution est confirmée et le re-upload manuel doit être effectué immédiatement.
 
 **Engagement de gouvernance.** Cette architecture à 2 niveaux est non négociable tant que le repo dépasse 100 fichiers. À réévaluer si le repo est restructuré (extraction des designs/skills dans un repo séparé par exemple).
 
