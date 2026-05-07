@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bac IA — Dashboard Fondateur</title>
+  <title>SIRAJ — Dashboard Fondateur</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -114,7 +114,7 @@
 <body>
   <div class="container">
     <header>
-      <h1><span class="accent">Bac IA</span> — Dashboard Fondateur</h1>
+      <h1><span class="accent">SIRAJ</span> — Dashboard Fondateur</h1>
       <div class="meta-info" id="meta-info"></div>
     </header>
     <div id="nsm-banner-root"></div>
@@ -152,7 +152,7 @@ function rPulse(p){
   return '<div class="card col-12"><div class="card-title"><span class="icon">'+ic+'</span>Pulse global</div><div class="pulse-content"><div class="pulse-dot '+c+'"></div><div><div class="pulse-phase">'+p.phase_actuelle+'</div><div class="pulse-label">'+p.sante_label+'</div></div><div class="pulse-target">🎯 '+p.time_to_first_revenue_target+'</div></div></div>';
 }
 function jalonHTML(j){return '<div class="jalon"><div class="jalon-header"><div class="jalon-label">'+j.label+(j.deadline?'<span class="jalon-deadline">· cible '+j.deadline+'</span>':'')+'</div><div class="jalon-statut statut-'+j.statut+'">'+j.statut.replace('_',' ')+'</div></div><div class="progress-bar"><div class="progress-fill" style="width:'+j.progression_pct+'%"></div></div><div class="jalon-items">'+j.items.map(i=>'<div class="jalon-item '+(i.fait?'fait':'')+'"><span class="'+(i.fait?'check':'pending')+'">'+(i.fait?'✓':'○')+'</span><span>'+i.label+'</span></div>').join('')+'</div></div>'}
-function rJB(js){return '<div class="card col-8"><div class="card-title"><span class="icon">🎯</span>Avancement par jalon Phase 0</div>'+js.map(jalonHTML).join('')+'</div>'}
+function rJB(js){return '<div class="card col-8"><div class="card-title"><span class="icon">🎯</span>Avancement par jalon (Phases 0 → 5)</div>'+js.map(jalonHTML).join('')+'</div>'}
 function rKpis(ks){return '<div class="card col-4"><div class="card-title"><span class="icon">📊</span>KPIs vivants</div><div class="kpi-grid">'+ks.map(k=>'<div class="kpi"><div class="kpi-label">'+k.label+'</div><div class="kpi-value">'+FR(k.valeur)+(k.unite?' '+k.unite:'')+'</div>'+(k.cible!==null?'<div class="kpi-cible">cible<span class="sep">·</span><strong>'+FR(k.cible)+(k.unite?' '+k.unite:'')+'</strong></div>':'<div class="kpi-cible">&nbsp;</div>')+'</div>').join('')+'</div></div>'}
 function rNA(a){return '<div class="card col-6"><div class="card-title"><span class="icon">⚡</span>Prochaine action immédiate</div><div class="next-action"><div class="next-action-label">'+a.label+'</div><div class="next-action-meta"><span>Deadline <strong>'+a.deadline+'</strong></span><span>Owner <strong>'+a.owner+'</strong></span></div></div></div>'}
 function rDec(ds){return '<div class="card col-6"><div class="card-title"><span class="icon">🧭</span>Décisions clés actées</div><div class="timeline">'+ds.slice().reverse().map(d=>'<div class="decision"><div class="decision-date">'+d.date+'</div><div class="decision-label">'+d.label+'</div></div>').join('')+'</div></div>'}
@@ -161,7 +161,7 @@ function rCad(c){const cls=c.respect_pct>=80?'green':(c.respect_pct>=60?'amber':
 function rLess(ls){if(!ls.length)return '';return '<div class="card col-6"><div class="card-title"><span class="icon">🧠</span>Leçons récentes (5 dernières)</div><div class="lessons-list">'+ls.map(l=>'<div class="lesson"><div class="lesson-meta"><span>'+l.date+'</span><span class="lesson-source">'+l.source+'</span><span>'+l.categorie+'</span></div><div class="lesson-resume">'+l.resume+'</div></div>').join('')+'</div></div>'}
 function rJalons(d){
   const g=d.go_no_go_prochain,gb=g?'<div class="card col-12"><div class="card-title"><span class="icon">🚦</span>Prochain Go/No-Go</div><div class="gng"><div class="gng-header"><div><span class="gng-id">'+g.id+'</span><span class="gng-label" style="margin-left:10px">'+g.label+'</span></div><div class="gng-echeance">'+g.echeance+'</div></div><div class="gng-row"><div class="gng-row-label">Critère Go (mesurable)</div><div class="gng-row-value">'+g.critere_go+'</div></div><div class="gng-row"><div class="gng-row-label">Action si No-Go</div><div class="gng-row-value">'+g.action_no_go+'</div></div></div></div>':'';
-  document.getElementById('tab-jalons').innerHTML='<div class="grid">'+gb+'<div class="card col-12"><div class="card-title"><span class="icon">🏁</span>Tous les jalons Phase 0 → Phase 3</div>'+d.jalons.map(jalonHTML).join('')+'</div></div>';
+  document.getElementById('tab-jalons').innerHTML='<div class="grid">'+gb+'<div class="card col-12"><div class="card-title"><span class="icon">🏁</span>Tous les jalons (Phases 0 → 5)</div>'+d.jalons.map(jalonHTML).join('')+'</div></div>';
 }
 function rRisques(d){
   const rs=d.risques||[],tc=l=>{const v=(l||'').toLowerCase();if(v.includes('existentiel'))return'risk-crit';if(v.includes('élevé')||v.includes('eleve'))return'risk-high';if(v.includes('moyen'))return'risk-med';return'risk-low'};
