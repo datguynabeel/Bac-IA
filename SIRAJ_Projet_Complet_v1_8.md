@@ -1,4 +1,4 @@
-﻿# SIRAJ — Document de Référence Projet
+# SIRAJ — Document de Référence Projet
 
 **Version :** 1.8
 **Date :** Mai 2026 — v1.8 acte le renommage produit “Bac IA” → “SIRAJ” (04/05/2026), intègre l'identité de marque complète (Section 13.2) et met à jour la Partie 13 (décisions cochées identité + statut marque).
@@ -18,6 +18,7 @@
 - v1.7 (mai 2026) — Ajout section 1.3.5 (Argumentaire anti-ChatGPT, FAQ commerciale) : pitch d'une phrase, cadrage prix vs ChatGPT Plus, formalisation des 5 moats non-réplicables, résumé tactique 30s pour démo école, limites assumées. Section destinée à un usage opérationnel direct (démo pilote, one-pager pré-vente, FAQ site, formation commerciaux futurs).
 
 - v1.8 (mai 2026) — Renommage produit “Bac IA” → “SIRAJ” acté le 04/05/2026 suite à validation de l'identité de marque complète. Mise à jour de toutes les mentions produit dans le doc maître (mentions historiques préservées en Section 13). Intégration de la Section 13.2 “Identité de marque SIRAJ” (architecture, palette, 8 variantes officielles, slogans). Décisions Section 13 cochées : identité visuelle + statut marque OMPIC. Repo GitHub `datguynabeel/Bac-IA` et URL `https://bac-ia.vercel.app` conservés temporairement (renommage opérationnel séparé, hors scope patch documentaire).
+- v1.8.1 (mai 2026) — Patch correctif mineur : suppression doublon entrée historique v1.8 (insertion parasite Section 1.3.5 due à marqueur find/replace non unique). Aucun changement de contenu produit.
 
 ---
 
@@ -125,7 +126,6 @@ Selon les enquêtes informelles auprès de parents :
 
 Cette objection est **la** question centrale en démo et pré-vente. Cette sous-section formalise la réponse pour usage opérationnel (scripts de démo en école, argumentaires de pré-vente, FAQ site, formation commerciaux futurs).
 
-- v1.8 (mai 2026) — Renommage produit “Bac IA” → “SIRAJ” acté le 04/05/2026 suite à validation de l'identité de marque complète. Mise à jour de toutes les mentions produit dans le doc maître (mentions historiques préservées en Section 13). Intégration de la Section 13.2 “Identité de marque SIRAJ” (architecture, palette, 8 variantes officielles, slogans). Décisions Section 13 cochées : identité visuelle + statut marque OMPIC. Repo GitHub `datguynabeel/Bac-IA` et URL `https://bac-ia.vercel.app` conservés temporairement (renommage opérationnel séparé, hors scope patch documentaire).
 
 **Pitch d'une phrase.**
 
