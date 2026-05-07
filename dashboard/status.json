@@ -1,1 +1,187 @@
-{"meta":{"schema_version":"1.1","last_updated":"2026-04-27T00:50:00+01:00","doc_master_version":"1.6","lessons_count":30,"north_star_metric":"Élèves actifs payants ≥ 3 séances/semaine"},"pulse":{"phase_actuelle":"Phase 0 — Validation marché (Option D)","sante_globale":"vert","sante_label":"Dashboard V1.1 livré, prêt à constituer liste 30 contacts","time_to_first_revenue_target":"30 jours (objectif Phase 3 Option D)"},"raccourcis":[{"label":"Repo GitHub","url":"https://github.com/datguynabeel/Bac-IA","icon":"🐙"},{"label":"Doc maître v1.6","url":"https://github.com/datguynabeel/Bac-IA/blob/main/Bac_IA_Projet_Complet_v1.6.md","icon":"📖"},{"label":"Lessons.md","url":"https://github.com/datguynabeel/Bac-IA/blob/main/tasks/lessons.md","icon":"🧠"},{"label":"Vercel Prod","url":"https://bac-ia.vercel.app","icon":"🚀"}],"jalons":[{"id":"phase_0_prep","label":"Phase 0 — Préparation interviews (J1-J5)","deadline":"2026-04-30","statut":"en_cours","progression_pct":90,"items":[{"label":"Plan Option D 4 phases validé","fait":true},{"label":"Scripts Yasmine / Rachid / Imane recalibrés","fait":true},{"label":"Pricing test 100/200/300 DH acté","fait":true},{"label":"Dashboard fondateur livré","fait":true},{"label":"Liste 30 contacts qualifiés constituée","fait":false}]},{"id":"phase_1_interviews","label":"Phase 1 — Interviews qualitatives (J6-J20)","deadline":"2026-05-15","statut":"a_venir","progression_pct":0,"items":[{"label":"15 interviews Yasmine (élèves)","fait":false},{"label":"10 interviews Rachid (parents)","fait":false},{"label":"5 interviews Imane (école pilote)","fait":false}]},{"id":"phase_2_landing","label":"Phase 2 — Landing page A/B test (J15-J25)","deadline":"2026-05-20","statut":"a_venir","progression_pct":0,"items":[{"label":"Landing 1 page, 3 tiers visibles","fait":false},{"label":"100-200 inscriptions cible","fait":false}]},{"id":"phase_3_preventes","label":"Phase 3 — Pré-ventes Founding Member (J25-J30)","deadline":"2026-05-27","statut":"a_venir","progression_pct":0,"items":[{"label":"Offre Founding Member 999 DH/an","fait":false},{"label":"5-20 pré-ventes cible","fait":false}]}],"kpis":[{"label":"Interviews réalisées","valeur":0,"cible":30,"unite":""},{"label":"Inscriptions landing page","valeur":0,"cible":200,"unite":""},{"label":"Pré-ventes Founding Member","valeur":0,"cible":20,"unite":""},{"label":"MRR pré-vente","valeur":0,"cible":19980,"unite":"DH"},{"label":"Sessions Claude Desktop tenues","valeur":4,"cible":null,"unite":""},{"label":"Patches Antigravity émis","valeur":2,"cible":null,"unite":""}],"decisions_actees":[{"date":"2026-04-26 ~20h00","label":"Plan Option D validé en 4 phases"},{"date":"2026-04-26 ~20h05","label":"3 personas interviewés en parallèle (Yasmine + Rachid + Imane)"},{"date":"2026-04-26 ~20h05","label":"Pricing A/B test 100/200/300 DH (alignement v1.4)"},{"date":"2026-04-26 ~20h05","label":"Structure A/B test : 1 landing, 3 tiers visibles"},{"date":"2026-04-26 ~20h45","label":"Sondage en ligne rejeté en Phase 0"},{"date":"2026-04-26 ~20h55","label":"Dashboard fondateur acté livrable prioritaire"},{"date":"2026-04-26 ~21h15","label":"Dashboard V1 livré, interviews repoussées post-dashboard"},{"date":"2026-04-27 ~00h45","label":"Audit Dashboard V1 → backlog V1.1 (10 points actés)"},{"date":"2026-04-27 ~00h50","label":"Roadmap.xlsx archivée, intégration sélective dans Dashboard V1.1"}],"prochaine_action":{"label":"Constituer la liste des 30 contacts à interviewer (15 Yasmine + 10 Rachid + 5 Imane)","deadline":"2026-04-30","owner":"Fondateur"},"bloquants":[],"cadence":{"sessions_planifiees_semaine":5,"sessions_tenues_semaine":4,"patches_antigravity_semaine":3,"respect_pct":80},"go_no_go_prochain":{"id":"M1","label":"Go/No-Go pré-vente","echeance":"Phase 3 (J30)","critere_go":"≥ 50 pré-ventes Founding Member 999 DH sur Phase 3 (15 jours)","action_no_go":"Si <25 : pivot ou abandon. Si 25-50 : repositionner pricing et retester.","statut":"à_atteindre"},"risques":[{"id":"R02","risque":"Faible willingness to pay","probabilite":"Moyenne","impact":"Existentiel","mitigation":"Validation pré-vente AVANT build (jalon M1, Phase 3 Option D)","owner":"Fondateur","statut":"ouvert"},{"id":"R09","risque":"Burn-out fondateur (solo)","probabilite":"Élevée","impact":"Existentiel","mitigation":"Discipline horaires + recrutements à temps + vacances obligatoires","owner":"Fondateur","statut":"ouvert"},{"id":"R01","risque":"IA donne des informations fausses","probabilite":"Moyenne","impact":"Élevé","mitigation":"RAG contenus officiels + modération sortie + signalement utilisateur + review pédagogue","owner":"Fondateur+Pédagogue","statut":"ouvert"},{"id":"R03","risque":"Concurrent international débarque","probabilite":"Moyenne","impact":"Élevé","mitigation":"Spécialisation marocaine + vitesse exécution + partenariats locaux","owner":"Fondateur","statut":"ouvert"},{"id":"R07","risque":"Élève utilise pour tricher → scandale","probabilite":"Moyenne","impact":"Élevé","mitigation":"Garde-fous explicites + charte + mode 'examen' qui refuse","owner":"Fondateur","statut":"ouvert"},{"id":"R08","risque":"Difficulté acquisition droits manuels","probabilite":"Élevée","impact":"Moyen","mitigation":"Plan B : créer contenus à partir des programmes officiels publics","owner":"Fondateur","statut":"ouvert"},{"id":"R10","risque":"Saisonnalité forte (creux été)","probabilite":"Élevée","impact":"Moyen","mitigation":"Anticiper trésorerie + lancer modules été (préparation rentrée)","owner":"Fondateur","statut":"ouvert"},{"id":"R11","risque":"Glass effect rame sur Android entry-level","probabilite":"Moyenne","impact":"Moyen","mitigation":"Tester sur Samsung A1x/Redmi en beta + version 'lite' sans backdrop-filter","owner":"Fondateur","statut":"ouvert"},{"id":"R05","risque":"Bug qualité au lancement","probabilite":"Élevée","impact":"Moyen","mitigation":"Beta longue + monitoring sentiment + fast bugfix","owner":"Fondateur","statut":"ouvert"},{"id":"R04","risque":"Coûts API LLM explosent","probabilite":"Faible","impact":"Moyen","mitigation":"Caching agressif + Gemini Flash tâches simples + optim prompts","owner":"Fondateur","statut":"ouvert"},{"id":"R12","risque":"Backlash écoles/profs (perçu comme menaçant)","probabilite":"Faible","impact":"Moyen","mitigation":"Positionnement 'avec le prof' + partenariats écoles + comm 'enseignant augmenté'","owner":"Fondateur","statut":"ouvert"},{"id":"R06","risque":"Rejet réglementaire CNDP","probabilite":"Faible","impact":"Élevé","mitigation":"Conformité dès départ + avocat dédié","owner":"Avocat","statut":"ouvert"}],"lessons_recentes":[{"date":"2026-04-26 ~21h15","source":"Claude Desktop","categorie":"Stratégie","resume":"À l'ouverture de toute nouvelle session, énumérer les 3 rituels canoniques actifs AVANT première réponse de fond."},{"date":"2026-04-26 ~21h05","source":"Claude Desktop","categorie":"Stratégie","resume":"Biais menu vs biais action : quand le fondateur tranche, livrer immédiatement, ne pas re-questionner."},{"date":"2026-04-26 ~20h55","source":"Fondateur","categorie":"Stratégie","resume":"Mémoire opérationnelle fondateur = contrainte produit. Dashboard visuel persistant légitime, ne plus challenger."},{"date":"2026-04-26 ~20h45","source":"Fondateur","categorie":"Stratégie","resume":"Toute proposition d'outil de pilotage doit être recadrée selon la phase projet (cf. section 7.1)."},{"date":"2026-04-26 ~20h25","source":"Claude Desktop","categorie":"Stratégie","resume":"Pattern performance de protocole vs discipline opérationnelle : conformité formats > richesse narrative."}]}
+{
+  "meta": {
+    "schema_version": "1.1",
+    "last_updated": "2026-05-08T00:00:00+01:00",
+    "doc_master_version": "1.8.1",
+    "lessons_count": 29,
+    "lessons_count_note": "Audit en cours — patch lessons.md 07/05/2026 (4 leçons) non encore réconcilié dans le project knowledge",
+    "north_star_metric": "Élèves actifs payants ≥ 3 séances/semaine",
+    "produit_nom": "SIRAJ",
+    "produit_nom_historique": "Bac IA (renommé 04/05/2026, cf. doc maître Section 13.1)"
+  },
+  "pulse": {
+    "phase_actuelle": "Phase 5 — Préparation pilote école (post-renommage SIRAJ v1.8.1)",
+    "sante_globale": "vert",
+    "sante_label": "Renommage SIRAJ acté + identité visuelle validée + doc maître v1.8.1 stabilisé. Prochain livrable : one-pager pré-vente pilote école.",
+    "time_to_first_revenue_target": "Post-pilote école — pivot acté du modèle pré-vente vers démo en personne (marché MA)"
+  },
+  "raccourcis": [
+    { "label": "Repo GitHub", "url": "https://github.com/datguynabeel/Bac-IA", "icon": "🐙" },
+    { "label": "Doc maître v1.8.1", "url": "https://github.com/datguynabeel/Bac-IA/blob/main/SIRAJ_Projet_Complet_v1_8_1.md", "icon": "📖" },
+    { "label": "Lessons.md", "url": "https://github.com/datguynabeel/Bac-IA/blob/main/tasks/lessons.md", "icon": "🧠" },
+    { "label": "Vercel Prod", "url": "https://bac-ia.vercel.app", "icon": "🚀" }
+  ],
+  "jalons": [
+    {
+      "id": "phase_0_prep",
+      "label": "Phase 0 — Préparation interviews (J1-J5)",
+      "deadline": "2026-04-30",
+      "statut": "termine_archive",
+      "statut_note": "Phase achevée — pivot Option D acté vers stratégie pilote école (cf. décisions 04-05/05/2026)",
+      "progression_pct": 80,
+      "items": [
+        { "label": "Plan Option D 4 phases validé", "fait": true },
+        { "label": "Scripts Yasmine / Rachid / Imane recalibrés", "fait": true },
+        { "label": "Pricing test 100/200/300 DH acté", "fait": true },
+        { "label": "Dashboard fondateur livré (V1.1)", "fait": true },
+        { "label": "Liste 30 contacts qualifiés constituée", "fait": false, "abandonne": true, "abandonne_note": "Stratégie pivot vers démo pilote école" }
+      ]
+    },
+    {
+      "id": "phase_1_interviews",
+      "label": "Phase 1 — Interviews qualitatives (J6-J20)",
+      "deadline": "2026-05-15",
+      "statut": "abandonne",
+      "statut_note": "Pivot stratégique : interviews remplacées par démo en personne pilote école (marché marocain incompatible avec pré-vente froide)",
+      "progression_pct": 0,
+      "items": [
+        { "label": "15 interviews Yasmine (élèves)", "fait": false, "abandonne": true },
+        { "label": "10 interviews Rachid (parents)", "fait": false, "abandonne": true },
+        { "label": "5 interviews Imane (école pilote)", "fait": false, "abandonne": true, "abandonne_note": "Remplacé par approche directe pilote école formelle" }
+      ]
+    },
+    {
+      "id": "phase_2_landing",
+      "label": "Phase 2 — Landing page A/B test (J15-J25)",
+      "deadline": "2026-05-20",
+      "statut": "reporte_phase_2_plus",
+      "statut_note": "Différé post-pilote école (V1.2 dashboard + landing test après validation produit)",
+      "progression_pct": 0,
+      "items": [
+        { "label": "Landing 1 page, 3 tiers visibles", "fait": false },
+        { "label": "100-200 inscriptions cible", "fait": false }
+      ]
+    },
+    {
+      "id": "phase_3_preventes",
+      "label": "Phase 3 — Pré-ventes Founding Member (J25-J30)",
+      "deadline": "2026-05-27",
+      "statut": "abandonne",
+      "statut_note": "Modèle pré-vente froide inadapté au marché marocain. Remplacé par conversion via démo physique (cf. leçons 04-07/05/2026)",
+      "progression_pct": 0,
+      "items": [
+        { "label": "Offre Founding Member 999 DH/an", "fait": false, "abandonne": true },
+        { "label": "5-20 pré-ventes cible", "fait": false, "abandonne": true }
+      ]
+    },
+    {
+      "id": "phase_4_renommage_siraj",
+      "label": "Phase 4 — Renommage produit & identité de marque SIRAJ",
+      "deadline": "2026-05-07",
+      "statut": "termine",
+      "statut_note": "Phase entièrement réalisée 04→07/05/2026",
+      "progression_pct": 100,
+      "items": [
+        { "label": "Validation identité visuelle SIRAJ (lampe orientale dorée + wordmark)", "fait": true },
+        { "label": "Décision renommage Bac IA → SIRAJ actée 04/05/2026", "fait": true },
+        { "label": "Patch v1.7 → v1.8 doc maître exécuté (27 find/replace)", "fait": true },
+        { "label": "Section 13.1 (Identité de marque SIRAJ) intégrée doc maître", "fait": true },
+        { "label": "Section 13.2 décisions cochées (identité + statut OMPIC)", "fait": true },
+        { "label": "Patch correctif v1.8.1 (suppression doublon historique)", "fait": true },
+        { "label": "Dépôt OMPIC SIRAJ classes 9 + 41 confirmé", "fait": true },
+        { "label": "Reload v1.8.1 dans Claude Projects", "fait": true },
+        { "label": "Renommage repo `datguynabeel/Bac-IA` → `siraj`", "fait": false, "differe": true, "differe_note": "Renommage opérationnel séparé prévu post-pilote école" },
+        { "label": "Renommage URL `bac-ia.vercel.app` → `siraj.app`", "fait": false, "differe": true, "differe_note": "Renommage opérationnel séparé prévu post-pilote école" }
+      ]
+    },
+    {
+      "id": "phase_5_pilote_ecole",
+      "label": "Phase 5 — Préparation pilote école (validation produit MA)",
+      "deadline": "2026-05-31",
+      "statut": "en_cours",
+      "statut_note": "Phase active — design partner approach, conversion par démo physique",
+      "progression_pct": 25,
+      "items": [
+        { "label": "Section 1.3.5 doc maître — argumentaire anti-ChatGPT (FAQ commerciale)", "fait": true },
+        { "label": "Slogan retenu : « Siraj — l'IA pédagogique du Bac marocain »", "fait": true },
+        { "label": "One-pager pré-vente pilote école (Section 11.4.6)", "fait": false },
+        { "label": "Identification écoles cibles (shortlist 3-5)", "fait": false },
+        { "label": "Outreach pilote école (RDV physique)", "fait": false },
+        { "label": "Démo produit en personne", "fait": false },
+        { "label": "Design partner agreement signé (sans équité, sans exclusivité, sans dev custom)", "fait": false }
+      ]
+    }
+  ],
+  "kpis": [
+    { "label": "Interviews réalisées", "valeur": 0, "cible": 30, "unite": "", "gele": true, "gele_note": "Phase 1 abandonnée — pivot pilote école" },
+    { "label": "Inscriptions landing page", "valeur": 0, "cible": 200, "unite": "", "gele": true, "gele_note": "Phase 2 reportée Phase 2+" },
+    { "label": "Pré-ventes Founding Member", "valeur": 0, "cible": 20, "unite": "", "gele": true, "gele_note": "Phase 3 abandonnée — modèle inadapté MA" },
+    { "label": "MRR pré-vente", "valeur": 0, "cible": 19980, "unite": "DH", "gele": true, "gele_note": "Phase 3 abandonnée" },
+    { "label": "Sessions Claude Desktop tenues", "valeur": 7, "cible": null, "unite": "" },
+    { "label": "Patches Antigravity émis", "valeur": 6, "cible": null, "unite": "" }
+  ],
+  "decisions_actees": [
+    { "date": "2026-04-26 ~20h00", "label": "Plan Option D validé en 4 phases" },
+    { "date": "2026-04-26 ~20h05", "label": "3 personas interviewés en parallèle (Yasmine + Rachid + Imane)" },
+    { "date": "2026-04-26 ~20h05", "label": "Pricing A/B test 100/200/300 DH (alignement v1.4)" },
+    { "date": "2026-04-26 ~20h05", "label": "Structure A/B test : 1 landing, 3 tiers visibles" },
+    { "date": "2026-04-26 ~20h45", "label": "Sondage en ligne rejeté en Phase 0" },
+    { "date": "2026-04-26 ~20h55", "label": "Dashboard fondateur acté livrable prioritaire" },
+    { "date": "2026-04-26 ~21h15", "label": "Dashboard V1 livré, interviews repoussées post-dashboard" },
+    { "date": "2026-04-27 ~00h45", "label": "Audit Dashboard V1 → backlog V1.1 (10 points actés)" },
+    { "date": "2026-04-27 ~00h50", "label": "Roadmap.xlsx archivée, intégration sélective dans Dashboard V1.1" },
+    { "date": "2026-05-04", "label": "Pilote école positionné comme design partner (sans équité, sans exclusivité, sans dev custom)" },
+    { "date": "2026-05-04", "label": "Pivot stratégique : modèle pré-vente froide abandonné, validation par démo physique pilote école" },
+    { "date": "2026-05-04", "label": "Patch v1.6 → v1.7 doc maître (Section 1.3.5 argumentaire anti-ChatGPT ajoutée)" },
+    { "date": "2026-05-07", "label": "Renommage produit Bac IA → SIRAJ acté + identité visuelle validée" },
+    { "date": "2026-05-07", "label": "Patch v1.7 → v1.8 doc maître exécuté (27 find/replace + Section 13)" },
+    { "date": "2026-05-07", "label": "Slogan retenu : « Siraj — l'IA pédagogique du Bac marocain »" },
+    { "date": "2026-05-08", "label": "Patch correctif v1.8.1 (suppression doublon entrée historique Section 1.3.5)" },
+    { "date": "2026-05-08", "label": "GitHub MCP confirmé opérationnel — workflow agent direct activé" }
+  ],
+  "prochaine_action": {
+    "label": "One-pager pré-vente pilote école (Section 11.4.6) sous identité SIRAJ, intégrant argumentaire anti-ChatGPT (Section 1.3.5)",
+    "deadline": "2026-05-15",
+    "owner": "Fondateur"
+  },
+  "bloquants": [],
+  "cadence": {
+    "sessions_planifiees_semaine": 5,
+    "sessions_tenues_semaine": 4,
+    "patches_antigravity_semaine": 3,
+    "respect_pct": 80
+  },
+  "go_no_go_prochain": {
+    "id": "M1_revise",
+    "label": "Go/No-Go pilote école (révisé post-pivot)",
+    "echeance": "Post-démo pilote école (estimation : juin 2026)",
+    "critere_go": "Engagement formel pilote école (cohorte test ≥ 30 élèves) + retour qualitatif positif démo",
+    "action_no_go": "Si refus ou retours négatifs : retour challenge produit-marché-fit, possiblement repositionnement filière (PC/SVT) ou pricing.",
+    "statut": "à_atteindre",
+    "statut_note": "Critère initial Phase 3 (≥50 pré-ventes) abandonné suite pivot stratégique"
+  },
+  "risques": [
+    { "id": "R02", "risque": "Faible willingness to pay", "probabilite": "Moyenne", "impact": "Existentiel", "mitigation": "Validation pré-vente AVANT build (jalon M1 révisé : engagement pilote école)", "owner": "Fondateur", "statut": "ouvert" },
+    { "id": "R09", "risque": "Burn-out fondateur (solo)", "probabilite": "Élevée", "impact": "Existentiel", "mitigation": "Discipline horaires + recrutements à temps + vacances obligatoires", "owner": "Fondateur", "statut": "ouvert" },
+    { "id": "R01", "risque": "IA donne des informations fausses", "probabilite": "Moyenne", "impact": "Élevé", "mitigation": "RAG contenus officiels + modération sortie + signalement utilisateur + review pédagogue", "owner": "Fondateur+Pédagogue", "statut": "ouvert" },
+    { "id": "R03", "risque": "Concurrent international débarque", "probabilite": "Moyenne", "impact": "Élevé", "mitigation": "Spécialisation marocaine + vitesse exécution + partenariats locaux + identité forte SIRAJ", "owner": "Fondateur", "statut": "ouvert" },
+    { "id": "R07", "risque": "Élève utilise pour tricher → scandale", "probabilite": "Moyenne", "impact": "Élevé", "mitigation": "Garde-fous explicites + charte + mode 'examen' qui refuse", "owner": "Fondateur", "statut": "ouvert" },
+    { "id": "R08", "risque": "Difficulté acquisition droits manuels", "probabilite": "Élevée", "impact": "Moyen", "mitigation": "Plan B : créer contenus à partir des programmes officiels publics", "owner": "Fondateur", "statut": "ouvert" },
+    { "id": "R10", "risque": "Saisonnalité forte (creux été)", "probabilite": "Élevée", "impact": "Moyen", "mitigation": "Anticiper trésorerie + lancer modules été (préparation rentrée)", "owner": "Fondateur", "statut": "ouvert" },
+    { "id": "R11", "risque": "Glass effect rame sur Android entry-level", "probabilite": "Moyenne", "impact": "Moyen", "mitigation": "Tester sur Samsung A1x/Redmi en beta + version 'lite' sans backdrop-filter", "owner": "Fondateur", "statut": "ouvert" },
+    { "id": "R05", "risque": "Bug qualité au lancement", "probabilite": "Élevée", "impact": "Moyen", "mitigation": "Beta longue + monitoring sentiment + fast bugfix", "owner": "Fondateur", "statut": "ouvert" },
+    { "id": "R04", "risque": "Coûts API LLM explosent", "probabilite": "Faible", "impact": "Moyen", "mitigation": "Caching agressif + Gemini Flash tâches simples + optim prompts", "owner": "Fondateur", "statut": "ouvert" },
+    { "id": "R12", "risque": "Backlash écoles/profs (perçu comme menaçant)", "probabilite": "Faible", "impact": "Moyen", "mitigation": "Positionnement 'avec le prof' + partenariats écoles + comm 'enseignant augmenté'", "owner": "Fondateur", "statut": "ouvert" },
+    { "id": "R06", "risque": "Rejet réglementaire CNDP", "probabilite": "Faible", "impact": "Élevé", "mitigation": "Conformité dès départ + avocat dédié", "owner": "Avocat", "statut": "ouvert" }
+  ],
+  "lessons_recentes": [
+    { "date": "2026-05-08", "source": "Claude Desktop", "categorie": "Stratégie", "resume": "Avant de déclarer une capacité MCP indisponible, tester l'outil. Les userMemories peuvent être obsolètes — état mémoire vs état réel doivent être distingués." },
+    { "date": "2026-05-07", "source": "Antigravity", "categorie": "Code", "resume": "Encodage PowerShell + caractères spéciaux UTF-8 : utiliser StreamWriter UTF-8 + [char]0xXXXX direct pour fiabilité." },
+    { "date": "2026-05-07", "source": "Antigravity", "categorie": "Code", "resume": "Patch lourd sans Python : anticiper la version StreamWriter complète d'emblée." },
+    { "date": "2026-05-07", "source": "Claude Desktop", "categorie": "Code", "resume": "Marqueur find/replace ambigu : vérifier unicité via [regex]::Matches.Count avant insertion." },
+    { "date": "2026-05-07", "source": "Fondateur", "categorie": "Stratégie", "resume": "Renommage produit Bac IA → SIRAJ acté + identité visuelle validée." },
+    { "date": "2026-04-26 ~21h15", "source": "Claude Desktop", "categorie": "Stratégie", "resume": "À l'ouverture de toute nouvelle session, énumérer les 3 rituels canoniques actifs AVANT première réponse de fond." },
+    { "date": "2026-04-26 ~21h05", "source": "Claude Desktop", "categorie": "Stratégie", "resume": "Biais menu vs biais action : quand le fondateur tranche, livrer immédiatement, ne pas re-questionner." },
+    { "date": "2026-04-26 ~20h55", "source": "Fondateur", "categorie": "Stratégie", "resume": "Mémoire opérationnelle fondateur = contrainte produit. Dashboard visuel persistant légitime, ne plus challenger." }
+  ]
+}
