@@ -4,3 +4,6 @@ gen
 Bac_IA_Roadmap.xlsx
 apply_patch.py
 read_xlsx.js
+
+# Backups défensifs patches
+*.bak_*
