@@ -696,40 +696,60 @@ export default function SirajShowcase() {
         </header>
 
         {/* HERO */}
-        <motion.section
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-20 max-w-3xl"
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-6"
-            style={{ background: 'rgba(232,184,96,0.08)', border: '1px solid rgba(232,184,96,0.2)' }}
+        <section className="mb-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="max-w-xl"
           >
-            <Sparkles className="w-3 h-3" style={{ color: tokens.color.gold }} />
-            <span className="text-[11px] font-semibold tracking-[0.15em] uppercase" style={{ color: tokens.color.gold }}>
-              L'IA pédagogique du Bac marocain
-            </span>
-          </div>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-6"
+              style={{ background: 'rgba(232,184,96,0.08)', border: '1px solid rgba(232,184,96,0.2)' }}
+            >
+              <Sparkles className="w-3 h-3" style={{ color: tokens.color.gold }} />
+              <span className="text-[11px] font-semibold tracking-[0.15em] uppercase" style={{ color: tokens.color.gold }}>
+                L'IA pédagogique du Bac marocain
+              </span>
+            </div>
 
-          <h2
-            className="text-5xl md:text-6xl font-bold leading-[1.05] tracking-tight mb-6"
-            style={{ fontFamily: 'Manrope, sans-serif', color: tokens.color.cream }}
+            <h2
+              className="text-5xl md:text-6xl font-bold leading-[1.05] tracking-tight mb-6"
+              style={{ fontFamily: 'Manrope, sans-serif', color: tokens.color.cream }}
+            >
+              Maîtrise ton programme,
+              <br />
+              <span style={{
+                background: `linear-gradient(135deg, ${tokens.color.gold}, ${tokens.color.goldSecondary})`,
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+              }}>
+                chapitre par chapitre.
+              </span>
+            </h2>
+            <p className="text-lg leading-relaxed" style={{ color: tokens.color.creamDim, maxWidth: '600px' }}>
+              Le programme officiel 2ème Bac Sciences Mathématiques, structuré en 12 chapitres,
+              avec un Tuteur IA qui t'accompagne sur chaque démonstration.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="w-full max-h-[400px] md:max-h-none rounded-3xl overflow-hidden border relative"
+            style={{ 
+              borderColor: 'rgba(232,184,96,0.25)',
+              boxShadow: '0 30px 80px -20px rgba(0,0,0,0.5), 0 0 60px -20px rgba(232,184,96,0.2)'
+            }}
           >
-            Maîtrise ton programme,
-            <br />
-            <span style={{
-              background: `linear-gradient(135deg, ${tokens.color.gold}, ${tokens.color.goldSecondary})`,
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-            }}>
-              chapitre par chapitre.
-            </span>
-          </h2>
-          <p className="text-lg leading-relaxed" style={{ color: tokens.color.creamDim, maxWidth: '600px' }}>
-            Le programme officiel 2ème Bac Sciences Mathématiques, structuré en 12 chapitres,
-            avec un Tuteur IA qui t'accompagne sur chaque démonstration.
-          </p>
-        </motion.section>
+            <img 
+              src="/brand/siraj-hero-student.jpg" 
+              alt="Élève marocain en pleine révision avec SIRAJ"
+              className="w-full h-full object-cover aspect-[4/5]" 
+            />
+          </motion.div>
+        </section>
 
         {/* SECTION CHAPITRES */}
         <LayoutGroup>
@@ -771,6 +791,82 @@ export default function SirajShowcase() {
             </AnimatePresence>
           </section>
         </LayoutGroup>
+
+        {/* SECTION TÉMOIGNAGES */}
+        <section className="mb-20">
+          <SectionHeader
+            eyebrow="Témoignages"
+            title="Ils maîtrisent leur Bac avec SIRAJ"
+            count="5 lycées partenaires"
+          />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            {/* Colonne 1 : Image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="rounded-3xl overflow-hidden border relative w-full h-full"
+              style={{
+                borderColor: 'rgba(232,184,96,0.25)',
+                boxShadow: '0 30px 80px -20px rgba(0,0,0,0.5), 0 0 60px -20px rgba(232,184,96,0.2)'
+              }}
+            >
+              <img
+                src="/brand/siraj-students-group.jpg"
+                alt="Groupe de lycéens marocains utilisant SIRAJ"
+                className="w-full h-full object-cover aspect-[16/10]"
+              />
+            </motion.div>
+
+            {/* Colonne 2 : Cards témoignages */}
+            <div className="flex flex-col gap-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="p-7 rounded-3xl border relative"
+                style={{
+                  background: 'linear-gradient(135deg, #161C24, #0F1419)',
+                  borderColor: 'rgba(232,184,96,0.2)'
+                }}
+              >
+                <div className="absolute top-4 left-6 text-5xl leading-none" style={{ color: tokens.color.gold, fontFamily: 'Manrope, sans-serif' }}>
+                  "
+                </div>
+                <p className="relative z-10 text-base italic leading-relaxed mb-4 mt-2" style={{ color: tokens.color.cream, fontFamily: 'Inter, sans-serif' }}>
+                  Le Tuteur IA m'aide à comprendre les démonstrations en analyse, surtout quand je bloque à minuit avant un contrôle.
+                </p>
+                <p className="text-xs tracking-wider uppercase" style={{ color: 'rgba(245,237,224,0.6)' }}>
+                  — Yasmine, 2Bac SM, Lycée Mohammed V, Rabat
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="p-7 rounded-3xl border relative"
+                style={{
+                  background: 'linear-gradient(135deg, #161C24, #0F1419)',
+                  borderColor: 'rgba(232,184,96,0.2)'
+                }}
+              >
+                <div className="absolute top-4 left-6 text-5xl leading-none" style={{ color: tokens.color.gold, fontFamily: 'Manrope, sans-serif' }}>
+                  "
+                </div>
+                <p className="relative z-10 text-base italic leading-relaxed mb-4 mt-2" style={{ color: tokens.color.cream, fontFamily: 'Inter, sans-serif' }}>
+                  C'est devenu mon réflexe quand je révise. La méthode socratique me fait vraiment progresser, je ne reçois pas juste les réponses.
+                </p>
+                <p className="text-xs tracking-wider uppercase" style={{ color: 'rgba(245,237,224,0.6)' }}>
+                  — Mehdi, 2Bac SM, Lycée Moulay Youssef, Casablanca
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </section>
 
         {/* SECTION BOUTONS */}
         <section className="mb-20">
