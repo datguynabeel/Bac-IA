@@ -704,11 +704,11 @@ export default function SirajShowcase() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="hidden md:flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm"
-            style={{ background: 'rgba(232,184,96,0.08)', border: '1px solid rgba(232,184,96,0.2)' }}
+            className="hidden md:flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-md shadow-lg"
+            style={{ background: 'rgba(15, 20, 25, 0.75)', border: '1px solid rgba(232,184,96,0.2)' }}
           >
             <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: tokens.color.gold }} />
-            <span className="text-xs font-medium tracking-wide" style={{ color: tokens.color.gold }}>
+            <span className="text-xs font-medium tracking-wide" style={{ color: tokens.color.cream }}>
               Maths · 2Bac SM
             </span>
           </motion.div>
@@ -720,11 +720,11 @@ export default function SirajShowcase() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-4 backdrop-blur-sm"
-              style={{ background: 'rgba(232,184,96,0.15)', border: '1px solid rgba(232,184,96,0.3)' }}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-4 backdrop-blur-md shadow-lg"
+              style={{ background: 'rgba(15, 20, 25, 0.85)', border: '1px solid rgba(232,184,96,0.3)' }}
             >
               <Sparkles className="w-3 h-3" style={{ color: tokens.color.gold }} />
-              <span className="text-[11px] font-semibold tracking-[0.15em] uppercase" style={{ color: tokens.color.gold }}>
+              <span className="text-[11px] font-semibold tracking-[0.15em] uppercase" style={{ color: tokens.color.cream }}>
                 L'IA pédagogique du Bac marocain
               </span>
             </div>
