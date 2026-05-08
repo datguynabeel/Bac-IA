@@ -641,7 +641,7 @@ export default function SirajShowcase() {
 
   return (
     <div
-      className="h-screen w-full snap-y snap-mandatory overflow-y-auto overflow-x-hidden text-white relative scroll-smooth"
+      className="h-screen w-full snap-y snap-proximity overflow-y-auto overflow-x-hidden text-white relative scroll-smooth"
       style={{
         background: '#0A0E13',
         fontFamily: 'Inter, system-ui, sans-serif',
