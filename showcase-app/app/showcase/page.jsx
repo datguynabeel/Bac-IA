@@ -2,69 +2,42 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, LayoutGroup, useScroll, useTransform } from 'framer-motion';
-import { 
-  BookOpen, PlayCircle, CheckCircle2, Lock, Sparkles, 
-  ArrowRight, Clock, Target, Zap, Award, ChevronDown, 
-  Search, Menu, Globe, Shield, User
-} from 'lucide-react';
+import { BookOpen, PlayCircle, CheckCircle2, Lock, Sparkles, ArrowRight, Clock, Target, Zap, Award, ChevronDown } from 'lucide-react';
 
 // ============================================================================
-// SIRAJ DESIGN SYSTEM v1.1 — Showcase Immersif
+// SIRAJ DESIGN SYSTEM v1.0 — Showcase
 // ----------------------------------------------------------------------------
-// Conformité SIRAJ v1.8.2 :
-// - Section 2.5 : Souveraineté culturelle (Phénotypes, Vocabulaire)
-// - Section 13.1 : Identité Visuelle (Palette #E8B860, iOS Dark Glass)
-// - Esthétique "Behind the Mac" : Flous profonds, bordures 0.5px, grilles
+// Conformité Document de Référence SIRAJ v1.8.2 :
+// - Section 2.5 : Vocabulaire produit (Chapitres/Séance/Exercices)
+// - Section 13 : Identité Visuelle v1.0 (palette, glassmorphism iOS dark)
+// - Section 4.1 : Programme officiel Maths 2Bac SM
+// - Section 5.2.1 : Vocabulaire pédagogique ("Soit", "Montrer que", etc.)
 // ============================================================================
 
+// === TOKENS SIRAJ (source unique de vérité) ===
 const tokens = {
   color: {
     gold: '#E8B860',
-    goldSecondary: '#F2D399',
-    dark: '#080C10',
-    darkDeep: '#05070A',
-    surface: 'rgba(255, 255, 255, 0.02)',
-    surfaceHover: 'rgba(255, 255, 255, 0.05)',
-    border: 'rgba(232, 184, 96, 0.1)',
-    borderHover: 'rgba(232, 184, 96, 0.25)',
-    borderWhite: 'rgba(255, 255, 255, 0.04)',
+    goldSecondary: '#D4A574',
+    darkDeep: '#0F1419',
+    darkSurface: '#161C24',
+    darkElevated: '#1F2630',
     cream: '#F5EDE0',
-    creamMute: 'rgba(245, 237, 224, 0.5)',
-    creamDim: 'rgba(245, 237, 224, 0.3)',
-    glassBg: 'rgba(10, 15, 22, 0.7)',
-    glassBorder: 'rgba(255, 255, 255, 0.08)',
+    creamDim: 'rgba(245, 237, 224, 0.7)',
+    creamMute: 'rgba(245, 237, 224, 0.45)',
+    glassBg: 'rgba(15, 20, 25, 0.7)',
+    glassBorder: 'rgba(232, 184, 96, 0.3)',
+    glowGold: '0 0 40px rgba(232, 184, 96, 0.4)',
   },
-  blur: {
-    sm: 'blur(10px)',
-    md: 'blur(20px)',
-    lg: 'blur(40px)',
-    xl: 'blur(100px)',
-  },
-  radius: {
-    full: '9999px',
-    xl: '2.5rem',
-    lg: '1.5rem',
-    md: '1rem',
-  }
 };
 
-// === ASSETS OFFICIELS (Public/Brand) ===
-const assets = {
-  logo: '/brand/siraj-logo-color.png',
-  icon: '/brand/siraj-icon-only.png',
-  medium: '/brand/siraj-medium.png',
-  favicon: '/brand/siraj-favicon.png',
-  hero: '/brand/siraj-hero-student.jpg',
-  group: '/brand/siraj-students-group.jpg',
-};
-
-// === DONNÉES — Programme Maths 2Bac SM ===
+// === DONNÉES MOCKÉES — Programme officiel Maths 2Bac SM (CNDP) ===
 const chapitres = [
   {
     id: 1,
     numero: '01',
     titre: 'Limites et continuité',
-    description: 'Fondamentaux de l\'analyse : limites usuelles et théorèmes de continuité.',
+    description: 'Limites usuelles, théorèmes de continuité, prolongements',
     seances: 8,
     progression: 87,
     statut: 'en-cours',
@@ -75,7 +48,7 @@ const chapitres = [
     id: 2,
     numero: '02',
     titre: 'Dérivation et étude de fonctions',
-    description: 'Analyse des variations, points critiques et optimisation fonctionnelle.',
+    description: 'Dérivées usuelles, sens de variation, optimisation',
     seances: 10,
     progression: 100,
     statut: 'terminé',
@@ -86,7 +59,7 @@ const chapitres = [
     id: 3,
     numero: '03',
     titre: 'Fonctions logarithmes',
-    description: 'Étude exhaustive du logarithme népérien et ses applications.',
+    description: 'Logarithme népérien, propriétés, équations',
     seances: 7,
     progression: 42,
     statut: 'en-cours',
@@ -97,7 +70,7 @@ const chapitres = [
     id: 4,
     numero: '04',
     titre: 'Nombres complexes',
-    description: 'Algèbre complexe, géométrie du plan et transformations.',
+    description: 'Forme algébrique, trigonométrique, exponentielle',
     seances: 9,
     progression: 0,
     statut: 'verrouillé',
@@ -112,382 +85,902 @@ const seancesChapitre1 = [
   { id: 3, titre: 'Limites usuelles à connaître', duree: '24 min', type: 'Méthode', statut: 'terminé' },
   { id: 4, titre: "Continuité d'une fonction", duree: '35 min', type: 'Cours', statut: 'en-cours' },
   { id: 5, titre: 'Théorème des valeurs intermédiaires', duree: '30 min', type: 'Théorème', statut: 'à-faire' },
-  { id: 6, titre: 'Exercices corrigés (Type Bac)', duree: '45 min', type: 'Exercices', statut: 'à-faire' },
+  { id: 6, titre: 'Exercices corrigés', duree: '45 min', type: 'Exercices', statut: 'à-faire' },
 ];
 
 // ============================================================================
-// COMPOSANTS UI
+// COMPOSANT 1 — CARD CHAPITRE
+// Glassmorphism + tilt 3D au hover + spring physics + progression animée
 // ============================================================================
-
-function SirajButton({ children, variant = 'primary', size = 'md', onClick, disabled, className = "", icon: Icon }) {
-  const styles = {
-    primary: {
-      bg: `linear-gradient(135deg, ${tokens.color.gold} 0%, ${tokens.color.goldSecondary} 100%)`,
-      color: '#000',
-      border: 'none',
-      shadow: '0 8px 30px -5px rgba(232,184,96,0.3)',
-    },
-    secondary: {
-      bg: 'rgba(255,255,255,0.03)',
-      color: tokens.color.cream,
-      border: '0.5px solid rgba(255,255,255,0.1)',
-      shadow: 'none',
-    },
-    ghost: {
-      bg: 'transparent',
-      color: tokens.color.cream,
-      border: '0.5px solid transparent',
-      shadow: 'none',
-    }
-  };
-
-  const s = styles[variant];
+function ChapitreCard({ chapitre, onClick, isSelected }) {
+  const Icon = chapitre.icon;
+  const isLocked = chapitre.statut === 'verrouillé';
+  const isDone = chapitre.statut === 'terminé';
 
   return (
     <motion.button
-      whileHover={{ y: -2, scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      onClick={onClick}
-      disabled={disabled}
-      className={`inline-flex items-center justify-center gap-3 rounded-full font-bold tracking-tight transition-all duration-300 ${size === 'lg' ? 'px-10 py-4 text-sm' : size === 'sm' ? 'px-5 py-2 text-xs' : 'px-8 py-3.5 text-xs'} ${className}`}
+      layoutId={`chapitre-${chapitre.id}`}
+      onClick={() => !isLocked && onClick(chapitre)}
+      disabled={isLocked}
+      whileHover={!isLocked ? { y: -6, transition: { type: 'spring', stiffness: 400, damping: 20 } } : {}}
+      whileTap={!isLocked ? { scale: 0.98 } : {}}
+      className={`group relative w-full text-left overflow-hidden rounded-3xl border transition-all duration-500
+        ${isLocked
+          ? 'border-white/5 bg-white/[0.02] cursor-not-allowed opacity-50'
+          : 'border-[#E8B860]/20 bg-gradient-to-br from-[#161C24] to-[#0F1419] hover:border-[#E8B860]/50 cursor-pointer'
+        }`}
       style={{
-        background: s.bg,
-        color: s.color,
-        border: s.border,
-        boxShadow: s.shadow,
-        backdropBlur: variant !== 'primary' ? '20px' : 'none'
+        boxShadow: isSelected
+          ? '0 0 0 1px #E8B860, 0 20px 60px -10px rgba(232, 184, 96, 0.4), inset 0 1px 0 rgba(232, 184, 96, 0.1)'
+          : '0 10px 40px -15px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.04)',
       }}
     >
-      {children}
-      {Icon && <Icon className="w-4 h-4" />}
+      {/* Halo lumineux doré au hover */}
+      {!isLocked && (
+        <div
+          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle at 50% 0%, rgba(232,184,96,0.15) 0%, transparent 60%)',
+          }}
+        />
+      )}
+
+      {/* Contenu */}
+      <div className="relative p-7">
+        {/* Header */}
+        <div className="flex items-start justify-between mb-6">
+          <div className="flex items-center gap-4">
+            <div
+              className="flex items-center justify-center w-14 h-14 rounded-2xl border"
+              style={{
+                background: isLocked ? 'rgba(255,255,255,0.03)' : 'linear-gradient(135deg, rgba(232,184,96,0.15), rgba(232,184,96,0.05))',
+                borderColor: isLocked ? 'rgba(255,255,255,0.05)' : 'rgba(232,184,96,0.25)',
+              }}
+            >
+              {isLocked
+                ? <Lock className="w-5 h-5" style={{ color: tokens.color.creamMute }} />
+                : <Icon className="w-6 h-6" style={{ color: tokens.color.gold }} />
+              }
+            </div>
+            <div>
+              <div className="text-[11px] font-semibold tracking-[0.18em] uppercase" style={{ color: tokens.color.creamMute }}>
+                Chapitre {chapitre.numero}
+              </div>
+              <div className="text-[11px] mt-1" style={{ color: tokens.color.creamMute }}>
+                {chapitre.seances} séances · {chapitre.duree}
+              </div>
+            </div>
+          </div>
+
+          {/* Badge statut */}
+          {isDone && (
+            <motion.div
+              initial={{ scale: 0, rotate: -180 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{ type: 'spring', stiffness: 200, damping: 15, delay: 0.2 }}
+              className="flex items-center gap-1.5 px-2.5 py-1 rounded-full"
+              style={{ background: 'rgba(232,184,96,0.15)', border: '1px solid rgba(232,184,96,0.3)' }}
+            >
+              <CheckCircle2 className="w-3.5 h-3.5" style={{ color: tokens.color.gold }} />
+              <span className="text-[10px] font-semibold tracking-wider uppercase" style={{ color: tokens.color.gold }}>Terminé</span>
+            </motion.div>
+          )}
+        </div>
+
+        {/* Titre */}
+        <h3
+          className="text-2xl font-bold leading-tight mb-2 tracking-tight"
+          style={{ color: isLocked ? tokens.color.creamMute : tokens.color.cream, fontFamily: 'Manrope, Inter, sans-serif' }}
+        >
+          {chapitre.titre}
+        </h3>
+        <p className="text-sm leading-relaxed mb-7" style={{ color: tokens.color.creamDim }}>
+          {chapitre.description}
+        </p>
+
+        {/* Progression */}
+        {!isLocked && (
+          <div>
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-[11px] font-medium tracking-wider uppercase" style={{ color: tokens.color.creamMute }}>
+                Progression
+              </span>
+              <span className="text-sm font-bold tabular-nums" style={{ color: tokens.color.gold }}>
+                {chapitre.progression}%
+              </span>
+            </div>
+            <div className="relative h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(245,237,224,0.06)' }}>
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: `${chapitre.progression}%` }}
+                transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute inset-y-0 left-0 rounded-full"
+                style={{
+                  background: `linear-gradient(90deg, ${tokens.color.goldSecondary}, ${tokens.color.gold})`,
+                  boxShadow: '0 0 12px rgba(232,184,96,0.6)',
+                }}
+              />
+            </div>
+          </div>
+        )}
+      </div>
     </motion.button>
   );
 }
 
-function SectionHeader({ eyebrow, title, count }) {
+// ============================================================================
+// COMPOSANT 2 — VUE SÉANCES (apparaît après clic sur chapitre)
+// Shared layout animation Framer Motion — LE moment "wow" de la démo
+// ============================================================================
+function SeancesView({ chapitre, onBack }) {
+  const Icon = chapitre.icon;
+
   return (
-    <div className="flex flex-col items-center text-center mb-16">
-      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 border border-white/5 bg-white/2 backdrop-blur-md">
-        <Sparkles className="w-3 h-3 text-[#E8B860]" />
-        <span className="text-[10px] font-bold tracking-[0.3em] uppercase opacity-70">{eyebrow}</span>
+    <motion.div
+      layoutId={`chapitre-${chapitre.id}`}
+      className="relative overflow-hidden rounded-3xl border"
+      style={{
+        borderColor: 'rgba(232,184,96,0.3)',
+        background: 'linear-gradient(135deg, #161C24 0%, #0F1419 100%)',
+        boxShadow: '0 30px 80px -20px rgba(0,0,0,0.7), 0 0 60px -20px rgba(232,184,96,0.3), inset 0 1px 0 rgba(232,184,96,0.1)',
+      }}
+    >
+      {/* Halo lumineux */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(232,184,96,0.12) 0%, transparent 50%)' }}
+      />
+
+      <div className="relative p-8">
+        {/* Header */}
+        <div className="flex items-start justify-between mb-8">
+          <div className="flex items-center gap-5">
+            <motion.div
+              initial={{ scale: 0.6, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ type: 'spring', stiffness: 200, damping: 18, delay: 0.2 }}
+              className="flex items-center justify-center w-16 h-16 rounded-2xl border"
+              style={{
+                background: 'linear-gradient(135deg, rgba(232,184,96,0.2), rgba(232,184,96,0.05))',
+                borderColor: 'rgba(232,184,96,0.35)',
+              }}
+            >
+              <Icon className="w-7 h-7" style={{ color: tokens.color.gold }} />
+            </motion.div>
+            <div>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.25 }}
+                className="text-[11px] font-semibold tracking-[0.18em] uppercase"
+                style={{ color: tokens.color.gold }}
+              >
+                Chapitre {chapitre.numero}
+              </motion.div>
+              <motion.h2
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="text-3xl font-bold tracking-tight mt-1"
+                style={{ color: tokens.color.cream, fontFamily: 'Manrope, Inter, sans-serif' }}
+              >
+                {chapitre.titre}
+              </motion.h2>
+            </div>
+          </div>
+
+          <SirajButton variant="ghost" onClick={onBack} size="sm">← Retour</SirajButton>
+        </div>
+
+        {/* Liste des séances avec stagger */}
+        <div className="space-y-2">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-xs font-semibold tracking-[0.15em] uppercase" style={{ color: tokens.color.creamMute }}>
+              Séances ({seancesChapitre1.length})
+            </h3>
+            <span className="text-xs" style={{ color: tokens.color.creamMute }}>
+              {seancesChapitre1.filter(s => s.statut === 'terminé').length} / {seancesChapitre1.length} complétées
+            </span>
+          </div>
+
+          {seancesChapitre1.map((seance, index) => (
+            <SeanceItem key={seance.id} seance={seance} index={index} />
+          ))}
+        </div>
+
+        {/* Exercice featured (KaTeX-style render) */}
+        <ExerciceFeatured />
       </div>
-      <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-4" style={{ fontFamily: 'Manrope, sans-serif' }}>{title}</h2>
-      {count && (
-        <div className="text-xs font-medium tracking-[0.2em] uppercase opacity-30">{count}</div>
-      )}
+    </motion.div>
+  );
+}
+
+// ============================================================================
+// COMPOSANT 3 — ITEM SÉANCE
+// ============================================================================
+function SeanceItem({ seance, index }) {
+  const isDone = seance.statut === 'terminé';
+  const isCurrent = seance.statut === 'en-cours';
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: 0.4 + index * 0.06, ease: [0.16, 1, 0.3, 1] }}
+      whileHover={{ x: 4, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
+      className="group flex items-center gap-4 p-4 rounded-2xl cursor-pointer transition-colors duration-300"
+      style={{
+        background: isCurrent ? 'rgba(232,184,96,0.06)' : 'rgba(245,237,224,0.02)',
+        border: isCurrent ? '1px solid rgba(232,184,96,0.25)' : '1px solid rgba(245,237,224,0.04)',
+      }}
+    >
+      {/* Icône statut */}
+      <div className="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center"
+        style={{
+          background: isDone ? 'rgba(232,184,96,0.15)' : isCurrent ? 'rgba(232,184,96,0.1)' : 'rgba(245,237,224,0.04)',
+          border: isDone || isCurrent ? '1px solid rgba(232,184,96,0.3)' : '1px solid rgba(245,237,224,0.06)',
+        }}
+      >
+        {isDone
+          ? <CheckCircle2 className="w-5 h-5" style={{ color: tokens.color.gold }} />
+          : isCurrent
+            ? <PlayCircle className="w-5 h-5" style={{ color: tokens.color.gold }} />
+            : <span className="text-xs font-semibold tabular-nums" style={{ color: tokens.color.creamMute }}>{String(seance.id).padStart(2, '0')}</span>
+        }
+      </div>
+
+      {/* Titre + meta */}
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center gap-3 mb-1">
+          <h4 className="text-[15px] font-semibold tracking-tight" style={{ color: tokens.color.cream }}>
+            {seance.titre}
+          </h4>
+          <span
+            className="px-2 py-0.5 rounded-full text-[10px] font-medium tracking-wider uppercase"
+            style={{
+              background: 'rgba(232,184,96,0.1)',
+              color: tokens.color.gold,
+              border: '1px solid rgba(232,184,96,0.2)',
+            }}
+          >
+            {seance.type}
+          </span>
+        </div>
+        <div className="flex items-center gap-1.5 text-xs" style={{ color: tokens.color.creamMute }}>
+          <Clock className="w-3 h-3" />
+          {seance.duree}
+        </div>
+      </div>
+
+      {/* Arrow */}
+      <ArrowRight
+        className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+        style={{ color: tokens.color.creamMute }}
+      />
+    </motion.div>
+  );
+}
+
+// ============================================================================
+// COMPOSANT 4 — EXERCICE FEATURED (KaTeX render animé)
+// Différenciation ULTIME — formule mathématique avec stagger
+// ============================================================================
+function ExerciceFeatured() {
+  // Énoncé en pseudo-LaTeX (pas de KaTeX runtime ici, on simule visuellement)
+  const formula = "f(x) = \\frac{e^x - 1}{x}";
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
+      className="mt-8 p-6 rounded-2xl border relative overflow-hidden"
+      style={{
+        background: 'linear-gradient(135deg, rgba(232,184,96,0.08), rgba(232,184,96,0.02))',
+        borderColor: 'rgba(232,184,96,0.25)',
+      }}
+    >
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: 'radial-gradient(circle at 100% 0%, rgba(232,184,96,0.1) 0%, transparent 50%)' }}
+      />
+
+      <div className="relative">
+        <div className="flex items-center gap-2 mb-4">
+          <Award className="w-4 h-4" style={{ color: tokens.color.gold }} />
+          <span className="text-[11px] font-semibold tracking-[0.15em] uppercase" style={{ color: tokens.color.gold }}>
+            Exercice type Bac National
+          </span>
+        </div>
+
+        <p className="text-sm mb-4" style={{ color: tokens.color.creamDim, fontFamily: 'Inter, sans-serif' }}>
+          <span className="font-semibold" style={{ color: tokens.color.cream }}>Soit </span>
+          <span style={{ color: tokens.color.cream }}>la fonction </span>
+          <em>f</em>
+          <span> définie sur ℝ* par :</span>
+        </p>
+
+        {/* Formule animée caractère par caractère */}
+        <div className="flex justify-center my-6 py-4">
+          <motion.div
+            className="text-3xl font-serif italic flex items-center gap-1"
+            style={{ color: tokens.color.cream, fontFamily: 'Times New Roman, serif' }}
+          >
+            {['f', '(', 'x', ')', '=', ''].map((char, i) => (
+              <motion.span
+                key={i}
+                initial={{ opacity: 0, y: 8, filter: 'blur(4px)' }}
+                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                transition={{ delay: 1.1 + i * 0.05 }}
+              >
+                {char}
+              </motion.span>
+            ))}
+
+            {/* Fraction stylisée */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 1.5, type: 'spring', stiffness: 200 }}
+              className="inline-flex flex-col items-center"
+            >
+              <span className="text-2xl px-3 pb-1" style={{ borderBottom: `1.5px solid ${tokens.color.gold}` }}>
+                e<sup className="text-base">x</sup> − 1
+              </span>
+              <span className="text-2xl pt-1">x</span>
+            </motion.div>
+          </motion.div>
+        </div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.7 }}
+          className="text-sm" style={{ color: tokens.color.creamDim }}
+        >
+          <span className="font-semibold" style={{ color: tokens.color.cream }}>Montrer que </span>
+          <em>f</em> admet un prolongement par continuité en 0, puis
+          <span className="font-semibold" style={{ color: tokens.color.cream }}> en déduire </span>
+          la valeur de ce prolongement.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.9 }}
+          className="mt-5 flex gap-3"
+        >
+          <SirajButton variant="primary" size="sm">
+            <Sparkles className="w-3.5 h-3.5" />
+            Je veux un indice
+          </SirajButton>
+          <SirajButton variant="ghost" size="sm">
+            Voir la correction
+          </SirajButton>
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+}
+
+// ============================================================================
+// COMPOSANT 5 — BOUTON SIRAJ (Primary / Secondary / Ghost)
+// Spring physics + glow doré + gradient
+// ============================================================================
+function SirajButton({ children, variant = 'primary', size = 'md', onClick, disabled }) {
+  const sizeClasses = {
+    sm: 'px-4 py-2 text-xs gap-1.5',
+    md: 'px-6 py-3 text-sm gap-2',
+    lg: 'px-8 py-4 text-base gap-2.5',
+  };
+
+  const variantStyles = {
+    primary: {
+      base: 'text-[#0F1419] font-bold',
+      style: {
+        background: `linear-gradient(135deg, ${tokens.color.gold} 0%, ${tokens.color.goldSecondary} 100%)`,
+        boxShadow: '0 4px 20px -2px rgba(232,184,96,0.4), inset 0 1px 0 rgba(255,255,255,0.3)',
+      },
+      hoverStyle: {
+        boxShadow: '0 8px 30px -2px rgba(232,184,96,0.6), inset 0 1px 0 rgba(255,255,255,0.4), 0 0 0 1px rgba(232,184,96,0.5)',
+      },
+    },
+    secondary: {
+      base: 'font-semibold',
+      style: {
+        background: 'rgba(232,184,96,0.1)',
+        color: tokens.color.gold,
+        border: '1px solid rgba(232,184,96,0.3)',
+        boxShadow: '0 2px 10px -2px rgba(0,0,0,0.3)',
+      },
+      hoverStyle: {
+        background: 'rgba(232,184,96,0.18)',
+        boxShadow: '0 4px 20px -2px rgba(232,184,96,0.3)',
+      },
+    },
+    ghost: {
+      base: 'font-medium',
+      style: {
+        background: 'transparent',
+        color: tokens.color.creamDim,
+        border: '1px solid rgba(245,237,224,0.1)',
+      },
+      hoverStyle: {
+        background: 'rgba(245,237,224,0.05)',
+        color: tokens.color.cream,
+      },
+    },
+  };
+
+  const v = variantStyles[variant];
+
+  return (
+    <motion.button
+      onClick={onClick}
+      disabled={disabled}
+      whileHover={!disabled ? { y: -2, transition: { type: 'spring', stiffness: 400, damping: 17 } } : {}}
+      whileTap={!disabled ? { scale: 0.97, y: 0 } : {}}
+      className={`inline-flex items-center justify-center rounded-xl tracking-tight transition-all duration-300
+        ${sizeClasses[size]} ${v.base} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+      style={v.style}
+      onHoverStart={(e) => {
+        if (!disabled) Object.assign(e.target.style, v.hoverStyle);
+      }}
+    >
+      {children}
+    </motion.button>
+  );
+}
+
+// ============================================================================
+// COMPOSANT 6 — SKELETON LOADER (shimmer animé)
+// ============================================================================
+function SkeletonShowcase() {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      {[1, 2].map((i) => (
+        <div
+          key={i}
+          className="relative overflow-hidden rounded-3xl border p-7"
+          style={{ borderColor: 'rgba(232,184,96,0.1)', background: '#161C24', minHeight: '280px' }}
+        >
+          {/* Shimmer wave */}
+          <motion.div
+            animate={{ x: ['-100%', '200%'] }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
+            className="absolute inset-y-0 w-1/2 pointer-events-none"
+            style={{
+              background: 'linear-gradient(90deg, transparent, rgba(232,184,96,0.08), transparent)',
+            }}
+          />
+
+          {/* Placeholder shapes */}
+          <div className="flex items-center gap-4 mb-6">
+            <div className="w-14 h-14 rounded-2xl" style={{ background: 'rgba(232,184,96,0.05)' }} />
+            <div className="space-y-2">
+              <div className="h-2 w-20 rounded-full" style={{ background: 'rgba(245,237,224,0.06)' }} />
+              <div className="h-2 w-32 rounded-full" style={{ background: 'rgba(245,237,224,0.04)' }} />
+            </div>
+          </div>
+          <div className="space-y-3 mb-7">
+            <div className="h-4 w-3/4 rounded-full" style={{ background: 'rgba(245,237,224,0.08)' }} />
+            <div className="h-3 w-full rounded-full" style={{ background: 'rgba(245,237,224,0.05)' }} />
+            <div className="h-3 w-5/6 rounded-full" style={{ background: 'rgba(245,237,224,0.05)' }} />
+          </div>
+          <div className="h-1.5 w-full rounded-full" style={{ background: 'rgba(245,237,224,0.04)' }} />
+        </div>
+      ))}
     </div>
   );
 }
 
 // ============================================================================
-// MAIN PAGE
+// LOGO SIRAJ — Assets officiels (Brand Book v1.0)
+// Variantes : icon (lampe seule), full (Version A), marketing (Version B)
 // ============================================================================
+const logoSources = {
+  icon: '/brand/siraj-icon-only.png',
+  full: '/brand/siraj-logo-color.png',
+  marketing: '/brand/siraj-logo-marketing.png',
+  app: '/brand/siraj-app-icon-6b.png',
+  medium: '/brand/siraj-medium.png',
+  favicon: '/brand/siraj-favicon.png',
+};
 
-export default function SirajShowcase() {
-  const [selectedChapitre, setSelectedChapitre] = useState(null);
+function SirajLogo({ size = 36, variant = 'icon' }) {
+  // We apply rounded corners for variants that have the dark square background
+  const isSquareIcon = variant === 'app' || variant === 'medium' || variant === 'favicon';
   
-  // Parallax Hero
-  const { scrollYProgress } = useScroll();
-  const heroScale = useTransform(scrollYProgress, [0, 0.3], [1, 1.1]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+  if (isSquareIcon) {
+    const r = Math.round(size * 0.22);
+    return (
+      <div style={{
+        width: size,
+        height: size,
+        borderRadius: r,
+        overflow: 'hidden',
+        boxShadow: '0 0 10px rgba(232,184,96,0.12)',
+        flexShrink: 0,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+        <img
+          src={logoSources[variant]}
+          alt="SIRAJ"
+          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+        />
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen w-full bg-[#080C10] text-[#F5EDE0] selection:bg-[#E8B860]/30 overflow-x-hidden" style={{ fontFamily: 'Inter, sans-serif' }}>
-      
-      {/* 1. ELEMENTS DE FOND - Behind the Mac */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-[-10%] left-[-5%] w-[50vw] h-[50vw] rounded-full mix-blend-screen filter blur-[120px] opacity-10" 
-             style={{ background: `radial-gradient(circle, ${tokens.color.gold} 0%, transparent 70%)` }} />
-        <div className="absolute bottom-[-15%] right-[-5%] w-[60vw] h-[60vw] rounded-full mix-blend-screen filter blur-[150px] opacity-10" 
-             style={{ background: `radial-gradient(circle, ${tokens.color.goldSecondary} 0%, transparent 70%)` }} />
-        
-        {/* Grid Pattern 0.5px */}
-        <div className="absolute inset-0 opacity-[0.03]" 
-             style={{ backgroundImage: `radial-gradient(${tokens.color.gold} 0.5px, transparent 0.5px)`, backgroundSize: '40px 40px' }} />
-        
-        {/* Film Grain */}
-        <div className="absolute inset-0 opacity-[0.015] mix-blend-overlay"
-             style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")` }} />
-      </div>
+    <img
+      src={logoSources[variant]}
+      alt="SIRAJ"
+      height={size}
+      style={{ height: size, width: 'auto', display: 'block' }}
+    />
+  );
+}
 
-      {/* 2. NAVIGATION FLOTTANTE */}
-      <nav className="fixed top-8 left-1/2 -translate-x-1/2 z-50 flex items-center justify-between w-[92%] max-w-6xl px-8 py-3.5 rounded-full backdrop-blur-3xl border border-white/5 transition-all duration-500 shadow-2xl"
-           style={{ background: 'rgba(10, 15, 22, 0.7)' }}>
-        <div className="flex items-center gap-4">
-          <img src={assets.logo} alt="SIRAJ" className="h-9 w-auto object-contain" />
-          <div className="hidden sm:block h-5 w-[0.5px] bg-white/10 mx-2" />
-          <span className="hidden sm:block font-bold tracking-[0.2em] text-[10px] uppercase opacity-40" style={{ fontFamily: 'Manrope, sans-serif' }}>Excellence SM</span>
-        </div>
-        
-        <div className="hidden lg:flex items-center gap-10 text-[11px] font-bold tracking-[0.1em] uppercase opacity-60">
-          <a href="#" className="hover:text-[#E8B860] transition-colors">Programme</a>
-          <a href="#" className="hover:text-[#E8B860] transition-colors">Intelligence</a>
-          <a href="#" className="hover:text-[#E8B860] transition-colors">Souveraineté</a>
-        </div>
+// ============================================================================
+// PAGE PRINCIPALE — SHOWCASE
+// ============================================================================
+export default function SirajShowcase() {
+  const [selectedChapitre, setSelectedChapitre] = useState(null);
+  const [showSkeleton, setShowSkeleton] = useState(false);
+  const [activeSection, setActiveSection] = useState('chapitres');
 
-        <div className="flex items-center gap-3">
-          <SirajButton variant="ghost" size="sm" className="hidden md:flex">Connexion</SirajButton>
-          <SirajButton variant="primary" size="sm">Démarrer</SirajButton>
-        </div>
-      </nav>
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({ 
+    target: sectionRef, 
+    offset: ["start end", "end start"] 
+  });
+  const yParallax = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
 
-      {/* 3. HERO SECTION - Immersive Cinematic */}
-      <section className="relative h-screen w-full flex flex-col justify-center items-center overflow-hidden">
-        <motion.div style={{ scale: heroScale, opacity: heroOpacity }} className="absolute inset-0 z-0">
-          <img src={assets.hero} alt="Student" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#080C10]/80 via-transparent to-[#080C10]" />
+  return (
+    <div
+      className="h-screen w-full snap-y snap-proximity overflow-y-auto overflow-x-hidden text-white relative scroll-smooth"
+      style={{
+        background: '#0A0E13',
+        fontFamily: 'Inter, system-ui, sans-serif',
+      }}
+    >
+      {/* Background mesh gradient subtil */}
+      <div
+        className="fixed inset-0 pointer-events-none"
+        style={{
+          background: `
+            radial-gradient(ellipse 80% 50% at 50% -10%, rgba(232,184,96,0.12) 0%, transparent 60%),
+            radial-gradient(ellipse 60% 40% at 100% 60%, rgba(232,184,96,0.06) 0%, transparent 50%),
+            radial-gradient(ellipse 60% 40% at 0% 80%, rgba(232,184,96,0.04) 0%, transparent 50%)
+          `,
+        }}
+      />
+
+      {/* Grain overlay (texture premium) */}
+      <div
+        className="fixed inset-0 pointer-events-none opacity-[0.015] mix-blend-overlay"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+        }}
+      />
+
+      {/* 1. SECTION HERO IMMERSIVE */}
+      <section className="snap-start relative h-screen w-screen overflow-hidden flex flex-col justify-end z-10">
+        <motion.div
+          animate={{ scale: [1, 1.08] }}
+          transition={{ duration: 20, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
+          className="absolute inset-0 z-0"
+        >
+          <img 
+            src="/brand/siraj-hero-student.jpg" 
+            alt="Élève marocain en pleine révision avec SIRAJ"
+            className="w-full h-full object-cover"
+            loading="eager"
+          />
         </motion.div>
+        <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#0F1419]/70 via-transparent to-[#0F1419]/95" />
 
-        <div className="relative z-10 text-center px-6 max-w-5xl">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+        <header className="absolute top-0 left-0 w-full z-20 flex items-center justify-between p-6 md:px-12 md:py-8">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="flex items-center gap-4"
           >
-            <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full mb-10 border border-[#E8B860]/20 bg-[#E8B860]/5 backdrop-blur-xl">
-              <Sparkles className="w-4 h-4 text-[#E8B860] animate-pulse" />
-              <span className="text-[11px] font-bold tracking-[0.3em] uppercase text-[#E8B860]">Le futur du Bac commence ici</span>
+            <SirajLogo variant="medium" size={42} />
+            <div>
+              <h1 className="text-2xl font-bold tracking-tight" style={{ fontFamily: 'Manrope, sans-serif', letterSpacing: '0.02em' }}>
+                SIRAJ
+              </h1>
+              <p className="text-[11px] tracking-[0.18em] uppercase" style={{ color: tokens.color.creamMute }}>
+                Design System v1.0
+              </p>
             </div>
-            
-            <h1 className="text-6xl md:text-9xl font-bold tracking-tight mb-8 leading-[0.95]" style={{ fontFamily: 'Manrope, sans-serif' }}>
-              Maîtrise ton Bac,<br />
-              <span className="relative">
-                <span style={{ 
-                  background: `linear-gradient(135deg, ${tokens.color.gold} 0%, #FFF 50%, ${tokens.color.goldSecondary} 100%)`, 
-                  WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' 
-                }}>éclaire ta voie.</span>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="hidden md:flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-md shadow-lg"
+            style={{ background: 'rgba(15, 20, 25, 0.75)', border: '1px solid rgba(232,184,96,0.2)' }}
+          >
+            <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: tokens.color.gold }} />
+            <span className="text-xs font-medium tracking-wide" style={{ color: tokens.color.cream }}>
+              Maths · 2Bac SM
+            </span>
+          </motion.div>
+        </header>
+
+        <div className="relative z-20 flex items-end pb-20 pl-6 pr-6 md:pl-12 max-w-2xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-4 backdrop-blur-md shadow-lg"
+              style={{ background: 'rgba(15, 20, 25, 0.85)', border: '1px solid rgba(232,184,96,0.3)' }}
+            >
+              <Sparkles className="w-3 h-3" style={{ color: tokens.color.gold }} />
+              <span className="text-[11px] font-semibold tracking-[0.15em] uppercase" style={{ color: tokens.color.cream }}>
+                L'IA pédagogique du Bac marocain
               </span>
-            </h1>
-
-            <p className="text-lg md:text-2xl font-light mb-14 max-w-3xl mx-auto leading-relaxed" style={{ color: tokens.color.creamMute }}>
-              Une architecture pédagogique de précision, conçue exclusivement pour les Sciences Mathématiques du Maroc.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <SirajButton variant="primary" size="lg" icon={ArrowRight}>Accès Pilote</SirajButton>
-              <SirajButton variant="secondary" size="lg">Découvrir la vision</SirajButton>
             </div>
+
+            <h2
+              className="text-4xl md:text-6xl font-bold leading-[1.05] tracking-tight mb-4"
+              style={{ fontFamily: 'Manrope, sans-serif', color: tokens.color.cream }}
+            >
+              Maîtrise ton programme,
+              <br />
+              <span style={{
+                background: `linear-gradient(135deg, ${tokens.color.gold}, ${tokens.color.goldSecondary})`,
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+              }}>
+                chapitre par chapitre.
+              </span>
+            </h2>
+            <p className="text-base md:text-lg leading-relaxed mb-8" style={{ color: tokens.color.creamDim, maxWidth: '500px' }}>
+              Le programme officiel 2ème Bac Sciences Mathématiques, structuré en 12 chapitres,
+              avec un Tuteur IA qui t'accompagne sur chaque démonstration.
+            </p>
+            <SirajButton variant="primary" size="lg">
+              Démarrer mon Bac SM
+              <ArrowRight className="w-4 h-4" />
+            </SirajButton>
           </motion.div>
         </div>
 
         <motion.div 
-          initial={{ opacity: 0 }} animate={{ opacity: 0.3 }} transition={{ delay: 1.5, duration: 1 }}
-          className="absolute bottom-12 flex flex-col items-center gap-4"
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 text-white/40"
+          animate={{ y: [0, 8, 0], opacity: [0.3, 1, 0.3] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
-          <span className="text-[10px] font-bold tracking-[0.4em] uppercase">Scrollez</span>
-          <div className="w-[0.5px] h-12 bg-gradient-to-b from-[#E8B860] to-transparent" />
+          <ChevronDown className="w-6 h-6" />
         </motion.div>
       </section>
 
-      {/* 4. SHOWCASE BENTO GRID */}
-      <section className="relative z-10 py-32 px-6 max-w-7xl mx-auto">
-        <SectionHeader 
-          eyebrow="L'Expérience" 
-          title="Le Programme National" 
-          count="Filière : Sciences Mathématiques (SM)" 
-        />
-
+      {/* NORMAL LAYOUT WRAPPER */}
+      <section className="snap-start relative z-10 w-full bg-transparent">
+        <div className="relative max-w-6xl mx-auto px-6 py-20">
+        {/* SECTION CHAPITRES */}
         <LayoutGroup>
-          <AnimatePresence mode="wait">
-            {selectedChapitre ? (
+          <section className="mb-20">
+            <SectionHeader
+              eyebrow="Chapitres"
+              title="Programme officiel — Maths 2Bac SM"
+              count={`${chapitres.length} sur 12`}
+            />
+
+            <AnimatePresence mode="wait">
+              {selectedChapitre ? (
+                <motion.div key="seances" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                  <SeancesView chapitre={selectedChapitre} onBack={() => setSelectedChapitre(null)} />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="grid"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="grid grid-cols-1 md:grid-cols-2 gap-5"
+                >
+                  {chapitres.map((chapitre, i) => (
+                    <motion.div
+                      key={chapitre.id}
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                    >
+                      <ChapitreCard
+                        chapitre={chapitre}
+                        onClick={setSelectedChapitre}
+                      />
+                    </motion.div>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </section>
+        </LayoutGroup>
+
+        {/* 2. SECTION GROUPE FULL-BLEED */}
+        </div>
+      </section>
+
+      <section ref={sectionRef} className="snap-start relative h-screen w-screen overflow-hidden flex flex-col justify-center z-10">
+        <motion.div
+          style={{ y: yParallax }}
+          className="absolute inset-0 z-0 h-[130%]"
+        >
+          <img 
+            src="/brand/siraj-students-group.jpg" 
+            alt="Groupe de lycéens marocains utilisant SIRAJ"
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </motion.div>
+        <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#0F1419]/95 via-[#0F1419]/40 to-transparent" />
+
+        <div className="relative z-20 max-w-md pl-6 md:pl-12 pt-12">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <p className="text-sm font-semibold tracking-[0.15em] uppercase mb-4" style={{ color: tokens.color.gold }}>
+              Témoignages
+            </p>
+            <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-8" style={{ fontFamily: 'Manrope, sans-serif', color: tokens.color.cream }}>
+              Ils maîtrisent leur Bac avec SIRAJ
+            </h2>
+            
+            <div className="mb-10 relative">
+              <div className="absolute -top-4 -left-3 text-5xl leading-none opacity-50" style={{ color: tokens.color.gold, fontFamily: 'Manrope, sans-serif' }}>
+                "
+              </div>
+              <p className="text-lg italic leading-relaxed mb-4 relative z-10" style={{ color: tokens.color.cream, fontFamily: 'Inter, sans-serif' }}>
+                Le Tuteur IA m'aide quand je bloque à minuit avant un contrôle. La méthode socratique me fait vraiment progresser.
+              </p>
+              <p className="text-xs tracking-wider uppercase font-medium" style={{ color: 'rgba(245,237,224,0.6)' }}>
+                — Yasmine, 2Bac SM
+              </p>
+            </div>
+
+            <SirajButton variant="secondary" size="lg">
+              Voir tous les témoignages
+            </SirajButton>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="snap-start relative z-10 w-full bg-transparent">
+        <div className="relative max-w-6xl mx-auto px-6 py-20">
+        {/* SECTION BOUTONS */}
+        <section className="mb-20">
+          <SectionHeader eyebrow="Composants" title="Boutons" count="3 variantes" />
+
+          <div className="rounded-3xl border p-10"
+            style={{ borderColor: 'rgba(232,184,96,0.15)', background: 'rgba(15,20,25,0.5)' }}
+          >
+            <div className="flex flex-wrap items-center gap-4 mb-8">
+              <SirajButton variant="primary">
+                <Sparkles className="w-4 h-4" />
+                Commencer une Séance
+              </SirajButton>
+              <SirajButton variant="secondary">
+                Voir le programme
+              </SirajButton>
+              <SirajButton variant="ghost">
+                Plus tard
+              </SirajButton>
+            </div>
+            <div className="flex flex-wrap items-center gap-4 mb-8">
+              <SirajButton variant="primary" size="lg">
+                Démarrer mon Bac SM
+                <ArrowRight className="w-4 h-4" />
+              </SirajButton>
+              <SirajButton variant="secondary" size="lg">
+                Tester gratuitement
+              </SirajButton>
+            </div>
+            <div className="flex flex-wrap items-center gap-4">
+              <SirajButton variant="primary" size="sm">Petit format</SirajButton>
+              <SirajButton variant="secondary" size="sm">Petit format</SirajButton>
+              <SirajButton variant="ghost" size="sm">Petit format</SirajButton>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION SKELETON */}
+        <section className="mb-20">
+          <SectionHeader
+            eyebrow="État de chargement"
+            title="Skeleton loader"
+            count="Shimmer doré"
+            action={
+              <SirajButton variant="ghost" size="sm" onClick={() => setShowSkeleton(!showSkeleton)}>
+                {showSkeleton ? 'Cacher' : 'Afficher'}
+              </SirajButton>
+            }
+          />
+          <AnimatePresence>
+            {showSkeleton && (
               <motion.div
-                key="detail"
-                layoutId={`card-${selectedChapitre.id}`}
-                className="relative bg-[#0A0F16]/80 rounded-[3rem] p-12 border border-[#E8B860]/20 backdrop-blur-3xl overflow-hidden min-h-[600px]"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                className="overflow-hidden"
               >
-                {/* Detail View Content */}
-                <div className="absolute top-10 right-10">
-                  <SirajButton variant="ghost" size="sm" onClick={() => setSelectedChapitre(null)}>Fermer</SirajButton>
-                </div>
-
-                <div className="flex flex-col h-full">
-                  <div className="flex items-center gap-8 mb-16">
-                    <div className="w-20 h-20 rounded-3xl flex items-center justify-center border border-[#E8B860]/30" style={{ background: 'rgba(232, 184, 96, 0.05)' }}>
-                      <selectedChapitre.icon className="w-10 h-10 text-[#E8B860]" />
-                    </div>
-                    <div>
-                      <div className="text-[11px] font-bold tracking-[0.4em] uppercase text-[#E8B860] mb-2">Unité {selectedChapitre.numero}</div>
-                      <h3 className="text-4xl md:text-5xl font-bold tracking-tight">{selectedChapitre.titre}</h3>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 flex-1">
-                    {/* Séances List */}
-                    <div className="space-y-4">
-                      <h4 className="text-[10px] font-bold tracking-[0.3em] uppercase opacity-30 mb-6">Contenu de l'unité</h4>
-                      {seancesChapitre1.map((s, idx) => (
-                        <motion.div 
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.1 + idx * 0.05 }}
-                          key={s.id} 
-                          className="group flex items-center justify-between p-5 rounded-2xl border border-white/5 bg-white/1 hover:bg-white/3 hover:border-[#E8B860]/30 transition-all duration-300 cursor-pointer"
-                        >
-                          <div className="flex items-center gap-5">
-                            <div className={`w-10 h-10 rounded-xl flex items-center justify-center border ${s.statut === 'terminé' ? 'bg-[#E8B860]/10 border-[#E8B860]/30' : 'bg-white/5 border-white/10'}`}>
-                              {s.statut === 'terminé' ? <CheckCircle2 className="w-5 h-5 text-[#E8B860]" /> : <PlayCircle className="w-5 h-5 opacity-40" />}
-                            </div>
-                            <div>
-                              <div className="text-sm font-bold tracking-tight mb-1">{s.titre}</div>
-                              <div className="text-[10px] opacity-40 font-medium">{s.type} · {s.duree}</div>
-                            </div>
-                          </div>
-                          <ChevronDown className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-all -rotate-90 text-[#E8B860]" />
-                        </motion.div>
-                      ))}
-                    </div>
-
-                    {/* Exercise Highlight */}
-                    <div className="relative rounded-[2rem] border border-[#E8B860]/10 bg-[#E8B860]/2 p-10 overflow-hidden">
-                       <div className="absolute top-0 right-0 p-8 opacity-5">
-                         <Award className="w-32 h-32" />
-                       </div>
-                       <div className="relative z-10">
-                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8B860]/10 border border-[#E8B860]/20 mb-8">
-                           <Award className="w-3.5 h-3.5 text-[#E8B860]" />
-                           <span className="text-[9px] font-bold tracking-widest uppercase text-[#E8B860]">Type Bac National</span>
-                         </div>
-                         <h5 className="text-xl font-bold mb-6">Prolongement par continuité</h5>
-                         <p className="text-base font-light leading-relaxed mb-8 opacity-70">
-                           Soit <em className="font-serif">f</em> définie sur ℝ* par :
-                         </p>
-                         <div className="flex justify-center my-10 text-3xl font-serif italic border-y border-white/5 py-8">
-                           f(x) = (eˣ - 1) / x
-                         </div>
-                         <p className="text-sm font-light leading-relaxed opacity-70">
-                           Montrez que <em className="font-serif">f</em> admet un prolongement par continuité en 0.
-                         </p>
-                         <div className="mt-10 flex gap-4">
-                           <SirajButton variant="primary" size="sm">Indices IA</SirajButton>
-                           <SirajButton variant="secondary" size="sm">Correction</SirajButton>
-                         </div>
-                       </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ) : (
-              <motion.div 
-                key="grid"
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              >
-                {chapitres.map((c) => (
-                  <motion.div
-                    layoutId={`card-${c.id}`}
-                    key={c.id}
-                    onClick={() => c.statut !== 'verrouillé' && setSelectedChapitre(c)}
-                    className={`group relative h-[420px] rounded-[2.5rem] p-8 border transition-all duration-700 cursor-pointer overflow-hidden ${c.statut === 'verrouillé' ? 'opacity-40 grayscale pointer-events-none' : 'hover:border-[#E8B860]/40'}`}
-                    style={{ background: tokens.color.surface, borderColor: 'rgba(255,255,255,0.04)' }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#E8B860]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                    
-                    <div className="relative z-10 flex flex-col justify-between h-full">
-                      <div className="flex items-start justify-between">
-                        <div className="w-14 h-14 rounded-2xl flex items-center justify-center border border-white/5" style={{ background: 'rgba(255,255,255,0.02)' }}>
-                          {c.statut === 'verrouillé' ? <Lock className="w-6 h-6 opacity-40" /> : <c.icon className="w-7 h-7 text-[#E8B860]" />}
-                        </div>
-                        <div className="text-[10px] font-bold tracking-[0.3em] uppercase opacity-30">U{c.numero}</div>
-                      </div>
-
-                      <div>
-                        <h3 className="text-2xl font-bold mb-3 tracking-tight leading-tight">{c.titre}</h3>
-                        <p className="text-sm font-light opacity-50 mb-8 leading-relaxed">{c.description}</p>
-                        
-                        <div className="space-y-4">
-                          <div className="flex items-center justify-between text-[10px] font-bold tracking-widest uppercase">
-                            <span className="opacity-30">Progression</span>
-                            <span className="text-[#E8B860]">{c.progression}%</span>
-                          </div>
-                          <div className="h-[2px] w-full bg-white/5 rounded-full overflow-hidden">
-                            <motion.div 
-                              initial={{ width: 0 }}
-                              animate={{ width: `${c.progression}%` }}
-                              transition={{ duration: 1.5, delay: 0.5 }}
-                              className="h-full bg-gradient-to-r from-[#E8B860]/40 to-[#E8B860]"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
+                <SkeletonShowcase />
               </motion.div>
             )}
           </AnimatePresence>
-        </LayoutGroup>
-      </section>
-
-      {/* 5. CULTURAL TRUST SECTION */}
-      <section className="py-32 px-6 bg-[#05070A]/50 border-y border-white/5 relative overflow-hidden">
-        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-20">
-          <div className="flex-1">
-             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-8 border border-emerald-500/10 bg-emerald-500/5">
-                <Shield className="w-3.5 h-3.5 text-emerald-400" />
-                <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-emerald-400">Conformité Institutionnelle</span>
-             </div>
-             <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-8" style={{ fontFamily: 'Manrope, sans-serif' }}>
-               L'IA au service du<br />Programme National.
-             </h2>
-             <p className="text-lg font-light leading-relaxed opacity-60 mb-10 max-w-xl">
-               SIRAJ n'est pas un simple outil générique. Chaque grain de donnée est audité pour correspondre aux exigences du Baccalauréat marocain.
-             </p>
-             <div className="grid grid-cols-2 gap-8">
-               <div>
-                 <div className="text-2xl font-bold mb-1 text-[#E8B860]">100%</div>
-                 <div className="text-[10px] font-bold tracking-widest uppercase opacity-40">Alignement MEN</div>
-               </div>
-               <div>
-                 <div className="text-2xl font-bold mb-1 text-[#E8B860]">SM/PC/SVT</div>
-                 <div className="text-[10px] font-bold tracking-widest uppercase opacity-40">Filières Couvertes</div>
-               </div>
-             </div>
-          </div>
-          <div className="flex-1 relative">
-            <div className="aspect-square rounded-[3rem] overflow-hidden border border-white/5 shadow-2xl relative group">
-              <img src={assets.group} alt="Students" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#080C10] via-transparent to-transparent opacity-60" />
+          {!showSkeleton && (
+            <div
+              className="rounded-3xl border p-12 flex items-center justify-center"
+              style={{ borderColor: 'rgba(232,184,96,0.1)', background: 'rgba(15,20,25,0.3)' }}
+            >
+              <p className="text-sm" style={{ color: tokens.color.creamMute }}>
+                Clique sur "Afficher" pour voir le shimmer animé
+              </p>
             </div>
-            {/* Overlay UI Badge */}
-            <div className="absolute -bottom-10 -left-10 p-8 rounded-3xl bg-[#0A0F16]/90 border border-[#E8B860]/20 backdrop-blur-2xl shadow-2xl hidden md:block max-w-[280px]">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                  <Globe className="w-5 h-5 text-emerald-400" />
-                </div>
-                <div className="font-bold text-sm">Souveraineté</div>
-              </div>
-              <p className="text-xs font-light opacity-50 leading-relaxed">
-                Cartographie et contenus respectant l'intégrité territoriale et culturelle du Royaume.
+          )}
+        </section>
+
+        {/* FOOTER */}
+        <footer
+          className="mt-32 pt-10 border-t flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
+          style={{ borderColor: 'rgba(232,184,96,0.1)' }}
+        >
+          <div className="flex items-center gap-3">
+            <SirajLogo variant="favicon" size={28} />
+            <div>
+              <p className="text-sm font-semibold" style={{ color: tokens.color.cream }}>
+                SIRAJ Design System v1.0
+              </p>
+              <p className="text-xs" style={{ color: tokens.color.creamMute }}>
+                Conforme Document de Référence v1.8.2 — Section 2.5 + Section 13
               </p>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* 6. FOOTER FINALE */}
-      <footer className="py-40 px-6 text-center relative overflow-hidden">
-        <div className="relative z-10">
-          <img src={assets.medium} alt="SIRAJ" className="h-20 mx-auto mb-10 opacity-40 hover:opacity-100 transition-opacity duration-700" />
-          <h2 className="text-3xl font-bold mb-12 tracking-tight">Prêt pour l'excellence ?</h2>
-          <SirajButton variant="primary" size="lg">Demander un accès précoce</SirajButton>
-          
-          <div className="mt-32 flex flex-col items-center gap-8">
-            <div className="flex items-center gap-10 text-[10px] font-bold tracking-[0.2em] uppercase opacity-30">
-              <a href="#" className="hover:text-white transition-colors">Mentions Légales</a>
-              <a href="#" className="hover:text-white transition-colors">Confidentialité</a>
-              <a href="#" className="hover:text-white transition-colors">Contact</a>
-            </div>
-            <div className="text-[9px] font-medium tracking-[0.4em] uppercase opacity-20">
-              © 2026 SIRAJ TECHNOLOGY · ROYAUME DU MAROC
-            </div>
+          <div className="text-xs tracking-wide" style={{ color: tokens.color.creamMute }}>
+            <em style={{ color: tokens.color.gold }}>سراج</em> — éclaire ton parcours
           </div>
-        </div>
-      </footer>
+        </footer>
+      </div>
+      </section>
+    </div>
+  );
+}
 
+// === Helper : Section Header ===
+function SectionHeader({ eyebrow, title, count, action }) {
+  return (
+    <div className="flex items-end justify-between mb-8">
+      <div>
+        <div className="text-[11px] font-semibold tracking-[0.2em] uppercase mb-2" style={{ color: tokens.color.gold }}>
+          {eyebrow}
+        </div>
+        <h3
+          className="text-3xl md:text-4xl font-bold tracking-tight"
+          style={{ fontFamily: 'Manrope, sans-serif', color: tokens.color.cream }}
+        >
+          {title}
+        </h3>
+      </div>
+      <div className="flex items-center gap-3">
+        {count && (
+          <span className="text-xs tracking-wide" style={{ color: tokens.color.creamMute }}>
+            {count}
+          </span>
+        )}
+        {action}
+      </div>
     </div>
   );
 }
