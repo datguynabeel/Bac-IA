@@ -1,7 +1,7 @@
 # SIRAJ — Document de Référence Projet
 
-**Version :** 1.8
-**Date :** Mai 2026 — v1.8 acte le renommage produit “Bac IA” → “SIRAJ” (04/05/2026), intègre l'identité de marque complète (Section 13.2) et met à jour la Partie 13 (décisions cochées identité + statut marque).
+**Version :** 1.8.3
+**Date :** Mai 2026 — v1.8.3 acte (1) le pivot philosophique build-for-final, (2) la règle gouvernance nuancée distinguant SaaS opérationnels bloqués vs bibliothèques frontend autorisées, (3) la stack frontend consolidée (framer-motion, lucide-react, 21st.dev, Tailwind), (4) le Design System SIRAJ v1.0 livré et déployé, (5) les règles visuelles renforcées (phénotypes marocains, hijab fassi/tétouanais, interdiction smartphone en classe), (6) la stratégie domaines révisée (siraj.app principal, abandon piste siraj.ma), (7) la validation OMPIC SIRAJ classes 9 + 41, (8) la validation locuteur natif version arabe سراج par le fondateur lui-même.
 **Auteur :** [Fondateur] + Claude (Co-Fondateur IA, Chef de Projet & Delivery Manager)
 **Statut :** Document maître — à charger dans Claude Projects comme connaissance permanente
 **Langue :** Français (avec extraits darija/arabe selon contexte)
@@ -20,6 +20,7 @@
 - v1.8 (mai 2026) — Renommage produit “Bac IA” → “SIRAJ” acté le 04/05/2026 suite à validation de l'identité de marque complète. Mise à jour de toutes les mentions produit dans le doc maître (mentions historiques préservées en Section 13). Intégration de la Section 13.2 “Identité de marque SIRAJ” (architecture, palette, 8 variantes officielles, slogans). Décisions Section 13 cochées : identité visuelle + statut marque OMPIC. Repo GitHub `datguynabeel/Bac-IA` et URL `https://bac-ia.vercel.app` conservés temporairement (renommage opérationnel séparé, hors scope patch documentaire).
 - v1.8.1 (mai 2026) — Patch correctif mineur : suppression doublon entrée historique v1.8 (insertion parasite Section 1.3.5 due à marqueur find/replace non unique). Aucun changement de contenu produit.
 - v1.8.2 (mai 2026) — Ajout Section 14.2.9 « Système anti-récidive » (3 mécanismes prescriptifs : checklist pré-réponse, compteur échanges visible, 5 règles prescriptives 14.2.9.a→e). Justification : 6 violations session 08/05/2026, toutes récidives descriptives → passage au prescriptif opposable.
+- v1.8.3 (mai 2026, session 09/05) — Patch consolidé intégrant : (1) Pivot build-for-final (Section 14.5 nouvelle). (2) Règle gouvernance nuancée SaaS vs bibliothèques (Section 14.4 amendée). (3) Stack frontend détaillée (Section 14.3 mise à jour). (4) Design System v1.0 (Section 13.3 nouvelle). (5) Règles visuelles photos/hijab/smartphone (Section 2.5.8 nouvelle). (6) Stratégie domaines révisée (Section 10.3 réécrite). (7) Validation OMPIC SIRAJ classes 9 + 41 (Section 13.1.6 mise à jour). (8) Validation arabe سراج par fondateur natif (Section 13.2 mise à jour). (9) Abandon Khalid Gdader, pause OMPIC/Comeup/pré-vente/réservation domaines. (10) Prototype non-jetable 5 écrans (Section 14.6 nouvelle).
 
 ---
 
@@ -499,6 +500,40 @@ Ces règles sont inscrites dans :
 - La checklist de review avant déploiement de chaque écran
 
 **Aucune exception n'est tolérée, y compris pour des raisons techniques ou esthétiques.** Un écran ou un contenu qui viole une de ces règles est considéré comme non-livrable et doit être corrigé avant publication.
+
+### 2.5.8 Règles visuelles renforcées — phénotypes, vêtements, environnement scolaire
+
+Acté v1.8.3.
+
+#### 2.5.8.1 Phénotypes
+- OBLIGATOIRE : phénotypes marocains authentiques (amazigh / arabe / influences andalouses).
+- INTERDIT : phénotypes Middle Eastern génériques, South Asian, Gulf style.
+
+#### 2.5.8.2 Vêtements et hijab
+- Style vestimentaire jeune marocain urbain : casual contemporain, sweat/jean/baskets.
+- Hijab marocain (style fassi/tétouanais urbain) : foulard léger, drapé moderne, look casual.
+- INTERDIT : abaya noire, turban Dubai-style, voile intégral, esthétique péninsule arabique.
+
+#### 2.5.8.3 Environnement scolaire
+- INTERDIT : smartphone visible en classe ou en contexte d'études.
+- Toute photo en classe doit montrer cahier/manuel/tableau. Bureaux réalistes lycée marocain.
+
+#### 2.5.8.4 Esthétique cible
+- Référentiels validés : Apple "Behind the Mac", MasterClass, Kinfolk.
+- INTERDIT : stock photo générique, sourires forcés, colorimétrie saturée publicitaire.
+
+#### 2.5.8.5 Logo SIRAJ — règle d'usage
+- Utiliser exclusivement le PNG officiel versionné dans le repo.
+- INTERDIT : demander à un agent IA d'inventer/régénérer un SVG du logo.
+- Vectorisation pro : livrable séparé externalisé (brief Comeup, ~400-600 DH). Statut : EN PAUSE acté 09/05/2026.
+
+#### 2.5.8.6 Génération photos via Nano Banana 2
+Outil validé : Nano Banana 2 avec prompts hyper-spécifiques.
+- INTERDIT : banques génériques (Unsplash, Pexels, Shutterstock)
+- INTERDIT : vrais visages d'élèves (CNDP, mineurs)
+- REPORTÉ : shooting photo réel (Phase 2 post-pilote)
+- AUTORISÉ : génération IA Nano Banana 2 + prompts auditables contre 2.5.8.1 à 2.5.8.4
+Toute photo générée archivée avec son prompt dans /docs/photos/prompts/.
 
 ---
 
@@ -1400,18 +1435,35 @@ Pourquoi : reflète à la fois la conversion (payant), l'engagement (3 sessions)
 - Taux d'utilisation du dashboard parent
 - NPS (Net Promoter Score)
 
-## 10.3 Métriques business
+## 10.3 Stratégie domaines (acté v1.8.3, 08-09/05/2026)
 
-- MRR (revenus récurrents mensuels)
-- Croissance MRR mois sur mois
-- Nombre d'abonnés payants
-- Taux de conversion freemium → payant
-- Taux de churn mensuel
-- ARPU (revenu moyen par utilisateur payant)
-- LTV (lifetime value)
-- CAC (coût d'acquisition client)
-- Ratio LTV/CAC
-- Payback period (en mois)
+### 10.3.1 Domaines à réserver
+
+| Priorité | Domaine | Rôle | Coût annuel | Statut |
+|---|---|---|---|---|
+| 1 | siraj.app | Domaine principal MVP | ~200 DH/an | EN PAUSE acté 09/05 |
+| 2 | getsiraj.com | Fallback international + emails pro | ~150 DH/an | EN PAUSE acté 09/05 |
+| 3 | sirajedu.ma | Réservation défensive .ma | ~150 DH/an | EN PAUSE acté 09/05 |
+
+Justification siraj.app : cohérent identité premium, code culturel cible Yasmine, mémorisation maximale, précédents EdTech (socratic.app, quizlet.app, brainly.app).
+
+### 10.3.2 Domaines explicitement exclus
+
+| Domaine | Raison |
+|---|---|
+| siraj-edu.ma | Tiret = friction marketing permanente |
+| siraj.education | Mémorisation faible au Maroc |
+| siraj.ai | Casse posture "IA = moyen, pas héros" (Section 1.2) |
+
+### 10.3.3 Cas siraj.ma — abandon définitif
+
+Domaine indisponible (détenteur Khalid Gdader, particulier Marrakech, créé 16/12/2025).
+Décision actée 09/05/2026 : abandon définitif de toute piste de rachat. Pas de surveillance expiration, pas d'approche douce. La marque vit sur siraj.app + getsiraj.com + dépôt OMPIC.
+
+### 10.3.4 État actuel
+
+Domaine actif (production) : bac-ia.vercel.app (héritage pré-renommage SIRAJ)
+Action en attente : réservation des 3 domaines (~500 DH/an total). EN PAUSE acté 09/05/2026. À réactiver post-prototype démo.
 
 ## 10.4 Métriques pédagogiques (le plus important)
 
@@ -1604,7 +1656,11 @@ Rédiger un one-pager d'1 page max à remettre au directeur, structuré comme su
 
 - 🟡 Variante arabe سراج à valider par 2-3 locuteurs natifs (limite rÉcurrente IA sur connexion)
 - 🟡 Test oeil neutre 3-5 personnes (dÉtection confusion avec restaurant/parfumerie/hôtel)
-- 🟡 VÉrification disponibilitÉ OMPIC “SIRAJ” classes 9 (logiciels) + 41 (services Éducatifs)
+- ✅ Vérification disponibilité OMPIC "SIRAJ" classes 9 + 41 — VALIDÉE 08/05/2026
+  Recherches sur search.ompic.ma : SIRAJ exacte/phonétique classes 9 et 41 → 0 résultat. سراج exacte classes 9 et 41 → 0 résultat.
+  Marques hors champ (zéro risque loi 17/97) : N°244088 (classes 6/19/20), N°226488 (classe 11), N°273930 (classe 30).
+  Conclusion : marque SIRAJ juridiquement disponible classes 9 + 41.
+  Statut dépôt : EN PAUSE acté 09/05/2026 (dépendance vectorisation pro).
 - 🟡 Vectorisation pro SVG/AI par freelance Comeup (~400-600 DH, 48-72h)
 - 🟡 Charte graphique 1 page A4 pour accompagner dÉpôt OMPIC
 
@@ -1635,7 +1691,8 @@ Liste des dÉcisions clÉs à acter avant de lancer :
 - [x] **Nom définitif** du produit ✅ **SIRAJ** (acté v1.8 — 04/05/2026, anciennement “Bac IA”)
 - [x] **Identité visuelle** ✅ Lampe orientale dorée + wordmark SIRAJ (acté v1.8 — 04/05/2026, cf. Section 13.1)
 - [ ] **Choix entre auto-entrepreneur ou SARL** dès le départ
-- [x] **Statut de la marque** ✅ Dépôt OMPIC SIRAJ confirmé classes 9 + 41 (acté v1.8 — sous réserve vérification disponibilité OMPIC)
+- [x] **Statut de la marque** ✅ Dépôt OMPIC SIRAJ confirmé classes 9 + 41 (acté v1.8 — disponibilité OMPIC vérifiée et validée 08/05/2026, dépôt en pause acté 09/05/2026)
+- [x] **Validation linguistique version arabe سراج** ✅ Validée par le fondateur (locuteur natif arabe, acté 09/05/2026). Pas de validation externe requise.
 - [ ] **Première matière** prioritaire pour le MVP (recommandé : Maths 2Bac SM)
 - [ ] **Modèle LLM** principal (recommandé : Claude Sonnet 4.6)
 - [x] **Stack technique** définitif : Lovable/Bolt + Supabase + Anthropic API ✅ (acté v1.2)
@@ -1644,6 +1701,46 @@ Liste des dÉcisions clÉs à acter avant de lancer :
 - [ ] **Politique de remboursement** (recommandé : 14 jours satisfait/remboursé)
 - [ ] **Stratégie d'acquisition de contenus** (achat éditeurs vs création originale)
 - [ ] **Formalisation Design Partner Pilote** : one-pager + RDV directeur école
+
+## 13.3 Design System SIRAJ v1.0 (livré 08/05/2026)
+
+Statut : ✅ Livré, déployé, validé.
+
+### 13.3.1 Localisation
+- Code source : siraj-design-system.jsx (880 lignes), repo datguynabeel/Bac-IA
+- Showcase déployé : https://siraj-three.vercel.app/showcase
+- Migration prévue : vers siraj.app (post-réservation domaine)
+
+### 13.3.2 Composants livrés (6)
+
+| # | Composant | Caractéristiques |
+|---|---|---|
+| 1 | Card Chapitre | Glassmorphism, tilt 3D hover, progression animée Framer Motion |
+| 2 | Vue Séances | Shared layout animation (layoutId) |
+| 3 | Item Séance | Stagger reveal au mount, spring physics |
+| 4 | Bouton SIRAJ | 3 variantes (primary doré / ghost / danger), 3 tailles |
+| 5 | Skeleton loader | Shimmer doré sur fond sombre |
+| 6 | Exercice featured | Render KaTeX animé, hiérarchie typographique premium |
+
+### 13.3.3 Sections immersives full-bleed validées
+- Hero : photo siraj-hero-student.jpg, Ken Burns lent, overlay gradient
+- Témoignages : photo siraj-students-group.jpg, parallaxe scroll, quote Yasmine
+
+### 13.3.4 Photos déployées
+- /public/brand/siraj-hero-student.jpg — Nano Banana 2, conforme Section 2.5.8
+- /public/brand/siraj-students-group.jpg — Nano Banana 2, conforme Section 2.5.8
+Prompts archivés dans /docs/photos/prompts/ (à créer si absent).
+
+### 13.3.5 Logo intégré
+PNG officiel cropé depuis brand book. Vectorisation pro : EN PAUSE acté 09/05/2026.
+
+### 13.3.6 App Icon — chantier en cours
+- Variante 6a (fond doré) : intégrée dans showcase
+- Variante 6b (fond sombre) : à intégrer proprement
+- Décision finale 6a vs 6b : OUVERTE
+
+### 13.3.7 Statut de référence
+Le Design System v1.0 est le périmètre VISUEL de référence pour le prototype non-jetable (Section 14.6). Tous les écrans du prototype doivent utiliser ces composants sans rupture stylistique.
 
 ---
 
@@ -2033,32 +2130,129 @@ Toute leçon ayant fait l'objet de **2 récidives ou plus** est promue en règle
 - **Révision** : toute nouvelle récidive → nouvelle règle 14.2.9.x, validée par le fondateur.
 - **Sanction self-imposed** : toute violation d'une règle prescriptive est loggée comme leçon distincte pour quantifier la dette de récidive.
 
-## 14.3 Stack technique consolidée (rappel synthétique)
+## 14.3 Stack technique consolidée (mise à jour v1.8.3)
+
+### 14.3.1 Stack production complète
 
 | Couche | Outil | Statut |
 |---|---|---|
-| **Conception stratégique (fondateur)** | Claude Desktop Pro + Opus 4.7 | ✅ Acté v1.3 |
-| **Conception exécutante (fondateur)** | Antigravity (Gemini 3.1 Pro + Claude 4.6 Opus) via Google AI Pro — 119 MAD/mois (mois 1-6) puis 239 MAD/mois | ✅ Acté v1.4 |
-| **Production de contenu (RAG + marketing)** | NotebookLM Pro + Deep Research + Veo 3.1 (inclus dans Google AI Pro) | ✅ Acté v1.4 |
-| **Mémoire d'apprentissage** | `tasks/lessons.md` versionné dans le repo | ✅ Acté v1.3 |
-| **Garde-fou session conversation** | Bloc `🔄 GARDE-FOU SESSION` automatique en fin de réponse Claude Desktop | ✅ Acté v1.3 |
-| **Knowledge Claude Projects** | Architecture 2 niveaux : upload manuel (doc maître + lessons.md) + connexion repo `datguynabeel/Bac-IA` pour le reste | ✅ Acté v1.5 |
-| **Design** | Antigravity + Stitch | ✅ Acté v1.2 |
-| **Frontend code** | Lovable.dev ou Bolt.new | ✅ Acté |
-| **Hébergement** | Vercel | ✅ Acté |
-| **Backend & DB** | Supabase | ✅ Acté |
-| **LLM runtime production (élève)** | Claude Sonnet 4.6 (API Anthropic) | ✅ Acté |
-| **RAG** | Supabase pgvector | ✅ Acté MVP |
-| **Paiement** | Stripe (puis CMI) | ✅ Acté |
-| **Repo** | GitHub (`datguynabeel/Bac-IA`) | ✅ Configuré |
-| **Domaine production** | `https://bac-ia.vercel.app` | ✅ En ligne |
+| Conception stratégique | Claude Desktop Pro + Opus 4.7 | ✅ Acté v1.3 |
+| Conception exécutante | Antigravity (Gemini 3.1 Pro + Claude 4.6 Opus) via Google AI Pro | ✅ Acté v1.4 |
+| Production contenu | NotebookLM Pro + Deep Research + Veo 3.1 | ✅ Acté v1.4 |
+| Mémoire apprentissage | tasks/lessons.md versionné | ✅ Acté v1.3 |
+| Garde-fou session | Bloc GARDE-FOU SESSION automatique | ✅ Acté v1.3 |
+| Knowledge Claude Projects | Architecture 2 niveaux | ✅ Acté v1.5 |
+| Système anti-récidive | Section 14.2.9 | ✅ Acté v1.8.2 |
+| Design tooling | Antigravity + Stitch | ✅ Acté v1.2 |
+| Frontend code | Lovable.dev ou Bolt.new | ✅ Acté |
+| Hébergement | Vercel | ✅ Acté |
+| Backend & DB | Supabase | ✅ Acté |
+| LLM runtime production | Claude Sonnet 4.6 (API Anthropic) | ✅ Acté |
+| RAG | Supabase pgvector | ✅ Acté MVP |
+| Paiement | Stripe (puis CMI Maroc) | ✅ Acté |
+| Repo | GitHub (datguynabeel/Bac-IA) | ✅ Configuré |
+| Domaine actuel | bac-ia.vercel.app | ✅ En ligne (legacy) |
+| Domaine cible | siraj.app (acté v1.8.3) | EN PAUSE |
+
+### 14.3.2 Stack frontend détaillée (acté v1.8.3)
+
+Bibliothèques fondationnelles — catégorie B "code possédé", AUTORISÉES en build-for-final :
+
+| Bibliothèque | Rôle | Statut |
+|---|---|---|
+| React + Vite | Runtime UI principal | ✅ Acté |
+| Tailwind CSS | Utilities styling, tokens | ✅ Acté |
+| Framer Motion | Animations spring, shared layout, stagger, parallaxe | ✅ Acté v1.8.3 |
+| lucide-react | Iconographie cohérente, stroke fin | ✅ Acté v1.8.3 |
+| 21st.dev | Référentiel composants copy-paste, tokens SIRAJ | ✅ Acté v1.8.3 |
+| KaTeX | Rendu mathématique premium | ✅ Acté Section 2.5.4 |
+| shadcn/ui | Primitives UI accessibles | ✅ Acté |
+
+### 14.3.3 Skills Antigravity
+- UI/UX Pro Max : ajouté 09/05/2026. À activer pour génération écrans prototype (Section 14.6).
 
 ## 14.4 Engagements de gouvernance
 
 - **Pas de migration tooling sans décision documentée** dans ce document de référence
 - **Pas de pivot stratégique majeur** sans mise à jour formelle (nouvelle version)
+- **Règle gouvernance nuancée outils (acté v1.8.3) :**
+  - BLOQUÉS jusqu'à pilote signé + 10 élèves payants : SaaS opérationnels payants (Mixpanel, Intercom, Hotjar), IA externes coûteuses, infrastructure cloud lourde
+  - AUTORISÉS en build-for-final : bibliothèques frontend (framer-motion, lucide-react, 21st.dev), référentiels composants, dépendances code possédé, tooling dev local
+  - Règle de classification : avant tout refus pour "build freeze", classer dans (a) ou (b). Si (b) → autoriser sans débat.
 - **Pas de feature V2/V3** intégrée dans le périmètre MVP, même sous pression émotionnelle (école pilote, idée brillante, etc.)
 - **Audit culturel permanent** (section 2.5) appliqué à tous les écrans et contenus, sans exception
+
+## 14.5 Philosophie build-for-final (acté v1.8.3, 09/05/2026)
+
+### 14.5.1 Pivot
+Abandon du modèle "MVP jetable réécrit Phase 2" au profit du modèle "build-for-final en itération continue".
+
+### 14.5.2 Implications
+- Pas de reconstruction prévue : on améliore au fur et à mesure
+- Fondations techniques solides dès le départ
+- Pas de raccourcis "on refera proprement plus tard"
+- Tout ce qu'on bâtit doit servir le produit final
+
+### 14.5.3 Distinction critique : qualité de code ≠ extension de périmètre
+
+Build-for-final s'applique à :
+- La QUALITÉ DE CODE (architecture, composants réutilisables, naming cohérent)
+- La RÉUTILISABILITÉ (écrans Phase 1 survivent Phase 2 sans réécriture)
+- La DETTE TECHNIQUE (zéro raccourci sale dès le départ)
+
+Build-for-final NE s'applique PAS à :
+- L'EXTENSION DU PÉRIMÈTRE FONCTIONNEL (contraint par build freeze jusqu'au Go/No-Go)
+- L'AJOUT DE FEATURES V2/V3 sous prétexte de "préparer le futur"
+- LA SUR-INGÉNIERIE défensive
+
+### 14.5.4 Garde-fou anti-confusion
+Confondre qualité de code et extension de périmètre = build freeze violé. Toute proposition d'élargissement justifiée par "build-for-final" doit être rejetée. Périmètre débloqué uniquement par : (1) premier élève payant, (2) décision documentée dans nouvelle version doc maître.
+
+## 14.6 Prototype démo cliquable non-jetable (acté v1.8.3, 09/05/2026)
+
+### 14.6.1 Objectif
+Parcours cliquable de 90 secondes démontrant les 5 moats SIRAJ (Section 1.3.5) en RDV pré-vente école. Code réutilisable Phase 2 sans réécriture.
+
+### 14.6.2 Périmètre — 5 écrans (variante C validée)
+
+| # | Écran | Rôle démo |
+|---|---|---|
+| 1 | Onboarding / Diagnostic | "Yasmine arrive, on évalue son niveau" |
+| 2 | Liste Chapitres Maths 2 Bac SM | "Voici son programme structuré" |
+| 3 | Vue Séances — Limites & Continuité | "Voici comment elle attaque un chapitre" |
+| 4 | Chat Tuteur (séance active) | "Voici comment elle apprend avec l'IA" |
+| 5 | Fin de séance / Progression mise à jour | "Voici le payoff pédagogique" |
+
+### 14.6.3 Parcours démo (90 secondes)
+Lancement → Écran 1 (diagnostic 3 questions scriptées) → Écran 2 (chapitres, focus Limites & Continuité) → Écran 3 (liste 5-7 séances) → Écran 4 (séance active, question scriptée, réponse tuteur KaTeX, mini-exercice) → Écran 5 (progression 0%→14%, "Bravo Yasmine", CTA Continuer)
+
+### 14.6.4 Périmètre exclu (build freeze maintenu)
+- INTERDIT : backend Supabase, auth réelle, persistance
+- INTERDIT : IA réelle (Claude API) — réponses 100% scriptées hardcodées
+- INTERDIT : paiement, paywall, pricing
+- INTERDIT : mode parent, dashboard parent
+- INTERDIT : profil utilisateur, paramètres
+- INTERDIT : multi-matières (Maths 2 Bac SM uniquement)
+- INTERDIT : mode oral, marketplace, features V2/V3
+
+### 14.6.5 Standards techniques (build-for-final)
+- Stack : React + Vite + Tailwind + Framer Motion + lucide-react + KaTeX
+- Architecture : composants atomiques réutilisables, séparation routes/vues/composants/data fakes
+- Données : 1 fichier mock-data.ts typé strictement, remplaçable par Supabase Phase 2 sans réécriture composants
+- Routage : React Router DOM (/onboarding, /chapitres, /chapitres/:slug, /seance/:id, /seance/:id/fin)
+- Design tokens : tailwind.config.js avec palette officielle Section 13.1
+- Responsive : mobile-first strict
+- Accessibilité : focus visible, contrast AA, navigation clavier
+
+### 14.6.6 Délais et discipline
+- Cible : 5-7 jours de dev sur Antigravity (skill UI/UX Pro Max activé)
+- Critère de fin : parcours cliquable de bout en bout sans explication préalable
+- Critère d'arrêt absolu : dès les 5 écrans cliquables → STOP, pas de polish, relance pré-vente immédiate
+
+### 14.6.7 Engagement de gouvernance
+Dès les 5 écrans cliquables :
+1. Réactivation immédiate pré-vente école (one-pager v3, 3 contacts Rabat/Casa)
+2. Zéro élargissement périmètre sans premier RDV décroché
 
 ---
 
