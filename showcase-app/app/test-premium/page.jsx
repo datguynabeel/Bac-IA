@@ -7,12 +7,12 @@ import {
   ArrowRight, Clock, Target, Zap, Award, ChevronDown, 
   Search, Menu, Globe, Shield, User
 } from 'lucide-react';
-import { ThemeToggle } from "@/components/ui/curtain-theme-toggle";
+
 
 // ============================================================================
 // SIRAJ DESIGN SYSTEM v1.1 — Showcase Immersif
 // ----------------------------------------------------------------------------
-// Conformité SIRAJ v1.8.2 :
+// Conformité SIRAJ v1.8.4 :
 // - Section 2.5 : Souveraineté culturelle (Phénotypes, Vocabulaire)
 // - Section 13.1 : Identité Visuelle (Palette #E8B860, iOS Dark Glass)
 // - Esthétique "Behind the Mac" : Flous profonds, bordures 0.5px, grilles
@@ -195,21 +195,7 @@ export default function TestPremiumPage() {
   return (
     <div className="min-h-screen w-full bg-[#F5EDE0] dark:bg-[#080C10] text-[#0F1419] dark:text-[#F5EDE0] selection:bg-[#E8B860]/30 overflow-x-hidden transition-colors duration-500" style={{ fontFamily: 'Inter, sans-serif' }}>
       
-      {/* THEME TOGGLE */}
-      <div style={{
-        position: "fixed",
-        top: "20px",
-        left: "20px",
-        zIndex: 9999,
-      }}>
-        <ThemeToggle 
-          variant="icon" 
-          defaultTheme="dark"
-          buttonSize={44}
-          duration={600}
-          onThemeChange={(theme) => console.log("SIRAJ theme:", theme)}
-        />
-      </div>
+
 
       {/* 1. ELEMENTS DE FOND - Behind the Mac */}
       <div className="fixed inset-0 pointer-events-none z-0">
@@ -325,7 +311,7 @@ export default function TestPremiumPage() {
                       <selectedChapitre.icon className="w-10 h-10 text-[#E8B860]" />
                     </div>
                     <div>
-                      <div className="text-[11px] font-bold tracking-[0.4em] uppercase text-[#E8B860] mb-2">Unité {selectedChapitre.numero}</div>
+                      <div className="text-[11px] font-bold tracking-[0.4em] uppercase text-[#E8B860] mb-2">Chapitre {selectedChapitre.numero}</div>
                       <h3 className="text-4xl md:text-5xl font-bold tracking-tight">{selectedChapitre.titre}</h3>
                     </div>
                   </div>
@@ -333,7 +319,7 @@ export default function TestPremiumPage() {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 flex-1">
                     {/* Séances List */}
                     <div className="space-y-4">
-                      <h4 className="text-[10px] font-bold tracking-[0.3em] uppercase opacity-30 mb-6">Contenu de l'unité</h4>
+                      <h4 className="text-[10px] font-bold tracking-[0.3em] uppercase opacity-30 mb-6">Contenu du chapitre</h4>
                       {seancesChapitre1.map((s, idx) => (
                         <motion.div 
                           initial={{ opacity: 0, x: -20 }}
@@ -408,7 +394,7 @@ export default function TestPremiumPage() {
                         <div className="w-14 h-14 rounded-2xl flex items-center justify-center border border-white/5" style={{ background: 'rgba(255,255,255,0.02)' }}>
                           {c.statut === 'verrouillé' ? <Lock className="w-6 h-6 opacity-40" /> : <c.icon className="w-7 h-7 text-[#E8B860]" />}
                         </div>
-                        <div className="text-[10px] font-bold tracking-[0.3em] uppercase opacity-30">U{c.numero}</div>
+                        <div className="text-[10px] font-bold tracking-[0.3em] uppercase opacity-30">Ch{c.numero}</div>
                       </div>
 
                       <div>
