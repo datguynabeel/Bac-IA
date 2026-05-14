@@ -1,7 +1,7 @@
 # SIRAJ — Document de Référence Projet
 
-**Version :** 1.8.3
-**Date :** Mai 2026 — v1.8.3 acte (1) le pivot philosophique build-for-final, (2) la règle gouvernance nuancée distinguant SaaS opérationnels bloqués vs bibliothèques frontend autorisées, (3) la stack frontend consolidée (framer-motion, lucide-react, 21st.dev, Tailwind), (4) le Design System SIRAJ v1.0 livré et déployé, (5) les règles visuelles renforcées (phénotypes marocains, hijab fassi/tétouanais, interdiction smartphone en classe), (6) la stratégie domaines révisée (siraj.app principal, abandon piste siraj.ma), (7) la validation OMPIC SIRAJ classes 9 + 41, (8) la validation locuteur natif version arabe سراج par le fondateur lui-même.
+**Version :** 1.8.4
+**Date :** Mai 2026 — v1.8.4 acte (1) la vision d’expansion internationale (Section 1.5 nouvelle) selon la séquence Maroc → Golfe (KSA+UAE) → Tunisie+Égypte (parallèle ou après) → Asie du Sud, (2) l’exclusion définitive de l’Algérie, des USA et de l’Europe de l’Ouest de toute roadmap d’expansion, (3) la thèse stratégique “fenêtre IA-tuteur” justifiant le choix Golfe en Phase 2, (4) la référence formelle au Catalogue Technologique v1.0 (Section 13.4 nouvelle). Aucune levée du build freeze. La vision expansion documente l’horizon stratégique sans engager de ressources opérationnelles.
 **Auteur :** [Fondateur] + Claude (Co-Fondateur IA, Chef de Projet & Delivery Manager)
 **Statut :** Document maître — à charger dans Claude Projects comme connaissance permanente
 **Langue :** Français (avec extraits darija/arabe selon contexte)
@@ -22,6 +22,14 @@
 - v1.8.2 (mai 2026) — Ajout Section 14.2.9 « Système anti-récidive » (3 mécanismes prescriptifs : checklist pré-réponse, compteur échanges visible, 5 règles prescriptives 14.2.9.a→e). Justification : 6 violations session 08/05/2026, toutes récidives descriptives → passage au prescriptif opposable.
 - v1.8.3 (mai 2026, session 09/05) — Patch consolidé intégrant : (1) Pivot build-for-final (Section 14.5 nouvelle). (2) Règle gouvernance nuancée SaaS vs bibliothèques (Section 14.4 amendée). (3) Stack frontend détaillée (Section 14.3 mise à jour). (4) Design System v1.0 (Section 13.3 nouvelle). (5) Règles visuelles photos/hijab/smartphone (Section 2.5.8 nouvelle). (6) Stratégie domaines révisée (Section 10.3 réécrite). (7) Validation OMPIC SIRAJ classes 9 + 41 (Section 13.1.6 mise à jour). (8) Validation arabe سراج par fondateur natif (Section 13.2 mise à jour). (9) Abandon Khalid Gdader, pause OMPIC/Comeup/pré-vente/réservation domaines. (10) Prototype non-jetable 5 écrans (Section 14.6 nouvelle).
 
+
+- v1.8.4 (mai 2026, session 14/05 session 2) — Patch intégrant :
+  (1) Section 1.5 nouvelle — Vision d’expansion internationale horizon 18-60 mois. Séquence : Maroc → Golfe (KSA+UAE) → Tunisie+Égypte (en parallèle ou après) → Asie du Sud (Pakistan, Indonésie).
+  (2) Marchés exclus définitivement : Algérie, USA, Europe de l’Ouest.
+  (3) Thèse stratégique Golfe : prise de terrain IA-tuteur avant pivot des incumbents (Noon Academy, Almentor positionnés sur méthodes académiques classiques peu IA-natives).
+  (4) Triggers Phase 2 : à acter ultérieurement, non-figés, révisables à la lumière des données Phase 1 Maroc.
+  (5) Section 13.4 nouvelle — Rattachement formel du document SIRAJ_Catalogue_Technologique_v1_0.md comme catalogue de référence opposable mais non-prescriptif.
+  (6) Aucune levée du build freeze. Aucune action opérationnelle débloquée par ce patch.
 ---
 
 ## Comment utiliser ce document
@@ -240,6 +248,70 @@ Famille modeste, n'a jamais eu de cours particulier. A entendu parler de l'app p
 - Accès direct à la persona cible MVP sans coût d'acquisition
 - Validation produit en environnement scolaire réel
 - Cas d'usage sera-t-elle prête à payer après les 3 mois de pilote ?
+
+
+## 1.5 Vision d’expansion internationale (horizon 18-60 mois)
+
+Acté v1.8.4 (14/05/2026).
+
+### 1.5.1 Principe directeur
+
+Aucun travail d’expansion ne démarre avant validation complète Phase 1 Maroc. La Section 14.5.4 (garde-fou anti-confusion) et la Section 14.4 (build freeze) restent opposables. Cette section documente la vision long terme uniquement pour ancrer le cap stratégique et éviter la dispersion exploratoire dans les sessions futures.
+
+### 1.5.2 Séquence d’expansion validée
+
+| Phase | Marché | Horizon | Rôle stratégique |
+|---|---|---|---|
+| 1 | Maroc | M0 → M18 | Validation marché + traction initiale |
+| 2 | Golfe (KSA + UAE) | Post-validation Phase 1 | Marché à fort ARPU (3-5x Maroc), prise de terrain IA-tuteur |
+| 3 | Tunisie + Égypte | En parallèle ou après Phase 2 | Volume + tremplin arabe standard |
+| 4 | Asie du Sud (Pakistan, Indonésie) | Long terme | Vision moonshot, marchés à 200-270M habitants |
+
+### 1.5.3 Justification du choix Golfe en Phase 2
+
+**Thèse stratégique : “fenêtre IA-tuteur”.** Le marché EdTech au Golfe est dominé par des acteurs établis (Noon Academy avec ~150-200M USD valorisation, Almentor, Baims) mais positionnés sur des méthodes académiques classiques peu IA-natives. La fenêtre de tir réside dans la prise de terrain avec un positionnement IA-tuteur premium avant que ces incumbents ne pivotent leur produit vers une expérience IA-first.
+
+**Justifications complémentaires :**
+- ARPU structurellement 3-5x supérieur au Maroc (PIB/hab Arabie Saoudite ~32 000 USD vs Maroc ~4 000 USD)
+- Paiement digital mature (Mada, STC Pay aux Émirats, Apple Pay généralisé)
+- Willingness-to-pay tutorat IA estimée : 27-110 USD/mois selon pays Golfe
+- Marchés à fort potentiel de monétisation premium
+
+**Risque assumé.** Les 5 moats SIRAJ actuels (programme marocain officiel, darija, annales Bac marocain, références culturelles locales, personas marocains Section 1.4) ne sont pas transférables au Golfe. De nouveaux moats devront être construits pour chaque nouveau marché. Cette construction fait partie intégrante du coût d’entrée Phase 2.
+
+### 1.5.4 Marchés exclus définitivement
+
+| Marché | Raison d’exclusion |
+|---|---|
+| Algérie | Acté 14/05/2026 par le fondateur. Pas de roadmap d’expansion vers ce marché. |
+| USA | Marché saturé (Khanmigo, MagicSchool, Quizlet IA, Khan Academy). Moats SIRAJ non transférables. |
+| Europe de l’Ouest | Concurrence dense (Lalilo, Kartable, Schoolmouv), moats marocains non transférables. |
+
+### 1.5.5 Triggers d’activation Phase 2
+
+**Non-figés à ce stade.** Le passage de la Phase 1 (Maroc) à la Phase 2 (Golfe) sera conditionné par un ensemble de triggers à acter ultérieurement, à la lumière des données réelles de traction Phase 1.
+
+Les triggers pressentis incluent (sans s’y limiter) :
+- Validation marché Maroc confirmée (premiers payants + traction documentée)
+- Compréhension fine du marché Golfe (étude concurrentielle approfondie, identification précise de la fenêtre IA-tuteur)
+- Capacité de financement adéquate (bootstrap impossible au Golfe — Series A probable)
+- Constitution d’une équipe (le solo-bootstrap atteint ses limites en internationalisation)
+
+La formulation définitive de ces triggers sera actée dans une mise à jour future du document maître, basée sur des données empiriques et non sur des projections actuelles.
+
+### 1.5.6 Discipline opérationnelle
+
+Tant que les triggers Phase 2 ne sont pas atteints :
+- Toute discussion d’expansion = horizon stratégique, pas trigger d’exécution
+- Aucune ressource (temps, argent, attention) ne doit être engagée sur le Golfe, la Tunisie, l’Égypte ou l’Asie
+- Toute proposition contraire = scope creep à recadrer immédiatement (Section 14.5.4)
+- Le fait que la vision soit documentée ici ne constitue PAS une autorisation d’action
+
+### 1.5.7 Lien avec le Catalogue Technologique (Section 13.4)
+
+Les outils du catalogue listés en Section N (Internationalisation) — i18next, Crowdin notamment — deviennent activables uniquement à partir de la Phase 2 d’expansion. Aucune adoption prématurée tant que les triggers 1.5.5 ne sont pas atteints.
+
+L’architecture produit Phase 1 (prototype 5 écrans, Section 14.6) reste exclusivement focalisée sur Maths 2 Bac SM Maroc. Aucune surcharge i18n ou multi-marché en Phase 1.
 
 ---
 
@@ -1741,6 +1813,53 @@ PNG officiel cropé depuis brand book. Vectorisation pro : EN PAUSE acté 09/05/
 
 ### 13.3.7 Statut de référence
 Le Design System v1.0 est le périmètre VISUEL de référence pour le prototype non-jetable (Section 14.6). Tous les écrans du prototype doivent utiliser ces composants sans rupture stylistique.
+
+
+## 13.4 Catalogue Technologique de Référence (acté v1.8.4)
+
+### 13.4.1 Rattachement formel
+
+Le document `SIRAJ_Catalogue_Technologique_v1_0.md` (v1.0, 11/05/2026) est désormais rattaché formellement au document maître comme catalogue de référence.
+
+**Localisation** : repo `datguynabeel/Bac-IA`, racine du repo.
+
+### 13.4.2 Statut et portée
+
+- **Opposable** : toute proposition d’adoption d’un outil doit être confrontée à sa fiche catalogue (classification gouvernance, phase recommandée, impact moat).
+- **Non-prescriptif** : aucune entrée du catalogue ne constitue par elle-même une décision d’adoption. Seul ce document maître fait foi pour les décisions actées.
+- **Vivant** : mis à jour à chaque session de veille technologique. Le numéro de version du catalogue est indépendant de celui du doc maître.
+
+### 13.4.3 Structure du catalogue
+
+17 catégories couvrant l’ensemble du cycle de vie produit :
+
+A. Fondations qualité de code | B. Outillage développeur | C. Observabilité & qualité production | D. Pédagogie mathématique | E. Algorithmes pédagogiques | F. Visuel premium & delight | G. Rétention & engagement | H. Authentification & sécurité | I. Paiement & monétisation | J. RAG & contenu pédagogique | K. Déploiement & infrastructure | L. Gestion projet & équipe | M. Documentation & contenu | N. Internationalisation | O. Accessibilité | P. Productivité élève | Q. Création de contenu
+
+### 13.4.4 Roadmap d’adoption synthétique (extrait)
+
+**Phase 1 (prototype démo + pré-vente) — qualité code uniquement :**
+TypeScript strict, Zod, TanStack Query, React Hook Form, Vitest, Biome, GitHub Actions, axe-core, helmet.js, Lottie, canvas-confetti.
+
+**Phase 2 (post-pilote signé + 10 payants) — pépites différenciatrices :**
+Mafs, FSRS-7, Langfuse self-hosted, LiteLLM, MathLive, Streak Duolingo pattern, PWA Workbox, Web Push, Sentry, PostHog/Plausible self-hosted, CMI, Drizzle, Turborepo, Cal.com, Documenso, MDX, i18next, Cloudflare, Remotion, Manim, Pomodoro.
+
+**Phase 3 (vision moonshot) :**
+Excalidraw SDK, tldraw collaboratif, Better Auth, Qdrant, Astro Starlight, OCR maths manuscrit, Liveblocks, Bloom’s Taxonomy, Plane.so, Crowdin.
+
+### 13.4.5 Moats stratégiques identifiés
+
+Le catalogue identifie 3 combinaisons d’outils créant des moats non-réplicables par ChatGPT :
+
+1. **Moat opérationnel-IA** (Langfuse + LiteLLM) — observabilité LLM permanente et amélioration continue
+2. **Moat scientifique-mémoire** (FSRS-7) — algorithme de mémoire le plus avancé au monde, optimisé programme marocain
+3. **Moat visuel-pédagogique** (Mafs + MathLive + Excalidraw vision) — interactivité mathématique tangible
+
+### 13.4.6 Engagement de gouvernance
+
+L’introduction d’un outil du catalogue dans le projet SIRAJ doit :
+1. Respecter la classification gouvernance (a)/(b) v1.8.3
+2. Être actée formellement dans une mise à jour du document maître
+3. Ne pas violer la distinction build-for-final (qualité code) vs périmètre fonctionnel (Section 14.5)
 
 ---
 

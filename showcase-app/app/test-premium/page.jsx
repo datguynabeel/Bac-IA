@@ -7,6 +7,7 @@ import {
   ArrowRight, Clock, Target, Zap, Award, ChevronDown, 
   Search, Menu, Globe, Shield, User
 } from 'lucide-react';
+import { ThemeToggle } from "@/components/ui/curtain-theme-toggle";
 
 // ============================================================================
 // SIRAJ DESIGN SYSTEM v1.1 — Showcase Immersif
@@ -183,7 +184,7 @@ function SectionHeader({ eyebrow, title, count }) {
 // MAIN PAGE
 // ============================================================================
 
-export default function SirajShowcase() {
+export default function TestPremiumPage() {
   const [selectedChapitre, setSelectedChapitre] = useState(null);
   
   // Parallax Hero
@@ -192,8 +193,24 @@ export default function SirajShowcase() {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
   return (
-    <div className="min-h-screen w-full bg-[#080C10] text-[#F5EDE0] selection:bg-[#E8B860]/30 overflow-x-hidden" style={{ fontFamily: 'Inter, sans-serif' }}>
+    <div className="min-h-screen w-full bg-[#F5EDE0] dark:bg-[#080C10] text-[#0F1419] dark:text-[#F5EDE0] selection:bg-[#E8B860]/30 overflow-x-hidden transition-colors duration-500" style={{ fontFamily: 'Inter, sans-serif' }}>
       
+      {/* THEME TOGGLE */}
+      <div style={{
+        position: "fixed",
+        top: "20px",
+        left: "20px",
+        zIndex: 9999,
+      }}>
+        <ThemeToggle 
+          variant="icon" 
+          defaultTheme="dark"
+          buttonSize={44}
+          duration={600}
+          onThemeChange={(theme) => console.log("SIRAJ theme:", theme)}
+        />
+      </div>
+
       {/* 1. ELEMENTS DE FOND - Behind the Mac */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute top-[-10%] left-[-5%] w-[50vw] h-[50vw] rounded-full mix-blend-screen filter blur-[120px] opacity-10" 
