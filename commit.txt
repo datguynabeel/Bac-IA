@@ -1,0 +1,9 @@
+feat(proto): écran 3 vue séances chapitre Limites & Continuité
+
+- Liste 7 séances avec séance 1 disponible et 2-7 verrouillées
+- Stagger reveal Framer Motion (delay 80ms)
+- Navigation vers écran 4 séance existant
+- Réutilisation asset officiel App Icon 6a (anti-récidive lesson session 4)
+- Dérogation §14.6.5 Next.js confirmée (patch v1.8.5)
+
+Refs: §14.6 prototype 5 écrans, §1.4.1 persona Yasmine
