@@ -169,7 +169,7 @@ export default function TestPremiumPage() {
   ];
 
   return (
-    <div className="min-h-screen w-full bg-[#080C10] text-[#F5EDE0] selection:bg-[#E8B860]/30 overflow-x-hidden" style={{ fontFamily: 'Inter, sans-serif' }}>
+    <div id="top" className="min-h-screen w-full bg-[#080C10] text-[#F5EDE0] selection:bg-[#E8B860]/30 overflow-x-hidden" style={{ fontFamily: 'Inter, sans-serif', scrollBehavior: 'smooth' }}>
       
 
       {/* 1. ELEMENTS DE FOND */}
@@ -188,7 +188,9 @@ export default function TestPremiumPage() {
       <nav className="fixed top-8 left-1/2 -translate-x-1/2 z-50 flex items-center justify-between w-[92%] max-w-6xl px-8 py-3.5 rounded-full backdrop-blur-3xl border border-white/5 transition-all duration-500 shadow-2xl"
            style={{ background: 'rgba(10, 15, 22, 0.7)' }}>
         <div className="flex items-center gap-4">
-          <img src={assets.logo} alt="SIRAJ" className="h-9 w-auto object-contain" />
+          <a href="#top" className="cursor-pointer hover:opacity-80 transition-opacity">
+            <img src={assets.logo} alt="SIRAJ" className="h-9 w-auto object-contain" />
+          </a>
           <div className="hidden sm:block h-5 w-[0.5px] bg-white/10 mx-2" />
           <span className="hidden sm:block font-bold tracking-[0.2em] text-[10px] uppercase opacity-40" style={{ fontFamily: 'Manrope, sans-serif' }}>Excellence SM</span>
         </div>
@@ -222,7 +224,7 @@ export default function TestPremiumPage() {
               <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#E8B860]">L'IA PÉDAGOGIQUE DU BAC MAROCAIN</span>
             </div>
             
-            <h1 className="text-5xl md:text-[80px] font-bold tracking-tight mb-8" style={{ fontFamily: 'Manrope, sans-serif', lineHeight: '1.05' }}>
+            <h1 className="font-bold tracking-tight mb-8" style={{ fontFamily: 'Manrope, sans-serif', fontSize: 'clamp(40px, 7vw, 96px)', lineHeight: '1.05' }}>
               <span className="text-[#F5EDE0]">Maîtrise ton</span><br />
               <span className="text-[#F5EDE0]">programme,</span><br />
               <span style={{ 
@@ -263,7 +265,7 @@ export default function TestPremiumPage() {
           <div className="flex items-end justify-between mb-16">
             <div>
               <div className="text-[11px] font-bold tracking-[0.4em] uppercase text-[#E8B860] mb-4">CHAPITRES</div>
-              <h2 className="text-4xl font-bold tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>Programme officiel — Maths 2Bac SM</h2>
+              <h2 className="font-bold tracking-tight" style={{ fontFamily: 'Manrope, sans-serif', fontSize: 'clamp(28px, 4vw, 48px)', lineHeight: '1.15' }}>Programme officiel — Maths 2Bac SM</h2>
             </div>
             <div className="text-sm text-[#F5EDE0]/40">4 sur 12</div>
           </div>
@@ -328,7 +330,7 @@ export default function TestPremiumPage() {
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-20">
           <div className="flex-1">
              <div className="text-[11px] font-bold tracking-[0.3em] uppercase text-[#E8B860] mb-8">MÉTHODE PÉDAGOGIQUE</div>
-             <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-8" style={{ fontFamily: 'Manrope, sans-serif' }}>
+             <h2 className="font-bold tracking-tight mb-8" style={{ fontFamily: 'Manrope, sans-serif', fontSize: 'clamp(28px, 4vw, 48px)', lineHeight: '1.15' }}>
                L'IA pédagogique, au service<br />du programme officiel.
              </h2>
              <p className="text-lg font-light leading-relaxed opacity-60 mb-10 max-w-xl">
@@ -336,8 +338,8 @@ export default function TestPremiumPage() {
              </p>
              <div className="grid grid-cols-2 gap-8">
                <div>
-                 <div className="text-2xl font-bold mb-1 text-[#E8B860]">100%</div>
-                 <div className="text-[10px] font-bold tracking-widest uppercase opacity-40">Conforme programme MEN</div>
+                 <div className="font-bold mb-1 text-[#E8B860]" style={{ fontFamily: 'Manrope, sans-serif', fontSize: 'clamp(36px, 5vw, 56px)' }}>12</div>
+                 <div className="text-[11px] font-bold tracking-[0.3em] uppercase text-[#F5EDE0]/40">Chapitres — Programme officiel</div>
                </div>
                <div>
                  <div className="text-2xl font-bold mb-1 text-[#E8B860]">SM/PC/SVT</div>
@@ -360,7 +362,7 @@ export default function TestPremiumPage() {
           {/* Header */}
           <div className="mb-16">
             <div className="text-[11px] font-bold tracking-[0.3em] uppercase text-[#E8B860] mb-4">MÉTHODE</div>
-            <h2 className="text-4xl font-bold tracking-tight mb-4" style={{ fontFamily: 'Manrope, sans-serif' }}>Comment SIRAJ t'accompagne.</h2>
+            <h2 className="font-bold tracking-tight mb-4" style={{ fontFamily: 'Manrope, sans-serif', fontSize: 'clamp(28px, 4vw, 48px)', lineHeight: '1.15' }}>Comment SIRAJ t'accompagne.</h2>
             <p className="text-base text-[#F5EDE0]/70 max-w-2xl">Trois moments où le Tuteur IA fait la différence dans ta préparation Bac.</p>
           </div>
 
@@ -389,7 +391,7 @@ export default function TestPremiumPage() {
       <section className="py-32 px-6 text-center">
         <div className="max-w-3xl mx-auto">
           <img src={assets.icon} alt="SIRAJ" className="w-20 h-20 mx-auto mb-8 rounded-2xl" />
-          <h2 className="text-5xl font-bold tracking-tight mb-10 text-[#F5EDE0]" style={{ fontFamily: 'Manrope, sans-serif' }}>
+          <h2 className="font-bold tracking-tight mb-10 text-[#F5EDE0]" style={{ fontFamily: 'Manrope, sans-serif', fontSize: 'clamp(32px, 5vw, 64px)', lineHeight: '1.1' }}>
             Maîtrise ton Bac, chapitre par chapitre.
           </h2>
           <a href="#programme" className="inline-flex items-center gap-3 bg-[#E8B860] text-[#0A0F16] px-8 py-4 rounded-full font-semibold hover:bg-[#F0C570] transition-colors text-lg">
