@@ -1,6 +1,6 @@
 # SIRAJ — Document de Référence Projet
 
-**Version :** 1.8.5
+**Version :** 1.8.6
 **Date :** Mai 2026 — v1.8.4 acte (1) la vision d’expansion internationale (Section 1.5 nouvelle) selon la séquence Maroc → Golfe (KSA+UAE) → Tunisie+Égypte (parallèle ou après) → Asie du Sud, (2) l’exclusion définitive de l’Algérie, des USA et de l’Europe de l’Ouest de toute roadmap d’expansion, (3) la thèse stratégique “fenêtre IA-tuteur” justifiant le choix Golfe en Phase 2, (4) la référence formelle au Catalogue Technologique v1.0 (Section 13.4 nouvelle). Aucune levée du build freeze. La vision expansion documente l’horizon stratégique sans engager de ressources opérationnelles.
 **Auteur :** [Fondateur] + Claude (Co-Fondateur IA, Chef de Projet & Delivery Manager)
 **Statut :** Document maître — à charger dans Claude Projects comme connaissance permanente
@@ -31,6 +31,7 @@
   (5) Section 13.4 nouvelle — Rattachement formel du document SIRAJ_Catalogue_Technologique_v1_0.md comme catalogue de référence opposable mais non-prescriptif.
   (6) Aucune levée du build freeze. Aucune action opérationnelle débloquée par ce patch.
 - v1.8.5 — 15/05/2026 — Dérogation §14.6.5 : Next.js 16 autorisé pour prototype (showcase-app), Vite reste option valide nouveau projet.
+- v1.8.6 — 15/05/2026 — Promotion 2 règles prescriptives §14.2.9.3 : RÈGLE 14.2.9.f (synthèse fin de session canonique opposable) + RÈGLE 14.2.9.g (doctrine anti-distributeur-réponses dans tous scripts tuteur, prototype et runtime). Aucun nouveau périmètre fonctionnel. Aucune levée build freeze. Patch consécutif à audit pédagogique rétroactif Écran 4 prototype révélant violation §4.3 + §5.1 non détectée au cadrage initial faute de règle prescriptive opposable.
 ---
 
 ## Comment utiliser ce document
@@ -2243,6 +2244,16 @@ Toute leçon ayant fait l'objet de **2 récidives ou plus** est promue en règle
   SI nouvelle session (premier message Claude Desktop)
   ALORS énumération explicite des 3 rituels actifs AVANT toute réponse de fond
   ORIGINE : leçon 26/04 ~21h15 + récidive 08/05 — 2 récidives
+
+- **RÈGLE 14.2.9.f — Synthèse fin de session canonique**
+  SI clôture de session Claude Desktop (UI ≥ 90% OU décision explicite fondateur OU fin de chantier)
+  ALORS émission obligatoire d'un bloc autonome "ÉTAT FIN DE SESSION" au format canonique §14.2.6.7, AVANT toute autre clôture, sans imbrication de code fence, copy-paste exécutable pour ouverture session suivante
+  ORIGINE : leçon 26/04 (format synthèse récidive) + récidive 08/05 (synthèse non émise spontanément après patch v1.8.2) — 2 récidives — promotion actée v1.8.6
+
+- **RÈGLE 14.2.9.g — Doctrine anti-distributeur-réponses dans scripts tuteur**
+  SI livrable concerne un script tuteur (prototype démo OU system prompt runtime OU dialogue scénarisé)
+  ALORS toute bulle tuteur faisant suite à une réponse correcte de l'élève DOIT contenir au moins UN élément métacognitif (question de reformulation, demande d'explicitation de la méthode, invitation à appliquer à un cas voisin, vérification de compréhension) AVANT toute validation ou enchaînement, conformément à §4.3 (Apprentissage actif, Métacognition) et §5.1 (System prompt principal)
+  ORIGINE : dette pédagogique Écran 4 prototype identifiée 15/05/2026 — viole §4.3 + §5.1 doc maître non-opposables au niveau prototype scripté — promotion actée v1.8.6 pour rendre la doctrine prescriptive opposable au cadrage Antigravity
 
 #### 14.2.9.4 Application et révision
 
