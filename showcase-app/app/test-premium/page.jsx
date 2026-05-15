@@ -225,8 +225,7 @@ export default function TestPremiumPage() {
             </div>
             
             <h1 className="text-[40px] md:text-[64px] font-bold tracking-tight mb-8" style={{ fontFamily: 'Manrope, sans-serif', lineHeight: '1.05' }}>
-              <span className="text-[#F5EDE0]">Maîtrise ton</span><br />
-              <span className="text-[#F5EDE0]">programme,</span><br />
+              <span className="text-[#F5EDE0]">Maîtrise ton programme,</span><br />
               <span style={{ 
                 background: 'linear-gradient(135deg, #E8B860 0%, #F5EDE0 50%, #E8B860 100%)', 
                 WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' 
@@ -237,13 +236,14 @@ export default function TestPremiumPage() {
               Le programme officiel 2ème Bac Sciences Mathématiques, structuré en 12 chapitres, avec un Tuteur IA qui t'accompagne sur chaque démonstration.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-start gap-5">
-              <a href="#programme" className="inline-flex items-center gap-3 bg-[#E8B860] text-[#0A0F16] px-6 py-3 rounded-full font-semibold hover:bg-[#F0C570] transition-colors">
+            <div className="flex flex-col sm:flex-row items-center gap-4">
+              <a href="#programme" className="inline-flex items-center justify-center gap-3 bg-[#E8B860] text-[#0A0F16] px-7 py-3.5 rounded-full font-semibold text-sm hover:bg-[#F0C570] transition-colors">
                 Démarrer mon Bac
                 <ArrowRight className="w-4 h-4" />
               </a>
-              <a href="#vision" className="text-[#F5EDE0]/70 hover:text-[#F5EDE0] transition-colors text-sm font-medium">
-                Découvrir la vision →
+              <a href="#vision" className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full font-semibold text-sm text-[#E8B860] border border-[#E8B860]/40 hover:border-[#E8B860] hover:bg-[#E8B860]/5 transition-all">
+                Découvrir la vision
+                <ArrowRight className="w-4 h-4" />
               </a>
             </div>
           </motion.div>
@@ -251,10 +251,10 @@ export default function TestPremiumPage() {
 
         <motion.div 
           initial={{ opacity: 0 }} animate={{ opacity: 0.3 }} transition={{ delay: 1.5, duration: 1 }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4"
+          className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
         >
           <span className="text-[10px] font-bold tracking-[0.4em] uppercase">Scrollez</span>
-          <div className="w-[0.5px] h-12 bg-gradient-to-b from-[#E8B860] to-transparent" />
+          <div className="w-[0.5px] h-8 bg-gradient-to-b from-[#E8B860] to-transparent" />
         </motion.div>
       </section>
 
