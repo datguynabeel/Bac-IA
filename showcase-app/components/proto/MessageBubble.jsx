@@ -9,74 +9,22 @@
 // ============================================================================
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import KatexInline from "./KatexInline";
 
-// SIRAJ Lamp Avatar (SVG inline — no external images per §14.6.5)
+// SIRAJ Lamp Avatar (App Icon 6a)
 function SirajAvatar() {
   return (
-    <div
-      className="shrink-0 flex items-center justify-center rounded-full"
-      style={{
-        width: 36,
-        height: 36,
-        background: "linear-gradient(135deg, #E8B860 0%, #D4A24A 100%)",
-        boxShadow: "0 0 16px rgba(232, 184, 96, 0.3)",
-      }}
-    >
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {/* Lamp / Lantern icon inspired by SIRAJ (سراج = lamp) */}
-        <path
-          d="M12 2C12 2 8 6 8 10C8 12.21 9.79 14 12 14C14.21 14 16 12.21 16 10C16 6 12 2 12 2Z"
-          fill="#0F1419"
-          stroke="#0F1419"
-          strokeWidth="1.5"
-        />
-        <path
-          d="M10 14V17H14V14"
-          stroke="#0F1419"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
-        <path
-          d="M9 17H15"
-          stroke="#0F1419"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
-        <path
-          d="M10 20H14"
-          stroke="#0F1419"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
-        <path
-          d="M11 17V20"
-          stroke="#0F1419"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
-        <path
-          d="M13 17V20"
-          stroke="#0F1419"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
-        {/* Light rays */}
-        <path
-          d="M12 0V1M5 5L5.7 5.7M19 5L18.3 5.7"
-          stroke="#0F1419"
-          strokeWidth="1"
-          strokeLinecap="round"
-          opacity="0.5"
-        />
-      </svg>
+    <div className="flex-shrink-0 w-10 h-10 rounded-full overflow-hidden ring-1 ring-[#E8B860]/30 shadow-lg shadow-[#E8B860]/10">
+      <Image
+        src="/brand/siraj-app-icon-6a.png"
+        alt="Tuteur SIRAJ"
+        width={40}
+        height={40}
+        className="object-cover"
+        priority={false}
+      />
     </div>
   );
 }
