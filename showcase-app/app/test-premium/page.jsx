@@ -225,7 +225,7 @@ export default function TestPremiumPage() {
             </div>
             
             <h1 className="text-[40px] md:text-[64px] font-bold tracking-tight mb-8" style={{ fontFamily: 'Manrope, sans-serif', lineHeight: '1.05' }}>
-              <span className="text-[#F5EDE0]">Maîtrise ton programme,</span><br />
+              <span className="text-[#F5EDE0] whitespace-nowrap">Maîtrise ton programme,</span><br />
               <span style={{ 
                 background: 'linear-gradient(135deg, #E8B860 0%, #F5EDE0 50%, #E8B860 100%)', 
                 WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' 
@@ -250,11 +250,11 @@ export default function TestPremiumPage() {
         </div>
 
         <motion.div 
-          initial={{ opacity: 0 }} animate={{ opacity: 0.3 }} transition={{ delay: 1.5, duration: 1 }}
-          className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+          className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 text-white/40"
+          animate={{ y: [0, 8, 0], opacity: [0.3, 1, 0.3] }}
+          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
         >
-          <span className="text-[10px] font-bold tracking-[0.4em] uppercase">Scrollez</span>
-          <div className="w-[0.5px] h-8 bg-gradient-to-b from-[#E8B860] to-transparent" />
+          <ChevronDown className="w-6 h-6" />
         </motion.div>
       </section>
 
@@ -262,25 +262,35 @@ export default function TestPremiumPage() {
       <section id="programme" className="relative z-10 py-32 px-6">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <div className="flex items-end justify-between mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="flex items-end justify-between mb-16"
+          >
             <div>
               <div className="text-[11px] font-bold tracking-[0.4em] uppercase text-[#E8B860] mb-4">CHAPITRES</div>
               <h2 className="text-[28px] md:text-[36px] font-bold tracking-tight" style={{ fontFamily: 'Manrope, sans-serif', lineHeight: '1.15' }}>Programme officiel — Maths 2Bac SM</h2>
             </div>
             <div className="text-sm text-[#F5EDE0]/40">4 sur 12</div>
-          </div>
+          </motion.div>
 
           {/* Grille 2 colonnes */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {chapitres.map((c) => {
+            {chapitres.map((c, idx) => {
               const isLocked = c.statut === 'verrouillé';
               const isTermine = c.statut === 'terminé';
               const IconComp = c.icon;
 
               return (
-                <div
+                <motion.div
                   key={c.numero}
-                  className="relative bg-[#0A0F16]/80 backdrop-blur-md border border-[#E8B860]/10 rounded-2xl p-8"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-50px' }}
+                  transition={{ delay: idx * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative bg-[#0A0F16]/80 backdrop-blur-md border border-[#E8B860]/10 rounded-2xl p-8 hover:border-[#E8B860]/30 transition-colors duration-500"
                 >
                   {/* Badge TERMINÉ */}
                   {isTermine && (
@@ -318,7 +328,7 @@ export default function TestPremiumPage() {
                       </div>
                     </div>
                   )}
-                </div>
+                </motion.div>
               );
             })}
           </div>
@@ -336,14 +346,14 @@ export default function TestPremiumPage() {
              <p className="text-lg font-light leading-relaxed opacity-60 mb-10 max-w-xl">
                SIRAJ n'est pas un simple outil générique. Chaque grain de donnée est audité pour correspondre aux exigences du Baccalauréat marocain.
              </p>
-             <div className="grid grid-cols-2 gap-8">
-               <div>
+             <div className="flex items-stretch gap-6">
+               <div className="flex-1 border border-[#E8B860]/20 rounded-2xl p-6 bg-[#E8B860]/5">
                  <div className="text-[36px] md:text-[44px] font-bold mb-1 text-[#E8B860]" style={{ fontFamily: 'Manrope, sans-serif' }}>12</div>
                  <div className="text-[11px] font-bold tracking-[0.3em] uppercase text-[#F5EDE0]/40">Chapitres — Programme officiel</div>
                </div>
-               <div>
+               <div className="flex-1 border border-[#E8B860]/20 rounded-2xl p-6 bg-[#E8B860]/5">
                  <div className="text-2xl font-bold mb-1 text-[#E8B860]">SM/PC/SVT</div>
-                 <div className="text-[10px] font-bold tracking-widest uppercase opacity-40">Filières Couvertes</div>
+                 <div className="text-[10px] font-bold tracking-widest uppercase text-[#F5EDE0]/40">Filières Couvertes</div>
                </div>
              </div>
           </div>
@@ -360,18 +370,31 @@ export default function TestPremiumPage() {
       <section id="methode" className="py-32 px-6">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <div className="mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-16"
+          >
             <div className="text-[11px] font-bold tracking-[0.3em] uppercase text-[#E8B860] mb-4">MÉTHODE</div>
             <h2 className="text-[28px] md:text-[36px] font-bold tracking-tight mb-4" style={{ fontFamily: 'Manrope, sans-serif', lineHeight: '1.15' }}>Comment SIRAJ t'accompagne.</h2>
             <p className="text-base text-[#F5EDE0]/70 max-w-2xl">Trois moments où le Tuteur IA fait la différence dans ta préparation Bac.</p>
-          </div>
+          </motion.div>
 
           {/* Grille 3 colonnes */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {methodeCards.map((card) => {
+            {methodeCards.map((card, idx) => {
               const IconComp = card.icon;
               return (
-                <div key={card.eyebrow} className="bg-[#0A0F16]/80 backdrop-blur-md border border-[#E8B860]/10 rounded-2xl p-8">
+                <motion.div
+                  key={card.eyebrow}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-50px' }}
+                  transition={{ delay: idx * 0.12, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  className="bg-[#0A0F16]/80 backdrop-blur-md border border-[#E8B860]/10 rounded-2xl p-8 hover:border-[#E8B860]/30 transition-colors duration-500"
+                >
                   <div className="flex items-start gap-4 mb-6">
                     <div className="w-12 h-12 rounded-xl bg-[#E8B860]/10 flex items-center justify-center">
                       <IconComp className="w-6 h-6 text-[#E8B860]" />
@@ -380,7 +403,7 @@ export default function TestPremiumPage() {
                   </div>
                   <h3 className="text-2xl font-bold tracking-tight mb-4" style={{ fontFamily: 'Manrope, sans-serif' }}>{card.titre}</h3>
                   <p className="text-sm text-[#F5EDE0]/60 leading-relaxed">{card.body}</p>
-                </div>
+                </motion.div>
               );
             })}
           </div>
@@ -389,7 +412,13 @@ export default function TestPremiumPage() {
 
       {/* 7. CTA FINAL */}
       <section className="py-32 px-6 text-center">
-        <div className="max-w-3xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-3xl mx-auto"
+        >
           <img src={assets.icon} alt="SIRAJ" className="w-20 h-20 mx-auto mb-8 rounded-2xl" />
           <h2 className="text-[32px] md:text-[44px] font-bold tracking-tight mb-10 text-[#F5EDE0]" style={{ fontFamily: 'Manrope, sans-serif', lineHeight: '1.1' }}>
             Maîtrise ton Bac, chapitre par chapitre.
@@ -398,7 +427,7 @@ export default function TestPremiumPage() {
             Démarrer mon Bac
             <ArrowRight className="w-5 h-5" />
           </a>
-        </div>
+        </motion.div>
       </section>
 
       {/* 8. FOOTER */}
