@@ -5,17 +5,17 @@ import { motion, AnimatePresence, LayoutGroup, useScroll, useTransform } from 'f
 import { 
   BookOpen, PlayCircle, CheckCircle2, Lock, Sparkles, 
   ArrowRight, Clock, Target, Zap, Award, ChevronDown, 
-  Search, Menu, Globe, Shield, User
+  Search, Menu, Globe, Shield, User, HelpCircle, PenLine
 } from 'lucide-react';
 
 
 // ============================================================================
-// SIRAJ DESIGN SYSTEM v1.1 — Showcase Immersif
+// SIRAJ DESIGN SYSTEM v1.2 — Showcase Dark-Only
 // ----------------------------------------------------------------------------
 // Conformité SIRAJ v1.8.4 :
-// - Section 2.5 : Souveraineté culturelle (Phénotypes, Vocabulaire)
+// - Section 2.5 : Vocabulaire officiel (Chapitre, Tuteur IA)
 // - Section 13.1 : Identité Visuelle (Palette #E8B860, iOS Dark Glass)
-// - Esthétique "Behind the Mac" : Flous profonds, bordures 0.5px, grilles
+// - Mode light abandonné — rendu showcase pur dark uniquement
 // ============================================================================
 
 const tokens = {
@@ -59,68 +59,11 @@ const assets = {
   group: '/brand/siraj-students-group.jpg',
 };
 
-// === DONNÉES — Programme Maths 2Bac SM ===
-const chapitres = [
-  {
-    id: 1,
-    numero: '01',
-    titre: 'Limites et continuité',
-    description: 'Fondamentaux de l\'analyse : limites usuelles et théorèmes de continuité.',
-    seances: 8,
-    progression: 87,
-    statut: 'en-cours',
-    duree: '4h 30min',
-    icon: Target,
-  },
-  {
-    id: 2,
-    numero: '02',
-    titre: 'Dérivation et étude de fonctions',
-    description: 'Analyse des variations, points critiques et optimisation fonctionnelle.',
-    seances: 10,
-    progression: 100,
-    statut: 'terminé',
-    duree: '5h 45min',
-    icon: Zap,
-  },
-  {
-    id: 3,
-    numero: '03',
-    titre: 'Fonctions logarithmes',
-    description: 'Étude exhaustive du logarithme népérien et ses applications.',
-    seances: 7,
-    progression: 42,
-    statut: 'en-cours',
-    duree: '4h 00min',
-    icon: BookOpen,
-  },
-  {
-    id: 4,
-    numero: '04',
-    titre: 'Nombres complexes',
-    description: 'Algèbre complexe, géométrie du plan et transformations.',
-    seances: 9,
-    progression: 0,
-    statut: 'verrouillé',
-    duree: '5h 15min',
-    icon: Sparkles,
-  },
-];
-
-const seancesChapitre1 = [
-  { id: 1, titre: 'Limite finie en un réel', duree: '32 min', type: 'Cours', statut: 'terminé' },
-  { id: 2, titre: 'Limite infinie en un réel', duree: '28 min', type: 'Cours', statut: 'terminé' },
-  { id: 3, titre: 'Limites usuelles à connaître', duree: '24 min', type: 'Méthode', statut: 'terminé' },
-  { id: 4, titre: "Continuité d'une fonction", duree: '35 min', type: 'Cours', statut: 'en-cours' },
-  { id: 5, titre: 'Théorème des valeurs intermédiaires', duree: '30 min', type: 'Théorème', statut: 'à-faire' },
-  { id: 6, titre: 'Exercices corrigés (Type Bac)', duree: '45 min', type: 'Exercices', statut: 'à-faire' },
-];
-
 // ============================================================================
 // COMPOSANTS UI
 // ============================================================================
 
-function SirajButton({ children, variant = 'primary', size = 'md', onClick, disabled, className = "", icon: Icon }) {
+function SirajButton({ children, variant = 'primary', size = 'md', onClick, disabled, className = "", icon: Icon, href }) {
   const styles = {
     primary: {
       bg: `linear-gradient(135deg, ${tokens.color.gold} 0%, ${tokens.color.goldSecondary} 100%)`,
@@ -143,9 +86,11 @@ function SirajButton({ children, variant = 'primary', size = 'md', onClick, disa
   };
 
   const s = styles[variant];
+  const Tag = href ? motion.a : motion.button;
 
   return (
-    <motion.button
+    <Tag
+      href={href}
       whileHover={{ y: -2, scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       onClick={onClick}
@@ -156,27 +101,13 @@ function SirajButton({ children, variant = 'primary', size = 'md', onClick, disa
         color: s.color,
         border: s.border,
         boxShadow: s.shadow,
-        backdropBlur: variant !== 'primary' ? '20px' : 'none'
+        backdropBlur: variant !== 'primary' ? '20px' : 'none',
+        textDecoration: 'none',
       }}
     >
       {children}
       {Icon && <Icon className="w-4 h-4" />}
-    </motion.button>
-  );
-}
-
-function SectionHeader({ eyebrow, title, count }) {
-  return (
-    <div className="flex flex-col items-center text-center mb-16">
-      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 border border-white/5 bg-white/2 backdrop-blur-md">
-        <Sparkles className="w-3 h-3 text-[#E8B860]" />
-        <span className="text-[10px] font-bold tracking-[0.3em] uppercase opacity-70">{eyebrow}</span>
-      </div>
-      <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-4" style={{ fontFamily: 'Manrope, sans-serif' }}>{title}</h2>
-      {count && (
-        <div className="text-xs font-medium tracking-[0.2em] uppercase opacity-30">{count}</div>
-      )}
-    </div>
+    </Tag>
   );
 }
 
@@ -185,30 +116,70 @@ function SectionHeader({ eyebrow, title, count }) {
 // ============================================================================
 
 export default function TestPremiumPage() {
-  const [selectedChapitre, setSelectedChapitre] = useState(null);
-  
   // Parallax Hero
   const { scrollYProgress } = useScroll();
   const heroScale = useTransform(scrollYProgress, [0, 0.3], [1, 1.1]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
+  // Chapter data
+  const chapitres = [
+    {
+      numero: '01', titre: 'Limites et continuité',
+      sousTitre: 'Limites usuelles, théorèmes de continuité, prolongements',
+      seances: 8, duree: '4h 30min', progression: 87,
+      icon: Target, statut: 'en-cours',
+    },
+    {
+      numero: '02', titre: 'Dérivation et étude de fonctions',
+      sousTitre: 'Dérivées usuelles, sens de variation, optimisation',
+      seances: 10, duree: '5h 45min', progression: 100,
+      icon: Zap, statut: 'terminé',
+    },
+    {
+      numero: '03', titre: 'Fonctions logarithmes',
+      sousTitre: 'Logarithme népérien, propriétés, équations',
+      seances: 7, duree: '4h 00min', progression: 42,
+      icon: BookOpen, statut: 'en-cours',
+    },
+    {
+      numero: '04', titre: 'Nombres complexes',
+      sousTitre: 'Forme algébrique, trigonométrique, exponentielle',
+      seances: 9, duree: '5h 15min', progression: 0,
+      icon: Lock, statut: 'verrouillé',
+    },
+  ];
+
+  // Method cards data
+  const methodeCards = [
+    {
+      eyebrow: 'MOMENT 01', icon: HelpCircle,
+      titre: 'Quand tu bloques.',
+      body: "Tu bloques sur une limite en 0 indéterminée. SIRAJ ne te donne pas la réponse — il te propose trois angles de relecture du théorème pour que tu trouves toi-même.",
+    },
+    {
+      eyebrow: 'MOMENT 02', icon: PenLine,
+      titre: 'Quand tu pratiques.',
+      body: "Tu travailles un exercice de dérivation. SIRAJ vérifie chaque ligne, signale l'erreur de calcul à la 3ème étape, et te demande de la corriger seul avant de continuer.",
+    },
+    {
+      eyebrow: 'MOMENT 03', icon: Target,
+      titre: 'Quand tu révises.',
+      body: "À 15 jours du Bac National, SIRAJ identifie tes chapitres faibles à partir de ta progression et te propose un plan de révision ciblé, séance par séance.",
+    },
+  ];
+
   return (
-    <div className="min-h-screen w-full bg-[#F5EDE0] dark:bg-[#080C10] text-[#0F1419] dark:text-[#F5EDE0] selection:bg-[#E8B860]/30 overflow-x-hidden transition-colors duration-500" style={{ fontFamily: 'Inter, sans-serif' }}>
+    <div className="min-h-screen w-full bg-[#080C10] text-[#F5EDE0] selection:bg-[#E8B860]/30 overflow-x-hidden" style={{ fontFamily: 'Inter, sans-serif' }}>
       
 
-
-      {/* 1. ELEMENTS DE FOND - Behind the Mac */}
+      {/* 1. ELEMENTS DE FOND */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute top-[-10%] left-[-5%] w-[50vw] h-[50vw] rounded-full mix-blend-screen filter blur-[120px] opacity-10" 
              style={{ background: `radial-gradient(circle, ${tokens.color.gold} 0%, transparent 70%)` }} />
         <div className="absolute bottom-[-15%] right-[-5%] w-[60vw] h-[60vw] rounded-full mix-blend-screen filter blur-[150px] opacity-10" 
              style={{ background: `radial-gradient(circle, ${tokens.color.goldSecondary} 0%, transparent 70%)` }} />
-        
-        {/* Grid Pattern 0.5px */}
         <div className="absolute inset-0 opacity-[0.03]" 
              style={{ backgroundImage: `radial-gradient(${tokens.color.gold} 0.5px, transparent 0.5px)`, backgroundSize: '40px 40px' }} />
-        
-        {/* Film Grain */}
         <div className="absolute inset-0 opacity-[0.015] mix-blend-overlay"
              style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")` }} />
       </div>
@@ -223,9 +194,9 @@ export default function TestPremiumPage() {
         </div>
         
         <div className="hidden lg:flex items-center gap-10 text-[11px] font-bold tracking-[0.1em] uppercase opacity-60">
-          <a href="#" className="hover:text-[#E8B860] transition-colors">Programme</a>
-          <a href="#" className="hover:text-[#E8B860] transition-colors">Intelligence</a>
-          <a href="#" className="hover:text-[#E8B860] transition-colors">Souveraineté</a>
+          <a href="#programme" className="hover:text-[#E8B860] transition-colors">Programme</a>
+          <a href="#methode" className="hover:text-[#E8B860] transition-colors">Tuteur IA</a>
+          <a href="#vision" className="hover:text-[#E8B860] transition-colors">Méthode</a>
         </div>
 
         <div className="flex items-center gap-3">
@@ -234,207 +205,131 @@ export default function TestPremiumPage() {
         </div>
       </nav>
 
-      {/* 3. HERO SECTION - Immersive Cinematic */}
-      <section className="relative h-screen w-full flex flex-col justify-center items-center overflow-hidden">
+      {/* 3. HERO SECTION — Full-bleed photo, texte aligné gauche */}
+      <section className="relative h-screen w-full flex items-end overflow-hidden">
         <motion.div style={{ scale: heroScale, opacity: heroOpacity }} className="absolute inset-0 z-0">
           <img src={assets.hero} alt="Student" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#080C10]/80 via-transparent to-[#080C10]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#080C10] via-[#080C10]/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#080C10] via-transparent to-transparent opacity-80" />
         </motion.div>
 
-        <div className="relative z-10 text-center px-6 max-w-5xl">
+        <div className="relative z-10 px-6 md:pl-16 pb-24 md:pb-32 max-w-3xl">
           <motion.div 
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full mb-10 border border-[#E8B860]/20 bg-[#E8B860]/5 backdrop-blur-xl">
+            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full mb-10 border border-[#E8B860]/20 bg-[#0A0F16]/40 backdrop-blur-md">
               <Sparkles className="w-4 h-4 text-[#E8B860] animate-pulse" />
-              <span className="text-[11px] font-bold tracking-[0.3em] uppercase text-[#E8B860]">Le futur du Bac commence ici</span>
+              <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#E8B860]">L'IA PÉDAGOGIQUE DU BAC MAROCAIN</span>
             </div>
             
-            <h1 className="text-6xl md:text-9xl font-bold tracking-tight mb-8 leading-[0.95]" style={{ fontFamily: 'Manrope, sans-serif' }}>
-              Maîtrise ton Bac,<br />
-              <span className="relative">
-                <span style={{ 
-                  background: `linear-gradient(135deg, ${tokens.color.gold} 0%, #FFF 50%, ${tokens.color.goldSecondary} 100%)`, 
-                  WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' 
-                }}>éclaire ta voie.</span>
-              </span>
+            <h1 className="text-5xl md:text-[80px] font-bold tracking-tight mb-8" style={{ fontFamily: 'Manrope, sans-serif', lineHeight: '1.05' }}>
+              <span className="text-[#F5EDE0]">Maîtrise ton</span><br />
+              <span className="text-[#F5EDE0]">programme,</span><br />
+              <span style={{ 
+                background: 'linear-gradient(135deg, #E8B860 0%, #F5EDE0 50%, #E8B860 100%)', 
+                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' 
+              }}>chapitre par chapitre.</span>
             </h1>
 
-            <p className="text-lg md:text-2xl font-light mb-14 max-w-3xl mx-auto leading-relaxed" style={{ color: tokens.color.creamMute }}>
-              Une architecture pédagogique de précision, conçue exclusivement pour les Sciences Mathématiques du Maroc.
+            <p className="text-base text-[#F5EDE0]/70 mb-10 max-w-xl leading-relaxed">
+              Le programme officiel 2ème Bac Sciences Mathématiques, structuré en 12 chapitres, avec un Tuteur IA qui t'accompagne sur chaque démonstration.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <SirajButton variant="primary" size="lg" icon={ArrowRight}>Accès Pilote</SirajButton>
-              <SirajButton variant="secondary" size="lg">Découvrir la vision</SirajButton>
+            <div className="flex flex-col sm:flex-row items-start gap-5">
+              <a href="#programme" className="inline-flex items-center gap-3 bg-[#E8B860] text-[#0A0F16] px-6 py-3 rounded-full font-semibold hover:bg-[#F0C570] transition-colors">
+                Démarrer mon Bac
+                <ArrowRight className="w-4 h-4" />
+              </a>
+              <a href="#vision" className="text-[#F5EDE0]/70 hover:text-[#F5EDE0] transition-colors text-sm font-medium">
+                Découvrir la vision →
+              </a>
             </div>
           </motion.div>
         </div>
 
         <motion.div 
           initial={{ opacity: 0 }} animate={{ opacity: 0.3 }} transition={{ delay: 1.5, duration: 1 }}
-          className="absolute bottom-12 flex flex-col items-center gap-4"
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4"
         >
           <span className="text-[10px] font-bold tracking-[0.4em] uppercase">Scrollez</span>
           <div className="w-[0.5px] h-12 bg-gradient-to-b from-[#E8B860] to-transparent" />
         </motion.div>
       </section>
 
-      {/* 4. SHOWCASE BENTO GRID */}
-      <section className="relative z-10 py-32 px-6 max-w-7xl mx-auto">
-        <SectionHeader 
-          eyebrow="L'Expérience" 
-          title="Le Programme National" 
-          count="Filière : Sciences Mathématiques (SM)" 
-        />
+      {/* 4. SECTION GRILLE PROGRAMME */}
+      <section id="programme" className="relative z-10 py-32 px-6">
+        <div className="max-w-6xl mx-auto">
+          {/* Header */}
+          <div className="flex items-end justify-between mb-16">
+            <div>
+              <div className="text-[11px] font-bold tracking-[0.4em] uppercase text-[#E8B860] mb-4">CHAPITRES</div>
+              <h2 className="text-4xl font-bold tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>Programme officiel — Maths 2Bac SM</h2>
+            </div>
+            <div className="text-sm text-[#F5EDE0]/40">4 sur 12</div>
+          </div>
 
-        <LayoutGroup>
-          <AnimatePresence mode="wait">
-            {selectedChapitre ? (
-              <motion.div
-                key="detail"
-                layoutId={`card-${selectedChapitre.id}`}
-                className="relative bg-[#0A0F16]/80 rounded-[3rem] p-12 border border-[#E8B860]/20 backdrop-blur-3xl overflow-hidden min-h-[600px]"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              >
-                {/* Detail View Content */}
-                <div className="absolute top-10 right-10">
-                  <SirajButton variant="ghost" size="sm" onClick={() => setSelectedChapitre(null)}>Fermer</SirajButton>
-                </div>
+          {/* Grille 2 colonnes */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {chapitres.map((c) => {
+              const isLocked = c.statut === 'verrouillé';
+              const isTermine = c.statut === 'terminé';
+              const IconComp = c.icon;
 
-                <div className="flex flex-col h-full">
-                  <div className="flex items-center gap-8 mb-16">
-                    <div className="w-20 h-20 rounded-3xl flex items-center justify-center border border-[#E8B860]/30" style={{ background: 'rgba(232, 184, 96, 0.05)' }}>
-                      <selectedChapitre.icon className="w-10 h-10 text-[#E8B860]" />
+              return (
+                <div
+                  key={c.numero}
+                  className="relative bg-[#0A0F16]/80 backdrop-blur-md border border-[#E8B860]/10 rounded-2xl p-8"
+                >
+                  {/* Badge TERMINÉ */}
+                  {isTermine && (
+                    <div className="absolute top-6 right-6 border border-[#E8B860]/30 bg-[#E8B860]/5 text-[#E8B860] rounded-full px-3 py-1 text-[10px] tracking-[0.2em] uppercase font-bold">
+                      ✓ TERMINÉ
+                    </div>
+                  )}
+
+                  {/* Header carte */}
+                  <div className="flex items-start gap-4">
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${isLocked ? 'bg-[#E8B860]/5' : 'bg-[#E8B860]/10'}`}>
+                      <IconComp className={`w-6 h-6 ${isLocked ? 'text-[#F5EDE0]/30' : 'text-[#E8B860]'}`} />
                     </div>
                     <div>
-                      <div className="text-[11px] font-bold tracking-[0.4em] uppercase text-[#E8B860] mb-2">Chapitre {selectedChapitre.numero}</div>
-                      <h3 className="text-4xl md:text-5xl font-bold tracking-tight">{selectedChapitre.titre}</h3>
+                      <div className="text-[11px] font-bold tracking-[0.3em] uppercase text-[#F5EDE0]/60">CHAPITRE {c.numero}</div>
+                      <div className="text-xs text-[#F5EDE0]/40">{c.seances} séances · {c.duree}</div>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 flex-1">
-                    {/* Séances List */}
-                    <div className="space-y-4">
-                      <h4 className="text-[10px] font-bold tracking-[0.3em] uppercase opacity-30 mb-6">Contenu du chapitre</h4>
-                      {seancesChapitre1.map((s, idx) => (
-                        <motion.div 
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.1 + idx * 0.05 }}
-                          key={s.id} 
-                          className="group flex items-center justify-between p-5 rounded-2xl border border-white/5 bg-white/1 hover:bg-white/3 hover:border-[#E8B860]/30 transition-all duration-300 cursor-pointer"
-                        >
-                          <div className="flex items-center gap-5">
-                            <div className={`w-10 h-10 rounded-xl flex items-center justify-center border ${s.statut === 'terminé' ? 'bg-[#E8B860]/10 border-[#E8B860]/30' : 'bg-white/5 border-white/10'}`}>
-                              {s.statut === 'terminé' ? <CheckCircle2 className="w-5 h-5 text-[#E8B860]" /> : <PlayCircle className="w-5 h-5 opacity-40" />}
-                            </div>
-                            <div>
-                              <div className="text-sm font-bold tracking-tight mb-1">{s.titre}</div>
-                              <div className="text-[10px] opacity-40 font-medium">{s.type} · {s.duree}</div>
-                            </div>
-                          </div>
-                          <ChevronDown className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-all -rotate-90 text-[#E8B860]" />
-                        </motion.div>
-                      ))}
-                    </div>
-
-                    {/* Exercise Highlight */}
-                    <div className="relative rounded-[2rem] border border-[#E8B860]/10 bg-[#E8B860]/2 p-10 overflow-hidden">
-                       <div className="absolute top-0 right-0 p-8 opacity-5">
-                         <Award className="w-32 h-32" />
-                       </div>
-                       <div className="relative z-10">
-                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8B860]/10 border border-[#E8B860]/20 mb-8">
-                           <Award className="w-3.5 h-3.5 text-[#E8B860]" />
-                           <span className="text-[9px] font-bold tracking-widest uppercase text-[#E8B860]">Type Bac National</span>
-                         </div>
-                         <h5 className="text-xl font-bold mb-6">Prolongement par continuité</h5>
-                         <p className="text-base font-light leading-relaxed mb-8 opacity-70">
-                           Soit <em className="font-serif">f</em> définie sur ℝ* par :
-                         </p>
-                         <div className="flex justify-center my-10 text-3xl font-serif italic border-y border-white/5 py-8">
-                           f(x) = (eˣ - 1) / x
-                         </div>
-                         <p className="text-sm font-light leading-relaxed opacity-70">
-                           Montrez que <em className="font-serif">f</em> admet un prolongement par continuité en 0.
-                         </p>
-                         <div className="mt-10 flex gap-4">
-                           <SirajButton variant="primary" size="sm">Indices IA</SirajButton>
-                           <SirajButton variant="secondary" size="sm">Correction</SirajButton>
-                         </div>
-                       </div>
-                    </div>
+                  {/* Body carte */}
+                  <div className="mt-6">
+                    <h3 className={`text-2xl font-bold tracking-tight ${isLocked ? 'opacity-50' : ''}`} style={{ fontFamily: 'Manrope, sans-serif' }}>{c.titre}</h3>
+                    <p className={`text-sm mt-2 ${isLocked ? 'text-[#F5EDE0]/40' : 'text-[#F5EDE0]/60'}`}>{c.sousTitre}</p>
                   </div>
+
+                  {/* Footer carte — progression */}
+                  {!isLocked && (
+                    <div className="mt-8">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#F5EDE0]/40">PROGRESSION</span>
+                        <span className="font-bold text-[#E8B860]">{c.progression}%</span>
+                      </div>
+                      <div className="h-1 rounded-full bg-[#F5EDE0]/10 overflow-hidden mt-2">
+                        <div className="h-full bg-gradient-to-r from-[#E8B860] to-[#F0C570]" style={{ width: `${c.progression}%` }} />
+                      </div>
+                    </div>
+                  )}
                 </div>
-              </motion.div>
-            ) : (
-              <motion.div 
-                key="grid"
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              >
-                {chapitres.map((c) => (
-                  <motion.div
-                    layoutId={`card-${c.id}`}
-                    key={c.id}
-                    onClick={() => c.statut !== 'verrouillé' && setSelectedChapitre(c)}
-                    className={`group relative h-[420px] rounded-[2.5rem] p-8 border transition-all duration-700 cursor-pointer overflow-hidden ${c.statut === 'verrouillé' ? 'opacity-40 grayscale pointer-events-none' : 'hover:border-[#E8B860]/40'}`}
-                    style={{ background: tokens.color.surface, borderColor: 'rgba(255,255,255,0.04)' }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#E8B860]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                    
-                    <div className="relative z-10 flex flex-col justify-between h-full">
-                      <div className="flex items-start justify-between">
-                        <div className="w-14 h-14 rounded-2xl flex items-center justify-center border border-white/5" style={{ background: 'rgba(255,255,255,0.02)' }}>
-                          {c.statut === 'verrouillé' ? <Lock className="w-6 h-6 opacity-40" /> : <c.icon className="w-7 h-7 text-[#E8B860]" />}
-                        </div>
-                        <div className="text-[10px] font-bold tracking-[0.3em] uppercase opacity-30">Ch{c.numero}</div>
-                      </div>
-
-                      <div>
-                        <h3 className="text-2xl font-bold mb-3 tracking-tight leading-tight">{c.titre}</h3>
-                        <p className="text-sm font-light opacity-50 mb-8 leading-relaxed">{c.description}</p>
-                        
-                        <div className="space-y-4">
-                          <div className="flex items-center justify-between text-[10px] font-bold tracking-widest uppercase">
-                            <span className="opacity-30">Progression</span>
-                            <span className="text-[#E8B860]">{c.progression}%</span>
-                          </div>
-                          <div className="h-[2px] w-full bg-white/5 rounded-full overflow-hidden">
-                            <motion.div 
-                              initial={{ width: 0 }}
-                              animate={{ width: `${c.progression}%` }}
-                              transition={{ duration: 1.5, delay: 0.5 }}
-                              className="h-full bg-gradient-to-r from-[#E8B860]/40 to-[#E8B860]"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </LayoutGroup>
+              );
+            })}
+          </div>
+        </div>
       </section>
 
-      {/* 5. CULTURAL TRUST SECTION */}
-      <section className="py-32 px-6 bg-[#05070A]/50 border-y border-white/5 relative overflow-hidden">
+      {/* 5. SECTION TRUST */}
+      <section id="vision" className="py-32 px-6 border-y border-white/5 relative overflow-hidden">
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-20">
           <div className="flex-1">
-             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-8 border border-emerald-500/10 bg-emerald-500/5">
-                <Shield className="w-3.5 h-3.5 text-emerald-400" />
-                <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-emerald-400">Conformité Institutionnelle</span>
-             </div>
+             <div className="text-[11px] font-bold tracking-[0.3em] uppercase text-[#E8B860] mb-8">MÉTHODE PÉDAGOGIQUE</div>
              <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-8" style={{ fontFamily: 'Manrope, sans-serif' }}>
-               L'IA au service du<br />Programme National.
+               L'IA pédagogique, au service<br />du programme officiel.
              </h2>
              <p className="text-lg font-light leading-relaxed opacity-60 mb-10 max-w-xl">
                SIRAJ n'est pas un simple outil générique. Chaque grain de donnée est audité pour correspondre aux exigences du Baccalauréat marocain.
@@ -442,7 +337,7 @@ export default function TestPremiumPage() {
              <div className="grid grid-cols-2 gap-8">
                <div>
                  <div className="text-2xl font-bold mb-1 text-[#E8B860]">100%</div>
-                 <div className="text-[10px] font-bold tracking-widest uppercase opacity-40">Alignement MEN</div>
+                 <div className="text-[10px] font-bold tracking-widest uppercase opacity-40">Conforme programme MEN</div>
                </div>
                <div>
                  <div className="text-2xl font-bold mb-1 text-[#E8B860]">SM/PC/SVT</div>
@@ -455,38 +350,69 @@ export default function TestPremiumPage() {
               <img src={assets.group} alt="Students" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#080C10] via-transparent to-transparent opacity-60" />
             </div>
-            {/* Overlay UI Badge */}
-            <div className="absolute -bottom-10 -left-10 p-8 rounded-3xl bg-[#0A0F16]/90 border border-[#E8B860]/20 backdrop-blur-2xl shadow-2xl hidden md:block max-w-[280px]">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                  <Globe className="w-5 h-5 text-emerald-400" />
-                </div>
-                <div className="font-bold text-sm">Souveraineté</div>
-              </div>
-              <p className="text-xs font-light opacity-50 leading-relaxed">
-                Cartographie et contenus respectant l'intégrité territoriale et culturelle du Royaume.
-              </p>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* 6. FOOTER FINALE */}
-      <footer className="py-40 px-6 text-center relative overflow-hidden">
-        <div className="relative z-10">
-          <img src={assets.medium} alt="SIRAJ" className="h-20 mx-auto mb-10 opacity-40 hover:opacity-100 transition-opacity duration-700" />
-          <h2 className="text-3xl font-bold mb-12 tracking-tight">Prêt pour l'excellence ?</h2>
-          <SirajButton variant="primary" size="lg">Demander un accès précoce</SirajButton>
-          
-          <div className="mt-32 flex flex-col items-center gap-8">
-            <div className="flex items-center gap-10 text-[10px] font-bold tracking-[0.2em] uppercase opacity-30">
-              <a href="#" className="hover:text-white transition-colors">Mentions Légales</a>
-              <a href="#" className="hover:text-white transition-colors">Confidentialité</a>
-              <a href="#" className="hover:text-white transition-colors">Contact</a>
-            </div>
-            <div className="text-[9px] font-medium tracking-[0.4em] uppercase opacity-20">
-              © 2026 SIRAJ TECHNOLOGY · ROYAUME DU MAROC
-            </div>
+      {/* 6. SECTION COMMENT ÇA MARCHE */}
+      <section id="methode" className="py-32 px-6">
+        <div className="max-w-6xl mx-auto">
+          {/* Header */}
+          <div className="mb-16">
+            <div className="text-[11px] font-bold tracking-[0.3em] uppercase text-[#E8B860] mb-4">MÉTHODE</div>
+            <h2 className="text-4xl font-bold tracking-tight mb-4" style={{ fontFamily: 'Manrope, sans-serif' }}>Comment SIRAJ t'accompagne.</h2>
+            <p className="text-base text-[#F5EDE0]/70 max-w-2xl">Trois moments où le Tuteur IA fait la différence dans ta préparation Bac.</p>
+          </div>
+
+          {/* Grille 3 colonnes */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {methodeCards.map((card) => {
+              const IconComp = card.icon;
+              return (
+                <div key={card.eyebrow} className="bg-[#0A0F16]/80 backdrop-blur-md border border-[#E8B860]/10 rounded-2xl p-8">
+                  <div className="flex items-start gap-4 mb-6">
+                    <div className="w-12 h-12 rounded-xl bg-[#E8B860]/10 flex items-center justify-center">
+                      <IconComp className="w-6 h-6 text-[#E8B860]" />
+                    </div>
+                    <div className="text-[11px] font-bold tracking-[0.3em] uppercase text-[#F5EDE0]/60 pt-3">{card.eyebrow}</div>
+                  </div>
+                  <h3 className="text-2xl font-bold tracking-tight mb-4" style={{ fontFamily: 'Manrope, sans-serif' }}>{card.titre}</h3>
+                  <p className="text-sm text-[#F5EDE0]/60 leading-relaxed">{card.body}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 7. CTA FINAL */}
+      <section className="py-32 px-6 text-center">
+        <div className="max-w-3xl mx-auto">
+          <img src={assets.icon} alt="SIRAJ" className="w-20 h-20 mx-auto mb-8 rounded-2xl" />
+          <h2 className="text-5xl font-bold tracking-tight mb-10 text-[#F5EDE0]" style={{ fontFamily: 'Manrope, sans-serif' }}>
+            Maîtrise ton Bac, chapitre par chapitre.
+          </h2>
+          <a href="#programme" className="inline-flex items-center gap-3 bg-[#E8B860] text-[#0A0F16] px-8 py-4 rounded-full font-semibold hover:bg-[#F0C570] transition-colors text-lg">
+            Démarrer mon Bac
+            <ArrowRight className="w-5 h-5" />
+          </a>
+        </div>
+      </section>
+
+      {/* 8. FOOTER */}
+      <footer className="py-20 px-6 text-center border-t border-white/5">
+        <div className="flex flex-col items-center gap-8">
+          <div className="flex items-center gap-10 text-[10px] font-bold tracking-[0.2em] uppercase opacity-30">
+            <a href="#" className="hover:text-white transition-colors">Mentions Légales</a>
+            <a href="#" className="hover:text-white transition-colors">Confidentialité</a>
+            <a href="#" className="hover:text-white transition-colors">Contact</a>
+          </div>
+          <div className="flex items-center justify-center gap-2 text-xs text-[#F5EDE0]/40 tracking-wide">
+            <Shield className="w-3.5 h-3.5 text-[#E8B860]/60" />
+            <span>Données hébergées au Maroc</span>
+          </div>
+          <div className="text-[9px] font-medium tracking-[0.4em] uppercase opacity-20">
+            © 2026 SIRAJ TECHNOLOGY · ROYAUME DU MAROC
           </div>
         </div>
       </footer>
