@@ -1,6 +1,6 @@
 # SIRAJ — Document de Référence Projet
 
-**Version :** 1.8.4
+**Version :** 1.8.5
 **Date :** Mai 2026 — v1.8.4 acte (1) la vision d’expansion internationale (Section 1.5 nouvelle) selon la séquence Maroc → Golfe (KSA+UAE) → Tunisie+Égypte (parallèle ou après) → Asie du Sud, (2) l’exclusion définitive de l’Algérie, des USA et de l’Europe de l’Ouest de toute roadmap d’expansion, (3) la thèse stratégique “fenêtre IA-tuteur” justifiant le choix Golfe en Phase 2, (4) la référence formelle au Catalogue Technologique v1.0 (Section 13.4 nouvelle). Aucune levée du build freeze. La vision expansion documente l’horizon stratégique sans engager de ressources opérationnelles.
 **Auteur :** [Fondateur] + Claude (Co-Fondateur IA, Chef de Projet & Delivery Manager)
 **Statut :** Document maître — à charger dans Claude Projects comme connaissance permanente
@@ -30,6 +30,7 @@
   (4) Triggers Phase 2 : à acter ultérieurement, non-figés, révisables à la lumière des données Phase 1 Maroc.
   (5) Section 13.4 nouvelle — Rattachement formel du document SIRAJ_Catalogue_Technologique_v1_0.md comme catalogue de référence opposable mais non-prescriptif.
   (6) Aucune levée du build freeze. Aucune action opérationnelle débloquée par ce patch.
+- v1.8.5 — 15/05/2026 — Dérogation §14.6.5 : Next.js 16 autorisé pour prototype (showcase-app), Vite reste option valide nouveau projet.
 ---
 
 ## Comment utiliser ce document
@@ -2355,13 +2356,28 @@ Lancement → Écran 1 (diagnostic 3 questions scriptées) → Écran 2 (chapitr
 - INTERDIT : mode oral, marketplace, features V2/V3
 
 ### 14.6.5 Standards techniques (build-for-final)
-- Stack : React + Vite + Tailwind + Framer Motion + lucide-react + KaTeX
-- Architecture : composants atomiques réutilisables, séparation routes/vues/composants/data fakes
+
+**Stack runtime UI** (dérogation actée v1.8.5) :
+- React 19 + Next.js 16 (showcase-app existant) OU React 19 + Vite (nouveau projet)
+- Le choix Next.js prévaut pour le prototype actuel : réutilisation de showcase-app déployé, économie d'infra Vercel, isolation logique via routes /proto/*
+- Tailwind CSS 4 + Framer Motion 12 + lucide-react + KaTeX
+
+**Architecture** :
+- Composants atomiques réutilisables, séparation routes/vues/composants/data fakes
 - Données : 1 fichier mock-data.ts typé strictement, remplaçable par Supabase Phase 2 sans réécriture composants
-- Routage : React Router DOM (/onboarding, /chapitres, /chapitres/:slug, /seance/:id, /seance/:id/fin)
-- Design tokens : tailwind.config.js avec palette officielle Section 13.1
+- Routage : Next.js App Router sur préfixe /proto (/proto/onboarding, /proto/chapitres, /proto/chapitres/[slug], /proto/seance/[id], /proto/seance/[id]/fin)
+
+**Design tokens** :
+- tailwind.config.js avec palette officielle Section 13.1 (E8B860 / 0F1419 / F5EDE0)
+- Typographies Section 2.5 : Inter ou Manrope (latin), KaTeX (math)
+
+**Standards qualité** :
 - Responsive : mobile-first strict
 - Accessibilité : focus visible, contrast AA, navigation clavier
+- TypeScript mode strict (acté §14.3.2)
+
+**Engagement de réutilisabilité Phase 2** :
+Le code du prototype doit être réutilisable sans réécriture lors de la transition vers le produit réel (branchement Supabase + Claude API). Toute violation de ce principe est une dette technique à logger en lessons.md.
 
 ### 14.6.6 Délais et discipline
 - Cible : 5-7 jours de dev sur Antigravity (skill UI/UX Pro Max activé)
