@@ -92,6 +92,38 @@ export default function ChatTuteurLive({ seanceInfo }: { seanceInfo: SeanceInfo 
     scrollToBottom();
   }, [messages, streamingContent, scrollToBottom]);
 
+  // ── Fetch reply helper ──────────────────────────────────────────────────
+  const fetchTutorReply = useCallback(async (apiMessages: Array<{ role: "user" | "model"; content: string }>): Promise<string> => {
+    const response = await fetch("/api/tutor", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ messages: apiMessages }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`API error: ${response.status}`);
+    }
+
+    const reader = response.body?.getReader();
+    if (!reader) {
+      throw new Error("No response body");
+    }
+
+    const decoder = new TextDecoder();
+    let accumulated = "";
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      const chunk = decoder.decode(value, { stream: true });
+      accumulated += chunk;
+      setStreamingContent(accumulated);
+    }
+
+    return accumulated;
+  }, []);
+
   // ── Send message ───────────────────────────────────────────────────────
   const handleSend = useCallback(async () => {
     const trimmed = input.trim();
@@ -118,32 +150,13 @@ export default function ChatTuteurLive({ seanceInfo }: { seanceInfo: SeanceInfo 
     }));
 
     try {
-      const response = await fetch("/api/tutor", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: apiMessages }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`API error: ${response.status}`);
+      let reply = await fetchTutorReply(apiMessages);
+      if (!reply.trim()) {
+        setStreamingContent("");
+        reply = await fetchTutorReply(apiMessages);
       }
-
-      // Read the streaming response
-      const reader = response.body?.getReader();
-      if (!reader) {
-        throw new Error("No response body");
-      }
-
-      const decoder = new TextDecoder();
-      let accumulated = "";
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-
-        const chunk = decoder.decode(value, { stream: true });
-        accumulated += chunk;
-        setStreamingContent(accumulated);
+      if (!reply.trim()) {
+        reply = "Je réfléchis encore 😊 Peux-tu reformuler ta réponse en une phrase ?";
       }
 
       // Finalize: add the complete tutor message
@@ -151,7 +164,7 @@ export default function ChatTuteurLive({ seanceInfo }: { seanceInfo: SeanceInfo 
         id: `msg-${messageIdCounter.current++}`,
         role: "tuteur",
         type: "text",
-        content: accumulated || "Je suis là, repose ta question 😊",
+        content: reply,
       };
 
       setMessages((prev) => [...prev, tutorMsg]);
@@ -174,7 +187,7 @@ export default function ChatTuteurLive({ seanceInfo }: { seanceInfo: SeanceInfo 
       // Refocus input
       setTimeout(() => inputRef.current?.focus(), 100);
     }
-  }, [input, isLoading, messages]);
+  }, [input, isLoading, messages, fetchTutorReply]);
 
   // Handle Enter key
   const handleKeyDown = useCallback(
