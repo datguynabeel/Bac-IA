@@ -4,8 +4,8 @@
 // Single entry point: askTutor(systemPrompt, messages, opts) → ReadableStream
 //
 // CURRENT PROVIDER: OpenRouter (Free models)
-//   Primary Model: meta-llama/llama-4-maverick:free
-//   Fallback Model: meta-llama/llama-3-8b-instruct:free
+//   Primary Model: meta-llama/llama-3.3-70b-instruct:free
+//   Fallback Model: google/gemma-4-31b-it:free
 //   API: REST + SSE streaming (OpenAI compatible)
 //
 // Conforme §14.4.6 : free tier strict, aucun crédit IA acheté.
@@ -32,10 +32,10 @@ export interface AskTutorOptions {
 // ---------------------------------------------------------------------------
 
 /** Primary free-tier model on OpenRouter */
-const LLM_MODEL = "meta-llama/llama-4-maverick:free";
+const LLM_MODEL = "meta-llama/llama-3.3-70b-instruct:free";
 
 /** Fallback free-tier model on OpenRouter if the primary fails */
-const LLM_FALLBACK_MODEL = "meta-llama/llama-3.3-70b-instruct:free";
+const LLM_FALLBACK_MODEL = "google/gemma-4-31b-it:free";
 
 /** Base URL for OpenRouter API. */
 const OPENROUTER_API_BASE = "https://openrouter.ai/api/v1";
