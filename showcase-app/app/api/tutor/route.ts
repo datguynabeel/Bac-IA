@@ -4,7 +4,7 @@
 // Server-side route that bridges the client chat UI to the LLM provider.
 // Receives conversation history, injects SYSTEM_PROMPT, streams the response.
 //
-// Edge runtime for optimal streaming performance on Vercel.
+// Node.js runtime (default) for reliable env var access on Vercel Hobby.
 // Graceful rate-limit handling: returns a friendly tutor message instead of
 // crashing the UI when the free-tier quota is hit.
 //
@@ -15,7 +15,8 @@ import { NextRequest } from "next/server";
 import { askTutor, RateLimitError, type TutorMessage } from "@/lib/llm/provider";
 import { SYSTEM_PROMPT } from "@/lib/llm/system-prompt";
 
-export const runtime = "edge";
+// Using default Node.js runtime (not edge) for reliable process.env access.
+// export const runtime = "edge";
 
 // Rate-limit fallback message — displayed as a tutor bubble, not an error
 const RATE_LIMIT_MESSAGE =
@@ -28,6 +29,12 @@ const RATE_LIMIT_MESSAGE =
  * Response: text/event-stream with plain text chunks
  */
 export async function POST(request: NextRequest) {
+  // Diagnostic: confirm env var is loaded (log only first 8 chars)
+  const keyPreview = process.env.GEMINI_API_KEY
+    ? `${process.env.GEMINI_API_KEY.slice(0, 8)}...`
+    : "NOT SET";
+  console.log(`[SIRAJ Tutor] GEMINI_API_KEY: ${keyPreview}`);
+
   try {
     // ── Parse request ──────────────────────────────────────────────────
     const body = await request.json();
