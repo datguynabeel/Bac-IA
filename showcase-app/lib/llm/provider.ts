@@ -42,6 +42,9 @@ export interface AskTutorOptions {
  */
 const LLM_MODEL = "gemini-2.0-flash";
 
+/** Fallback model if the primary is rate-limited. */
+const LLM_FALLBACK_MODEL = "gemini-2.0-flash-lite";
+
 /** Base URL for Google AI Studio REST API. */
 const GEMINI_API_BASE = "https://generativelanguage.googleapis.com/v1beta";
 
@@ -55,7 +58,10 @@ const GEMINI_API_BASE = "https://generativelanguage.googleapis.com/v1beta";
  * The stream emits plain text strings (decoded from SSE). The caller is
  * responsible for forwarding these chunks to the client.
  *
- * @throws {RateLimitError} if the API returns 429 or 503 (quota exceeded)
+ * If the primary model is rate-limited (429/503), retries once with
+ * the fallback model before throwing RateLimitError.
+ *
+ * @throws {RateLimitError} if both primary and fallback models are rate-limited
  * @throws {Error} for any other API or network failure
  */
 export async function askTutor(
@@ -70,11 +76,40 @@ export async function askTutor(
     );
   }
 
+  // Try primary model first, then fallback
+  const modelsToTry = [LLM_MODEL, LLM_FALLBACK_MODEL];
+
+  for (const model of modelsToTry) {
+    try {
+      const stream = await callGemini(model, apiKey, systemPrompt, messages, opts);
+      return stream;
+    } catch (err) {
+      if (err instanceof RateLimitError && model === LLM_MODEL) {
+        // Primary model rate-limited → try fallback
+        console.warn(`[SIRAJ Provider] ${model} rate-limited, trying fallback ${LLM_FALLBACK_MODEL}...`);
+        continue;
+      }
+      throw err; // Re-throw if fallback also fails or non-rate-limit error
+    }
+  }
+
+  // Should never reach here, but TypeScript needs it
+  throw new RateLimitError("All models rate-limited.");
+}
+
+/**
+ * Makes the actual API call to a specific Gemini model.
+ * Separated from askTutor to enable model fallback.
+ */
+async function callGemini(
+  model: string,
+  apiKey: string,
+  systemPrompt: string,
+  messages: TutorMessage[],
+  opts: AskTutorOptions
+): Promise<ReadableStream<string>> {
   const { maxTokens = 512, temperature = 0.7 } = opts;
 
-  // Build the Gemini request body
-  // Gemini uses "contents" array with role "user" / "model"
-  // and "systemInstruction" for the system prompt.
   const body = {
     systemInstruction: {
       parts: [{ text: systemPrompt }],
@@ -89,7 +124,9 @@ export async function askTutor(
     },
   };
 
-  const url = `${GEMINI_API_BASE}/models/${LLM_MODEL}:streamGenerateContent?alt=sse&key=${apiKey}`;
+  const url = `${GEMINI_API_BASE}/models/${model}:streamGenerateContent?alt=sse&key=${apiKey}`;
+
+  console.log(`[SIRAJ Provider] Calling model=${model}, messages=${messages.length}`);
 
   const response = await fetch(url, {
     method: "POST",
@@ -97,17 +134,24 @@ export async function askTutor(
     body: JSON.stringify(body),
   });
 
-  // Handle rate-limit / quota errors gracefully
+  // Handle rate-limit / quota errors — read body for diagnostics
   if (response.status === 429 || response.status === 503) {
+    const errorBody = await response.text().catch(() => "(no body)");
+    console.warn(
+      `[SIRAJ Provider] ${model} → ${response.status}: ${errorBody.slice(0, 300)}`
+    );
     throw new RateLimitError(
-      `Gemini API rate limited (${response.status}). Free tier quota exceeded.`
+      `Gemini API rate limited (${response.status}) on model ${model}. Body: ${errorBody.slice(0, 200)}`
     );
   }
 
   if (!response.ok) {
     const errorText = await response.text().catch(() => "Unknown error");
+    console.error(
+      `[SIRAJ Provider] ${model} → ${response.status}: ${errorText.slice(0, 300)}`
+    );
     throw new Error(
-      `Gemini API error ${response.status}: ${errorText.slice(0, 200)}`
+      `Gemini API error ${response.status} on model ${model}: ${errorText.slice(0, 200)}`
     );
   }
 
@@ -116,8 +160,6 @@ export async function askTutor(
   }
 
   // Transform the SSE stream into a stream of plain text chunks.
-  // Gemini SSE format: each event is `data: { ... JSON ... }\n\n`
-  // We extract candidates[0].content.parts[0].text from each event.
   return parseGeminiSSE(response.body);
 }
 
