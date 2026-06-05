@@ -7,7 +7,7 @@
 > Sources possibles : `Claude Desktop` | `Antigravity` | `Fondateur`
 > Catégories possibles : `Code` | `Design` | `Stratégie` | `Culturel`
 >
-> Référence canonique : section 14.2.5 du document maître `SIRAJ_Projet_Complet_v1_8_6.md`.
+> Référence canonique : section 14.2.5 du document maître `SIRAJ_Projet_Complet_v1_8_7.md`.
 
 ---
 
