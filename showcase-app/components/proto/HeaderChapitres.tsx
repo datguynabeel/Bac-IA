@@ -5,7 +5,12 @@ import { ChevronLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { useOnboarding } from "../../app/proto/onboarding-context";
+
 export default function HeaderChapitres() {
+  const { result } = useOnboarding();
+  const name = result?.prenom || "Yasmine";
+
   return (
     <motion.header
       initial={{ opacity: 0 }}
@@ -38,7 +43,7 @@ export default function HeaderChapitres() {
           className="text-2xl m-0 p-0" 
           style={{ fontFamily: "var(--font-manrope)", fontWeight: 600, color: "#F5EDE0" }}
         >
-          Bonjour Yasmine
+          Bonjour {name}
         </h1>
         <div 
           className="text-base"

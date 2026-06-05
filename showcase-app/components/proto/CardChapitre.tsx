@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Chapter } from "../../lib/mock-data";
+import { useOnboarding } from "../../app/proto/onboarding-context";
 
 interface CardChapitreProps {
   chapter: Chapter;
@@ -11,6 +12,8 @@ interface CardChapitreProps {
 
 export default function CardChapitre({ chapter }: CardChapitreProps) {
   const router = useRouter();
+  const { result } = useOnboarding();
+  const isRecommended = !!result?.recommendedChapterSlugs?.includes(chapter.slug);
   const isLocked = chapter.status === "locked";
   const isInProgress = chapter.status === "in_progress";
   const isNextUnlocked = chapter.status === "next_unlocked";
@@ -79,6 +82,23 @@ export default function CardChapitre({ chapter }: CardChapitreProps) {
 
       {/* Content Center */}
       <div className="flex-1 flex flex-col justify-center pl-4 pr-2">
+        {isRecommended && (
+          <div
+            className="inline-flex items-center px-2 py-0.5 rounded-md mb-1 w-max"
+            style={{
+              background: "rgba(232, 184, 96, 0.12)",
+              border: "1px solid rgba(232, 184, 96, 0.25)",
+              color: "#E8B860",
+              fontSize: "10px",
+              fontWeight: 600,
+              textTransform: "uppercase",
+              letterSpacing: "0.05em",
+              fontFamily: "var(--font-sans)",
+            }}
+          >
+            Recommandé pour toi
+          </div>
+        )}
         <h2 
           className="m-0 p-0 mb-1"
           style={{
