@@ -13,6 +13,17 @@
 
 ## Leçons actives
 
+### Juin 2026
+
+- [2026-06-05] [Fondateur] [Stratégie] — Routage modèle Antigravity — mapping concret (remplace toute mention de "3.1 Pro low" comme défaut) :
+  - Défaut / exécution courante : Gemini 3.5 Flash (Medium)
+  - Petits patches / edits / refactos / DevOps : Gemini 3.5 Flash (Low) — ~45% de tokens en moins
+  - Builds complexes / longue endurance : Gemini 3.5 Flash (High) → repli Gemini 3.1 Pro (High)
+  - Cœur produit (React via Stitch, prompts pédago anti-distributeur §14.2.9.g, contenu culturel marocain) : Claude Opus 4.6 (Thinking) — réservé, ne pas cramer sur du trivial
+  - Précision édition doc/gouvernance : Claude Sonnet 4.6 (Thinking)
+  - Écartés : GPT-OSS 120B (discipline 2 fournisseurs Anthropic + Google)
+  - Plan : rester Google AI Pro. "AI Credit Overages" = OFF (gel §14.4). Quota = fenêtre glissante ~5h → répartir la charge entre modèles, jamais payer d'overage.
+
 ### Avril 2026
 
 - [2026-04-26] [Claude Desktop] [Stratégie] — Toujours préfixer les livrables Claude Desktop → Antigravity du header `🎯 POUR ANTIGRAVITY` avec modèle recommandé et justification (cf. section 14.2.3).

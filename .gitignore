@@ -18,3 +18,5 @@ read_xlsx.js
 
 # Backups dfensifs patches
 *.bak_*
+
+INFRA_CONTEXT.md
