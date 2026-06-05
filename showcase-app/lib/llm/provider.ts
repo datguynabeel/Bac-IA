@@ -6,6 +6,7 @@
 // CURRENT PROVIDER: OpenRouter (Free models)
 //   Primary Model: meta-llama/llama-3.3-70b-instruct:free
 //   Fallback Model: google/gemma-4-31b-it:free
+//   Second Fallback Model: z-ai/glm-4.5-air:free
 //   API: REST + SSE streaming (OpenAI compatible)
 //
 // Conforme §14.4.6 : free tier strict, aucun crédit IA acheté.
@@ -37,6 +38,9 @@ const LLM_MODEL = "meta-llama/llama-3.3-70b-instruct:free";
 /** Fallback free-tier model on OpenRouter if the primary fails */
 const LLM_FALLBACK_MODEL = "google/gemma-4-31b-it:free";
 
+/** Second fallback free-tier model on OpenRouter */
+const LLM_FALLBACK_2_MODEL = "z-ai/glm-4.5-air:free";
+
 /** Base URL for OpenRouter API. */
 const OPENROUTER_API_BASE = "https://openrouter.ai/api/v1";
 
@@ -50,10 +54,9 @@ const OPENROUTER_API_BASE = "https://openrouter.ai/api/v1";
  * The stream emits plain text strings (decoded from SSE). The caller is
  * responsible for forwarding these chunks to the client.
  *
- * If the primary model is rate-limited (429/503), retries once with
- * the fallback model before throwing RateLimitError.
+ * Automatically tries primary and fallback models with transient error retries.
  *
- * @throws {RateLimitError} if both primary and fallback models are rate-limited
+ * @throws {RateLimitError} if all models are rate-limited
  * @throws {Error} for any other API or network failure
  */
 export async function askTutor(
@@ -68,20 +71,34 @@ export async function askTutor(
     );
   }
 
-  // Try primary model first, then fallback
-  const modelsToTry = [LLM_MODEL, LLM_FALLBACK_MODEL];
+  // Try primary model first, then fallback models
+  const modelsToTry = [LLM_MODEL, LLM_FALLBACK_MODEL, LLM_FALLBACK_2_MODEL];
 
   for (const model of modelsToTry) {
-    try {
-      const stream = await callOpenRouter(model, apiKey, systemPrompt, messages, opts);
-      return stream;
-    } catch (err) {
-      if (err instanceof RateLimitError && model === LLM_MODEL) {
-        // Primary model rate-limited → try fallback
-        console.warn(`[SIRAJ Provider] ${model} rate-limited, trying fallback ${LLM_FALLBACK_MODEL}...`);
-        continue;
+    // Try each model up to 2 times (initial attempt + 1 retry for rate limits)
+    for (let attempt = 1; attempt <= 2; attempt++) {
+      try {
+        const stream = await callOpenRouter(model, apiKey, systemPrompt, messages, opts);
+        return stream;
+      } catch (err) {
+        if (err instanceof RateLimitError) {
+          console.warn(
+            `[SIRAJ Provider] ${model} rate-limited (attempt ${attempt}/2).`
+          );
+          if (attempt < 2) {
+            // Wait 1.5 seconds before retrying
+            await new Promise((resolve) => setTimeout(resolve, 1500));
+            continue;
+          }
+        }
+        // If it is a non-rate-limit error, or we exhausted attempts, and this is NOT the last model,
+        // we log it and switch to the next model. Otherwise we throw.
+        if (model !== modelsToTry[modelsToTry.length - 1]) {
+          console.warn(`[SIRAJ Provider] Switching from ${model} to next model due to error:`, err);
+          break; // Break the attempt loop to go to the next model
+        }
+        throw err;
       }
-      throw err; // Re-throw if fallback also fails or non-rate-limit error
     }
   }
 
