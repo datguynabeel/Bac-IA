@@ -6,7 +6,6 @@
 // CURRENT PROVIDER: OpenRouter (Free models)
 //   Primary Model: meta-llama/llama-3.3-70b-instruct:free
 //   Fallback Model: google/gemma-4-31b-it:free
-//   Second Fallback Model: z-ai/glm-4.5-air:free
 //   API: REST + SSE streaming (OpenAI compatible)
 //
 // Conforme §14.4.6 : free tier strict, aucun crédit IA acheté.
@@ -38,9 +37,6 @@ const LLM_MODEL = "meta-llama/llama-3.3-70b-instruct:free";
 /** Fallback free-tier model on OpenRouter if the primary fails */
 const LLM_FALLBACK_MODEL = "google/gemma-4-31b-it:free";
 
-/** Second fallback free-tier model on OpenRouter */
-const LLM_FALLBACK_2_MODEL = "z-ai/glm-4.5-air:free";
-
 /** Base URL for OpenRouter API. */
 const OPENROUTER_API_BASE = "https://openrouter.ai/api/v1";
 
@@ -54,9 +50,10 @@ const OPENROUTER_API_BASE = "https://openrouter.ai/api/v1";
  * The stream emits plain text strings (decoded from SSE). The caller is
  * responsible for forwarding these chunks to the client.
  *
- * Automatically tries primary and fallback models with transient error retries.
+ * If the primary model is rate-limited (429/503), retries once with
+ * the fallback model before throwing RateLimitError.
  *
- * @throws {RateLimitError} if all models are rate-limited
+ * @throws {RateLimitError} if both primary and fallback models are rate-limited
  * @throws {Error} for any other API or network failure
  */
 export async function askTutor(
@@ -64,57 +61,27 @@ export async function askTutor(
   messages: TutorMessage[],
   opts: AskTutorOptions = {}
 ): Promise<ReadableStream<string>> {
-  const orKey = process.env.OPENROUTER_API_KEY;
-  const geminiKey = process.env.GEMINI_API_KEY;
-
-  // 1. Direct Google Gemini Route (if Gemini key starts with AIzaSy or OpenRouter key starts with AIzaSy)
-  const activeGeminiKey = (geminiKey && geminiKey.startsWith("AIzaSy")) ? geminiKey : ((orKey && orKey.startsWith("AIzaSy")) ? orKey : null);
-
-  if (activeGeminiKey) {
-    try {
-      const stream = await callGemini("gemini-2.5-flash", activeGeminiKey, systemPrompt, messages, opts);
-      return stream;
-    } catch (err) {
-      console.warn("[SIRAJ Provider] Direct Gemini call failed, trying OpenRouter fallback...", err);
-    }
-  }
-
-  // 2. OpenRouter Route
-  const apiKey = orKey || geminiKey;
+  const apiKey = process.env.OPENROUTER_API_KEY || process.env.GEMINI_API_KEY;
   if (!apiKey) {
     throw new Error(
       "OPENROUTER_API_KEY or GEMINI_API_KEY is not set. Add it to your environment variables."
     );
   }
 
-  // Try primary model first, then fallback models
-  const modelsToTry = [LLM_MODEL, LLM_FALLBACK_MODEL, LLM_FALLBACK_2_MODEL];
+  // Try primary model first, then fallback
+  const modelsToTry = [LLM_MODEL, LLM_FALLBACK_MODEL];
 
   for (const model of modelsToTry) {
-    // Try each model up to 2 times (initial attempt + 1 retry for rate limits)
-    for (let attempt = 1; attempt <= 2; attempt++) {
-      try {
-        const stream = await callOpenRouter(model, apiKey, systemPrompt, messages, opts);
-        return stream;
-      } catch (err) {
-        if (err instanceof RateLimitError) {
-          console.warn(
-            `[SIRAJ Provider] ${model} rate-limited (attempt ${attempt}/2).`
-          );
-          if (attempt < 2) {
-            // Wait 1.5 seconds before retrying
-            await new Promise((resolve) => setTimeout(resolve, 1500));
-            continue;
-          }
-        }
-        // If it is a non-rate-limit error, or we exhausted attempts, and this is NOT the last model,
-        // we log it and switch to the next model. Otherwise we throw.
-        if (model !== modelsToTry[modelsToTry.length - 1]) {
-          console.warn(`[SIRAJ Provider] Switching from ${model} to next model due to error:`, err);
-          break; // Break the attempt loop to go to the next model
-        }
-        throw err;
+    try {
+      const stream = await callOpenRouter(model, apiKey, systemPrompt, messages, opts);
+      return stream;
+    } catch (err) {
+      if (err instanceof RateLimitError && model === LLM_MODEL) {
+        // Primary model rate-limited → try fallback
+        console.warn(`[SIRAJ Provider] ${model} rate-limited, trying fallback ${LLM_FALLBACK_MODEL}...`);
+        continue;
       }
+      throw err; // Re-throw if fallback also fails or non-rate-limit error
     }
   }
 
@@ -194,64 +161,6 @@ async function callOpenRouter(
   return parseOpenRouterSSE(response.body);
 }
 
-/**
- * Makes a direct API call to Google's Gemini API (v1beta).
- */
-async function callGemini(
-  model: string,
-  apiKey: string,
-  systemPrompt: string,
-  messages: TutorMessage[],
-  opts: AskTutorOptions
-): Promise<ReadableStream<string>> {
-  const { maxTokens = 512, temperature = 0.7 } = opts;
-
-  // Format messages for Gemini API
-  const contents = messages.map((msg) => ({
-    role: msg.role === "model" ? "model" : "user",
-    parts: [{ text: msg.content }],
-  }));
-
-  const body = {
-    systemInstruction: {
-      parts: [{ text: systemPrompt }],
-    },
-    contents,
-    generationConfig: {
-      maxOutputTokens: maxTokens,
-      temperature,
-    },
-  };
-
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:streamGenerateContent?key=${apiKey}`;
-
-  console.log(`[SIRAJ Provider] Calling Gemini model=${model}, messages=${contents.length}`);
-
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
-  });
-
-  if (!response.ok) {
-    const errorText = await response.text().catch(() => "Unknown error");
-    console.error(
-      `[SIRAJ Provider] Gemini ${model} → ${response.status}: ${errorText.slice(0, 300)}`
-    );
-    throw new Error(
-      `Gemini API error ${response.status} on model ${model}: ${errorText.slice(0, 200)}`
-    );
-  }
-
-  if (!response.body) {
-    throw new Error("Gemini API returned no response body.");
-  }
-
-  return parseGeminiSSE(response.body);
-}
-
 // ---------------------------------------------------------------------------
 // Custom Error
 // ---------------------------------------------------------------------------
@@ -264,7 +173,7 @@ export class RateLimitError extends Error {
 }
 
 // ---------------------------------------------------------------------------
-// SSE Parsers
+// SSE Parser
 // ---------------------------------------------------------------------------
 
 /**
@@ -333,87 +242,6 @@ function parseOpenRouterSSE(
           }
         }
 
-        controller.close();
-      } catch (err) {
-        controller.error(err);
-      }
-    },
-  });
-}
-
-/**
- * Parses Google Gemini's streamGenerateContent SSE stream.
- * The stream is a streamed JSON array of candidate objects: [ { ... }, { ... } ]
- */
-function parseGeminiSSE(
-  body: ReadableStream<Uint8Array>
-): ReadableStream<string> {
-  const decoder = new TextDecoder();
-  let buffer = "";
-
-  return new ReadableStream<string>({
-    async start(controller) {
-      const reader = body.getReader();
-
-      try {
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-
-          buffer += decoder.decode(value, { stream: true });
-
-          // Gemini streams a JSON array. We find complete JSON objects by matching matching curly braces.
-          let braceCount = 0;
-          let inString = false;
-          let escape = false;
-          let startIndex = -1;
-
-          for (let i = 0; i < buffer.length; i++) {
-            const char = buffer[i];
-
-            if (escape) {
-              escape = false;
-              continue;
-            }
-
-            if (char === "\\") {
-              escape = true;
-              continue;
-            }
-
-            if (char === '"') {
-              inString = !inString;
-              continue;
-            }
-
-            if (!inString) {
-              if (char === "{") {
-                if (braceCount === 0) {
-                  startIndex = i;
-                }
-                braceCount++;
-              } else if (char === "}") {
-                braceCount--;
-                if (braceCount === 0 && startIndex !== -1) {
-                  const jsonStr = buffer.slice(startIndex, i + 1);
-                  try {
-                    const parsed = JSON.parse(jsonStr);
-                    const text = parsed?.candidates?.[0]?.content?.parts?.[0]?.text;
-                    if (typeof text === "string" && text) {
-                      controller.enqueue(text);
-                    }
-                  } catch {
-                    // Skip malformed chunks
-                  }
-                  // Clean buffer and reset index
-                  buffer = buffer.slice(i + 1);
-                  i = -1;
-                  startIndex = -1;
-                }
-              }
-            }
-          }
-        }
         controller.close();
       } catch (err) {
         controller.error(err);
