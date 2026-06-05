@@ -13,72 +13,66 @@ import { InlineMath, BlockMath } from "react-katex";
 import React from "react";
 
 /**
- * Parses a string containing mixed text and LaTeX ($...$ and $$...$$)
- * and returns an array of React elements.
+ * Parses a string containing mixed text and LaTeX and returns React elements.
+ *
+ * Supported delimiters (all four):
+ *   Display math: $$...$$ or \[...\]
+ *   Inline math:  $...$  or \(...\)
+ *
+ * The LLM uses \( \) and \[ \] (standard LaTeX), while the scripted mock data
+ * uses $ and $$. Both are supported for backward compatibility.
  */
 export default function KatexInline({ text }) {
   if (!text) return null;
 
-  // Split on display math ($$...$$) first, then inline ($...$)
   const parts = [];
-  let remaining = text;
   let key = 0;
 
-  // Process display math blocks first: $$...$$
-  const displayRegex = /\$\$([^$]+?)\$\$/g;
+  // Unified regex: match all 4 delimiter types in one pass.
+  // Order matters — display delimiters ($$, \[) must come before inline ($, \()
+  // to avoid partial matches.
+  //
+  // Groups:
+  //   1: $$ ... $$   (display)
+  //   2: \[ ... \]   (display)
+  //   3: $ ... $     (inline)
+  //   4: \( ... \)   (inline)
+  const mathRegex = /\$\$([^$]+?)\$\$|\\\[([\s\S]+?)\\\]|\$([^$]+?)\$|\\\(([\s\S]+?)\\\)/g;
+
   let lastIndex = 0;
   let match;
 
-  // Collect all display math positions
-  const segments = [];
-  while ((match = displayRegex.exec(remaining)) !== null) {
+  while ((match = mathRegex.exec(text)) !== null) {
+    // Push any text before this match
     if (match.index > lastIndex) {
-      segments.push({
-        type: "text",
-        content: remaining.slice(lastIndex, match.index),
-      });
+      parts.push(
+        <span key={key++}>{text.slice(lastIndex, match.index)}</span>
+      );
     }
-    segments.push({ type: "display", content: match[1].trim() });
-    lastIndex = match.index + match[0].length;
-  }
-  if (lastIndex < remaining.length) {
-    segments.push({ type: "text", content: remaining.slice(lastIndex) });
-  }
 
-  // Now process inline math within text segments
-  for (const segment of segments) {
-    if (segment.type === "display") {
+    const displayContent = match[1] || match[2]; // $$ or \[ group
+    const inlineContent = match[3] || match[4];  // $ or \( group
+
+    if (displayContent) {
       parts.push(
         <div key={key++} className="my-3 flex justify-center">
-          <BlockMath math={segment.content} />
+          <BlockMath math={displayContent.trim()} />
         </div>
       );
-    } else {
-      // Split on inline math: $...$
-      const inlineRegex = /\$([^$]+?)\$/g;
-      let inlineLastIndex = 0;
-      let inlineMatch;
-      const textContent = segment.content;
-
-      while ((inlineMatch = inlineRegex.exec(textContent)) !== null) {
-        if (inlineMatch.index > inlineLastIndex) {
-          parts.push(
-            <span key={key++}>
-              {textContent.slice(inlineLastIndex, inlineMatch.index)}
-            </span>
-          );
-        }
-        parts.push(
-          <InlineMath key={key++} math={inlineMatch[1].trim()} />
-        );
-        inlineLastIndex = inlineMatch.index + inlineMatch[0].length;
-      }
-      if (inlineLastIndex < textContent.length) {
-        parts.push(
-          <span key={key++}>{textContent.slice(inlineLastIndex)}</span>
-        );
-      }
+    } else if (inlineContent) {
+      parts.push(
+        <InlineMath key={key++} math={inlineContent.trim()} />
+      );
     }
+
+    lastIndex = match.index + match[0].length;
+  }
+
+  // Push any remaining text after the last match
+  if (lastIndex < text.length) {
+    parts.push(
+      <span key={key++}>{text.slice(lastIndex)}</span>
+    );
   }
 
   return <>{parts}</>;

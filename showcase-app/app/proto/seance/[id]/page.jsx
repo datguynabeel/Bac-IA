@@ -1,17 +1,15 @@
 "use client";
 
 // ============================================================================
-// SIRAJ — Écran 4 : Chat Tuteur Scripté
+// SIRAJ — Écran 4 : Chat Tuteur LIVE
 // ----------------------------------------------------------------------------
 // Route : /proto/seance/[id]
 // Conforme §14.6.2 : Écran 4 — "Voici comment elle apprend avec l'IA"
-// Conforme §14.6.4 : réponses 100% scriptées hardcodées
-// Conforme §14.6.5 v1.8.5 : Next.js 16 App Router
+// Brique A : tuteur live branché sur LLM free-tier (remplace le scripté)
 // ============================================================================
 
 import React from "react";
-import ChatTuteur from "@/components/proto/ChatTuteur";
-import { seanceLimitesMock } from "@/data/proto/seance-limites-mock";
+import ChatTuteurLive from "@/components/proto/ChatTuteurLive";
 
 export default function SeancePage() {
   return (
@@ -19,7 +17,15 @@ export default function SeancePage() {
       className="h-screen flex flex-col"
       style={{ backgroundColor: "#0F1419" }}
     >
-      <ChatTuteur seanceData={seanceLimitesMock} />
+      <ChatTuteurLive
+        seanceInfo={{
+          chapitreTitle: "Limites & Continuité",
+          seanceTitle: "Formes indéterminées 0/0",
+          seanceNumber: 1,
+          totalSeances: 7,
+        }}
+      />
     </div>
   );
 }
+
