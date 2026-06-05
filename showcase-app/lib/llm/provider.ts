@@ -31,11 +31,11 @@ export interface AskTutorOptions {
 // Constants
 // ---------------------------------------------------------------------------
 
-/** Primary free-tier model on OpenRouter */
-const LLM_MODEL = "google/gemini-2.0-flash-lite:free";
+/** Primary free-tier model router on OpenRouter (auto-selects best available free model) */
+const LLM_MODEL = "openrouter/free";
 
-/** Fallback free-tier model on OpenRouter if the primary is rate-limited */
-const LLM_FALLBACK_MODEL = "meta-llama/llama-3-8b-instruct:free";
+/** Fallback free-tier model on OpenRouter if the primary fails */
+const LLM_FALLBACK_MODEL = "meta-llama/llama-3.3-70b-instruct:free";
 
 /** Base URL for OpenRouter API. */
 const OPENROUTER_API_BASE = "https://openrouter.ai/api/v1";
