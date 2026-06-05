@@ -30,10 +30,14 @@ const RATE_LIMIT_MESSAGE =
  */
 export async function POST(request: NextRequest) {
   // Diagnostic: confirm env var is loaded (log only first 8 chars)
-  const keyPreview = process.env.GEMINI_API_KEY
-    ? `${process.env.GEMINI_API_KEY.slice(0, 8)}...`
-    : "NOT SET";
-  console.log(`[SIRAJ Tutor] GEMINI_API_KEY: ${keyPreview}`);
+  const orKey = process.env.OPENROUTER_API_KEY;
+  const geminiKey = process.env.GEMINI_API_KEY;
+  const activeKey = orKey || geminiKey;
+  const keyType = orKey ? "OPENROUTER_API_KEY" : (geminiKey ? "GEMINI_API_KEY" : "NONE");
+  const keyPreview = activeKey
+    ? `${keyType}=${activeKey.slice(0, 8)}...`
+    : "NO API KEY CONFIGURED";
+  console.log(`[SIRAJ Tutor] Active Key: ${keyPreview}`);
 
   try {
     // ── Parse request ──────────────────────────────────────────────────

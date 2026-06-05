@@ -3,15 +3,10 @@
 // ----------------------------------------------------------------------------
 // Single entry point: askTutor(systemPrompt, messages, opts) → ReadableStream
 //
-// CURRENT PROVIDER: Google Gemini free tier (Google AI Studio)
-//   Model: gemini-2.0-flash (free, rate-limited)
-//   API: REST + SSE streaming (no SDK dependency)
-//
-// ▸ GO/NO-GO SWAP (Anthropic Sonnet 4.6):
-//   Replace ONLY the body of askTutor() with Anthropic's streaming API.
-//   The route (app/api/tutor/route.ts) and the client (ChatTuteurLive.tsx)
-//   do NOT change — they consume the same ReadableStream interface.
-//   Environment variable to change: GEMINI_API_KEY → ANTHROPIC_API_KEY
+// CURRENT PROVIDER: OpenRouter (Free models)
+//   Primary Model: google/gemini-2.0-flash-lite:free
+//   Fallback Model: meta-llama/llama-3-8b-instruct:free
+//   API: REST + SSE streaming (OpenAI compatible)
 //
 // Conforme §14.4.6 : free tier strict, aucun crédit IA acheté.
 // ============================================================================
@@ -36,17 +31,14 @@ export interface AskTutorOptions {
 // Constants
 // ---------------------------------------------------------------------------
 
-/**
- * The Gemini model to use. Must be a free-tier eligible model.
- * Check https://ai.google.dev/pricing for current free models.
- */
-const LLM_MODEL = "gemini-2.0-flash";
+/** Primary free-tier model on OpenRouter */
+const LLM_MODEL = "google/gemini-2.0-flash-lite:free";
 
-/** Fallback model if the primary is rate-limited. */
-const LLM_FALLBACK_MODEL = "gemini-2.0-flash-lite";
+/** Fallback free-tier model on OpenRouter if the primary is rate-limited */
+const LLM_FALLBACK_MODEL = "meta-llama/llama-3-8b-instruct:free";
 
-/** Base URL for Google AI Studio REST API. */
-const GEMINI_API_BASE = "https://generativelanguage.googleapis.com/v1beta";
+/** Base URL for OpenRouter API. */
+const OPENROUTER_API_BASE = "https://openrouter.ai/api/v1";
 
 // ---------------------------------------------------------------------------
 // Provider Implementation
@@ -69,10 +61,10 @@ export async function askTutor(
   messages: TutorMessage[],
   opts: AskTutorOptions = {}
 ): Promise<ReadableStream<string>> {
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = process.env.OPENROUTER_API_KEY || process.env.GEMINI_API_KEY;
   if (!apiKey) {
     throw new Error(
-      "GEMINI_API_KEY is not set. Add it to your environment variables."
+      "OPENROUTER_API_KEY or GEMINI_API_KEY is not set. Add it to your environment variables."
     );
   }
 
@@ -81,7 +73,7 @@ export async function askTutor(
 
   for (const model of modelsToTry) {
     try {
-      const stream = await callGemini(model, apiKey, systemPrompt, messages, opts);
+      const stream = await callOpenRouter(model, apiKey, systemPrompt, messages, opts);
       return stream;
     } catch (err) {
       if (err instanceof RateLimitError && model === LLM_MODEL) {
@@ -98,10 +90,9 @@ export async function askTutor(
 }
 
 /**
- * Makes the actual API call to a specific Gemini model.
- * Separated from askTutor to enable model fallback.
+ * Makes the actual API call to a specific OpenRouter model.
  */
-async function callGemini(
+async function callOpenRouter(
   model: string,
   apiKey: string,
   systemPrompt: string,
@@ -110,57 +101,64 @@ async function callGemini(
 ): Promise<ReadableStream<string>> {
   const { maxTokens = 512, temperature = 0.7 } = opts;
 
-  const body = {
-    systemInstruction: {
-      parts: [{ text: systemPrompt }],
-    },
-    contents: messages.map((msg) => ({
-      role: msg.role,
-      parts: [{ text: msg.content }],
+  // Map messages to OpenAI / OpenRouter format
+  const mappedMessages = [
+    { role: "system", content: systemPrompt },
+    ...messages.map((msg) => ({
+      role: msg.role === "model" ? "assistant" : "user",
+      content: msg.content,
     })),
-    generationConfig: {
-      maxOutputTokens: maxTokens,
-      temperature,
-    },
+  ];
+
+  const body = {
+    model,
+    messages: mappedMessages,
+    temperature,
+    max_tokens: maxTokens,
+    stream: true,
   };
 
-  const url = `${GEMINI_API_BASE}/models/${model}:streamGenerateContent?alt=sse&key=${apiKey}`;
+  const url = `${OPENROUTER_API_BASE}/chat/completions`;
 
-  console.log(`[SIRAJ Provider] Calling model=${model}, messages=${messages.length}`);
+  console.log(`[SIRAJ Provider] Calling OpenRouter model=${model}, messages=${mappedMessages.length}`);
 
   const response = await fetch(url, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
+      "HTTP-Referer": "https://siraj-three.vercel.app",
+      "X-Title": "SIRAJ",
+    },
     body: JSON.stringify(body),
   });
 
-  // Handle rate-limit / quota errors — read body for diagnostics
+  // Handle rate-limit / quota errors
   if (response.status === 429 || response.status === 503) {
     const errorBody = await response.text().catch(() => "(no body)");
     console.warn(
-      `[SIRAJ Provider] ${model} → ${response.status}: ${errorBody.slice(0, 300)}`
+      `[SIRAJ Provider] OpenRouter ${model} → ${response.status}: ${errorBody.slice(0, 300)}`
     );
     throw new RateLimitError(
-      `Gemini API rate limited (${response.status}) on model ${model}. Body: ${errorBody.slice(0, 200)}`
+      `OpenRouter API rate limited (${response.status}) on model ${model}. Body: ${errorBody.slice(0, 200)}`
     );
   }
 
   if (!response.ok) {
     const errorText = await response.text().catch(() => "Unknown error");
     console.error(
-      `[SIRAJ Provider] ${model} → ${response.status}: ${errorText.slice(0, 300)}`
+      `[SIRAJ Provider] OpenRouter ${model} → ${response.status}: ${errorText.slice(0, 300)}`
     );
     throw new Error(
-      `Gemini API error ${response.status} on model ${model}: ${errorText.slice(0, 200)}`
+      `OpenRouter API error ${response.status} on model ${model}: ${errorText.slice(0, 200)}`
     );
   }
 
   if (!response.body) {
-    throw new Error("Gemini API returned no response body.");
+    throw new Error("OpenRouter API returned no response body.");
   }
 
-  // Transform the SSE stream into a stream of plain text chunks.
-  return parseGeminiSSE(response.body);
+  return parseOpenRouterSSE(response.body);
 }
 
 // ---------------------------------------------------------------------------
@@ -179,11 +177,9 @@ export class RateLimitError extends Error {
 // ---------------------------------------------------------------------------
 
 /**
- * Parses a Gemini SSE stream and emits plain text chunks.
- * Each SSE event looks like:
- *   data: {"candidates":[{"content":{"parts":[{"text":"..."}]}}]}
+ * Parses an OpenRouter SSE stream (standard OpenAI delta stream) and emits text chunks.
  */
-function parseGeminiSSE(
+function parseOpenRouterSSE(
   body: ReadableStream<Uint8Array>
 ): ReadableStream<string> {
   const decoder = new TextDecoder();
@@ -200,24 +196,49 @@ function parseGeminiSSE(
 
           buffer += decoder.decode(value, { stream: true });
 
-          // Process complete SSE events (separated by double newlines)
-          const events = buffer.split("\n\n");
-          // Keep the last incomplete chunk in the buffer
-          buffer = events.pop() || "";
+          // Process lines
+          const lines = buffer.split("\n");
+          // Keep the last incomplete line in the buffer
+          buffer = lines.pop() || "";
 
-          for (const event of events) {
-            const textChunk = extractTextFromSSEEvent(event);
-            if (textChunk) {
-              controller.enqueue(textChunk);
+          for (const line of lines) {
+            const cleanLine = line.trim();
+            if (!cleanLine) continue;
+
+            if (cleanLine.startsWith("data: ")) {
+              const jsonStr = cleanLine.slice(6).trim();
+              if (jsonStr === "[DONE]") {
+                continue;
+              }
+              try {
+                const parsed = JSON.parse(jsonStr);
+                const text = parsed?.choices?.[0]?.delta?.content;
+                if (typeof text === "string" && text) {
+                  controller.enqueue(text);
+                }
+              } catch {
+                // Malformed JSON — skip this event
+              }
             }
           }
         }
 
         // Process any remaining buffer
         if (buffer.trim()) {
-          const textChunk = extractTextFromSSEEvent(buffer);
-          if (textChunk) {
-            controller.enqueue(textChunk);
+          const cleanLine = buffer.trim();
+          if (cleanLine.startsWith("data: ")) {
+            const jsonStr = cleanLine.slice(6).trim();
+            if (jsonStr !== "[DONE]") {
+              try {
+                const parsed = JSON.parse(jsonStr);
+                const text = parsed?.choices?.[0]?.delta?.content;
+                if (typeof text === "string" && text) {
+                  controller.enqueue(text);
+                }
+              } catch {
+                // Ignore
+              }
+            }
           }
         }
 
@@ -229,26 +250,3 @@ function parseGeminiSSE(
   });
 }
 
-/**
- * Extracts the text content from a single SSE event string.
- * Returns null if no text could be extracted.
- */
-function extractTextFromSSEEvent(event: string): string | null {
-  // Find the "data: " prefix
-  const lines = event.split("\n");
-  for (const line of lines) {
-    if (line.startsWith("data: ")) {
-      const jsonStr = line.slice(6); // Remove "data: " prefix
-      try {
-        const parsed = JSON.parse(jsonStr);
-        const text = parsed?.candidates?.[0]?.content?.parts?.[0]?.text;
-        if (typeof text === "string") {
-          return text;
-        }
-      } catch {
-        // Malformed JSON — skip this event
-      }
-    }
-  }
-  return null;
-}
