@@ -10,6 +10,9 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
+
+const MotionLink = motion(Link);
 
 export interface SirajButtonProps {
   children: React.ReactNode;
@@ -19,6 +22,7 @@ export interface SirajButtonProps {
   disabled?: boolean;
   className?: string;
   type?: "button" | "submit";
+  href?: string;
 }
 
 export default function SirajButton({
@@ -29,6 +33,7 @@ export default function SirajButton({
   disabled,
   className = "",
   type = "button",
+  href,
 }: SirajButtonProps) {
   const sizeClasses: Record<string, string> = {
     sm: "px-4 py-2 text-xs gap-1.5 rounded-lg",
@@ -63,10 +68,12 @@ export default function SirajButton({
   };
 
   const v = variantStyles[variant];
+  const Tag = href ? MotionLink : motion.button;
+  const tagProps = href ? { href } : { type };
 
   return (
-    <motion.button
-      type={type}
+    <Tag
+      {...tagProps}
       onClick={onClick}
       disabled={disabled}
       whileHover={
@@ -79,6 +86,6 @@ export default function SirajButton({
       style={v.style}
     >
       {children}
-    </motion.button>
+    </Tag>
   );
 }

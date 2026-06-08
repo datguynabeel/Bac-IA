@@ -3,6 +3,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useOnboarding } from "../onboarding-context";
 import {
   selectNextItem,
@@ -260,8 +261,28 @@ export default function OnboardingPage() {
   };
 
   return (
-    <div className="w-full max-w-[640px] mx-auto px-5 py-8 min-h-screen flex flex-col justify-center">
-      {renderLogoHeader()}
+    <div className="w-full max-w-[640px] mx-auto px-5 pt-32 pb-8 min-h-screen flex flex-col justify-center">
+      {/* 2. NAVIGATION FLOTTANTE */}
+      <nav className="fixed top-8 left-1/2 -translate-x-1/2 z-50 flex items-center justify-between w-[92%] max-w-6xl px-8 py-3.5 rounded-full backdrop-blur-3xl border border-white/5 transition-all duration-500 shadow-2xl bg-[rgba(10,15,22,0.7)]">
+        <div className="flex items-center gap-4">
+          <Link href="/test-premium" className="cursor-pointer hover:opacity-80 transition-opacity">
+            <img src="/brand/siraj-logo-color.png" alt="SIRAJ" className="h-9 w-auto object-contain" />
+          </Link>
+          <div className="hidden sm:block h-5 w-[0.5px] bg-white/10 mx-2" />
+          <span className="hidden sm:block font-bold tracking-[0.2em] text-[10px] uppercase opacity-40" style={{ fontFamily: "var(--font-manrope)" }}>Excellence SM</span>
+        </div>
+        
+        <div className="hidden lg:flex items-center gap-10 text-[11px] font-bold tracking-[0.1em] uppercase opacity-60">
+          <Link href="/test-premium#programme" className="hover:text-[#E8B860] transition-colors">Programme</Link>
+          <Link href="/test-premium#methode" className="hover:text-[#E8B860] transition-colors">Tuteur IA</Link>
+          <Link href="/test-premium#vision" className="hover:text-[#E8B860] transition-colors">Méthode</Link>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <SirajButton variant="ghost" size="sm" className="hidden md:flex">Connexion</SirajButton>
+          <SirajButton variant="primary" size="sm" href="/proto/onboarding">Démarrer</SirajButton>
+        </div>
+      </nav>
 
       <div className="flex-1 flex flex-col justify-center py-4 relative overflow-hidden">
         <AnimatePresence mode="wait" custom={dir}>
