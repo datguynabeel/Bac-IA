@@ -14,91 +14,9 @@ import {
 } from "../../../lib/proto/diagnostic-engine";
 import { chaptersData } from "../../../lib/mock-data";
 import KatexInline from "../../../components/proto/KatexInline";
+import SirajButton from "../../../components/proto/SirajButton";
 import { ChevronRight, Sparkles, Check, CheckCircle2, ArrowRight } from "lucide-react";
 import Image from "next/image";
-
-// ---------------------------------------------------------------------------
-// Base UI Components
-// ---------------------------------------------------------------------------
-
-interface SirajButtonProps {
-  children: React.ReactNode;
-  variant?: "primary" | "secondary" | "ghost";
-  size?: "sm" | "md" | "lg";
-  onClick?: () => void;
-  disabled?: boolean;
-  className?: string;
-  type?: "button" | "submit";
-}
-
-function SirajButton({
-  children,
-  variant = "primary",
-  size = "md",
-  onClick,
-  disabled,
-  className = "",
-  type = "button"
-}: SirajButtonProps) {
-  const sizeClasses = {
-    sm: "px-4 py-2 text-xs gap-1.5 rounded-lg",
-    md: "px-6 py-3 text-sm gap-2 rounded-xl",
-    lg: "px-8 py-4 text-base gap-2.5 rounded-xl",
-  };
-
-  const variantStyles = {
-    primary: {
-      base: "text-[#0F1419] font-bold shadow-lg shadow-[#E8B860]/10",
-      style: {
-        background: "linear-gradient(135deg, #E8B860 0%, #C09540 100%)",
-        border: "1px solid rgba(232, 184, 96, 0.4)",
-      },
-      hoverStyle: {
-        boxShadow: "0 8px 30px -2px rgba(232, 184, 96, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
-      },
-    },
-    secondary: {
-      base: "font-semibold backdrop-blur-md",
-      style: {
-        background: "rgba(232, 184, 96, 0.08)",
-        color: "#E8B860",
-        border: "1px solid rgba(232, 184, 96, 0.25)",
-      },
-      hoverStyle: {
-        background: "rgba(232, 184, 96, 0.15)",
-        boxShadow: "0 4px 20px -2px rgba(232, 184, 96, 0.2)",
-      },
-    },
-    ghost: {
-      base: "font-medium backdrop-blur-md",
-      style: {
-        background: "transparent",
-        color: "rgba(245, 237, 224, 0.7)",
-        border: "1px solid rgba(245, 237, 224, 0.08)",
-      },
-      hoverStyle: {
-        background: "rgba(245, 237, 224, 0.04)",
-        color: "#F5EDE0",
-      },
-    },
-  };
-
-  const v = variantStyles[variant];
-
-  return (
-    <motion.button
-      type={type}
-      onClick={onClick}
-      disabled={disabled}
-      whileHover={!disabled ? { y: -2, transition: { type: "spring", stiffness: 400, damping: 17 } } : {}}
-      whileTap={!disabled ? { scale: 0.97, y: 0 } : {}}
-      className={`inline-flex items-center justify-center tracking-tight transition-all duration-300 ${sizeClasses[size]} ${v.base} ${disabled ? "opacity-45 cursor-not-allowed" : ""} ${className}`}
-      style={v.style}
-    >
-      {children}
-    </motion.button>
-  );
-}
 
 // ---------------------------------------------------------------------------
 // Animated Mastery Meter

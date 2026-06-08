@@ -23,6 +23,7 @@ export default function SeancePage() {
           seanceTitle: "Formes indéterminées 0/0",
           seanceNumber: 1,
           totalSeances: 7,
+          seanceId: "s1-limites",
         }}
       />
     </div>

@@ -15,7 +15,8 @@
 
 import React, { useState, useRef, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Send, Sparkles } from "lucide-react";
+import { ArrowRight, Send, Sparkles, LogOut } from "lucide-react";
+import Link from "next/link";
 import MessageBubble, { TypingIndicator } from "./MessageBubble";
 import KatexInline from "./KatexInline";
 
@@ -29,6 +30,7 @@ interface SeanceInfo {
   seanceTitle: string;
   seanceNumber: number;
   totalSeances: number;
+  seanceId: string;
 }
 
 /** A chat message displayed in the UI. */
@@ -253,6 +255,21 @@ export default function ChatTuteurLive({ seanceInfo }: { seanceInfo: SeanceInfo 
           />
           Tuteur Live
         </div>
+
+        {/* Terminer la séance — lien entrant vers écran 5 */}
+        <Link
+          href={`/proto/seance/${seanceInfo.seanceId}/fin`}
+          className="shrink-0 px-2.5 py-1 rounded-full text-xs font-medium flex items-center gap-1.5 transition-all hover:opacity-100"
+          style={{
+            background: "rgba(245, 237, 224, 0.04)",
+            color: "rgba(245, 237, 224, 0.5)",
+            border: "1px solid rgba(245, 237, 224, 0.08)",
+          }}
+          id="end-session-link"
+        >
+          <LogOut size={12} />
+          Terminer
+        </Link>
       </div>
 
       {/* Chat Messages Area */}
