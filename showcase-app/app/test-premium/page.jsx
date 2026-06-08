@@ -56,7 +56,7 @@ const assets = {
   icon: '/brand/siraj-icon-only.png',
   medium: '/brand/siraj-medium.png',
   favicon: '/brand/siraj-favicon.png',
-  hero: '/brand/siraj-hero-student.jpg',
+  hero: '/brand/siraj-hero-library.jpg',
   group: '/brand/siraj-students-group.jpg',
 };
 
