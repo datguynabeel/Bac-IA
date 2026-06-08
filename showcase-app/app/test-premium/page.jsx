@@ -283,11 +283,10 @@ export default function TestPremiumPage() {
             <img 
               src={assets.programmeBg} 
               alt="Programme background" 
-              className="w-full h-full object-cover opacity-20"
+              className="w-full h-full object-cover opacity-75"
             />
           </motion.div>
           <div className="absolute inset-0 bg-gradient-to-b from-[#080C10] via-transparent to-[#080C10]" />
-          <div className="absolute inset-0 bg-[#080C10]/60" />
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto">
