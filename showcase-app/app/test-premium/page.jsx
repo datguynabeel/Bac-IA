@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, LayoutGroup, useScroll, useTransform } from 'framer-motion';
+import Link from 'next/link';
 import { 
   BookOpen, PlayCircle, CheckCircle2, Lock, Sparkles, 
   ArrowRight, Clock, Target, Zap, Award, ChevronDown, 
@@ -203,7 +204,9 @@ export default function TestPremiumPage() {
 
         <div className="flex items-center gap-3">
           <SirajButton variant="ghost" size="sm" className="hidden md:flex">Connexion</SirajButton>
-          <SirajButton variant="primary" size="sm">Démarrer</SirajButton>
+          <Link href="/proto/onboarding" passHref legacyBehavior>
+            <SirajButton variant="primary" size="sm">Démarrer</SirajButton>
+          </Link>
         </div>
       </nav>
 
@@ -237,10 +240,12 @@ export default function TestPremiumPage() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-4">
-              <a href="#programme" className="inline-flex items-center justify-center gap-3 bg-[#E8B860] text-[#0A0F16] px-7 py-3.5 rounded-full font-semibold text-sm hover:bg-[#F0C570] transition-colors">
-                Démarrer mon Bac
-                <ArrowRight className="w-4 h-4" />
-              </a>
+              <Link href="/proto/onboarding" legacyBehavior>
+                <a className="inline-flex items-center justify-center gap-3 bg-[#E8B860] text-[#0A0F16] px-7 py-3.5 rounded-full font-semibold text-sm hover:bg-[#F0C570] transition-colors">
+                  Démarrer mon Bac
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </Link>
               <a href="#vision" className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full font-semibold text-sm text-[#E8B860] border border-[#E8B860]/40 hover:border-[#E8B860] hover:bg-[#E8B860]/5 transition-all">
                 Découvrir la vision
                 <ArrowRight className="w-4 h-4" />
@@ -423,10 +428,12 @@ export default function TestPremiumPage() {
           <h2 className="text-[32px] md:text-[44px] font-bold tracking-tight mb-10 text-[#F5EDE0]" style={{ fontFamily: 'Manrope, sans-serif', lineHeight: '1.1' }}>
             Maîtrise ton Bac, chapitre par chapitre.
           </h2>
-          <a href="#programme" className="inline-flex items-center gap-3 bg-[#E8B860] text-[#0A0F16] px-8 py-4 rounded-full font-semibold hover:bg-[#F0C570] transition-colors text-lg">
-            Démarrer mon Bac
-            <ArrowRight className="w-5 h-5" />
-          </a>
+          <Link href="/proto/onboarding" legacyBehavior>
+            <a className="inline-flex items-center gap-3 bg-[#E8B860] text-[#0A0F16] px-8 py-4 rounded-full font-semibold hover:bg-[#F0C570] transition-colors text-lg">
+              Démarrer mon Bac
+              <ArrowRight className="w-5 h-5" />
+            </a>
+          </Link>
         </motion.div>
       </section>
 
