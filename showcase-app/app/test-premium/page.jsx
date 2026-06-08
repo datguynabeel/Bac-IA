@@ -57,6 +57,7 @@ const assets = {
   medium: '/brand/siraj-medium.png',
   favicon: '/brand/siraj-favicon.png',
   hero: '/brand/siraj-hero-library.jpg',
+  programmeBg: '/brand/siraj-programme-bg.jpg',
   group: '/brand/siraj-students-group.jpg',
 };
 
@@ -121,6 +122,14 @@ export default function TestPremiumPage() {
   const { scrollYProgress } = useScroll();
   const heroScale = useTransform(scrollYProgress, [0, 0.3], [1, 1.1]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+
+  // Parallax Programme Background
+  const programmeRef = useRef(null);
+  const { scrollYProgress: programmeScrollProgress } = useScroll({
+    target: programmeRef,
+    offset: ["start end", "end start"]
+  });
+  const programmeY = useTransform(programmeScrollProgress, [0, 1], ["-15%", "15%"]);
 
   // Chapter data
   const chapitres = [
@@ -264,8 +273,24 @@ export default function TestPremiumPage() {
       </section>
 
       {/* 4. SECTION GRILLE PROGRAMME */}
-      <section id="programme" className="relative z-10 py-32 px-6">
-        <div className="max-w-6xl mx-auto">
+      <section ref={programmeRef} id="programme" className="relative z-10 py-32 px-6 overflow-hidden">
+        {/* Parallax Background image behind the program grid */}
+        <div className="absolute inset-0 z-0 h-[130%] w-full pointer-events-none">
+          <motion.div 
+            style={{ y: programmeY }}
+            className="absolute inset-0 w-full h-full"
+          >
+            <img 
+              src={assets.programmeBg} 
+              alt="Programme background" 
+              className="w-full h-full object-cover opacity-20"
+            />
+          </motion.div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#080C10] via-transparent to-[#080C10]" />
+          <div className="absolute inset-0 bg-[#080C10]/60" />
+        </div>
+
+        <div className="relative z-10 max-w-6xl mx-auto">
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
