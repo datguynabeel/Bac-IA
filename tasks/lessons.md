@@ -7,7 +7,7 @@
 > Sources possibles : `Claude Desktop` | `Antigravity` | `Fondateur`
 > Catégories possibles : `Code` | `Design` | `Stratégie` | `Culturel`
 >
-> Référence canonique : section 14.2.5 du document maître `SIRAJ_Projet_Complet_v1_8_7.md`.
+> Référence canonique : section 14.2.5 du document maître `SIRAJ_Projet_Complet_v1_8_8.md`.
 
 ---
 
@@ -101,3 +101,16 @@
 ## Archive
 
 (Vide pour l'instant. Les leçons obsolètes ou fusionnées seront déplacées ici lors de la revue mensuelle.)
+
+[2026-06-10] [Stratégie] CNDP ≠ curriculum. Curriculum = MEN (programme officiel + orientations pédagogiques + cadres de référence). CNDP Maroc = protection des données (loi 09-08). Doc utilisait les 2 sens → correction chirurgicale curriculum uniquement.
+[2026-06-10] [Stratégie] Marché Maroc (confirmé fondateur) : zéro pré-paiement d'un produit non-fonctionnel. Conversion exige un produit qui marche, tous canaux confondus.
+[2026-06-10] [Coût] Test Sonnet 4.6 (5 élèves/2 sem.) ~140 DH réaliste, <600 DH pessimiste avec caching. Angoisse cash disproportionnée.
+[2026-06-10] [Stratégie] Choix LLM runtime = réversible 1 ligne. Jamais un bloqueur du contact terrain.
+[2026-06-10] [Stratégie] Aucun chiffre d'un doc externe n'entre dans le maître sans vérif indépendante (rapport LLM juin : CVE LiteLLM exacte, contexte Gemini faux x10, benchmark ARC-AGI mal attribué).
+[2026-06-10] [Stratégie] Pipeline multi-modèles = post-validation (viole §14.2.4, +latence/+défaillances).
+[2026-06-10] [Méta] Compteurs de saturation = simulations. Seule jauge fiable = % UI fondateur. Dispositif checklist/compteur/proxies retiré v1.8.8.
+[2026-06-05] [FIABILITÉ] Patch v4 insuffisant sur free-tier (2x3+1=5) ; fix = swap Sonnet. Ne pas sur-investir le prompt d'un modèle faible.
+[2026-06-05] [Méthode] Piège du cas codé en dur → valider la généralisation avec un cas FRAIS.
+[2026-06-05] [Commercial] Decks directeur : cible avant esthétique ; couper finance/expansion ; polices Georgia/Calibri.
+[2026-06-05] [Démo] Démo = parcours scripté seul, jamais le tuteur live.
+[2026-06-10] [Code] LiteLLM (catalogue Phase 2) : version min 1.83.7 + Starlette >=1.0.1 (CVE-2026-42271/48710, KEV CISA). Contrainte de version, pas bannissement.
